@@ -14,10 +14,10 @@
 * uses the builtin hash function
 */
 class string_hasher {
-private:
+    private:
     std::unordered_map<size_t, int> hash_table;
 
-public:
+    public:
     explicit string_hasher () noexcept { }
 
     /**

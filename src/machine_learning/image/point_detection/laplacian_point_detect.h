@@ -10,12 +10,12 @@
 
 namespace laplacian_detection {
     /**
-     * @brief point detection using a 3x3 laplacian mask
-     *
-     * @param img the input image
-     * @param threshold  threshold(as threhold goes up, the model becomes more selective)
-     * @return std::vector<std::vector<int32_t> >
-     */
+    * @brief point detection using a 3x3 laplacian mask
+    *
+    * @param img the input image
+    * @param threshold  threshold(as threhold goes up, the model becomes more selective)
+    * @return std::vector<std::vector<int32_t> >
+    */
     std::vector<std::vector<int32_t> > apply_point_detection(const std::vector<std::vector<int32_t> > img, const double threshold) {
         int height = img.size();
         int width = img[0].size();
@@ -27,7 +27,7 @@ namespace laplacian_detection {
                 if(8 * img[x][y] - padding >= threshold){
                     resulted_img.add_2_point(x, y, img[x][y]*kernel[1][1]);
                     if(y - 1 >= 0){
-                    resulted_img.add_2_point(x, y, img[x][y - 1]*kernel[1][0]);
+                        resulted_img.add_2_point(x, y, img[x][y - 1]*kernel[1][0]);
                     }
                     if(y + 1 < width){
                         resulted_img.add_2_point(x, y, img[x][y + 1]*kernel[1][2]);

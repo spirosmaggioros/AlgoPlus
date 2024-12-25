@@ -10,16 +10,16 @@
 
 namespace {
     /**
-     * @brief Perform counting sort for a given vector of elements using a specific radix.
-     *
-     * @details
-     * This function implements the counting sort algorithm for a given vector of elements using a specific radix.
-     * It sorts the elements based on their digits at the specified radix position.
-     *
-     * @tparam T The data type of the elements in the vector.
-     * @param arr The vector to be sorted.
-     * @param exp The radix position to consider (e.g., 1 for units digit, 10 for tens digit, etc.).
-     */
+    * @brief Perform counting sort for a given vector of elements using a specific radix.
+    *
+    * @details
+    * This function implements the counting sort algorithm for a given vector of elements using a specific radix.
+    * It sorts the elements based on their digits at the specified radix position.
+    *
+    * @tparam T The data type of the elements in the vector.
+    * @param arr The vector to be sorted.
+    * @param exp The radix position to consider (e.g., 1 for units digit, 10 for tens digit, etc.).
+    */
     template<typename T>
     void countingSortForRadix(std::vector<T>& arr, int exp) {
         int64_t n = arr.size();
@@ -39,20 +39,20 @@ namespace {
             count[(arr[i] / exp) % 10]--;
         }
 
-        arr = output; 
+        arr = output;
     }
 }
 
 /**
- * @brief Perform radix sort on a given vector of elements.
- *
- * @details
- * This function implements the radix sort algorithm on a given vector of elements.
- * It sorts the elements based on their digits from least significant to most significant.
- *
- * @tparam T The data type of the elements in the vector.
- * @param arr The vector to be sorted.
- */
+* @brief Perform radix sort on a given vector of elements.
+*
+* @details
+* This function implements the radix sort algorithm on a given vector of elements.
+* It sorts the elements based on their digits from least significant to most significant.
+*
+* @tparam T The data type of the elements in the vector.
+* @param arr The vector to be sorted.
+*/
 template<typename T>
 void radix_sort(std::vector<T>& arr) {
     T maxElement = *max_element(arr.begin(), arr.end());

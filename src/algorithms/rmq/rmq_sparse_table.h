@@ -9,7 +9,7 @@
 
 
 /**
-* @brief credits to @neal_wu for his RMQ query
+* @brief credits to @nealwu for his RMQ query
 * RMQ struct for range query minimum
 */
 template<typename T, bool maximum_mode = false>
@@ -24,7 +24,7 @@ struct RMQ {
 
     RMQ(const std::vector<T> &_values = {}) {
         if (!_values.empty())
-            build(_values);
+        build(_values);
     }
 
     // Note: when `values[a] == values[b]`, returns b.
@@ -40,14 +40,14 @@ struct RMQ {
         range_low.resize(levels);
 
         for (int k = 0; k < levels; k++)
-            range_low[k].resize(n - (1 << k) + 1);
+        range_low[k].resize(n - (1 << k) + 1);
 
         for (int i = 0; i < n; i++)
-            range_low[0][i] = i;
+        range_low[0][i] = i;
 
         for (int k = 1; k < levels; k++)
-            for (int i = 0; i <= n - (1 << k); i++)
-                range_low[k][i] = better_index(range_low[k - 1][i], range_low[k - 1][i + (1 << (k - 1))]);
+        for (int i = 0; i <= n - (1 << k); i++)
+        range_low[k][i] = better_index(range_low[k - 1][i], range_low[k - 1][i + (1 << (k - 1))]);
     }
 
     // Note: breaks ties by choosing the largest index.

@@ -9,10 +9,10 @@
 
 
 /**
- * @brief Performs counting sort on a vector of elements.
- * @tparam T The type of elements in the vector.
- * @param arr The vector to be sorted.
- */
+* @brief Performs counting sort on a vector of elements.
+* @tparam T The type of elements in the vector.
+* @param arr The vector to be sorted.
+*/
 template <typename T>
 void counting_sort(std::vector<T>& arr) {
     T maxElement = std::max(0, *max_element(arr.begin(), arr.end()));

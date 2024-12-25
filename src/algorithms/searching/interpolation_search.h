@@ -8,20 +8,20 @@
 #endif
 
 /**
- * @brief Performs an interpolation search on a sorted container.
- *
- * @details
- * Interpolation Search estimates the position of the key in the sorted container and uses this estimation to dramatically
- * reduce the search time for certain data distributions. However, this function assumes that the elements are uniformly distributed
- * and works best when this assumption holds. On average, its complexity is O(log(log(n))), but in the worst case, it can become O(n).
- *
- * @tparam Iterator The type of iterator for the container.
- * @tparam T The type of the object (key) to be searched.
- * @param begin The iterator pointing to the beginning of the container.
- * @param end The iterator pointing to the end of the container.
- * @param key The key to be searched within the container.
- * @return Returns the index (location) of the key in the container if found, or -1 if the key is not found.
- */
+* @brief Performs an interpolation search on a sorted container.
+*
+* @details
+* Interpolation Search estimates the position of the key in the sorted container and uses this estimation to dramatically
+* reduce the search time for certain data distributions. However, this function assumes that the elements are uniformly distributed
+* and works best when this assumption holds. On average, its complexity is O(log(log(n))), but in the worst case, it can become O(n).
+*
+* @tparam Iterator The type of iterator for the container.
+* @tparam T The type of the object (key) to be searched.
+* @param begin The iterator pointing to the beginning of the container.
+* @param end The iterator pointing to the end of the container.
+* @param key The key to be searched within the container.
+* @return Returns the index (location) of the key in the container if found, or -1 if the key is not found.
+*/
 template <typename Iterator, typename T>
 int64_t interpolation_search(Iterator begin, Iterator end, T key) {
     auto size = std::distance(begin, end);
@@ -36,7 +36,7 @@ int64_t interpolation_search(Iterator begin, Iterator end, T key) {
             std::advance(guess, offset);
         }
         if (*guess == key)
-            return std::distance(begin, guess);
+        return std::distance(begin, guess);
 
         if (*guess > key) {
             it_end = guess-1;

@@ -1,4 +1,4 @@
-#ifndef DILATION_H 
+#ifndef DILATION_H
 #define DILATION_H
 
 #ifdef __cplusplus
@@ -9,11 +9,11 @@
 
 namespace morphology_operations{
     /**
-     * @brief dilate function. Performs dilation to the passed image
-     * 
-     * @param image the input image
-     * @return std::vector<std::vector<int32_t> > the resulted(dilated) image
-     */
+    * @brief dilate function. Performs dilation to the passed image
+    *
+    * @param image the input image
+    * @return std::vector<std::vector<int32_t> > the resulted(dilated) image
+    */
     std::vector<std::vector<int32_t> > dilate(const std::vector<std::vector<int32_t> > &image){
         Image img(image);
         assert(img.binary());
@@ -33,11 +33,11 @@ namespace morphology_operations{
     }
 
     /**
-     * @brief erote function. Performs erotion to the passed image
-     * 
-     * @param image the input image
-     * @return std::vector<std::vector<int32_t> > the resulted(eroted) image
-     */
+    * @brief erote function. Performs erotion to the passed image
+    *
+    * @param image the input image
+    * @return std::vector<std::vector<int32_t> > the resulted(eroted) image
+    */
     std::vector<std::vector<int32_t> > erote(const std::vector<std::vector<int32_t> > &image){
         Image img(image);
         assert(img.binary());
@@ -58,11 +58,11 @@ namespace morphology_operations{
     }
 
     /**
-     * @brief open function. Performs opening to the passed image
-     * 
-     * @param image the input image
-     * @return std::vector<std::vector<int32_t> > the resulted(opened) image
-     */
+    * @brief open function. Performs opening to the passed image
+    *
+    * @param image the input image
+    * @return std::vector<std::vector<int32_t> > the resulted(opened) image
+    */
     std::vector<std::vector<int32_t> > open(const std::vector<std::vector<int32_t> > &image){
         Image img(image);
         assert(img.binary());
@@ -72,11 +72,11 @@ namespace morphology_operations{
     }
 
     /**
-     * @brief close function. Performs closing to the passed image
-     * 
-     * @param image the input image
-     * @return std::vector<std::vector<int32_t> > the resulted(closed) image
-     */
+    * @brief close function. Performs closing to the passed image
+    *
+    * @param image the input image
+    * @return std::vector<std::vector<int32_t> > the resulted(closed) image
+    */
     std::vector<std::vector<int32_t> > close(const std::vector<std::vector<int32_t> > &image){
         Image img(image);
         assert(img.binary());

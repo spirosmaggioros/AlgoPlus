@@ -11,12 +11,12 @@ namespace {
     const int modulus = 1e9 + 7;
 
     /**
-     * @brief Computes the hash value of a substring within a given string.
-     * @param str The input string.
-     * @param start The starting index of the substring.
-     * @param end The ending index of the substring.
-     * @return The computed hash value of the substring.
-     */
+    * @brief Computes the hash value of a substring within a given string.
+    * @param str The input string.
+    * @param start The starting index of the substring.
+    * @param end The ending index of the substring.
+    * @return The computed hash value of the substring.
+    */
     size_t compute_hash(const std::string &str, size_t start, size_t end) {
         size_t curr_mod = 1;
         size_t hash_value = 0;
@@ -28,19 +28,19 @@ namespace {
     }
 
     /**
-     * @brief Check if two substrings have a collision
-     *
-     * This function compares two substrings from two given strings to check if they have a collision.
-     * A collision occurs if the characters in the corresponding positions of the substrings are not equal.
-     *
-     * @param str1 The first string
-     * @param start1 The starting position of the first substring in str1
-     * @param str2 The second string
-     * @param start2 The starting position of the second substring in str2
-     * @param length The length of the substrings to compare
-     * @return true if the substrings have a collision, false otherwise
-     * @note This function assumes str1 and str2 are valid strings with lengths greater than or equal to start1 + length and start2 + length respectively.
-     */
+    * @brief Check if two substrings have a collision
+    *
+    * This function compares two substrings from two given strings to check if they have a collision.
+    * A collision occurs if the characters in the corresponding positions of the substrings are not equal.
+    *
+    * @param str1 The first string
+    * @param start1 The starting position of the first substring in str1
+    * @param str2 The second string
+    * @param start2 The starting position of the second substring in str2
+    * @param length The length of the substrings to compare
+    * @return true if the substrings have a collision, false otherwise
+    * @note This function assumes str1 and str2 are valid strings with lengths greater than or equal to start1 + length and start2 + length respectively.
+    */
     bool check_collision(const std::string &str1, size_t start1, const std::string &str2, size_t start2, size_t length) {
         for(size_t i = 0; i < length; ++i) {
             if(str1[start1 + i] != str2[start2 + i]) {
@@ -52,15 +52,15 @@ namespace {
 }
 
 /**
- * @brief Executes the Rabin-Karp algorithm to search for occurrences of a pattern within a text.
- *
- * @details
- * This algorithm uses rolling hash values to efficiently compare substrings of the text with the pattern.
- *
- * @param text The input text to search within.
- * @param pattern The pattern to search for within the text.
- * @return A vector of starting indices of all occurrences of the pattern in the text. If none were found the vector is empty.
- */
+* @brief Executes the Rabin-Karp algorithm to search for occurrences of a pattern within a text.
+*
+* @details
+* This algorithm uses rolling hash values to efficiently compare substrings of the text with the pattern.
+*
+* @param text The input text to search within.
+* @param pattern The pattern to search for within the text.
+* @return A vector of starting indices of all occurrences of the pattern in the text. If none were found the vector is empty.
+*/
 std::vector<size_t> rabin_karp(const std::string &text, const std::string &pattern) {
     std::vector<size_t> result;
     size_t pattern_length = pattern.length();
@@ -84,7 +84,7 @@ std::vector<size_t> rabin_karp(const std::string &text, const std::string &patte
     // the highest power used in the hash calculation of the pattern
     size_t power = 1;
     for(int i = 0; i < pattern_length - 1; ++i)
-        power = (power*base) % modulus;
+    power = (power*base) % modulus;
 
     for(size_t i = 0; i <= text_length - pattern_length; ++i) {
         if(pattern_hash == text_hash && check_collision(text, i, pattern, 0, pattern_length)) {
