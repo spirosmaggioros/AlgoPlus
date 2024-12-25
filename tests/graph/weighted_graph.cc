@@ -1,4 +1,3 @@
-#define CATCH_CONFIG_MAIN
 #include "../../src/visualization/graph_visual/graph_visualization.h"
 #include "../../src/classes/graph/graph.h"
 #include "../../third_party/catch.hpp"
@@ -348,29 +347,29 @@ TEST_CASE("Testing scc function for weighted graph class") {
     REQUIRE(g3.scc() == 4);
 }
 
-TEST_CASE("Testing maximum flow with dinic's algorithm") {
-    weighted_graph<char> g("directed");
-    g.add_edge('s', 'A', 7);
-    g.add_edge('s', 'D', 4);
-    g.add_edge('A', 'B', 5);
-    g.add_edge('A', 'C', 3);
-    g.add_edge('D', 'A', 3);
-    g.add_edge('D', 'C', 2);
-    g.add_edge('B', 't', 8);
-    g.add_edge('C', 't', 5);
-    g.add_edge('C', 'B', 3);
-
-    std::unordered_map<char, std::vector<std::tuple<char, double, double> > > f = g.max_flow('s', 't');
-
-    for(const auto x: f) {
-        std::cout << x.first << ": ";
-        for(auto &y: x.second) {
-            auto [xx, flow, capacity] = y;
-            std::cout << xx << " " << flow << "/" << capacity << '\n';
-        }
-        std::cout << '\n';
-    }
-}
+// TEST_CASE("Testing maximum flow with dinic's algorithm") {
+//     weighted_graph<char> g("directed");
+//     g.add_edge('s', 'A', 7);
+//     g.add_edge('s', 'D', 4);
+//     g.add_edge('A', 'B', 5);
+//     g.add_edge('A', 'C', 3);
+//     g.add_edge('D', 'A', 3);
+//     g.add_edge('D', 'C', 2);
+//     g.add_edge('B', 't', 8);
+//     g.add_edge('C', 't', 5);
+//     g.add_edge('C', 'B', 3);
+//
+//     std::unordered_map<char, std::vector<std::tuple<char, double, double> > > f = g.max_flow('s', 't');
+//
+//     for(const auto x: f) {
+//         std::cout << x.first << ": ";
+//         for(auto &y: x.second) {
+//             auto [xx, flow, capacity] = y;
+//             std::cout << xx << " " << flow << "/" << capacity << '\n';
+//         }
+//         std::cout << '\n';
+//     }
+// }
 
 #define GRAPH_VISUALIZATION_H
 

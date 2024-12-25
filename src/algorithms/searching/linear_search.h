@@ -14,7 +14,7 @@
 * @return false otherwise
 */
 template <typename T> bool linear_search(std::vector<T> arr, T key) {
-    return std::find_if(arr.begin(), arr.end(), [key](const auto &x) { return x == key; })
+    return std::find_if(arr.begin(), arr.end(), [key](const auto &x) { return x == key; }) != arr.end();
 }
 
 #endif
