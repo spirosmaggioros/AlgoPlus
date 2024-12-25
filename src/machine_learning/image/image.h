@@ -241,34 +241,30 @@ class Image{
     */
     Image apply_filter2d(std::vector<std::vector<int32_t> > &filter) const{
         assert(filter.size() == 3 && filter[0].size() == 3);
+
         Image resulted_img(height, width);
-        for(int x = 0; x<height; x++){
-            for(int y = 0; y<width; y++){
-                resulted_img.add_2_point(x, y, img[x][y]*filter[1][1]);
-                if(y - 1 >= 0){
-                    resulted_img.add_2_point(x, y, img[x][y - 1]*filter[1][0]);
-                }
-                if(y + 1 < width){
-                    resulted_img.add_2_point(x, y, img[x][y + 1]*filter[1][2]);
-                    if(x + 1 < height){
-                        resulted_img.add_2_point(x, y, img[x + 1][y + 1]*filter[2][2]);
+        int offsets[3][3][2] = {
+            {{-1, -1}, {-1, 0}, {-1, 1}},
+            {{0, -1}, {0, 0}, {0, 1}},
+            {{1, -1}, {1, 0}, {1, 1}}
+        };
+
+        for (int x = 0; x < height; ++x) {
+            for (int y = 0; y < width; ++y) {
+                int32_t value = 0;
+
+                for (int fx = 0; fx < 3; ++fx) {
+                    for (int fy = 0; fy < 3; ++fy) {
+                        int nx = x + offsets[fx][fy][0];
+                        int ny = y + offsets[fx][fy][1];
+
+                        if (nx >= 0 && nx < height && ny >= 0 && ny < width) {
+                            value += img[nx][ny] * filter[fx][fy];
+                        }
                     }
                 }
-                if(x - 1 >= 0){
-                    resulted_img.add_2_point(x, y, img[x - 1][y]*filter[0][1]);
-                    if(y + 1 < width){
-                        resulted_img.add_2_point(x, y, img[x - 1][y + 1]*filter[0][2]);
-                    }
-                    if(y - 1 >= 0){
-                        resulted_img.add_2_point(x, y, img[x - 1][y - 1]*filter[0][0]);
-                    }
-                }
-                if(x + 1 < height){
-                    resulted_img.add_2_point(x, y, img[x + 1][y]*filter[2][1]);
-                    if(y - 1 >= 0){
-                        resulted_img.add_2_point(x, y, img[x + 1][y - 1]*filter[2][0]);
-                    }
-                }
+
+                resulted_img.set_point(x, y, value);
             }
         }
         return resulted_img;
@@ -281,36 +277,34 @@ class Image{
     */
     Image apply_filter2d(std::vector<std::vector<float> > &filter) const {
         assert(filter.size() == 3 && filter[0].size() == 3);
+
         Image resulted_img(height, width);
-        for(int x = 0; x<height; x++){
-            for(int y = 0; y<width; y++){
-                resulted_img.add_2_point(x, y, static_cast<int32_t>(round(img[x][y]*filter[1][1])));
-                if(y - 1 >= 0){
-                    resulted_img.add_2_point(x, y, static_cast<int32_t>(round(img[x][y - 1]*filter[1][0])));
-                }
-                if(y + 1 < width){
-                    resulted_img.add_2_point(x, y, static_cast<int32_t>(round(img[x][y + 1]*filter[1][2])));
-                    if(x + 1 < height){
-                        resulted_img.add_2_point(x, y, static_cast<int32_t>(round(img[x + 1][y + 1]*filter[2][2])));
+
+        int offsets[3][3][2] = {
+            {{-1, -1}, {-1, 0}, {-1, 1}},
+            {{0, -1}, {0, 0}, {0, 1}},
+            {{1, -1}, {1, 0}, {1, 1}}
+        };
+
+        for (int x = 0; x < height; ++x) {
+            for (int y = 0; y < width; ++y) {
+                float value = 0.0f;
+
+                for (int fx = 0; fx < 3; ++fx) {
+                    for (int fy = 0; fy < 3; ++fy) {
+                        int nx = x + offsets[fx][fy][0];
+                        int ny = y + offsets[fx][fy][1];
+
+                        if (nx >= 0 && nx < height && ny >= 0 && ny < width) {
+                            value += img[nx][ny] * filter[fx][fy];
+                        }
                     }
                 }
-                if(x - 1 >= 0){
-                    resulted_img.add_2_point(x, y, static_cast<int32_t>(round(img[x - 1][y]*filter[0][1])));
-                    if(y + 1 < width){
-                        resulted_img.add_2_point(x, y, static_cast<int32_t>(round(img[x - 1][y + 1]*filter[0][2])));
-                    }
-                    if(y - 1 >= 0){
-                        resulted_img.add_2_point(x, y, static_cast<int32_t>(round(img[x - 1][y - 1]*filter[0][0])));
-                    }
-                }
-                if(x + 1 < height){
-                    resulted_img.add_2_point(x, y, static_cast<int32_t>(round(img[x + 1][y]*filter[2][1])));
-                    if(y - 1 >= 0){
-                        resulted_img.add_2_point(x, y, static_cast<int32_t>(round(img[x + 1][y - 1]*filter[2][0])));
-                    }
-                }
+
+                resulted_img.set_point(x, y, static_cast<int32_t>(round(value)));
             }
         }
+
         return resulted_img;
     }
 
