@@ -39,8 +39,9 @@ namespace helpers {
 }
 
 /**
-* @brief minimum max sub sum function. Finds the minimum maximum subarrays(=K) sum
-* and returns the maximum of them
+* @brief minimum max sub sum function. Finds the maximum sum of each K subarrays
+* and returns the minimum of them. Basically, answers the question: "What is the best way
+* of splitting a field to your K sons - without changing the order - so that you are as fair as possible"
 *
 * @param v: vector<int> the passed array
 * @param K: the total subarrays

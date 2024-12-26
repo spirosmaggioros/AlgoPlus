@@ -46,8 +46,9 @@ template <typename Iter> Iter median_of_three(Iter a, Iter b, Iter c) {
 */
 template <typename Iter> void quick_sort(Iter begin, Iter end) {
     auto distance = std::distance(begin, end);
-    if (distance <= 1)
-    return;
+    if (distance <= 1) {
+        return;
+    }
 
     // choose the pivot as median of first, middle and last element
     Iter mid = begin + distance / 2;

@@ -35,8 +35,9 @@ int64_t interpolation_search(Iterator begin, Iterator end, T key) {
             auto offset = static_cast<int>(static_cast<double>(size - 1) * (key - *it_begin) / (*it_end - *it_begin));
             std::advance(guess, offset);
         }
-        if (*guess == key)
-        return std::distance(begin, guess);
+        if (*guess == key) {
+            return std::distance(begin, guess);
+        }
 
         if (*guess > key) {
             it_end = guess-1;

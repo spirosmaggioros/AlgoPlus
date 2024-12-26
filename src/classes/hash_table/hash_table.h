@@ -127,8 +127,9 @@ template <typename KeyType, typename ValueType> class hash_table {
 
     Iterator begin() {
         auto startIterator = bucketList.begin();
-        while (startIterator != bucketList.end() && startIterator->second.empty())
-        startIterator++;
+        while (startIterator != bucketList.end() && startIterator->second.empty()) {
+            startIterator++;
+        }
         return Iterator(startIterator, bucketList.end());
     }
 
