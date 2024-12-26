@@ -24,12 +24,14 @@ class Image{
     * @brief image default constructor
     * @param img_pass: passed image(default empty)
     */
-    explicit Image(std::vector<std::vector<int32_t> > img_pass = {}) noexcept {
-        if(!img_pass.empty()){
-            height = img_pass.size();
-            width = img_pass[0].size();
-            img = img_pass;
+    explicit Image(std::vector<std::vector<int32_t> > img_pass = {}) {
+        if(img_pass.empty()) {
+            throw std::invalid_argument("Image dimensions can't be 0");
         }
+        assert(!img_pass.empty());
+        height = img_pass.size();
+        width = img_pass[0].size();
+        img = img_pass;
     }
 
     /**
@@ -240,6 +242,7 @@ class Image{
     * @return vector<vector<int32_t> > the resulted image
     */
     Image apply_filter2d(std::vector<std::vector<int32_t> > &filter) const{
+        assert(this->height > 0 && this->width > 0);
         assert(filter.size() == 3 && filter[0].size() == 3);
 
         Image resulted_img(height, width);
@@ -277,7 +280,7 @@ class Image{
     */
     Image apply_filter2d(std::vector<std::vector<float> > &filter) const {
         assert(filter.size() == 3 && filter[0].size() == 3);
-
+        assert(this->height > 0 && this->width > 0);
         Image resulted_img(height, width);
 
         int offsets[3][3][2] = {
