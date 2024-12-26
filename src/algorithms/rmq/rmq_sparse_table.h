@@ -7,6 +7,18 @@
 #include <cassert>
 #endif
 
+#ifndef count_leading_zeroes
+#if defined(_MSC_VER)
+#   if defined(_M_ARM) || defined(_M_ARM64) 
+#		define count_leading_zeroes(x) _CountLeadingZeros(x);
+#	else
+#		define count_leading_zeroes(x) __lzcnt(x);
+#	endif
+#else
+#	define count_leading_zeroes(x) __builtin_clz(x);
+#endif
+#endif
+
 
 /**
 * @brief credits to @nealwu for his RMQ query
@@ -15,7 +27,7 @@
 template<typename T, bool maximum_mode = false>
 struct RMQ {
     static int highest_bit(unsigned x) {
-        return x == 0 ? -1 : 31 - __builtin_clz(x);
+        return x == 0 ? -1 : 31 - count_leading_zeroes(x);
     }
 
     int n = 0;
