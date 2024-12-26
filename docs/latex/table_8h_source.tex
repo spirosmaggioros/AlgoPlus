@@ -1,0 +1,257 @@
+\doxysection{table.\+h}
+\hypertarget{table_8h_source}{}\label{table_8h_source}\index{/Users/spirosmag/Documents/AlgoPlus/src/extra/containers/table.h@{/Users/spirosmag/Documents/AlgoPlus/src/extra/containers/table.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#ifndef\ TABLE\_H}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#define\ TABLE\_H}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#ifdef\ \_\_cplusplus}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ <memory>}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ <functional>}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ <cassert>}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ <ranges>}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00019\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classtable}{table}}\ \{}
+\DoxyCodeLine{00020\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keyword}{struct\ }node\ \{}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ T\ info;}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \_idx;}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ std::shared\_ptr<node>\ ptr\_right;}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ std::shared\_ptr<node>\ ptr\_left;}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \textcolor{keyword}{explicit}\ node()\ :\ ptr\_right(\textcolor{keyword}{nullptr}),\ ptr\_left(\textcolor{keyword}{nullptr}),\ \_idx(0)\ \{\}}
+\DoxyCodeLine{00027\ \ \ \ \ \};}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \_size;}
+\DoxyCodeLine{00030\ \ \ \ \ std::shared\_ptr<node>\ root;}
+\DoxyCodeLine{00031\ \ \ \ \ std::shared\_ptr<node>\ tail;}
+\DoxyCodeLine{00032\ \ \ \ \ std::shared\_ptr<node>\ \_itr;}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classtable}{table}}()\ noexcept\ :\ root(\textcolor{keyword}{nullptr}),\ tail(\textcolor{keyword}{nullptr}),\ \_itr(\textcolor{keyword}{nullptr}),\ \_size(0)\ \{\}}
+\DoxyCodeLine{00036\ \ \ \ \ \mbox{\hyperlink{classtable}{table}}(\textcolor{keyword}{const}\ \mbox{\hyperlink{classtable}{table<T>}}\ \&t)\ noexcept\ :\ \ root(t.root),\ tail(t.tail),\ \_size(t.\_size)\ \{\}}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ size()\ \{\ \textcolor{keywordflow}{return}\ this-\/>\_size;\ \}}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ ...Args>}
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keywordtype}{void}\ push\_front(Args\&\&\ ...keys);}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ ...Args>}
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{keywordtype}{void}\ push\_back(Args\&\&\ ...keys);}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keywordtype}{void}\ pop\_front();}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{keywordtype}{void}\ pop\_back();}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \ \ \ \ \textcolor{keywordtype}{bool}\ empty();}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \ \ \ \ std::vector<T>\ vectorize();}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{classtable_1_1_iterator}{Iterator}};}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ \ \ \ \ \mbox{\hyperlink{classtable_1_1_iterator}{Iterator}}\ begin()\ \{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classtable_1_1_iterator}{Iterator}}(root);\ \}}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00058\ \ \ \ \ \mbox{\hyperlink{classtable_1_1_iterator}{Iterator}}\ end()\ \{\ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{classtable_1_1_iterator}{Iterator}}(\textcolor{keyword}{nullptr});\ \}}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \ \ \ \ T\&\ operator[](\textcolor{keyword}{const}\ \textcolor{keywordtype}{size\_t}\&\ index)\ \{}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ assert(index\ <\ \_size\ \&\&\ index\ >=\ 0);}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(index\ ==\ 0)\ \{}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ this-\/>root-\/>info;}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(index\ ==\ \_size\ -\/\ 1)\{}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ this-\/>tail-\/>info;}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\_itr-\/>\_idx\ <\ index)\{}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}(\_itr-\/>\_idx\ !=\ index)\{}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \_itr\ =\ \_itr-\/>ptr\_right;}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}(\_itr-\/>\_idx\ !=\ index)\{}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \_itr\ =\ \_itr-\/>ptr\_left;}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \_itr-\/>info;}
+\DoxyCodeLine{00082\ \ \ \ \ \}}
+\DoxyCodeLine{00083\ }
+\DoxyCodeLine{00084\ \ \ \ \ \mbox{\hyperlink{classtable}{table<T>}}\&\ operator\ =(\textcolor{keyword}{const}\ \mbox{\hyperlink{classtable}{table<T>}}\&\ t)\{}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\textcolor{keyword}{this}\ ==\ \&t)\ [[unlikely]]\ \{}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ [[likely]]\ \{}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \ \ \ \ this-\/>root\ =\ t.root;}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \ \ \ \ this-\/>tail\ =\ t.tail;}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ *(\textcolor{keyword}{this});}
+\DoxyCodeLine{00093\ \ \ \ \ \}}
+\DoxyCodeLine{00094\ \ \ \ \ \textcolor{keyword}{friend}\ std::ostream\ \&\ operator\ <<\ (std::ostream\ \&out,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{classtable}{table<T>}}\ \&t)\{}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(t.root\ ==\ \textcolor{keyword}{nullptr})\ [[unlikely]]\ \{}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ out;}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ [[likely]]\ \{}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \ \ \ \ std::shared\_ptr<node>\ tmp\ =\ t.root;}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}(tmp\ !=\ \textcolor{keyword}{nullptr})\{}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ out\ <<\ tmp-\/>info\ <<\ \textcolor{stringliteral}{"{}\ "{}};}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tmp\ =\ tmp-\/>ptr\_right;}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ out;}
+\DoxyCodeLine{00106\ \ \ \ \ \}}
+\DoxyCodeLine{00107\ }
+\DoxyCodeLine{00108\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00109\ \ \ \ \ \textcolor{keywordtype}{void}\ \_check\_update()\{}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(this-\/>root\ ==\ \textcolor{keyword}{nullptr})\ \{\ \textcolor{keywordflow}{return};\ \}}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ std::shared\_ptr<node>\ tmp\ =\ this-\/>root;}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ idx\ =\ 0;}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}(tmp\ !=\ \textcolor{keyword}{nullptr})\ \{}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \ \ \ \ tmp-\/>\_idx\ =\ idx++;}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \ \ \ \ tmp\ =\ tmp-\/>ptr\_right;}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00117\ \ \ \ \ \}}
+\DoxyCodeLine{00118\ \};}
+\DoxyCodeLine{00119\ }
+\DoxyCodeLine{00120\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00121\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}...\ Args>}
+\DoxyCodeLine{00122\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classtable}{table<T>::push\_front}}(Args\&\&\ ...keys)\{}
+\DoxyCodeLine{00123\ \ \ \ \ \textcolor{keyword}{auto}\ \_insert\ =\ [\&](\textcolor{keyword}{const}\ T\&\&\ key)\ -\/>\ \textcolor{keywordtype}{void}\ \{}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ std::shared\_ptr<node>\ nn\ =\ std::make\_shared<node>();}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ nn-\/>info\ =\ key;}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(this-\/>root\ ==\ \textcolor{keyword}{nullptr})\ [[unlikely]]\ \{}
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \ \ \ \ nn-\/>\_idx\ =\ 0;}
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \ \ \ \ this-\/>root\ =\ nn;}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \ \ \ \ this-\/>tail\ =\ nn;}
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ \ \ \ \ this-\/>\_itr\ =\ nn;}
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \ \ \ \ this-\/>\_size++;}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ [[likely]]\ \{}
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ \ \ \ \ std::shared\_ptr<node>\ tmp\ =\ root;}
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \ \ \ \ nn-\/>\_idx\ =\ 0;}
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \ \ \ \ this-\/>root\ =\ nn;}
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \ \ \ \ this-\/>root-\/>ptr\_right\ =\ tmp;}
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ \ \ \ \ tmp-\/>ptr\_left\ =\ this-\/>root;}
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ this-\/>\_size++;}
+\DoxyCodeLine{00142\ \ \ \ \ \};}
+\DoxyCodeLine{00143\ \ \ \ \ (std::invoke(\_insert,\ std::forward<Args>(keys)),\ ...);}
+\DoxyCodeLine{00144\ \ \ \ \ \_check\_update();}
+\DoxyCodeLine{00145\ \}}
+\DoxyCodeLine{00146\ }
+\DoxyCodeLine{00147\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00148\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}...\ Args>}
+\DoxyCodeLine{00149\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classtable}{table<T>::push\_back}}(Args\&\&\ ...keys)\{}
+\DoxyCodeLine{00150\ \ \ \ \ \textcolor{keyword}{auto}\ \_insert\ =\ [\&](\textcolor{keyword}{const}\ T\&\&\ \mbox{\hyperlink{namespacedetail_a47b1bb0bbd3596589ed9187059c312efa3c6e0b8a9c15224a8228b9a98ca1531d}{key}})\ -\/>\ \textcolor{keywordtype}{void}\ \{}
+\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ std::shared\_ptr<node>\ nn\ =\ std::make\_shared<node>();}
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ nn-\/>info\ =\ \mbox{\hyperlink{namespacedetail_a47b1bb0bbd3596589ed9187059c312efa3c6e0b8a9c15224a8228b9a98ca1531d}{key}};}
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(this-\/>root\ ==\ \textcolor{keyword}{nullptr})\ [[unlikely]]\ \{}
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ \ \ \ \ nn-\/>\_idx\ =\ 0;}
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ \ \ \ \ this-\/>root\ =\ nn;}
+\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ \ \ \ \ this-\/>tail\ =\ nn;}
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ \ \ \ \ this-\/>\_itr\ =\ nn;}
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ \ \ \ \ this-\/>\_size++;}
+\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ [[likely]]\ \{}
+\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ \ \ \ \ std::shared\_ptr<node>\ tmp\ =\ tail;}
+\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ \ \ \ \ nn-\/>\_idx\ =\ tail-\/>\_idx\ +\ 1;}
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ \ \ \ \ this-\/>tail\ =\ nn;}
+\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ \ \ \ \ tmp-\/>ptr\_right\ =\ tail;}
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ \ \ \ \ this-\/>tail-\/>ptr\_left\ =\ tmp;}
+\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00168\ \ \ \ \ \ \ \ \ this-\/>\_size++;}
+\DoxyCodeLine{00169\ \ \ \ \ \};}
+\DoxyCodeLine{00170\ \ \ \ \ (std::invoke(\_insert,\ std::forward<Args>(keys)),\ ...);}
+\DoxyCodeLine{00171\ \}}
+\DoxyCodeLine{00172\ }
+\DoxyCodeLine{00173\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00174\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classtable}{table<T>::pop\_back}}()\ \{}
+\DoxyCodeLine{00175\ \ \ \ \ \textcolor{keywordflow}{if}(this-\/>tail\ ==\ \textcolor{keyword}{nullptr})\ [[unlikely]]\ \{}
+\DoxyCodeLine{00176\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00177\ \ \ \ \ \}}
+\DoxyCodeLine{00178\ \ \ \ \ \textcolor{keywordflow}{else}\ [[likely]]\ \{}
+\DoxyCodeLine{00179\ \ \ \ \ \ \ \ \ this-\/>tail\ =\ this-\/>tail-\/>ptr\_left;}
+\DoxyCodeLine{00180\ \ \ \ \ \}}
+\DoxyCodeLine{00181\ \ \ \ \ \_size-\/-\/;}
+\DoxyCodeLine{00182\ \}}
+\DoxyCodeLine{00183\ }
+\DoxyCodeLine{00184\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00185\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classtable}{table<T>::pop\_front}}()\ \{}
+\DoxyCodeLine{00186\ \ \ \ \ \textcolor{keywordflow}{if}(this-\/>root\ ==\ \textcolor{keyword}{nullptr})\ [[unlikely]]\ \{}
+\DoxyCodeLine{00187\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00188\ \ \ \ \ \}}
+\DoxyCodeLine{00189\ \ \ \ \ \textcolor{keywordflow}{else}\ [[likely]]\ \{}
+\DoxyCodeLine{00190\ \ \ \ \ \ \ \ \ this-\/>root\ =\ this-\/>root-\/>ptr\_right;}
+\DoxyCodeLine{00191\ \ \ \ \ \}}
+\DoxyCodeLine{00192\ \ \ \ \ \_size-\/-\/;}
+\DoxyCodeLine{00193\ \ \ \ \ \_check\_update();}
+\DoxyCodeLine{00194\ \}}
+\DoxyCodeLine{00195\ }
+\DoxyCodeLine{00196\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00197\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classtable}{table<T>::empty}}()\ \{}
+\DoxyCodeLine{00198\ \ \ \ \ \textcolor{keywordflow}{return}\ this-\/>\_size\ ==\ 0;}
+\DoxyCodeLine{00199\ \}}
+\DoxyCodeLine{00200\ }
+\DoxyCodeLine{00201\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00202\ std::vector<T>\ \mbox{\hyperlink{classtable}{table<T>::vectorize}}()\ \{}
+\DoxyCodeLine{00203\ \ \ \ \ \textcolor{keywordflow}{if}(this-\/>root\ ==\ \textcolor{keyword}{nullptr})\ \{\ \textcolor{keywordflow}{return}\ \{\};\ \}}
+\DoxyCodeLine{00204\ \ \ \ \ std::vector<T>\ vec;}
+\DoxyCodeLine{00205\ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keyword}{auto}\ it\ =\ this-\/>begin();\ it\ !=\ this-\/>end();\ it++)\{}
+\DoxyCodeLine{00206\ \ \ \ \ \ \ \ \ vec.push\_back(*(it));}
+\DoxyCodeLine{00207\ \ \ \ \ \}}
+\DoxyCodeLine{00208\ \ \ \ \ \textcolor{keywordflow}{return}\ vec;}
+\DoxyCodeLine{00209\ \}}
+\DoxyCodeLine{00210\ }
+\DoxyCodeLine{00211\ }
+\DoxyCodeLine{00212\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classtable}{table}}<T>::\mbox{\hyperlink{classtable_1_1_iterator}{Iterator}}\ \{}
+\DoxyCodeLine{00213\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00214\ \ \ \ \ std::shared\_ptr<node>\ curr\_root;}
+\DoxyCodeLine{00215\ }
+\DoxyCodeLine{00216\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00217\ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{classtable_1_1_iterator}{Iterator}}(\textcolor{keyword}{const}\ std::shared\_ptr<node>\ \&ptr)\ noexcept\ :\ curr\_root(ptr)\ \{\}}
+\DoxyCodeLine{00218\ }
+\DoxyCodeLine{00219\ \ \ \ \ \mbox{\hyperlink{classtable_1_1_iterator}{Iterator}}\ \&operator=(std::shared\_ptr<node>\ current)\{}
+\DoxyCodeLine{00220\ \ \ \ \ \ \ \ \ this-\/>curr\_root\ =\ current;}
+\DoxyCodeLine{00221\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ *(\textcolor{keyword}{this});}
+\DoxyCodeLine{00222\ \ \ \ \ \}}
+\DoxyCodeLine{00223\ }
+\DoxyCodeLine{00224\ \ \ \ \ \mbox{\hyperlink{classtable_1_1_iterator}{Iterator}}\ \&operator++()\ \{}
+\DoxyCodeLine{00225\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (curr\_root)\ \{}
+\DoxyCodeLine{00226\ \ \ \ \ \ \ \ \ \ \ \ \ curr\_root\ =\ curr\_root-\/>ptr\_right;}
+\DoxyCodeLine{00227\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00228\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ *(\textcolor{keyword}{this});}
+\DoxyCodeLine{00229\ \ \ \ \ \}}
+\DoxyCodeLine{00230\ }
+\DoxyCodeLine{00231\ \ \ \ \ \mbox{\hyperlink{classtable_1_1_iterator}{Iterator}}\ operator++(\textcolor{keywordtype}{int})\ \{}
+\DoxyCodeLine{00232\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classtable_1_1_iterator}{Iterator}}\ it\ =\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00233\ \ \ \ \ \ \ \ \ ++*(\textcolor{keyword}{this});}
+\DoxyCodeLine{00234\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ it;}
+\DoxyCodeLine{00235\ \ \ \ \ \}}
+\DoxyCodeLine{00236\ }
+\DoxyCodeLine{00237\ \ \ \ \ \mbox{\hyperlink{classtable_1_1_iterator}{Iterator}}\ \&operator-\/-\/()\ \{}
+\DoxyCodeLine{00238\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(curr\_root)\{}
+\DoxyCodeLine{00239\ \ \ \ \ \ \ \ \ \ \ \ \ curr\_root\ =\ curr\_root-\/>ptr\_left;}
+\DoxyCodeLine{00240\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00241\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ *(\textcolor{keyword}{this});}
+\DoxyCodeLine{00242\ \ \ \ \ \}}
+\DoxyCodeLine{00243\ }
+\DoxyCodeLine{00244\ \ \ \ \ \mbox{\hyperlink{classtable_1_1_iterator}{Iterator}}\ operator-\/-\/(\textcolor{keywordtype}{int})\{}
+\DoxyCodeLine{00245\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classtable_1_1_iterator}{Iterator}}\ it\ =\ *\textcolor{keyword}{this};}
+\DoxyCodeLine{00246\ \ \ \ \ \ \ \ \ -\/-\/*(\textcolor{keyword}{this});}
+\DoxyCodeLine{00247\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ it;}
+\DoxyCodeLine{00248\ \ \ \ \ \}}
+\DoxyCodeLine{00249\ }
+\DoxyCodeLine{00250\ \ \ \ \ \textcolor{keywordtype}{bool}\ operator\ !=(\textcolor{keyword}{const}\ \mbox{\hyperlink{classtable_1_1_iterator}{Iterator}}\ \&it)\ \{\ \textcolor{keywordflow}{return}\ curr\_root\ !=\ it.curr\_root;\ \}}
+\DoxyCodeLine{00251\ }
+\DoxyCodeLine{00252\ \ \ \ \ T\ operator*\ ()\ \{\ \textcolor{keywordflow}{return}\ curr\_root-\/>info;\ \}}
+\DoxyCodeLine{00253\ \};}
+\DoxyCodeLine{00254\ }
+\DoxyCodeLine{00255\ }
+\DoxyCodeLine{00256\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

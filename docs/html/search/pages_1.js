@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['contributor_20covenant_20code_20of_20conduct_1504',['Contributor Covenant Code of Conduct',['../md__home_spiros_Documents_AlgoPlus_CODE_OF_CONDUCT.html',1,'']]]
+  ['1_200_200_0',['Algoplus{1.0.0}',['../index.html',1,'']]]
 ];

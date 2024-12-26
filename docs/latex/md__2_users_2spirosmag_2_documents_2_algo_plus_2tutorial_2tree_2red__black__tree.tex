@@ -1,0 +1,96 @@
+\chapter{Mini tutorial for Red Black Tree class}
+\hypertarget{md__2_users_2spirosmag_2_documents_2_algo_plus_2tutorial_2tree_2red__black__tree}{}\label{md__2_users_2spirosmag_2_documents_2_algo_plus_2tutorial_2tree_2red__black__tree}\index{Mini tutorial for Red Black Tree class@{Mini tutorial for Red Black Tree class}}
+\label{md__2_users_2spirosmag_2_documents_2_algo_plus_2tutorial_2tree_2red__black__tree_autotoc_md176}%
+\Hypertarget{md__2_users_2spirosmag_2_documents_2_algo_plus_2tutorial_2tree_2red__black__tree_autotoc_md176}%
+
+
+-- red\+\_\+black\+\_\+tree$<$\+T$>$ creates a red black tree with nodes of type T\hypertarget{md__2_users_2spirosmag_2_documents_2_algo_plus_2tutorial_2tree_2red__black__tree_autotoc_md177}{}\doxysubsection{\texorpdfstring{{\itshape insert}\+:}{{\itshape insert}\+:}}\label{md__2_users_2spirosmag_2_documents_2_algo_plus_2tutorial_2tree_2red__black__tree_autotoc_md177}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\mbox{\hyperlink{classred__black__tree}{red\_black\_tree<int>}}\ r;}
+\DoxyCodeLine{r.\mbox{\hyperlink{classred__black__tree_aa31d2fce774f261bea74e0004e08333f}{insert}}(10);\ \textcolor{comment}{//\ inserts\ 10\ to\ the\ tree}}
+\DoxyCodeLine{r.\mbox{\hyperlink{classred__black__tree_aa31d2fce774f261bea74e0004e08333f}{insert}}(20);\ \textcolor{comment}{//\ inserts\ 20\ to\ the\ tree}}
+
+\end{DoxyCode}
+\hypertarget{md__2_users_2spirosmag_2_documents_2_algo_plus_2tutorial_2tree_2red__black__tree_autotoc_md178}{}\doxysubsection{\texorpdfstring{{\itshape search}\+:}{{\itshape search}\+:}}\label{md__2_users_2spirosmag_2_documents_2_algo_plus_2tutorial_2tree_2red__black__tree_autotoc_md178}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{...}
+\DoxyCodeLine{if(r.\mbox{\hyperlink{classred__black__tree_a9b1f923c92c40233274ebcdc8bc3a711}{search}}(10))\ \{}
+\DoxyCodeLine{\ \ cout\ <<\ \textcolor{stringliteral}{"{}We\ found\ 10!"{}}\ <<\ \textcolor{charliteral}{'\(\backslash\)n'};}
+\DoxyCodeLine{\}}
+\DoxyCodeLine{\textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\ \ cout\ <<\ \textcolor{stringliteral}{"{}10\ is\ not\ found!"{}}\ <<\ \textcolor{charliteral}{'\(\backslash\)n'};}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\hypertarget{md__2_users_2spirosmag_2_documents_2_algo_plus_2tutorial_2tree_2red__black__tree_autotoc_md179}{}\doxysubsection{\texorpdfstring{{\itshape remove}\+:}{{\itshape remove}\+:}}\label{md__2_users_2spirosmag_2_documents_2_algo_plus_2tutorial_2tree_2red__black__tree_autotoc_md179}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{r.\mbox{\hyperlink{classred__black__tree_aec0943a39e9ac88431c03d7d4da78d61}{remove}}(10);}
+\DoxyCodeLine{assert(r.\mbox{\hyperlink{classred__black__tree_a9b1f923c92c40233274ebcdc8bc3a711}{search}}(10)\ ==\ \textcolor{keyword}{false});}
+
+\end{DoxyCode}
+\hypertarget{md__2_users_2spirosmag_2_documents_2_algo_plus_2tutorial_2tree_2red__black__tree_autotoc_md180}{}\doxysubsection{\texorpdfstring{{\itshape size}\+:}{{\itshape size}\+:}}\label{md__2_users_2spirosmag_2_documents_2_algo_plus_2tutorial_2tree_2red__black__tree_autotoc_md180}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{r.\mbox{\hyperlink{classred__black__tree_aa31d2fce774f261bea74e0004e08333f}{insert}}(10);}
+\DoxyCodeLine{r.\mbox{\hyperlink{classred__black__tree_aa31d2fce774f261bea74e0004e08333f}{insert}}(30);}
+\DoxyCodeLine{assert(r.\mbox{\hyperlink{classred__black__tree_a949e8d548832cc18cba7a8af9c53e322}{size}}()\ ==\ 3);}
+
+\end{DoxyCode}
+\hypertarget{md__2_users_2spirosmag_2_documents_2_algo_plus_2tutorial_2tree_2red__black__tree_autotoc_md181}{}\doxysubsection{\texorpdfstring{{\itshape clear}\+:}{{\itshape clear}\+:}}\label{md__2_users_2spirosmag_2_documents_2_algo_plus_2tutorial_2tree_2red__black__tree_autotoc_md181}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{r.\mbox{\hyperlink{classred__black__tree_a7b1bdf6804b2f953aad95889bb6cb146}{clear}}();}
+\DoxyCodeLine{assert(r.\mbox{\hyperlink{classred__black__tree_a949e8d548832cc18cba7a8af9c53e322}{size}}()\ ==\ 0);}
+
+\end{DoxyCode}
+\hypertarget{md__2_users_2spirosmag_2_documents_2_algo_plus_2tutorial_2tree_2red__black__tree_autotoc_md182}{}\doxysubsection{\texorpdfstring{{\itshape inorder}\+:}{{\itshape inorder}\+:}}\label{md__2_users_2spirosmag_2_documents_2_algo_plus_2tutorial_2tree_2red__black__tree_autotoc_md182}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{r.\mbox{\hyperlink{classred__black__tree_aa31d2fce774f261bea74e0004e08333f}{insert}}(10);}
+\DoxyCodeLine{r.\mbox{\hyperlink{classred__black__tree_aa31d2fce774f261bea74e0004e08333f}{insert}}(-\/10);}
+\DoxyCodeLine{r.\mbox{\hyperlink{classred__black__tree_aa31d2fce774f261bea74e0004e08333f}{insert}}(20);}
+\DoxyCodeLine{r.\mbox{\hyperlink{classred__black__tree_aa31d2fce774f261bea74e0004e08333f}{insert}}(30);}
+\DoxyCodeLine{r.\mbox{\hyperlink{classred__black__tree_aa31d2fce774f261bea74e0004e08333f}{insert}}(25);}
+\DoxyCodeLine{r.\mbox{\hyperlink{classred__black__tree_aa31d2fce774f261bea74e0004e08333f}{insert}}(12);}
+\DoxyCodeLine{}
+\DoxyCodeLine{vector<int>\ ino\ =\ r.\mbox{\hyperlink{classred__black__tree_a0b77abed9bcc1b5e924138c679abe0f1}{inorder}}();\ \textcolor{comment}{//\ returns\ the\ inorder\ traversal\ of\ the\ tree}}
+\DoxyCodeLine{vector<int>\ check\ =\ \{-\/10,\ 10,\ 12,\ 20,\ 25,\ 30\};}
+\DoxyCodeLine{asert(ino\ ==\ check);}
+
+\end{DoxyCode}
+\hypertarget{md__2_users_2spirosmag_2_documents_2_algo_plus_2tutorial_2tree_2red__black__tree_autotoc_md183}{}\doxysubsection{\texorpdfstring{{\itshape preorder}\+:}{{\itshape preorder}\+:}}\label{md__2_users_2spirosmag_2_documents_2_algo_plus_2tutorial_2tree_2red__black__tree_autotoc_md183}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{...}
+\DoxyCodeLine{vector<\textcolor{keywordtype}{int}>\ pre\ =\ r.\mbox{\hyperlink{classred__black__tree_a6d30577103e489aa5440a34b75156ba0}{preorder}}();\ \textcolor{comment}{//\ returns\ the\ preorder\ traversal\ of\ the\ tree}}
+
+\end{DoxyCode}
+\hypertarget{md__2_users_2spirosmag_2_documents_2_algo_plus_2tutorial_2tree_2red__black__tree_autotoc_md184}{}\doxysubsection{\texorpdfstring{{\itshape postorder}\+:}{{\itshape postorder}\+:}}\label{md__2_users_2spirosmag_2_documents_2_algo_plus_2tutorial_2tree_2red__black__tree_autotoc_md184}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{...}
+\DoxyCodeLine{vector<\textcolor{keywordtype}{int}>\ post\ =\ r.\mbox{\hyperlink{classred__black__tree_a670e8f23d03835c9e679855db247800d}{postorder}}();\ \textcolor{comment}{//\ returns\ the\ postorder\ traversal\ of\ the\ tree}}
+
+\end{DoxyCode}
+\hypertarget{md__2_users_2spirosmag_2_documents_2_algo_plus_2tutorial_2tree_2red__black__tree_autotoc_md185}{}\doxysubsection{\texorpdfstring{{\itshape Custom cout operator}\+:}{{\itshape Custom cout operator}\+:}}\label{md__2_users_2spirosmag_2_documents_2_algo_plus_2tutorial_2tree_2red__black__tree_autotoc_md185}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{...}
+\DoxyCodeLine{cout\ <<\ r\ <<\ \textcolor{charliteral}{'\(\backslash\)n'};\ \textcolor{comment}{//\ for\ the\ impatient\ ones,\ we\ have\ a\ custom\ operator,}}
+\DoxyCodeLine{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ as\ we\ do\ for\ almost\ all\ of\ our\ classes}}
+
+\end{DoxyCode}
+\hypertarget{md__2_users_2spirosmag_2_documents_2_algo_plus_2tutorial_2tree_2red__black__tree_autotoc_md186}{}\doxysubsection{\texorpdfstring{{\itshape iterators}\+:}{{\itshape iterators}\+:}}\label{md__2_users_2spirosmag_2_documents_2_algo_plus_2tutorial_2tree_2red__black__tree_autotoc_md186}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{comment}{//\ You\ can\ use\ this\ class\ as\ a\ set-\/like\ structure}}
+\DoxyCodeLine{\textcolor{keyword}{auto}\ it\ =\ r.\mbox{\hyperlink{classred__black__tree_a0e742e41095d425f21fdb8f5d3e5c4db}{begin}}();}
+\DoxyCodeLine{cout\ <<\ *(it)\ <<\ \textcolor{charliteral}{'\(\backslash\)n'};}
+\DoxyCodeLine{it++;}
+\DoxyCodeLine{...}
+
+\end{DoxyCode}
+ 

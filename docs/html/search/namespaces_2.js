@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['losses_1121',['losses',['../namespacelosses.html',1,'']]]
+  ['gaussian_5ffilter_0',['gaussian_filter',['../namespacegaussian__filter.html',1,'']]]
 ];

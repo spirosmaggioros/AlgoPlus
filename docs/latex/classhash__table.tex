@@ -1,5 +1,5 @@
-\hypertarget{classhash__table}{}\doxysection{hash\+\_\+table$<$ Key\+Type, Value\+Type $>$ Class Template Reference}
-\label{classhash__table}\index{hash\_table$<$ KeyType, ValueType $>$@{hash\_table$<$ KeyType, ValueType $>$}}
+\doxysection{hash\+\_\+table\texorpdfstring{$<$}{<} Key\+Type, Value\+Type \texorpdfstring{$>$}{>} Class Template Reference}
+\hypertarget{classhash__table}{}\label{classhash__table}\index{hash\_table$<$ KeyType, ValueType $>$@{hash\_table$<$ KeyType, ValueType $>$}}
 
 
 A simple implementation of a hash table.  
@@ -9,52 +9,51 @@ A simple implementation of a hash table.
 
 {\ttfamily \#include $<$hash\+\_\+table.\+h$>$}
 
-\doxysubsection*{Classes}
+\doxysubsubsection*{Classes}
 \begin{DoxyCompactItemize}
 \item 
-class \mbox{\hyperlink{classhash__table_1_1Iterator}{Iterator}}
-\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classhash__table_1_1Iterator}{Iterator}} class. \end{DoxyCompactList}\end{DoxyCompactItemize}
-\doxysubsection*{Public Types}
+class \mbox{\hyperlink{classhash__table_1_1_iterator}{Iterator}}
+\begin{DoxyCompactList}\small\item\em \doxylink{classhash__table_1_1_iterator}{Iterator} class. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Types}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\Hypertarget{classhash__table_a032e8dfbd0625a2e731fd19bc1c8cb45}\label{classhash__table_a032e8dfbd0625a2e731fd19bc1c8cb45}} 
-using {\bfseries Bucket\+Type} = std\+::unordered\+\_\+map$<$ size\+\_\+t, std\+::list$<$ std\+::pair$<$ Key\+Type, Value\+Type $>$ $>$$>$
+\Hypertarget{classhash__table_af9c516f89a2db090f71bef8ce00234b8}\label{classhash__table_af9c516f89a2db090f71bef8ce00234b8} 
+using {\bfseries Bucket\+Type} = std\+::unordered\+\_\+map$<$size\+\_\+t, std\+::list$<$std\+::pair$<$Key\+Type, Value\+Type$>$$>$$>$
 \end{DoxyCompactItemize}
-\doxysubsection*{Public Member Functions}
+\doxysubsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-\mbox{\hyperlink{classhash__table_a3462b7d9aca31e75b442cff206b31b4d}{hash\+\_\+table}} (std\+::vector$<$ std\+::pair$<$ Key\+Type, Value\+Type $>$$>$ v=\{\})
+\mbox{\hyperlink{classhash__table_adc831edf9651d7a2858e79624417749f}{hash\+\_\+table}} (std\+::vector$<$ std\+::pair$<$ Key\+Type, Value\+Type $>$ $>$ v=\{\})
 \begin{DoxyCompactList}\small\item\em Construct a new hash table object. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classhash__table_a72b8facb5a3c01227e96ca3cda64fa14}{hash\+\_\+table}} (const \mbox{\hyperlink{classhash__table}{hash\+\_\+table}} \&h)
-\begin{DoxyCompactList}\small\item\em Copy constructor of the \mbox{\hyperlink{classhash__table}{hash\+\_\+table}}. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{classhash__table}{hash\+\_\+table}} \& \mbox{\hyperlink{classhash__table_ab56fb2fb8ce2b5de1a70bbe3b7ae7c67}{operator=}} (const \mbox{\hyperlink{classhash__table}{hash\+\_\+table}} \&h)
-\begin{DoxyCompactList}\small\item\em operator = for the \mbox{\hyperlink{classhash__table}{hash\+\_\+table}} class \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classhash__table_ae61d0f9b046db9dcd290b1263475fbce}\label{classhash__table_ae61d0f9b046db9dcd290b1263475fbce}} 
-\mbox{\hyperlink{classhash__table_ae61d0f9b046db9dcd290b1263475fbce}{$\sim$hash\+\_\+table}} ()
+\begin{DoxyCompactList}\small\item\em Copy constructor of the \doxylink{classhash__table}{hash\+\_\+table}. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{classhash__table}{hash\+\_\+table}} \& \mbox{\hyperlink{classhash__table_a0646b760956296ae948e8da9a8fb098e}{operator=}} (const \mbox{\hyperlink{classhash__table}{hash\+\_\+table}} \&h)
+\begin{DoxyCompactList}\small\item\em operator = for the \doxylink{classhash__table}{hash\+\_\+table} class \end{DoxyCompactList}\item 
+\Hypertarget{classhash__table_ae61d0f9b046db9dcd290b1263475fbce}\label{classhash__table_ae61d0f9b046db9dcd290b1263475fbce} 
+{\bfseries \texorpdfstring{$\sim$}{\string~}hash\+\_\+table} ()
 \begin{DoxyCompactList}\small\item\em Destroy the hash table object. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classhash__table_a075f7fb9d5f95b828e044dc49e6386ba}{insert}} (const Key\+Type \&key, const Value\+Type \&value)
 \begin{DoxyCompactList}\small\item\em Inserts a key-\/value pair into the hash table. \end{DoxyCompactList}\item 
-std\+::optional$<$ Value\+Type $>$ \mbox{\hyperlink{classhash__table_a6ea2e54ec4b12e86af9c4cf7e67f1d07}{retrieve}} (const Key\+Type \&key)
+std\+::optional$<$ Value\+Type $>$ \mbox{\hyperlink{classhash__table_a29bcecb383e67c1e322ffffda88706db}{retrieve}} (const Key\+Type \&key)
 \begin{DoxyCompactList}\small\item\em Retrieves the value associated with the given key. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classhash__table_ac9a4f3f321ddf37bcc445ea2c56d44ed}{remove}} (const Key\+Type \&key)
 \begin{DoxyCompactList}\small\item\em Removes the key-\/value pair associated with the given key from the hash table. \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classhash__table_a417bbad967b8d78e4bb145538416c78f}\label{classhash__table_a417bbad967b8d78e4bb145538416c78f}} 
-\mbox{\hyperlink{classhash__table_1_1Iterator}{Iterator}} {\bfseries begin} ()
+\Hypertarget{classhash__table_a417bbad967b8d78e4bb145538416c78f}\label{classhash__table_a417bbad967b8d78e4bb145538416c78f} 
+\mbox{\hyperlink{classhash__table_1_1_iterator}{Iterator}} {\bfseries begin} ()
 \item 
-\mbox{\Hypertarget{classhash__table_a8672af36a8ee7ad3f431541fa55f0bbd}\label{classhash__table_a8672af36a8ee7ad3f431541fa55f0bbd}} 
-\mbox{\hyperlink{classhash__table_1_1Iterator}{Iterator}} {\bfseries end} ()
+\Hypertarget{classhash__table_a8672af36a8ee7ad3f431541fa55f0bbd}\label{classhash__table_a8672af36a8ee7ad3f431541fa55f0bbd} 
+\mbox{\hyperlink{classhash__table_1_1_iterator}{Iterator}} {\bfseries end} ()
 \end{DoxyCompactItemize}
-\doxysubsection*{Friends}
+\doxysubsubsection*{Friends}
 \begin{DoxyCompactItemize}
 \item 
-std\+::ostream \& \mbox{\hyperlink{classhash__table_afeecc1e24a77ec8e5eccf06016293aff}{operator$<$$<$}} (std\+::ostream \&out, \mbox{\hyperlink{classhash__table}{hash\+\_\+table}}$<$ Key\+Type, Value\+Type $>$ \&h)
-\begin{DoxyCompactList}\small\item\em $<$$<$ operator for \mbox{\hyperlink{classhash__table}{hash\+\_\+table}} class \end{DoxyCompactList}\end{DoxyCompactItemize}
+std\+::ostream \& \mbox{\hyperlink{classhash__table_a9699a70465c91ed86faf744d436af69a}{operator$<$$<$}} (std\+::ostream \&out, \mbox{\hyperlink{classhash__table}{hash\+\_\+table}}$<$ Key\+Type, Value\+Type $>$ \&h)
+\begin{DoxyCompactList}\small\item\em \texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<} operator for \doxylink{classhash__table}{hash\+\_\+table} class \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
 \subsubsection*{template$<$typename Key\+Type, typename Value\+Type$>$\newline
 class hash\+\_\+table$<$ Key\+Type, Value\+Type $>$}
-
 A simple implementation of a hash table. 
 
 
@@ -74,12 +73,12 @@ Use only types that can be hashed as the Key\+Type.
 
 
 \doxysubsection{Constructor \& Destructor Documentation}
-\mbox{\Hypertarget{classhash__table_a3462b7d9aca31e75b442cff206b31b4d}\label{classhash__table_a3462b7d9aca31e75b442cff206b31b4d}} 
-\index{hash\_table$<$ KeyType, ValueType $>$@{hash\_table$<$ KeyType, ValueType $>$}!hash\_table@{hash\_table}}
+\Hypertarget{classhash__table_adc831edf9651d7a2858e79624417749f}\index{hash\_table$<$ KeyType, ValueType $>$@{hash\_table$<$ KeyType, ValueType $>$}!hash\_table@{hash\_table}}
 \index{hash\_table@{hash\_table}!hash\_table$<$ KeyType, ValueType $>$@{hash\_table$<$ KeyType, ValueType $>$}}
 \doxysubsubsection{\texorpdfstring{hash\_table()}{hash\_table()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
-{\footnotesize\ttfamily template$<$typename Key\+Type , typename Value\+Type $>$ \\
-\mbox{\hyperlink{classhash__table}{hash\+\_\+table}}$<$ Key\+Type, Value\+Type $>$\+::\mbox{\hyperlink{classhash__table}{hash\+\_\+table}} (\begin{DoxyParamCaption}\item[{std\+::vector$<$ std\+::pair$<$ Key\+Type, Value\+Type $>$$>$}]{v = {\ttfamily \{\}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily \label{classhash__table_adc831edf9651d7a2858e79624417749f} 
+template$<$typename Key\+Type , typename Value\+Type $>$ \\
+\mbox{\hyperlink{classhash__table}{hash\+\_\+table}}$<$ Key\+Type, Value\+Type $>$\mbox{\hyperlink{classhash__table}{\+::hash\+\_\+table}} (\begin{DoxyParamCaption}\item[{std\+::vector$<$ std\+::pair$<$ Key\+Type, Value\+Type $>$ $>$}]{v}{ = {\ttfamily \{\}}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
@@ -90,16 +89,16 @@ Construct a new hash table object.
 {\em v} & the initializer vector \\
 \hline
 \end{DoxyParams}
-\mbox{\Hypertarget{classhash__table_a72b8facb5a3c01227e96ca3cda64fa14}\label{classhash__table_a72b8facb5a3c01227e96ca3cda64fa14}} 
-\index{hash\_table$<$ KeyType, ValueType $>$@{hash\_table$<$ KeyType, ValueType $>$}!hash\_table@{hash\_table}}
+\Hypertarget{classhash__table_a72b8facb5a3c01227e96ca3cda64fa14}\index{hash\_table$<$ KeyType, ValueType $>$@{hash\_table$<$ KeyType, ValueType $>$}!hash\_table@{hash\_table}}
 \index{hash\_table@{hash\_table}!hash\_table$<$ KeyType, ValueType $>$@{hash\_table$<$ KeyType, ValueType $>$}}
 \doxysubsubsection{\texorpdfstring{hash\_table()}{hash\_table()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
-{\footnotesize\ttfamily template$<$typename Key\+Type , typename Value\+Type $>$ \\
-\mbox{\hyperlink{classhash__table}{hash\+\_\+table}}$<$ Key\+Type, Value\+Type $>$\+::\mbox{\hyperlink{classhash__table}{hash\+\_\+table}} (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classhash__table}{hash\+\_\+table}}$<$ Key\+Type, Value\+Type $>$ \&}]{h }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily \label{classhash__table_a72b8facb5a3c01227e96ca3cda64fa14} 
+template$<$typename Key\+Type , typename Value\+Type $>$ \\
+\mbox{\hyperlink{classhash__table}{hash\+\_\+table}}$<$ Key\+Type, Value\+Type $>$\mbox{\hyperlink{classhash__table}{\+::hash\+\_\+table}} (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classhash__table}{hash\+\_\+table}}$<$ Key\+Type, Value\+Type $>$ \&}]{h}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
-Copy constructor of the \mbox{\hyperlink{classhash__table}{hash\+\_\+table}}. 
+Copy constructor of the \doxylink{classhash__table}{hash\+\_\+table}. 
 
 
 \begin{DoxyParams}{Parameters}
@@ -109,12 +108,12 @@ Copy constructor of the \mbox{\hyperlink{classhash__table}{hash\+\_\+table}}.
 
 
 \doxysubsection{Member Function Documentation}
-\mbox{\Hypertarget{classhash__table_a075f7fb9d5f95b828e044dc49e6386ba}\label{classhash__table_a075f7fb9d5f95b828e044dc49e6386ba}} 
-\index{hash\_table$<$ KeyType, ValueType $>$@{hash\_table$<$ KeyType, ValueType $>$}!insert@{insert}}
+\Hypertarget{classhash__table_a075f7fb9d5f95b828e044dc49e6386ba}\index{hash\_table$<$ KeyType, ValueType $>$@{hash\_table$<$ KeyType, ValueType $>$}!insert@{insert}}
 \index{insert@{insert}!hash\_table$<$ KeyType, ValueType $>$@{hash\_table$<$ KeyType, ValueType $>$}}
 \doxysubsubsection{\texorpdfstring{insert()}{insert()}}
-{\footnotesize\ttfamily template$<$typename Key\+Type , typename Value\+Type $>$ \\
-void \mbox{\hyperlink{classhash__table}{hash\+\_\+table}}$<$ Key\+Type, Value\+Type $>$\+::insert (\begin{DoxyParamCaption}\item[{const Key\+Type \&}]{key,  }\item[{const Value\+Type \&}]{value }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily \label{classhash__table_a075f7fb9d5f95b828e044dc49e6386ba} 
+template$<$typename Key\+Type , typename Value\+Type $>$ \\
+void \mbox{\hyperlink{classhash__table}{hash\+\_\+table}}$<$ Key\+Type, Value\+Type $>$\+::insert (\begin{DoxyParamCaption}\item[{const Key\+Type \&}]{key}{, }\item[{const Value\+Type \&}]{value}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
@@ -127,16 +126,16 @@ This function inserts a key-\/value pair into the hash table. If a pair with the
 {\em value} & The value to insert. \\
 \hline
 \end{DoxyParams}
-\mbox{\Hypertarget{classhash__table_ab56fb2fb8ce2b5de1a70bbe3b7ae7c67}\label{classhash__table_ab56fb2fb8ce2b5de1a70bbe3b7ae7c67}} 
-\index{hash\_table$<$ KeyType, ValueType $>$@{hash\_table$<$ KeyType, ValueType $>$}!operator=@{operator=}}
+\Hypertarget{classhash__table_a0646b760956296ae948e8da9a8fb098e}\index{hash\_table$<$ KeyType, ValueType $>$@{hash\_table$<$ KeyType, ValueType $>$}!operator=@{operator=}}
 \index{operator=@{operator=}!hash\_table$<$ KeyType, ValueType $>$@{hash\_table$<$ KeyType, ValueType $>$}}
 \doxysubsubsection{\texorpdfstring{operator=()}{operator=()}}
-{\footnotesize\ttfamily template$<$typename Key\+Type , typename Value\+Type $>$ \\
-\mbox{\hyperlink{classhash__table}{hash\+\_\+table}}\& \mbox{\hyperlink{classhash__table}{hash\+\_\+table}}$<$ Key\+Type, Value\+Type $>$\+::operator= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classhash__table}{hash\+\_\+table}}$<$ Key\+Type, Value\+Type $>$ \&}]{h }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily \label{classhash__table_a0646b760956296ae948e8da9a8fb098e} 
+template$<$typename Key\+Type , typename Value\+Type $>$ \\
+\mbox{\hyperlink{classhash__table}{hash\+\_\+table}} \& \mbox{\hyperlink{classhash__table}{hash\+\_\+table}}$<$ Key\+Type, Value\+Type $>$\+::operator= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classhash__table}{hash\+\_\+table}}$<$ Key\+Type, Value\+Type $>$ \&}]{h}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
-operator = for the \mbox{\hyperlink{classhash__table}{hash\+\_\+table}} class 
+operator = for the \doxylink{classhash__table}{hash\+\_\+table} class 
 
 
 \begin{DoxyParams}{Parameters}
@@ -144,14 +143,14 @@ operator = for the \mbox{\hyperlink{classhash__table}{hash\+\_\+table}} class
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-\mbox{\hyperlink{classhash__table}{hash\+\_\+table}}\& 
+\doxylink{classhash__table}{hash\+\_\+table}\& 
 \end{DoxyReturn}
-\mbox{\Hypertarget{classhash__table_ac9a4f3f321ddf37bcc445ea2c56d44ed}\label{classhash__table_ac9a4f3f321ddf37bcc445ea2c56d44ed}} 
-\index{hash\_table$<$ KeyType, ValueType $>$@{hash\_table$<$ KeyType, ValueType $>$}!remove@{remove}}
+\Hypertarget{classhash__table_ac9a4f3f321ddf37bcc445ea2c56d44ed}\index{hash\_table$<$ KeyType, ValueType $>$@{hash\_table$<$ KeyType, ValueType $>$}!remove@{remove}}
 \index{remove@{remove}!hash\_table$<$ KeyType, ValueType $>$@{hash\_table$<$ KeyType, ValueType $>$}}
 \doxysubsubsection{\texorpdfstring{remove()}{remove()}}
-{\footnotesize\ttfamily template$<$typename Key\+Type , typename Value\+Type $>$ \\
-void \mbox{\hyperlink{classhash__table}{hash\+\_\+table}}$<$ Key\+Type, Value\+Type $>$\+::remove (\begin{DoxyParamCaption}\item[{const Key\+Type \&}]{key }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily \label{classhash__table_ac9a4f3f321ddf37bcc445ea2c56d44ed} 
+template$<$typename Key\+Type , typename Value\+Type $>$ \\
+void \mbox{\hyperlink{classhash__table}{hash\+\_\+table}}$<$ Key\+Type, Value\+Type $>$\+::remove (\begin{DoxyParamCaption}\item[{const Key\+Type \&}]{key}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
@@ -162,12 +161,12 @@ This function removes the key-\/value pair associated with the given key from th
 {\em key} & The key to remove. \\
 \hline
 \end{DoxyParams}
-\mbox{\Hypertarget{classhash__table_a6ea2e54ec4b12e86af9c4cf7e67f1d07}\label{classhash__table_a6ea2e54ec4b12e86af9c4cf7e67f1d07}} 
-\index{hash\_table$<$ KeyType, ValueType $>$@{hash\_table$<$ KeyType, ValueType $>$}!retrieve@{retrieve}}
+\Hypertarget{classhash__table_a29bcecb383e67c1e322ffffda88706db}\index{hash\_table$<$ KeyType, ValueType $>$@{hash\_table$<$ KeyType, ValueType $>$}!retrieve@{retrieve}}
 \index{retrieve@{retrieve}!hash\_table$<$ KeyType, ValueType $>$@{hash\_table$<$ KeyType, ValueType $>$}}
 \doxysubsubsection{\texorpdfstring{retrieve()}{retrieve()}}
-{\footnotesize\ttfamily template$<$typename Key\+Type , typename Value\+Type $>$ \\
-std\+::optional$<$Value\+Type$>$ \mbox{\hyperlink{classhash__table}{hash\+\_\+table}}$<$ Key\+Type, Value\+Type $>$\+::retrieve (\begin{DoxyParamCaption}\item[{const Key\+Type \&}]{key }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily \label{classhash__table_a29bcecb383e67c1e322ffffda88706db} 
+template$<$typename Key\+Type , typename Value\+Type $>$ \\
+std\+::optional$<$ Value\+Type $>$ \mbox{\hyperlink{classhash__table}{hash\+\_\+table}}$<$ Key\+Type, Value\+Type $>$\+::retrieve (\begin{DoxyParamCaption}\item[{const Key\+Type \&}]{key}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
@@ -183,17 +182,17 @@ The value associated with the given key, if it exists. Otherwise, returns std\+:
 \end{DoxyReturn}
 
 
-\doxysubsection{Friends And Related Function Documentation}
-\mbox{\Hypertarget{classhash__table_afeecc1e24a77ec8e5eccf06016293aff}\label{classhash__table_afeecc1e24a77ec8e5eccf06016293aff}} 
-\index{hash\_table$<$ KeyType, ValueType $>$@{hash\_table$<$ KeyType, ValueType $>$}!operator$<$$<$@{operator$<$$<$}}
+\doxysubsection{Friends And Related Symbol Documentation}
+\Hypertarget{classhash__table_a9699a70465c91ed86faf744d436af69a}\index{hash\_table$<$ KeyType, ValueType $>$@{hash\_table$<$ KeyType, ValueType $>$}!operator$<$$<$@{operator$<$$<$}}
 \index{operator$<$$<$@{operator$<$$<$}!hash\_table$<$ KeyType, ValueType $>$@{hash\_table$<$ KeyType, ValueType $>$}}
 \doxysubsubsection{\texorpdfstring{operator$<$$<$}{operator<<}}
-{\footnotesize\ttfamily template$<$typename Key\+Type , typename Value\+Type $>$ \\
-std\+::ostream\& operator$<$$<$ (\begin{DoxyParamCaption}\item[{std\+::ostream \&}]{out,  }\item[{\mbox{\hyperlink{classhash__table}{hash\+\_\+table}}$<$ Key\+Type, Value\+Type $>$ \&}]{h }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [friend]}}
+{\footnotesize\ttfamily \label{classhash__table_a9699a70465c91ed86faf744d436af69a} 
+template$<$typename Key\+Type , typename Value\+Type $>$ \\
+std\+::ostream \& operator$<$$<$ (\begin{DoxyParamCaption}\item[{std\+::ostream \&}]{out}{, }\item[{\mbox{\hyperlink{classhash__table}{hash\+\_\+table}}$<$ Key\+Type, Value\+Type $>$ \&}]{h}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [friend]}}
 
 
 
-$<$$<$ operator for \mbox{\hyperlink{classhash__table}{hash\+\_\+table}} class 
+\texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<} operator for \doxylink{classhash__table}{hash\+\_\+table} class 
 
 \begin{DoxyReturn}{Returns}
 std\+::ostream\& 
@@ -202,4 +201,4 @@ std\+::ostream\&
 
 The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 
-/home/spiros/\+Documents/\+Algo\+Plus/src/classes/hash\+\_\+table/hash\+\_\+table.\+h\end{DoxyCompactItemize}
+/\+Users/spirosmag/\+Documents/\+Algo\+Plus/src/classes/hash\+\_\+table/hash\+\_\+table.\+h\end{DoxyCompactItemize}

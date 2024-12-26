@@ -1,26 +1,8 @@
 var searchData=
 [
-  ['randomfloatinggenerator_539',['RandomFloatingGenerator',['../classCatch_1_1Generators_1_1RandomFloatingGenerator.html',1,'Catch::Generators']]],
-  ['randomintegergenerator_540',['RandomIntegerGenerator',['../classCatch_1_1Generators_1_1RandomIntegerGenerator.html',1,'Catch::Generators']]],
-  ['rangegenerator_541',['RangeGenerator',['../classCatch_1_1Generators_1_1RangeGenerator.html',1,'Catch::Generators']]],
-  ['red_5fblack_5ftree_542',['red_black_tree',['../classred__black__tree.html',1,'red_black_tree&lt; T &gt;'],['../classred__black__tree.html#a8fd1a089cb28e7119be3fb685a1d8b29',1,'red_black_tree::red_black_tree(const red_black_tree &amp;rb)'],['../classred__black__tree.html#a4a9704d371d1f367cb5692cb4c6da151',1,'red_black_tree::red_black_tree(std::vector&lt; T &gt; _elements={}) noexcept']]],
-  ['reference_543',['reference',['../classbasic__json.html#a6ca7bfb35987ce7cb8d27447cda5b80a',1,'basic_json::reference()'],['../classdetail_1_1json__reverse__iterator.html#a81a4d0a61246d4ece37fd14eacfadda0',1,'detail::json_reverse_iterator::reference()'],['../classdetail_1_1iter__impl.html#aef4718cdd15a8743df34c4861c375144',1,'detail::iter_impl::reference()']]],
-  ['regexmatcher_544',['RegexMatcher',['../structCatch_1_1Matchers_1_1StdString_1_1RegexMatcher.html',1,'Catch::Matchers::StdString']]],
-  ['registrarfortagaliases_545',['RegistrarForTagAliases',['../structCatch_1_1RegistrarForTagAliases.html',1,'Catch']]],
-  ['remove_546',['remove',['../classhash__table.html#ac9a4f3f321ddf37bcc445ea2c56d44ed',1,'hash_table::remove()'],['../classskip__list.html#a5f586433aeedb6b248625e6cccee4eff',1,'skip_list::remove()'],['../classavl__tree.html#a76c9c53a32680f00a0071f1e236aa42b',1,'avl_tree::remove()'],['../classbst.html#a46aaefd422947e3f209db2e24119643a',1,'bst::remove()'],['../classinterval__tree.html#a7ddb8375fc087cdbebc397a03f5092c9',1,'interval_tree::remove()'],['../classred__black__tree.html#aec0943a39e9ac88431c03d7d4da78d61',1,'red_black_tree::remove()'],['../classsplay__tree.html#ab022b141626c54e2e09ab870e7000f89',1,'splay_tree::remove()'],['../classtrie.html#a856e569e4c40b5d5ebdaef26d8ec2a27',1,'trie::remove()'],['../classmin__heap.html#ad5364af3e61a8e296e524968f1925de2',1,'min_heap::remove()']]],
-  ['repeatgenerator_547',['RepeatGenerator',['../classCatch_1_1Generators_1_1RepeatGenerator.html',1,'Catch::Generators']]],
-  ['replace_548',['replace',['../namespacedetail.html#abe7cfa1fd8fa706ff4392bff9d1a8298a9dde360102c103867bd2f45872f1129c',1,'detail']]],
-  ['replace_5fsubstring_549',['replace_substring',['../namespacedetail.html#a6fd295e53b1dd4f46e235e6afee26d5e',1,'detail']]],
-  ['reset_5ffrequency_550',['reset_frequency',['../classfrequency__list.html#a70ad5b8f5abd9e02cc5e96090bf2ca50',1,'frequency_list']]],
-  ['resultdisposition_551',['ResultDisposition',['../structCatch_1_1ResultDisposition.html',1,'Catch']]],
-  ['resultwas_552',['ResultWas',['../structCatch_1_1ResultWas.html',1,'Catch']]],
-  ['retrieve_553',['retrieve',['../classhash__table.html#a6ea2e54ec4b12e86af9c4cf7e67f1d07',1,'hash_table']]],
-  ['reusablestringstream_554',['ReusableStringStream',['../classCatch_1_1ReusableStringStream.html',1,'Catch']]],
-  ['reverse_555',['reverse',['../classdoubly__linked__list.html#aa610759539cd3fc651f7ad950a19adaf',1,'doubly_linked_list::reverse()'],['../classlinked__list.html#a15bc074e7cee3245e603ce2e136c65e1',1,'linked_list::reverse()']]],
-  ['reverse_5fiterator_556',['reverse_iterator',['../classbasic__json.html#aedc059cdae078322bb0d434b2127d1cf',1,'basic_json']]],
-  ['rmq_557',['RMQ',['../structRMQ.html',1,'']]],
-  ['root_5fmean_5fsquared_5ferror_558',['root_mean_squared_error',['../namespacelosses.html#a98a126498ecc2bb875e145027efcb81b',1,'losses']]],
-  ['rope_559',['rope',['../classrope.html',1,'']]],
-  ['rows_560',['rows',['../classMat2d.html#aa463449ec848050798cbed09121eeb87',1,'Mat2d']]],
-  ['runtests_561',['RunTests',['../structCatch_1_1RunTests.html',1,'Catch']]]
+  ['kernel_0',['kernel',['../namespacesobel.html#a45bcfbac5ef3041b69834695b5a5ed21',1,'sobel']]],
+  ['key_1',['key',['../classdetail_1_1iteration__proxy__value.html#ad12633bc0d3ac7a651381b174a7914ee',1,'detail::iteration_proxy_value::key()'],['../structjson__sax.html#a3355ecd7e3e9806dcb80b2f8842b82ce',1,'json_sax::key()'],['../classdetail_1_1iter__impl.html#a4064b295014b32f3cabd86f94264fc74',1,'detail::iter_impl::key()'],['../classdetail_1_1json__reverse__iterator.html#a68d4f0c3e978afdc7509ee88e2f7b996',1,'detail::json_reverse_iterator::key()'],['../namespacedetail.html#a47b1bb0bbd3596589ed9187059c312efa3c6e0b8a9c15224a8228b9a98ca1531d',1,'detail::key']]],
+  ['kmeans_2',['kmeans',['../classkmeans.html',1,'kmeans'],['../classkmeans.html#af696ff45df389c26254937064944e0c5',1,'kmeans::kmeans()']]],
+  ['kmeans_20class_3',['Mini tutorial for kmeans class',['../md__2_users_2spirosmag_2_documents_2_algo_plus_2tutorial_2clustering_2kmeans.html',1,'']]],
+  ['kmeans_3a_20strong_20_3a_4',['&lt;strong&gt;Create an instance of kmeans:&lt;/strong&gt;:',['../md__2_users_2spirosmag_2_documents_2_algo_plus_2tutorial_2clustering_2kmeans.html#autotoc_md35',1,'']]]
 ];
