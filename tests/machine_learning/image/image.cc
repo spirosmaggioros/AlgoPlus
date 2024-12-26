@@ -1,6 +1,7 @@
 #include "../../../src/machine_learning/image/image.h"
 #include "../../../third_party/catch.hpp"
 #include <vector>
+#include <numeric>
 
 TEST_CASE("Testing default constructor of Image class") {
    std::vector<std::vector<int32_t> > img = {{1,0,0}, {1,0,0}, {0,0,1}, {0,0,0}} ;
