@@ -49,4 +49,4 @@ jobs:
           base: ${{ github.event.pull_request.base.sha }}
           sha: ${{ github.sha }}
       - name: Upload to codecov
-        run: bash <(curl -s https://codecov.io/bash)
+        run: bash <(curl -s https://codecov.io/bash) -t ${{ secrets.CODECOV_TOKEN }}
