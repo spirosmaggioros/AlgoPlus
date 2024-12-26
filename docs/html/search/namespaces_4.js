@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['prewitt_1123',['prewitt',['../namespaceprewitt.html',1,'']]]
+  ['median_5ffilter_0',['median_filter',['../namespacemedian__filter.html',1,'']]]
 ];

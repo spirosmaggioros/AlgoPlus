@@ -46,5 +46,7 @@ jobs:
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
           slug: CSRT-NTUA/AlgoPlus
+          base: ${{ github.event.pull_request.base.sha }}
+          sha: ${{ github.sha }}
       - name: Upload to codecov
         run: bash <(curl -s https://codecov.io/bash)

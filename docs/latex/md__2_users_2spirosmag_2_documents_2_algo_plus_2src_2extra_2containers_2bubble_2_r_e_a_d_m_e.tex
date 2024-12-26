@@ -1,0 +1,57 @@
+\chapter{bubble\+: A new data structure based on the idea of fibonacci heaps}
+\hypertarget{md__2_users_2spirosmag_2_documents_2_algo_plus_2src_2extra_2containers_2bubble_2_r_e_a_d_m_e}{}\label{md__2_users_2spirosmag_2_documents_2_algo_plus_2src_2extra_2containers_2bubble_2_r_e_a_d_m_e}\index{bubble: A new data structure based on the idea of fibonacci heaps@{bubble: A new data structure based on the idea of fibonacci heaps}}
+\label{md__2_users_2spirosmag_2_documents_2_algo_plus_2src_2extra_2containers_2bubble_2_r_e_a_d_m_e_autotoc_md21}%
+\Hypertarget{md__2_users_2spirosmag_2_documents_2_algo_plus_2src_2extra_2containers_2bubble_2_r_e_a_d_m_e_autotoc_md21}%
+
+
+\hypertarget{md__2_users_2spirosmag_2_documents_2_algo_plus_2src_2extra_2containers_2bubble_2_r_e_a_d_m_e_autotoc_md22}{}\doxysection{\texorpdfstring{Overiew}{Overiew}}\label{md__2_users_2spirosmag_2_documents_2_algo_plus_2src_2extra_2containers_2bubble_2_r_e_a_d_m_e_autotoc_md22}
+bubble is a data structure that uses an array and avl trees to store elements. You have to define an initial size(like bubble$<$int, 5$>$) and once the array of size=5 is full, then the next elements are going to be inserted inside avl trees. The code is header-\/only and only relies on STL, except from the avl\+\_\+tree.\+hpp header that is implemented inside the 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{/}
+
+\end{DoxyCode}
+ folder, though you can just put it inside the {\ttfamily \doxylink{bubble_8h_source}{bubble.\+h}} file and be just fine. Note that you can put any binary tree structure you like instead of an avl tree, bubble is generic. \textbackslash{} You can check more about the container at the \href{/tutorial}{\texttt{ tutorial}} folder\hypertarget{md__2_users_2spirosmag_2_documents_2_algo_plus_2src_2extra_2containers_2bubble_2_r_e_a_d_m_e_autotoc_md23}{}\doxysection{\texorpdfstring{Complexity}{Complexity}}\label{md__2_users_2spirosmag_2_documents_2_algo_plus_2src_2extra_2containers_2bubble_2_r_e_a_d_m_e_autotoc_md23}
+The time complexity of insertion, deletion and searching of an element is \$O(logn + logm) == O(log(n+m))\$ where n is the initial array size and m is the size of the avl tree that the key is going to be.\hypertarget{md__2_users_2spirosmag_2_documents_2_algo_plus_2src_2extra_2containers_2bubble_2_r_e_a_d_m_e_autotoc_md24}{}\doxysection{\texorpdfstring{Example}{Example}}\label{md__2_users_2spirosmag_2_documents_2_algo_plus_2src_2extra_2containers_2bubble_2_r_e_a_d_m_e_autotoc_md24}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ "{}src/bubble.h"{}}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{int}\ main()\ \{}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{classbubble}{bubble<int,\ 5>}}\ b;}
+\DoxyCodeLine{\ \ \ \ b.insert(-\/20,\ -\/10,\ 0,\ 10,\ 20);}
+\DoxyCodeLine{\ \ \ \ b.insert(15,\ 16,\ -\/5,\ -\/6);}
+\DoxyCodeLine{\ \ \ \ assert(b.search(15)\ ==\ \textcolor{keyword}{true});}
+\DoxyCodeLine{\ \ \ \ b.remove(15);}
+\DoxyCodeLine{\ \ \ \ assert(b.search(15)\ ==\ \textcolor{keyword}{false});}
+\DoxyCodeLine{\ \ \ \ std::vector<int>\ elements\ =\ b[3];\ \textcolor{comment}{//\ returns\ \{15,\ 16\}}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ std::cout\ <<\ b\ \ <<\ \textcolor{charliteral}{'\(\backslash\)n'};\ \textcolor{comment}{//\ custom\ ostream\ operator}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\hypertarget{md__2_users_2spirosmag_2_documents_2_algo_plus_2src_2extra_2containers_2bubble_2_r_e_a_d_m_e_autotoc_md25}{}\doxysection{\texorpdfstring{Licence}{Licence}}\label{md__2_users_2spirosmag_2_documents_2_algo_plus_2src_2extra_2containers_2bubble_2_r_e_a_d_m_e_autotoc_md25}
+The code is licenced under the \href{http://opensource.org/licenses/MIT}{\texttt{ MIT Licence}}\+: Copyright \copyright{} 2024 Spiros Maggioros
+
+Please cite the creators if you want to include this code to a project or a product using the bibitex bellow or using "{}\+Cite this repository"{} at "{}about"{} on the right view panel. 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{@software\{Spiros\_bubble\_A\_new\_2024,}
+\DoxyCodeLine{author\ =\ \{Spiros,\ Maggioros\},}
+\DoxyCodeLine{month\ =\ aug,}
+\DoxyCodeLine{title\ =\ \{\{bubble:\ A\ new\ data\ structure\ based\ on\ the\ idea\ of\ fibonacci\ heaps\}\},}
+\DoxyCodeLine{url\ =\ \{https://github.com/spirosmaggioros/bubble\},}
+\DoxyCodeLine{version\ =\ \{0.0.1\},}
+\DoxyCodeLine{year\ =\ \{2024\}}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+\hypertarget{md__2_users_2spirosmag_2_documents_2_algo_plus_2src_2extra_2containers_2bubble_2_r_e_a_d_m_e_autotoc_md26}{}\doxysection{\texorpdfstring{Run unit tests}{Run unit tests}}\label{md__2_users_2spirosmag_2_documents_2_algo_plus_2src_2extra_2containers_2bubble_2_r_e_a_d_m_e_autotoc_md26}
+To run unit tests on Unix based systems, just do 
+\begin{DoxyCode}{0}
+\DoxyCodeLine{mkdir\ build\ \&\&\ cd\ build}
+\DoxyCodeLine{cmake\ ..}
+\DoxyCodeLine{make}
+\DoxyCodeLine{cd\ tests\ \&\&\ ./runUnitTests}
+
+\end{DoxyCode}
+\hypertarget{md__2_users_2spirosmag_2_documents_2_algo_plus_2src_2extra_2containers_2bubble_2_r_e_a_d_m_e_autotoc_md27}{}\doxysection{\texorpdfstring{Contribute}{Contribute}}\label{md__2_users_2spirosmag_2_documents_2_algo_plus_2src_2extra_2containers_2bubble_2_r_e_a_d_m_e_autotoc_md27}
+General contributions are always welcome and we definetely need more people working on this to make sure to have no bugs and manage to have the fastest implementation that we can. In order to contribute just create a pull request explaining your addition or fix as clearly as you can. 

@@ -1,28 +1,28 @@
-\hypertarget{namespaceprewitt}{}\doxysection{prewitt Namespace Reference}
-\label{namespaceprewitt}\index{prewitt@{prewitt}}
+\doxysection{prewitt Namespace Reference}
+\hypertarget{namespaceprewitt}{}\label{namespaceprewitt}\index{prewitt@{prewitt}}
 
 
-Prewitt operator is used for edge detection. It creates 2 3x3 arrays G\+\_\+x and G\+\_\+y and apply them to an image A(\+G\+\_\+x $\ast$ A, G\+\_\+y $\ast$ A). After that, the resulting image with edge detection is G = sqrt(G\+\_\+x$^\wedge$2 + G\+\_\+y$^\wedge$2). It\textquotesingle{}s almost the same as the sobel operator, but with a different mask.  
+Prewitt operator is used for edge detection. It creates 2 3x3 arrays G\+\_\+x and G\+\_\+y and apply them to an image A(\+G\+\_\+x \texorpdfstring{$\ast$}{*} A, G\+\_\+y \texorpdfstring{$\ast$}{*} A). After that, the resulting image with edge detection is G = sqrt(G\+\_\+x\texorpdfstring{$^\wedge$}{\string^}2 + G\+\_\+y\texorpdfstring{$^\wedge$}{\string^}2). It\textquotesingle{}s almost the same as the sobel operator, but with a different mask.  
 
 
-\doxysubsection*{Functions}
+\doxysubsubsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
-std\+::vector$<$ std\+::vector$<$ int32\+\_\+t $>$ $>$ \mbox{\hyperlink{namespaceprewitt_ad12dc986ca46c0a8824974ff67007b20}{square}} (const std\+::vector$<$ std\+::vector$<$ int32\+\_\+t $>$ $>$ \&G)
+std\+::vector$<$ std\+::vector$<$ int32\+\_\+t $>$ $>$ \mbox{\hyperlink{namespaceprewitt_a4a23510de7be3a0d768c8ccc865d8170}{square}} (const std\+::vector$<$ std\+::vector$<$ int32\+\_\+t $>$ $>$ \&G)
 \begin{DoxyCompactList}\small\item\em square function \end{DoxyCompactList}\item 
-std\+::vector$<$ std\+::vector$<$ int32\+\_\+t $>$ $>$ \mbox{\hyperlink{namespaceprewitt_a277066f6a4836b998d2cb6174301ad03}{Prewitt}} (const std\+::vector$<$ std\+::vector$<$ int32\+\_\+t $>$ $>$ \&image)
+std\+::vector$<$ std\+::vector$<$ int32\+\_\+t $>$ $>$ \mbox{\hyperlink{namespaceprewitt_a184d3dd2536e6be1e1552dc0bd798f11}{Prewitt}} (const std\+::vector$<$ std\+::vector$<$ int32\+\_\+t $>$ $>$ \&image)
 \begin{DoxyCompactList}\small\item\em Prewitt apply function. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
-Prewitt operator is used for edge detection. It creates 2 3x3 arrays G\+\_\+x and G\+\_\+y and apply them to an image A(\+G\+\_\+x $\ast$ A, G\+\_\+y $\ast$ A). After that, the resulting image with edge detection is G = sqrt(G\+\_\+x$^\wedge$2 + G\+\_\+y$^\wedge$2). It\textquotesingle{}s almost the same as the sobel operator, but with a different mask. 
+Prewitt operator is used for edge detection. It creates 2 3x3 arrays G\+\_\+x and G\+\_\+y and apply them to an image A(\+G\+\_\+x \texorpdfstring{$\ast$}{*} A, G\+\_\+y \texorpdfstring{$\ast$}{*} A). After that, the resulting image with edge detection is G = sqrt(G\+\_\+x\texorpdfstring{$^\wedge$}{\string^}2 + G\+\_\+y\texorpdfstring{$^\wedge$}{\string^}2). It\textquotesingle{}s almost the same as the sobel operator, but with a different mask. 
 
 \doxysubsection{Function Documentation}
-\mbox{\Hypertarget{namespaceprewitt_a277066f6a4836b998d2cb6174301ad03}\label{namespaceprewitt_a277066f6a4836b998d2cb6174301ad03}} 
-\index{prewitt@{prewitt}!Prewitt@{Prewitt}}
+\Hypertarget{namespaceprewitt_a184d3dd2536e6be1e1552dc0bd798f11}\index{prewitt@{prewitt}!Prewitt@{Prewitt}}
 \index{Prewitt@{Prewitt}!prewitt@{prewitt}}
 \doxysubsubsection{\texorpdfstring{Prewitt()}{Prewitt()}}
-{\footnotesize\ttfamily std\+::vector$<$std\+::vector$<$int32\+\_\+t$>$ $>$ prewitt\+::\+Prewitt (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ std\+::vector$<$ int32\+\_\+t $>$ $>$ \&}]{image }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \label{namespaceprewitt_a184d3dd2536e6be1e1552dc0bd798f11} 
+std\+::vector$<$ std\+::vector$<$ int32\+\_\+t $>$ $>$ prewitt\+::\+Prewitt (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ std\+::vector$<$ int32\+\_\+t $>$ $>$ \&}]{image}{}\end{DoxyParamCaption})}
 
 
 
@@ -34,13 +34,13 @@ Prewitt apply function.
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-std\+::vector$<$std\+::vector$<$int32\+\_\+t$>$ $>$ the resulted image after applying the prewitt mask 
+std\+::vector\texorpdfstring{$<$}{<}std\+::vector$<$int32\+\_\+t$>$ \texorpdfstring{$>$}{>} the resulted image after applying the prewitt mask 
 \end{DoxyReturn}
-\mbox{\Hypertarget{namespaceprewitt_ad12dc986ca46c0a8824974ff67007b20}\label{namespaceprewitt_ad12dc986ca46c0a8824974ff67007b20}} 
-\index{prewitt@{prewitt}!square@{square}}
+\Hypertarget{namespaceprewitt_a4a23510de7be3a0d768c8ccc865d8170}\index{prewitt@{prewitt}!square@{square}}
 \index{square@{square}!prewitt@{prewitt}}
 \doxysubsubsection{\texorpdfstring{square()}{square()}}
-{\footnotesize\ttfamily std\+::vector$<$std\+::vector$<$int32\+\_\+t$>$ $>$ prewitt\+::square (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ std\+::vector$<$ int32\+\_\+t $>$ $>$ \&}]{G }\end{DoxyParamCaption})}
+{\footnotesize\ttfamily \label{namespaceprewitt_a4a23510de7be3a0d768c8ccc865d8170} 
+std\+::vector$<$ std\+::vector$<$ int32\+\_\+t $>$ $>$ prewitt\+::square (\begin{DoxyParamCaption}\item[{const std\+::vector$<$ std\+::vector$<$ int32\+\_\+t $>$ $>$ \&}]{G}{}\end{DoxyParamCaption})}
 
 
 
@@ -52,5 +52,5 @@ square function
 \hline
 \end{DoxyParams}
 \begin{DoxyReturn}{Returns}
-vector$<$vector$<$int32\+\_\+t$>$ $>$ the squared root 2d array 
+vector\texorpdfstring{$<$}{<}vector$<$int32\+\_\+t$>$ \texorpdfstring{$>$}{>} the squared root 2d array 
 \end{DoxyReturn}

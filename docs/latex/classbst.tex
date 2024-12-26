@@ -1,5 +1,5 @@
-\hypertarget{classbst}{}\doxysection{bst$<$ T $>$ Class Template Reference}
-\label{classbst}\index{bst$<$ T $>$@{bst$<$ T $>$}}
+\doxysection{bst\texorpdfstring{$<$}{<} T \texorpdfstring{$>$}{>} Class Template Reference}
+\hypertarget{classbst}{}\label{classbst}\index{bst$<$ T $>$@{bst$<$ T $>$}}
 
 
 Class for BST tree.  
@@ -9,22 +9,22 @@ Class for BST tree.
 
 {\ttfamily \#include $<$bst.\+h$>$}
 
-\doxysubsection*{Classes}
+\doxysubsubsection*{Classes}
 \begin{DoxyCompactItemize}
 \item 
-class \mbox{\hyperlink{classbst_1_1Iterator}{Iterator}}
-\begin{DoxyCompactList}\small\item\em \mbox{\hyperlink{classbst_1_1Iterator}{Iterator}} class. \end{DoxyCompactList}\end{DoxyCompactItemize}
-\doxysubsection*{Public Member Functions}
+class \mbox{\hyperlink{classbst_1_1_iterator}{Iterator}}
+\begin{DoxyCompactList}\small\item\em \doxylink{classbst_1_1_iterator}{Iterator} class. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
 \mbox{\hyperlink{classbst_a0dba54c75113bc6de005bbdae7fc9d88}{bst}} (std\+::vector$<$ T $>$ \+\_\+elements=\{\}) noexcept
 \begin{DoxyCompactList}\small\item\em Contructor for BST tree class. \end{DoxyCompactList}\item 
 \mbox{\hyperlink{classbst_a7461a2607495eab0f2621708b554e926}{bst}} (const \mbox{\hyperlink{classbst}{bst}} \&b)
 \begin{DoxyCompactList}\small\item\em Copy constructor for bst class. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{classbst}{bst}} \& \mbox{\hyperlink{classbst_a57ae616a9f4fdfaf44663e3bf9a3740b}{operator=}} (const \mbox{\hyperlink{classbst}{bst}} \&b)
+\mbox{\hyperlink{classbst}{bst}} \& \mbox{\hyperlink{classbst_a8d1fb0829946f59b93a261ffdb8d044d}{operator=}} (const \mbox{\hyperlink{classbst}{bst}} \&b)
 \begin{DoxyCompactList}\small\item\em operator = for bst class \end{DoxyCompactList}\item 
-\mbox{\Hypertarget{classbst_a24e453a8f1f0926bf1d1eaa557c97285}\label{classbst_a24e453a8f1f0926bf1d1eaa557c97285}} 
-void \mbox{\hyperlink{classbst_a24e453a8f1f0926bf1d1eaa557c97285}{clear}} ()
+\Hypertarget{classbst_a24e453a8f1f0926bf1d1eaa557c97285}\label{classbst_a24e453a8f1f0926bf1d1eaa557c97285} 
+void {\bfseries clear} ()
 \begin{DoxyCompactList}\small\item\em clear function \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classbst_ad7def8a09da61a43c7033365ea226d06}{insert}} (T key)
 \begin{DoxyCompactList}\small\item\em insert function. \end{DoxyCompactList}\item 
@@ -32,40 +32,39 @@ bool \mbox{\hyperlink{classbst_acd2ed132fc83a3a50a4085b4b7a90f47}{search}} (T ke
 \begin{DoxyCompactList}\small\item\em search function. \end{DoxyCompactList}\item 
 void \mbox{\hyperlink{classbst_a46aaefd422947e3f209db2e24119643a}{remove}} (T key)
 \begin{DoxyCompactList}\small\item\em remove function. \end{DoxyCompactList}\item 
-\mbox{\hyperlink{classbst_1_1Iterator}{Iterator}} \mbox{\hyperlink{classbst_a64edfd3a7c05023cef487ef40a07a322}{begin}} ()
+\mbox{\hyperlink{classbst_1_1_iterator}{Iterator}} \mbox{\hyperlink{classbst_a64edfd3a7c05023cef487ef40a07a322}{begin}} ()
 \begin{DoxyCompactList}\small\item\em pointer that points to begin \end{DoxyCompactList}\item 
-\mbox{\hyperlink{classbst_1_1Iterator}{Iterator}} \mbox{\hyperlink{classbst_aa3db0ba407a005ce61feb9c605bbb187}{end}} ()
+\mbox{\hyperlink{classbst_1_1_iterator}{Iterator}} \mbox{\hyperlink{classbst_aa3db0ba407a005ce61feb9c605bbb187}{end}} ()
 \begin{DoxyCompactList}\small\item\em pointer that points to end \end{DoxyCompactList}\item 
 size\+\_\+t \mbox{\hyperlink{classbst_a8a04b4ab8c11fe64c9a3f282aa6eb187}{size}} ()
 \begin{DoxyCompactList}\small\item\em size function \end{DoxyCompactList}\item 
-std\+::vector$<$ T $>$ \mbox{\hyperlink{classbst_a389fcd4f551791b2500f8fd0c8db1614}{inorder}} ()
+std\+::vector$<$ T $>$ \mbox{\hyperlink{classbst_ab9d984aab9247a36c78b115484ccb623}{inorder}} ()
 \begin{DoxyCompactList}\small\item\em inorder function. \end{DoxyCompactList}\item 
-std\+::vector$<$ T $>$ \mbox{\hyperlink{classbst_a182d1e4e1530bc1d1b0bc575be61d366}{preorder}} ()
+std\+::vector$<$ T $>$ \mbox{\hyperlink{classbst_a4c3359b500e074fce8d1f3eae21dfdca}{preorder}} ()
 \begin{DoxyCompactList}\small\item\em preorder function. \end{DoxyCompactList}\item 
-std\+::vector$<$ T $>$ \mbox{\hyperlink{classbst_aa0db48fcb0830ae4a14e7d8d7568c668}{postorder}} ()
+std\+::vector$<$ T $>$ \mbox{\hyperlink{classbst_a60575db4d925e7f08202549df73d0d9b}{postorder}} ()
 \begin{DoxyCompactList}\small\item\em postorder function. \end{DoxyCompactList}\item 
-std\+::vector$<$ std\+::vector$<$ T $>$ $>$ \mbox{\hyperlink{classbst_ade46a1ce11c3bfacf8bf9dcbb91384d2}{level\+\_\+order}} ()
+std\+::vector$<$ std\+::vector$<$ T $>$ $>$ \mbox{\hyperlink{classbst_ab9768cfd3f234e31558ccc1a283a1ed4}{level\+\_\+order}} ()
 \begin{DoxyCompactList}\small\item\em level order function \end{DoxyCompactList}\end{DoxyCompactItemize}
-\doxysubsection*{Friends}
+\doxysubsubsection*{Friends}
 \begin{DoxyCompactItemize}
 \item 
-std\+::ostream \& \mbox{\hyperlink{classbst_a0d34a4ce12489170ea88de148217c273}{operator$<$$<$}} (std\+::ostream \&out, \mbox{\hyperlink{classbst}{bst}}$<$ T $>$ \&t)
+std\+::ostream \& \mbox{\hyperlink{classbst_a00501cd5480e31b8d826d7ae6acb9a19}{operator$<$$<$}} (std\+::ostream \&out, \mbox{\hyperlink{classbst}{bst}}$<$ T $>$ \&t)
 \begin{DoxyCompactList}\small\item\em visualize function \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
 \doxysubsection{Detailed Description}
 \subsubsection*{template$<$typename T$>$\newline
 class bst$<$ T $>$}
-
 Class for BST tree. 
 
 \doxysubsection{Constructor \& Destructor Documentation}
-\mbox{\Hypertarget{classbst_a0dba54c75113bc6de005bbdae7fc9d88}\label{classbst_a0dba54c75113bc6de005bbdae7fc9d88}} 
-\index{bst$<$ T $>$@{bst$<$ T $>$}!bst@{bst}}
+\Hypertarget{classbst_a0dba54c75113bc6de005bbdae7fc9d88}\index{bst$<$ T $>$@{bst$<$ T $>$}!bst@{bst}}
 \index{bst@{bst}!bst$<$ T $>$@{bst$<$ T $>$}}
 \doxysubsubsection{\texorpdfstring{bst()}{bst()}\hspace{0.1cm}{\footnotesize\ttfamily [1/2]}}
-{\footnotesize\ttfamily template$<$typename T $>$ \\
-\mbox{\hyperlink{classbst}{bst}}$<$ T $>$\+::\mbox{\hyperlink{classbst}{bst}} (\begin{DoxyParamCaption}\item[{std\+::vector$<$ T $>$}]{\+\_\+elements = {\ttfamily \{\}} }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [explicit]}, {\ttfamily [noexcept]}}
+{\footnotesize\ttfamily \label{classbst_a0dba54c75113bc6de005bbdae7fc9d88} 
+template$<$typename T $>$ \\
+\mbox{\hyperlink{classbst}{bst}}$<$ T $>$\mbox{\hyperlink{classbst}{\+::bst}} (\begin{DoxyParamCaption}\item[{std\+::vector$<$ T $>$}]{\+\_\+elements}{ = {\ttfamily \{\}}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [explicit]}, {\ttfamily [noexcept]}}
 
 
 
@@ -76,12 +75,12 @@ Contructor for BST tree class.
 {\em \+\_\+\+\_\+elements} & you can directly pass a vector$<$\+T$>$ so you don\textquotesingle{}t have to do insert multiple times. \\
 \hline
 \end{DoxyParams}
-\mbox{\Hypertarget{classbst_a7461a2607495eab0f2621708b554e926}\label{classbst_a7461a2607495eab0f2621708b554e926}} 
-\index{bst$<$ T $>$@{bst$<$ T $>$}!bst@{bst}}
+\Hypertarget{classbst_a7461a2607495eab0f2621708b554e926}\index{bst$<$ T $>$@{bst$<$ T $>$}!bst@{bst}}
 \index{bst@{bst}!bst$<$ T $>$@{bst$<$ T $>$}}
 \doxysubsubsection{\texorpdfstring{bst()}{bst()}\hspace{0.1cm}{\footnotesize\ttfamily [2/2]}}
-{\footnotesize\ttfamily template$<$typename T $>$ \\
-\mbox{\hyperlink{classbst}{bst}}$<$ T $>$\+::\mbox{\hyperlink{classbst}{bst}} (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classbst}{bst}}$<$ T $>$ \&}]{b }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [explicit]}}
+{\footnotesize\ttfamily \label{classbst_a7461a2607495eab0f2621708b554e926} 
+template$<$typename T $>$ \\
+\mbox{\hyperlink{classbst}{bst}}$<$ T $>$\mbox{\hyperlink{classbst}{\+::bst}} (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classbst}{bst}}$<$ T $>$ \&}]{b}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [explicit]}}
 
 
 
@@ -95,40 +94,40 @@ Copy constructor for bst class.
 
 
 \doxysubsection{Member Function Documentation}
-\mbox{\Hypertarget{classbst_a64edfd3a7c05023cef487ef40a07a322}\label{classbst_a64edfd3a7c05023cef487ef40a07a322}} 
-\index{bst$<$ T $>$@{bst$<$ T $>$}!begin@{begin}}
+\Hypertarget{classbst_a64edfd3a7c05023cef487ef40a07a322}\index{bst$<$ T $>$@{bst$<$ T $>$}!begin@{begin}}
 \index{begin@{begin}!bst$<$ T $>$@{bst$<$ T $>$}}
 \doxysubsubsection{\texorpdfstring{begin()}{begin()}}
-{\footnotesize\ttfamily template$<$typename T $>$ \\
-\mbox{\hyperlink{classbst_1_1Iterator}{Iterator}} \mbox{\hyperlink{classbst}{bst}}$<$ T $>$\+::begin (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily \label{classbst_a64edfd3a7c05023cef487ef40a07a322} 
+template$<$typename T $>$ \\
+\mbox{\hyperlink{classbst_1_1_iterator}{Iterator}} \mbox{\hyperlink{classbst}{bst}}$<$ T $>$\+::begin (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
 pointer that points to begin 
 
 \begin{DoxyReturn}{Returns}
-\mbox{\hyperlink{classbst_1_1Iterator}{Iterator}} 
+\doxylink{classbst_1_1_iterator}{Iterator} 
 \end{DoxyReturn}
-\mbox{\Hypertarget{classbst_aa3db0ba407a005ce61feb9c605bbb187}\label{classbst_aa3db0ba407a005ce61feb9c605bbb187}} 
-\index{bst$<$ T $>$@{bst$<$ T $>$}!end@{end}}
+\Hypertarget{classbst_aa3db0ba407a005ce61feb9c605bbb187}\index{bst$<$ T $>$@{bst$<$ T $>$}!end@{end}}
 \index{end@{end}!bst$<$ T $>$@{bst$<$ T $>$}}
 \doxysubsubsection{\texorpdfstring{end()}{end()}}
-{\footnotesize\ttfamily template$<$typename T $>$ \\
-\mbox{\hyperlink{classbst_1_1Iterator}{Iterator}} \mbox{\hyperlink{classbst}{bst}}$<$ T $>$\+::end (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily \label{classbst_aa3db0ba407a005ce61feb9c605bbb187} 
+template$<$typename T $>$ \\
+\mbox{\hyperlink{classbst_1_1_iterator}{Iterator}} \mbox{\hyperlink{classbst}{bst}}$<$ T $>$\+::end (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
 pointer that points to end 
 
 \begin{DoxyReturn}{Returns}
-\mbox{\hyperlink{classbst_1_1Iterator}{Iterator}} 
+\doxylink{classbst_1_1_iterator}{Iterator} 
 \end{DoxyReturn}
-\mbox{\Hypertarget{classbst_a389fcd4f551791b2500f8fd0c8db1614}\label{classbst_a389fcd4f551791b2500f8fd0c8db1614}} 
-\index{bst$<$ T $>$@{bst$<$ T $>$}!inorder@{inorder}}
+\Hypertarget{classbst_ab9d984aab9247a36c78b115484ccb623}\index{bst$<$ T $>$@{bst$<$ T $>$}!inorder@{inorder}}
 \index{inorder@{inorder}!bst$<$ T $>$@{bst$<$ T $>$}}
 \doxysubsubsection{\texorpdfstring{inorder()}{inorder()}}
-{\footnotesize\ttfamily template$<$typename T $>$ \\
-std\+::vector$<$T$>$ \mbox{\hyperlink{classbst}{bst}}$<$ T $>$\+::inorder (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily \label{classbst_ab9d984aab9247a36c78b115484ccb623} 
+template$<$typename T $>$ \\
+std\+::vector$<$ T $>$ \mbox{\hyperlink{classbst}{bst}}$<$ T $>$\+::inorder (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
@@ -137,12 +136,12 @@ inorder function.
 \begin{DoxyReturn}{Returns}
 vector$<$\+T$>$, the elements inorder. 
 \end{DoxyReturn}
-\mbox{\Hypertarget{classbst_ad7def8a09da61a43c7033365ea226d06}\label{classbst_ad7def8a09da61a43c7033365ea226d06}} 
-\index{bst$<$ T $>$@{bst$<$ T $>$}!insert@{insert}}
+\Hypertarget{classbst_ad7def8a09da61a43c7033365ea226d06}\index{bst$<$ T $>$@{bst$<$ T $>$}!insert@{insert}}
 \index{insert@{insert}!bst$<$ T $>$@{bst$<$ T $>$}}
 \doxysubsubsection{\texorpdfstring{insert()}{insert()}}
-{\footnotesize\ttfamily template$<$typename T $>$ \\
-void \mbox{\hyperlink{classbst}{bst}}$<$ T $>$\+::insert (\begin{DoxyParamCaption}\item[{T}]{key }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily \label{classbst_ad7def8a09da61a43c7033365ea226d06} 
+template$<$typename T $>$ \\
+void \mbox{\hyperlink{classbst}{bst}}$<$ T $>$\+::insert (\begin{DoxyParamCaption}\item[{T}]{key}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
@@ -153,12 +152,12 @@ insert function.
 {\em key} & key to be inserted. \\
 \hline
 \end{DoxyParams}
-\mbox{\Hypertarget{classbst_ade46a1ce11c3bfacf8bf9dcbb91384d2}\label{classbst_ade46a1ce11c3bfacf8bf9dcbb91384d2}} 
-\index{bst$<$ T $>$@{bst$<$ T $>$}!level\_order@{level\_order}}
+\Hypertarget{classbst_ab9768cfd3f234e31558ccc1a283a1ed4}\index{bst$<$ T $>$@{bst$<$ T $>$}!level\_order@{level\_order}}
 \index{level\_order@{level\_order}!bst$<$ T $>$@{bst$<$ T $>$}}
 \doxysubsubsection{\texorpdfstring{level\_order()}{level\_order()}}
-{\footnotesize\ttfamily template$<$typename T $>$ \\
-std\+::vector$<$std\+::vector$<$T$>$ $>$ \mbox{\hyperlink{classbst}{bst}}$<$ T $>$\+::level\+\_\+order (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily \label{classbst_ab9768cfd3f234e31558ccc1a283a1ed4} 
+template$<$typename T $>$ \\
+std\+::vector$<$ std\+::vector$<$ T $>$ $>$ \mbox{\hyperlink{classbst}{bst}}$<$ T $>$\+::level\+\_\+order (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
@@ -167,12 +166,12 @@ level order function
 \begin{DoxyReturn}{Returns}
 vector$<$vector$<$\+T$>$$>$, the level order traversal of the tree 
 \end{DoxyReturn}
-\mbox{\Hypertarget{classbst_a57ae616a9f4fdfaf44663e3bf9a3740b}\label{classbst_a57ae616a9f4fdfaf44663e3bf9a3740b}} 
-\index{bst$<$ T $>$@{bst$<$ T $>$}!operator=@{operator=}}
+\Hypertarget{classbst_a8d1fb0829946f59b93a261ffdb8d044d}\index{bst$<$ T $>$@{bst$<$ T $>$}!operator=@{operator=}}
 \index{operator=@{operator=}!bst$<$ T $>$@{bst$<$ T $>$}}
 \doxysubsubsection{\texorpdfstring{operator=()}{operator=()}}
-{\footnotesize\ttfamily template$<$typename T $>$ \\
-\mbox{\hyperlink{classbst}{bst}}\& \mbox{\hyperlink{classbst}{bst}}$<$ T $>$\+::operator= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classbst}{bst}}$<$ T $>$ \&}]{b }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily \label{classbst_a8d1fb0829946f59b93a261ffdb8d044d} 
+template$<$typename T $>$ \\
+\mbox{\hyperlink{classbst}{bst}} \& \mbox{\hyperlink{classbst}{bst}}$<$ T $>$\+::operator= (\begin{DoxyParamCaption}\item[{const \mbox{\hyperlink{classbst}{bst}}$<$ T $>$ \&}]{b}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
@@ -186,12 +185,12 @@ operator = for bst class
 \begin{DoxyReturn}{Returns}
 bst\& 
 \end{DoxyReturn}
-\mbox{\Hypertarget{classbst_aa0db48fcb0830ae4a14e7d8d7568c668}\label{classbst_aa0db48fcb0830ae4a14e7d8d7568c668}} 
-\index{bst$<$ T $>$@{bst$<$ T $>$}!postorder@{postorder}}
+\Hypertarget{classbst_a60575db4d925e7f08202549df73d0d9b}\index{bst$<$ T $>$@{bst$<$ T $>$}!postorder@{postorder}}
 \index{postorder@{postorder}!bst$<$ T $>$@{bst$<$ T $>$}}
 \doxysubsubsection{\texorpdfstring{postorder()}{postorder()}}
-{\footnotesize\ttfamily template$<$typename T $>$ \\
-std\+::vector$<$T$>$ \mbox{\hyperlink{classbst}{bst}}$<$ T $>$\+::postorder (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily \label{classbst_a60575db4d925e7f08202549df73d0d9b} 
+template$<$typename T $>$ \\
+std\+::vector$<$ T $>$ \mbox{\hyperlink{classbst}{bst}}$<$ T $>$\+::postorder (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
@@ -200,12 +199,12 @@ postorder function.
 \begin{DoxyReturn}{Returns}
 vector$<$\+T$>$, the elements postorder. 
 \end{DoxyReturn}
-\mbox{\Hypertarget{classbst_a182d1e4e1530bc1d1b0bc575be61d366}\label{classbst_a182d1e4e1530bc1d1b0bc575be61d366}} 
-\index{bst$<$ T $>$@{bst$<$ T $>$}!preorder@{preorder}}
+\Hypertarget{classbst_a4c3359b500e074fce8d1f3eae21dfdca}\index{bst$<$ T $>$@{bst$<$ T $>$}!preorder@{preorder}}
 \index{preorder@{preorder}!bst$<$ T $>$@{bst$<$ T $>$}}
 \doxysubsubsection{\texorpdfstring{preorder()}{preorder()}}
-{\footnotesize\ttfamily template$<$typename T $>$ \\
-std\+::vector$<$T$>$ \mbox{\hyperlink{classbst}{bst}}$<$ T $>$\+::preorder (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily \label{classbst_a4c3359b500e074fce8d1f3eae21dfdca} 
+template$<$typename T $>$ \\
+std\+::vector$<$ T $>$ \mbox{\hyperlink{classbst}{bst}}$<$ T $>$\+::preorder (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
@@ -214,12 +213,12 @@ preorder function.
 \begin{DoxyReturn}{Returns}
 vector$<$\+T$>$, the elements preorder. 
 \end{DoxyReturn}
-\mbox{\Hypertarget{classbst_a46aaefd422947e3f209db2e24119643a}\label{classbst_a46aaefd422947e3f209db2e24119643a}} 
-\index{bst$<$ T $>$@{bst$<$ T $>$}!remove@{remove}}
+\Hypertarget{classbst_a46aaefd422947e3f209db2e24119643a}\index{bst$<$ T $>$@{bst$<$ T $>$}!remove@{remove}}
 \index{remove@{remove}!bst$<$ T $>$@{bst$<$ T $>$}}
 \doxysubsubsection{\texorpdfstring{remove()}{remove()}}
-{\footnotesize\ttfamily template$<$typename T $>$ \\
-void \mbox{\hyperlink{classbst}{bst}}$<$ T $>$\+::remove (\begin{DoxyParamCaption}\item[{T}]{key }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily \label{classbst_a46aaefd422947e3f209db2e24119643a} 
+template$<$typename T $>$ \\
+void \mbox{\hyperlink{classbst}{bst}}$<$ T $>$\+::remove (\begin{DoxyParamCaption}\item[{T}]{key}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
@@ -230,12 +229,12 @@ remove function.
 {\em key} & key to be removed. \\
 \hline
 \end{DoxyParams}
-\mbox{\Hypertarget{classbst_acd2ed132fc83a3a50a4085b4b7a90f47}\label{classbst_acd2ed132fc83a3a50a4085b4b7a90f47}} 
-\index{bst$<$ T $>$@{bst$<$ T $>$}!search@{search}}
+\Hypertarget{classbst_acd2ed132fc83a3a50a4085b4b7a90f47}\index{bst$<$ T $>$@{bst$<$ T $>$}!search@{search}}
 \index{search@{search}!bst$<$ T $>$@{bst$<$ T $>$}}
 \doxysubsubsection{\texorpdfstring{search()}{search()}}
-{\footnotesize\ttfamily template$<$typename T $>$ \\
-bool \mbox{\hyperlink{classbst}{bst}}$<$ T $>$\+::search (\begin{DoxyParamCaption}\item[{T}]{key }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily \label{classbst_acd2ed132fc83a3a50a4085b4b7a90f47} 
+template$<$typename T $>$ \\
+bool \mbox{\hyperlink{classbst}{bst}}$<$ T $>$\+::search (\begin{DoxyParamCaption}\item[{T}]{key}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
@@ -249,12 +248,12 @@ search function.
 \begin{DoxyReturn}{Returns}
 true if the key exists in the tree. 
 \end{DoxyReturn}
-\mbox{\Hypertarget{classbst_a8a04b4ab8c11fe64c9a3f282aa6eb187}\label{classbst_a8a04b4ab8c11fe64c9a3f282aa6eb187}} 
-\index{bst$<$ T $>$@{bst$<$ T $>$}!size@{size}}
+\Hypertarget{classbst_a8a04b4ab8c11fe64c9a3f282aa6eb187}\index{bst$<$ T $>$@{bst$<$ T $>$}!size@{size}}
 \index{size@{size}!bst$<$ T $>$@{bst$<$ T $>$}}
 \doxysubsubsection{\texorpdfstring{size()}{size()}}
-{\footnotesize\ttfamily template$<$typename T $>$ \\
-size\+\_\+t \mbox{\hyperlink{classbst}{bst}}$<$ T $>$\+::size (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+{\footnotesize\ttfamily \label{classbst_a8a04b4ab8c11fe64c9a3f282aa6eb187} 
+template$<$typename T $>$ \\
+size\+\_\+t \mbox{\hyperlink{classbst}{bst}}$<$ T $>$\+::size (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
 
 
 
@@ -265,13 +264,13 @@ size\+\_\+t the size of the tree
 \end{DoxyReturn}
 
 
-\doxysubsection{Friends And Related Function Documentation}
-\mbox{\Hypertarget{classbst_a0d34a4ce12489170ea88de148217c273}\label{classbst_a0d34a4ce12489170ea88de148217c273}} 
-\index{bst$<$ T $>$@{bst$<$ T $>$}!operator$<$$<$@{operator$<$$<$}}
+\doxysubsection{Friends And Related Symbol Documentation}
+\Hypertarget{classbst_a00501cd5480e31b8d826d7ae6acb9a19}\index{bst$<$ T $>$@{bst$<$ T $>$}!operator$<$$<$@{operator$<$$<$}}
 \index{operator$<$$<$@{operator$<$$<$}!bst$<$ T $>$@{bst$<$ T $>$}}
 \doxysubsubsection{\texorpdfstring{operator$<$$<$}{operator<<}}
-{\footnotesize\ttfamily template$<$typename T $>$ \\
-std\+::ostream\& operator$<$$<$ (\begin{DoxyParamCaption}\item[{std\+::ostream \&}]{out,  }\item[{\mbox{\hyperlink{classbst}{bst}}$<$ T $>$ \&}]{t }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [friend]}}
+{\footnotesize\ttfamily \label{classbst_a00501cd5480e31b8d826d7ae6acb9a19} 
+template$<$typename T $>$ \\
+std\+::ostream \& operator$<$$<$ (\begin{DoxyParamCaption}\item[{std\+::ostream \&}]{out}{, }\item[{\mbox{\hyperlink{classbst}{bst}}$<$ T $>$ \&}]{t}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [friend]}}
 
 
 
@@ -280,8 +279,8 @@ visualize function
 \begin{DoxyReturn}{Returns}
 .dot file that can be previewed using graphviz in vscode.
 \end{DoxyReturn}
-operator $<$$<$ for bst class 
+operator \texorpdfstring{$<$}{<}\texorpdfstring{$<$}{<} for bst class 
 
 The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
 \item 
-/home/spiros/\+Documents/\+Algo\+Plus/src/classes/tree/bst.\+h\end{DoxyCompactItemize}
+/\+Users/spirosmag/\+Documents/\+Algo\+Plus/src/classes/tree/bst.\+h\end{DoxyCompactItemize}

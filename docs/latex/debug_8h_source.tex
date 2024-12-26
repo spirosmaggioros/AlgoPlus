@@ -1,0 +1,51 @@
+\doxysection{debug.\+h}
+\hypertarget{debug_8h_source}{}\label{debug_8h_source}\index{/Users/spirosmag/Documents/AlgoPlus/src/helpers/debug.h@{/Users/spirosmag/Documents/AlgoPlus/src/helpers/debug.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ DEBUG\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ DEBUG\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#ifdef\ \_\_cplusplus}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <type\_traits>}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{keyword}{namespace\ }DEBUG\ \{}
+\DoxyCodeLine{00011\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00012\ \ \ \ \ \textcolor{keywordtype}{void}\ print\_arguments(\textcolor{keyword}{const}\ T\ \&t)\ \{\ \textcolor{comment}{//\ single\ argument}}
+\DoxyCodeLine{00013\ \ \ \ \ \ \ \ \ std::cout\ <<\ t\ <<\ \textcolor{charliteral}{'\ '};}
+\DoxyCodeLine{00014\ \ \ \ \ \}}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00017\ \ \ \ \ \textcolor{keywordtype}{void}\ print\_arguments(\textcolor{keyword}{const}\ std::vector<T>\ \&t)\{\ \textcolor{comment}{//\ vectors\ as\ arguments}}
+\DoxyCodeLine{00018\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keyword}{const}\ T\&\ x\ :\ t)\ \{}
+\DoxyCodeLine{00019\ \ \ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\ x\ <<\ \textcolor{charliteral}{'\ '};}
+\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00021\ \ \ \ \ \}}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{class\ }T,\ \textcolor{keyword}{typename}\ ...Args>}
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keywordtype}{void}\ print\_arguments(\textcolor{keyword}{const}\ std::vector<T>\ \&t,\ Args\&\&\ ...args)\ \{\ \textcolor{comment}{//\ multiple\ args}}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keyword}{const}\ T\&\ x\ :\ t)\ \{}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\ x\ <<\ \textcolor{charliteral}{'\ '};}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ print\_arguments(std::forward<Args>(args)...);}
+\DoxyCodeLine{00029\ \ \ \ \ \}}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T,\ \textcolor{keyword}{typename}\ ...Args>}
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keywordtype}{void}\ print\_arguments(\textcolor{keyword}{const}\ T\ \&t,\ Args\&\&\ ...args)\ \{\ \textcolor{comment}{//\ single\ args}}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ std::cout\ <<\ t\ <<\ \textcolor{charliteral}{'\ '};}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ print\_arguments(std::forward<Args>(args)...);}
+\DoxyCodeLine{00035\ \ \ \ \ \}}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ Func,\ \textcolor{keyword}{typename}\ ...Args>}
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keywordtype}{void}\ get\_args(Func\ \&\&callback,\ Args\&\&\ ...args)\ \{}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)033[33m"{}}\ <<\ \textcolor{stringliteral}{"{}Arguments:\ "{}};}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ print\_arguments(args...);}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{charliteral}{'\(\backslash\)n'};}
+\DoxyCodeLine{00042\ \ \ \ \ \}}
+\DoxyCodeLine{00043\ \}}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

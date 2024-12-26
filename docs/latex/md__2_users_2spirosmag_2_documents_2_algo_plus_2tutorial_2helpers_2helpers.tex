@@ -1,0 +1,70 @@
+\chapter{Mini tutorial for the helper folder}
+\hypertarget{md__2_users_2spirosmag_2_documents_2_algo_plus_2tutorial_2helpers_2helpers}{}\label{md__2_users_2spirosmag_2_documents_2_algo_plus_2tutorial_2helpers_2helpers}\index{Mini tutorial for the helper folder@{Mini tutorial for the helper folder}}
+\label{md__2_users_2spirosmag_2_documents_2_algo_plus_2tutorial_2helpers_2helpers_autotoc_md51}%
+\Hypertarget{md__2_users_2spirosmag_2_documents_2_algo_plus_2tutorial_2helpers_2helpers_autotoc_md51}%
+
+
+
+\begin{DoxyEnumerate}
+\item debugger
+\item analyzer(timer)
+\end{DoxyEnumerate}
+
+The analyzer contains\+:
+\begin{DoxyItemize}
+\item complexity analyzer with graphs
+\item execution time analyzer
+\item comparator for 2 functions
+\end{DoxyItemize}
+
+The debugger contains\+:
+\begin{DoxyItemize}
+\item a debugger to print passed arguments
+\end{DoxyItemize}\hypertarget{md__2_users_2spirosmag_2_documents_2_algo_plus_2tutorial_2helpers_2helpers_autotoc_md52}{}\doxysubsection{\texorpdfstring{{\bfseries{exec\+\_\+time}}\+:}{{\bfseries{exec\+\_\+time}}\+:}}\label{md__2_users_2spirosmag_2_documents_2_algo_plus_2tutorial_2helpers_2helpers_autotoc_md52}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{comment}{//\ be\ careful\ for\ member\ functions,\ they\ have\ to\ be\ transformed\ into}}
+\DoxyCodeLine{\textcolor{comment}{//\ static\ ones\ using\ lambda\ functions\ or\ std::bind()}}
+\DoxyCodeLine{\textcolor{keyword}{auto}\ shortest\_path\ =\ [\&](\textcolor{keywordtype}{int}\ a,\ \textcolor{keywordtype}{int}\ b)\ -\/>\ \textcolor{keywordtype}{double}\ \{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{return}\ g.shortest\_path(a,\ b);}
+\DoxyCodeLine{\};}
+\DoxyCodeLine{}
+\DoxyCodeLine{TIMER::exec\_time(shortest\_path,\ 0,\ 4);\ \textcolor{comment}{//\ will\ print\ the\ execution\ time\ of\ the\ function}}
+
+\end{DoxyCode}
+\hypertarget{md__2_users_2spirosmag_2_documents_2_algo_plus_2tutorial_2helpers_2helpers_autotoc_md53}{}\doxysubsection{\texorpdfstring{{\bfseries{check\+\_\+faster}}\+:}{{\bfseries{check\+\_\+faster}}\+:}}\label{md__2_users_2spirosmag_2_documents_2_algo_plus_2tutorial_2helpers_2helpers_autotoc_md53}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{auto}\ shortest\_path\ =\ [\&](\textcolor{keywordtype}{int}\ a,\ \textcolor{keywordtype}{int}\ b)\ -\/>\ \textcolor{keywordtype}{double}\ \{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{return}\ g.shortest\_path(a,\ b);}
+\DoxyCodeLine{\};}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keyword}{auto}\ dfs\ =\ [\&](\textcolor{keywordtype}{int}\ a)\ -\/>\ std::vector<int>\ \{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{return}\ g.dfs(a);}
+\DoxyCodeLine{\};}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{//\ This\ will\ return\ which\ function\ is\ faster}}
+\DoxyCodeLine{std::cout\ <<\ TIMER::check\_faster(shortest\_path,\ std::make\_tuple(0,\ 1),\ dfs,\ std::make\_tuple(0))\ <<\ \textcolor{charliteral}{'\(\backslash\)n'};}
+
+\end{DoxyCode}
+\hypertarget{md__2_users_2spirosmag_2_documents_2_algo_plus_2tutorial_2helpers_2helpers_autotoc_md54}{}\doxysubsection{\texorpdfstring{{\bfseries{time\+\_\+complexity}}\+:}{{\bfseries{time\+\_\+complexity}}\+:}}\label{md__2_users_2spirosmag_2_documents_2_algo_plus_2tutorial_2helpers_2helpers_autotoc_md54}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ "{}eratosthenes\_sieve.h"{}}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{//\ This\ will\ analyze\ the\ complexity\ with\ a\ graph}}
+\DoxyCodeLine{TIMER::time\_complexity(soe,\ std::make\_tuple(4),\ std::make\_tuple(5),\ std::make\_tuple(10),\ std::make\_tuple(15),\ std::make\_tuple(50),\ std::make\_tuple(100),\ std::make\_tuple(500),\ std::make\_tuple(10000),\ std::make\_tuple(99999));}
+
+\end{DoxyCode}
+\hypertarget{md__2_users_2spirosmag_2_documents_2_algo_plus_2tutorial_2helpers_2helpers_autotoc_md55}{}\doxysubsection{\texorpdfstring{{\bfseries{get\+\_\+args}}\+:}{{\bfseries{get\+\_\+args}}\+:}}\label{md__2_users_2spirosmag_2_documents_2_algo_plus_2tutorial_2helpers_2helpers_autotoc_md55}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{keyword}{auto}\ shortest\_path\ =\ [\&](\textcolor{keywordtype}{int}\ a,\ \textcolor{keywordtype}{int}\ b)\ -\/>\ \textcolor{keywordtype}{double}\ \{}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{return}\ g.shortest\_path(a,\ b);}
+\DoxyCodeLine{\};}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{comment}{//\ This\ will\ print\ 0,\ 5}}
+\DoxyCodeLine{DEBUG::get\_args(shortest\_path,\ 0,\ 5);}
+
+\end{DoxyCode}
+ 

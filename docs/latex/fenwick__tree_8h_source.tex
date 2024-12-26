@@ -1,0 +1,46 @@
+\doxysection{fenwick\+\_\+tree.\+h}
+\hypertarget{fenwick__tree_8h_source}{}\label{fenwick__tree_8h_source}\index{/Users/spirosmag/Documents/AlgoPlus/src/classes/tree/fenwick\_tree.h@{/Users/spirosmag/Documents/AlgoPlus/src/classes/tree/fenwick\_tree.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ FENWICK\_TREE\_H}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ FENWICK\_TREE\_H}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#ifdef\ \_\_cplusplus}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00012\ \textcolor{keyword}{template}\ <\textcolor{keyword}{typename}\ T>}
+\DoxyCodeLine{00013\ \textcolor{keyword}{struct\ }\mbox{\hyperlink{structfenwick__tree}{fenwick\_tree}}\ \{}
+\DoxyCodeLine{00014\ \ \ \ \ std::vector<T>\ \mbox{\hyperlink{classtree}{tree}};}
+\DoxyCodeLine{00015\ \ \ \ \ \textcolor{keywordtype}{int}\ n;}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keyword}{explicit}\ \mbox{\hyperlink{structfenwick__tree_af48668cba8039ebd4134254a7ae1573c}{fenwick\_tree}}(\textcolor{keyword}{const}\ std::vector<T>\ \&v)\ noexcept\ :\ n(\textcolor{keywordtype}{int}(v.size()))\ \{}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classtree}{tree}}\ =\ std::vector<T>(n,\ 0);}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i\ =\ 0;\ i<n;\ i++)\ \{}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \ \ \ \ this-\/>\mbox{\hyperlink{structfenwick__tree_a8afb374bbabee68283bdc6851bed052f}{update}}(i,\ v[i]);}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00026\ \ \ \ \ \}}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00033\ \ \ \ \ T\ \mbox{\hyperlink{structfenwick__tree_a0e37d494f20727dec4ee01106889bb4a}{sum}}(\textcolor{keywordtype}{int}\ k)\ \{}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ T\ \mbox{\hyperlink{structfenwick__tree_a0e37d494f20727dec4ee01106889bb4a}{sum}}\ =\ 0;}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(;\ k\ >=\ 0;\ k\ =\ (k\ \&\ (k\ +\ 1))\ -\/\ 1)\ \{}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{structfenwick__tree_a0e37d494f20727dec4ee01106889bb4a}{sum}}\ +=\ \mbox{\hyperlink{classtree}{tree}}[k];}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{structfenwick__tree_a0e37d494f20727dec4ee01106889bb4a}{sum}};}
+\DoxyCodeLine{00039\ \ \ \ \ \}}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00047\ \ \ \ \ T\ \mbox{\hyperlink{structfenwick__tree_a482c57984788f69534580a934218b18f}{sum}}(\textcolor{keywordtype}{int}\ a,\ \textcolor{keywordtype}{int}\ b)\ \{}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{structfenwick__tree_a0e37d494f20727dec4ee01106889bb4a}{sum}}(b)\ -\/\ \mbox{\hyperlink{structfenwick__tree_a0e37d494f20727dec4ee01106889bb4a}{sum}}(a\ -\/\ 1);}
+\DoxyCodeLine{00049\ \ \ \ \ \}}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{structfenwick__tree_a8afb374bbabee68283bdc6851bed052f}{update}}(\textcolor{keywordtype}{int}\ k,\ \textcolor{keywordtype}{int}\ x)\ \{}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(;\ k\ <\ n;\ k\ =\ k\ |\ (k\ +\ 1))\ \{}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classtree}{tree}}[k]\ +=\ x;}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00060\ \ \ \ \ \}}
+\DoxyCodeLine{00061\ \};}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00063\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}
