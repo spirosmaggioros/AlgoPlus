@@ -18,10 +18,7 @@ namespace sharpening_filter{
     */
     std::vector<std::vector<int32_t> > apply_sharpening_filter(const std::vector<std::vector<int32_t> > &image){
         Image img(image);
-        int height = img._height();
-        int width = img._width();
-        Image resulted_img(height, width);
-        std::vector<std::vector<int32_t> > kernel = {{0, 1, 0}, {1, -4, 1}, {0, 1, 0}};
+        std::vector<std::vector<int32_t> > kernel = {{0, -1, 0}, {-1, 5, -1}, {0, -1, 0}};
         return img.apply_filter2d(kernel).get_2d_array();
     }
 }

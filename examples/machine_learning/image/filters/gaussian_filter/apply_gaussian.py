@@ -18,6 +18,6 @@ if __name__ == "__main__":
     file = json.load(filename)
     data = file['data']
     plt.subplot(1, 2, 2)
-    plt.title("After applying Median filter")
+    plt.title("After applying Gaussian filter")
     plt.imshow(data, cmap='gray')
     plt.show()

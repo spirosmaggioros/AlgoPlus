@@ -19,9 +19,6 @@ namespace avg_filter {
     */
     std::vector<std::vector<int32_t> > apply_avg_filter(const std::vector<std::vector<int32_t> > &image){
         Image img(image);
-        int height = img._height();
-        int width = img._width();
-        Image resulted_img(height, width);
         std::vector<std::vector<float> > kernel = {{1.0/9, 1.0/9, 1.0/9}, {1.0/9, 1.0/9, 1.0/9}, {1.0/9, 1.0/9, 1.0/9}};
         return img.apply_filter2d(kernel).get_2d_array();
     }
