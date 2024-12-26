@@ -2,7 +2,9 @@
 
 AlgoPlus is a C++ library that includes ready-to-use complex **data structures** and **algorithms**.
 
-![Algoplus](https://github.com/CSRT-NTUA/AlgoPlus/blob/main/assets/logo.png)
+<div align="center">
+  <img src="https://github.com/CSRT-NTUA/AlgoPlus/blob/main/assets/logo.png" alt="Algoplus">
+</div>
 
 [![Gitpod Ready-to-Code](https://img.shields.io/badge/Gitpod-Ready--to--Code-blue?logo=gitpod)](https://gitpod.io/#https://github.com/CSRT-NTUA/AlgoPlus)
 ![tests](https://github.com/CSRT-NTUA/AlgoPlus/actions/workflows/macos_test_cases.yml/badge.svg)
@@ -130,8 +132,8 @@ cd build/tests
 ```
 
 ### **Our contributors**
-<a href="https://github.com/CSRT-NTUA/AlgoPlus/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=CSRT-NTUA/AlgoPlus" />
+<a href="https://github.com/spirosmaggioros/AlgoPlus/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=spirosmaggioros/AlgoPlus" />
 </a>
 
 ### **How to contribute**
@@ -151,4 +153,4 @@ For any information or questions, please contact Spiros at **spirosmag@ieee.org*
 
 ### **Star History**
 
-[![Star History Chart](https://api.star-history.com/svg?repos=CSRT-NTUA/AlgoPlus&type=Date)](https://star-history.com/#CSRT-NTUA/AlgoPlus&Date)
+[![Star History Chart](https://api.star-history.com/svg?repos=spirosmaggioros/AlgoPlus&type=Date)](https://star-history.com/#spirosmaggioros/AlgoPlus&Date)
