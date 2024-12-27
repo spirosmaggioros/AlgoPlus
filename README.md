@@ -6,12 +6,12 @@ AlgoPlus is a C++ library that includes ready-to-use complex **data structures**
   <img src="https://github.com/CSRT-NTUA/AlgoPlus/blob/main/assets/logo.png" alt="Algoplus">
 </div>
 
-[![Gitpod Ready-to-Code](https://img.shields.io/badge/Gitpod-Ready--to--Code-blue?logo=gitpod)](https://gitpod.io/#https://github.com/CSRT-NTUA/AlgoPlus)
-![tests](https://github.com/CSRT-NTUA/AlgoPlus/actions/workflows/macos_test_cases.yml/badge.svg)
-[![codecov](https://codecov.io/gh/CSRT-NTUA/AlgoPlus/graph/badge.svg?token=3SBDRHUQR5)](https://codecov.io/gh/CSRT-NTUA/AlgoPlus)
-![GitHub repo size](https://img.shields.io/github/repo-size/CSRT-NTUA/AlgoPlus)
+[![Gitpod Ready-to-Code](https://img.shields.io/badge/Gitpod-Ready--to--Code-blue?logo=gitpod)](https://gitpod.io/#https://github.com/spirosmaggioros/AlgoPlus)
+![tests](https://github.com/spirosmaggioros/AlgoPlus/actions/workflows/macos_test_cases.yml/badge.svg)
+[![codecov](https://codecov.io/gh/spirosmaggioros/AlgoPlus/graph/badge.svg?token=3SBDRHUQR5)](https://codecov.io/gh/spirosmaggioros/AlgoPlus)
+![GitHub repo size](https://img.shields.io/github/repo-size/spirosmaggioros/AlgoPlus)
 
-### **See the full documentation [here](https://csrt-ntua.github.io/AlgoPlus/)**
+### **See the full documentation [here](https://spirosmaggioros.github.io/AlgoPlus/)**
 
 ### **[Join](https://discord.gg/M9nYv4MHz6) our Discord**
 
