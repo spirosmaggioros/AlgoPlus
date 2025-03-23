@@ -122,36 +122,29 @@ class Image{
     * @brief add function
     * adds the img2 to img
     * @param img2: the image you want to add to the img
-    * @return vector<vector<int32_t> > the resulted image
+    * @return vector<vector<T> > the resulted image
     */
-    Image add(std::vector<std::vector<int32_t> > &img2) const {
-        assert(!img2.empty());
-        assert(img2.size() == img.size());
-        assert(img2[0].size() == img[0].size());
-
-        Image resulted_img(height, width);
-        for(int x = 0; x < height; x++){
-            for(int y = 0; y < width; y++){
-                resulted_img.add_2_point(x, y, img[x][y] + img2[x][y]);
-            }
+    template <typename T>
+    Image add(const T img2) const {
+        if constexpr (std::is_same_v<T, std::vector<std::vector<int32_t> > >) {
+            assert(!img2.empty());
+            assert(img2.size() == img.size());
+            assert(img2[0].size() == img[0].size());
         }
-        return resulted_img;
-    }
-
-    /**
-    * @brief secondary add function with Image as a parameter
-    * adds the img2 to img
-    * @param img2: the image you want to add to the img
-    * @return vector<vector<int32_t> > the resulted image
-    */
-    Image add(Image img2) const {
-        assert(img2._height() == img.size());
-        assert(img2._width() == img[0].size());
-
+        else {
+            assert(img2._height() == img.size());
+            assert(img2._width() == img[0].size());
+        }
+        
         Image resulted_img(height, width);
         for(int x = 0; x < height; x++){
             for(int y = 0; y < width; y++){
-                resulted_img.add_2_point(x, y, img[x][y] + img2.get_point(x, y));
+                if constexpr (std::is_same_v<T, Image>) {
+                    resulted_img.add_2_point(x, y, img[x][y] + img2.get_point(x, y));
+                }
+                else {
+                    resulted_img.add_2_point(x, y, img[x][y] + img2[x][y]);
+                }
             }
         }
         return resulted_img;
@@ -163,34 +156,28 @@ class Image{
     * @param img2: the image you want to subtract from the img
     * @return vector<vector<int32_t> > the resulted image
     */
-    Image sub(std::vector<std::vector<int32_t> > &img2) const {
-        assert(!img2.empty());
-        assert(img2.size() == img.size());
-        assert(img2[0].size() == img[0].size());
-
-        Image resulted_img(height, width);
-        for(int x = 0; x < height; x++){
-            for(int y = 0; y < width; y++){
-                resulted_img.add_2_point(x, y, img[x][y] - img2[x][y]);
-            }
+    template <typename T>
+    Image sub(const T img2) const {
+        if constexpr (std::is_same_v<T, std::vector<std::vector<int32_t> > >) {
+            assert(!img2.empty());
+            assert(img2.size() == img.size());
+            assert(img2[0].size() == img[0].size());
         }
-        return resulted_img;
-    }
-
-    /**
-    * @brief secondary sub function with Image as an input
-    * adds the img2 to img
-    * @param img2: the image you want to subtract from the img
-    * @return vector<vector<int32_t> > the resulted image
-    */
-    Image sub(Image img2) const {
-        assert(img2._height() == img.size());
-        assert(img2._width() == img[0].size());
-
+        else {
+            assert(img2._height() == img.size());
+            assert(img2._width() == img[0].size());
+        }
+        
         Image resulted_img(height, width);
         for(int x = 0; x < height; x++){
             for(int y = 0; y < width; y++){
-                resulted_img.add_2_point(x, y, img[x][y] - img2.get_point(x, y));
+                
+                if constexpr (std::is_same_v<T, Image>) {
+                    resulted_img.add_2_point(x, y, img[x][y] - img2.get_point(x, y));
+                }
+                else {
+                    resulted_img.add_2_point(x, y, img[x][y] - img2[x][y]);
+                }
             }
         }
         return resulted_img;
@@ -200,48 +187,41 @@ class Image{
     * @brief mul function
     * multiplies the img2 to img
     * @param img2: the image you want to subtract from the img
-    * @return vector<vector<int32_t> > the resulted image
+    * @return vector<vector<T> > the resulted image
     */
-    Image mul(std::vector<std::vector<int32_t> > &img2) const {
-        assert(!img2.empty());
-        assert(img2.size() == img.size());
-        assert(img2[0].size() == img[0].size());
-
+    template <typename T>
+    Image mul(const T img2) const {
+        if constexpr (std::is_same_v<T, std::vector<std::vector<int32_t> > >) {
+            assert(!img2.empty());
+            assert(img2.size() == img.size());
+            assert(img2[0].size() == img[0].size());
+        }
+        else {
+            assert(img2._height() == img.size());
+            assert(img2._width() == img[0].size());
+        }
+        
         Image resulted_img(height, width);
         for(int x = 0; x < height; x++){
             for(int y = 0; y < width; y++){
-                resulted_img.add_2_point(x, y, img[x][y]*img2[x][y]);
+                if constexpr (std::is_same_v<T, Image>) {
+                    resulted_img.add_2_point(x, y, img[x][y] * img2.get_point(x, y));
+                }
+                else {
+                    resulted_img.add_2_point(x, y, img[x][y]*img2[x][y]);
+                }
             }
         }
         return resulted_img;
     }
-
-    /**
-    * @brief secondary mul function with Image as an input
-    * multiplies the img2 to img
-    * @param img2: the image you want to subtract from the img
-    * @return vector<vector<int32_t> > the resulted image
-    */
-    Image mul(Image img2) const {
-        assert(img2._height() == img.size());
-        assert(img2._width() == img[0].size());
-
-        Image resulted_img(height, width);
-        for(int x = 0; x < height; x++){
-            for(int y = 0; y < width; y++){
-                resulted_img.add_2_point(x, y, img[x][y]*img2.get_point(x, y));
-            }
-        }
-        return resulted_img;
-    }
-
 
     /**
     * @brief apply_filter2d function
     * @param filter: 3x3 kernel to be applied to the image
-    * @return vector<vector<int32_t> > the resulted image
+    * @return vector<vector<T> > the resulted image
     */
-    Image apply_filter2d(std::vector<std::vector<int32_t> > &filter) const{
+    template <typename T>
+    Image apply_filter2d(std::vector<std::vector<T> > &filter) const{
         assert(this->height > 0 && this->width > 0);
         assert(filter.size() == 3 && filter[0].size() == 3);
 
@@ -254,7 +234,7 @@ class Image{
 
         for (int x = 0; x < height; ++x) {
             for (int y = 0; y < width; ++y) {
-                int32_t value = 0;
+                T value = 0;
 
                 for (int fx = 0; fx < 3; ++fx) {
                     for (int fy = 0; fy < 3; ++fy) {
@@ -266,48 +246,15 @@ class Image{
                         }
                     }
                 }
-
-                resulted_img.set_point(x, y, value);
-            }
-        }
-        return resulted_img;
-    }
-
-    /**
-    * @brief apply_filter2d function
-    * @param filter: 3x3 kernel with floats to be applied to the image
-    * @return vector<vector<int32_t> > the resulted image
-    */
-    Image apply_filter2d(std::vector<std::vector<float> > &filter) const {
-        assert(filter.size() == 3 && filter[0].size() == 3);
-        assert(this->height > 0 && this->width > 0);
-        Image resulted_img(height, width);
-
-        int offsets[3][3][2] = {
-            {{-1, -1}, {-1, 0}, {-1, 1}},
-            {{0, -1}, {0, 0}, {0, 1}},
-            {{1, -1}, {1, 0}, {1, 1}}
-        };
-
-        for (int x = 0; x < height; ++x) {
-            for (int y = 0; y < width; ++y) {
-                float value = 0.0f;
-
-                for (int fx = 0; fx < 3; ++fx) {
-                    for (int fy = 0; fy < 3; ++fy) {
-                        int nx = x + offsets[fx][fy][0];
-                        int ny = y + offsets[fx][fy][1];
-
-                        if (nx >= 0 && nx < height && ny >= 0 && ny < width) {
-                            value += img[nx][ny] * filter[fx][fy];
-                        }
-                    }
+                
+                if constexpr (std::is_same_v<T, int32_t>) {
+                    resulted_img.set_point(x, y, value);
                 }
-
-                resulted_img.set_point(x, y, static_cast<int32_t>(round(value)));
+                else {
+                    resulted_img.set_point(x, y, static_cast<int32_t>(round(value)));
+                }
             }
         }
-
         return resulted_img;
     }
 
