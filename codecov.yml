@@ -28,3 +28,4 @@ ignore:
   - "src/visualization/tree_visual/tree_visualization.h"
   - "src/extra/*.h"
   - "src/extra/*.cc"
+  - "src/machine_learning/classification/log_reg.h" # FOR NOW

@@ -108,9 +108,9 @@ class Image{
     * @return false otherwise
     */
     bool binary() const {
-        for(int i = 0; i<height; i++){
-            for(int j = 0; j<width; j++){
-                if(img[i][j] != 0 && img[i][j] != 255){
+        for (int i = 0; i<height; i++) {
+            for (int j = 0; j<width; j++) {
+                if (img[i][j] != 0 && img[i][j] != 255) {
                     return false;
                 }
             }
@@ -137,8 +137,8 @@ class Image{
         }
         
         Image resulted_img(height, width);
-        for(int x = 0; x < height; x++){
-            for(int y = 0; y < width; y++){
+        for (int x = 0; x < height; x++) {
+            for (int y = 0; y < width; y++) {
                 if constexpr (std::is_same_v<T, Image>) {
                     resulted_img.add_2_point(x, y, img[x][y] + img2.get_point(x, y));
                 }
@@ -169,9 +169,8 @@ class Image{
         }
         
         Image resulted_img(height, width);
-        for(int x = 0; x < height; x++){
-            for(int y = 0; y < width; y++){
-                
+        for (int x = 0; x < height; x++) {
+            for (int y = 0; y < width; y++) {
                 if constexpr (std::is_same_v<T, Image>) {
                     resulted_img.add_2_point(x, y, img[x][y] - img2.get_point(x, y));
                 }
@@ -202,8 +201,8 @@ class Image{
         }
         
         Image resulted_img(height, width);
-        for(int x = 0; x < height; x++){
-            for(int y = 0; y < width; y++){
+        for (int x = 0; x < height; x++) {
+            for (int y = 0; y < width; y++) {
                 if constexpr (std::is_same_v<T, Image>) {
                     resulted_img.add_2_point(x, y, img[x][y] * img2.get_point(x, y));
                 }
@@ -235,7 +234,6 @@ class Image{
         for (int x = 0; x < height; ++x) {
             for (int y = 0; y < width; ++y) {
                 T value = 0;
-
                 for (int fx = 0; fx < 3; ++fx) {
                     for (int fy = 0; fy < 3; ++fy) {
                         int nx = x + offsets[fx][fy][0];
@@ -265,7 +263,7 @@ class Image{
         int height = img._height(), width = img._width();
 
         auto write = [&](const int &start_at, const int &end_at) -> void {
-            for(int i = start_at; i<=end_at && i<height; i++) {
+            for (int i = start_at; i<=end_at && i<height; i++) {
                 int j = 0;
                 for(; j<=10 && j<width; j++) {
                     if(j != std::min(10, width - 1)) {
