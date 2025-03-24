@@ -1,6 +1,6 @@
 ## Algoplus{1.0.0}
 
-AlgoPlus is a C++ library that includes ready-to-use complex **data structures** and **algorithms**.
+AlgoPlus is a C++ library that includes ready-to-use complex **data structures** and **algorithms** for various topics, including Machine Learning and Image Processing.
 
 <div align="center">
   <img src="https://github.com/CSRT-NTUA/AlgoPlus/blob/main/assets/logo.png" alt="Algoplus">
