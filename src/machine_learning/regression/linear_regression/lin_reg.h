@@ -13,13 +13,13 @@
 * @brief Class for linear regression algorithm
 */
 class linear_regression{
-    private:
+private:
     std::vector<std::vector<double> > data;
     // for y = a + b*x
     double a, b;
     double Sxy, Sxx;
     double x_mean, y_mean;
-    public:
+public:
 
     /**
     * @brief Constructor for linear regression class

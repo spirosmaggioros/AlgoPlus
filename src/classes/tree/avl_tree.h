@@ -17,7 +17,7 @@
 *@brief Class for AVL tree.
 */
 template <typename T> class avl_tree {
-    public:
+public:
     /**
     *@brief Contructor for AVL tree class.
     *@param __elements: you can directly pass a vector<T> so you don't have to do
@@ -200,12 +200,12 @@ template <typename T> class avl_tree {
     *@returns .dot file that can be previewed using graphviz in vscode.
     */
 
-    #ifdef TREE_VISUALIZATION_H
+#ifdef TREE_VISUALIZATION_H
     void visualize() {
         std::string _generated = generate_visualization();
         tree_visualization::visualize(_generated);
     }
-    #endif
+#endif
 
     /**
     * @brief operator << for avl_tree class
@@ -223,7 +223,7 @@ template <typename T> class avl_tree {
         return out;
     }
 
-    private:
+private:
     /**
     *@brief Struct for the node type pointer.
     *@param info: the value of the node.
@@ -244,7 +244,7 @@ template <typename T> class avl_tree {
 
     int64_t height(std::shared_ptr<node> root) {
         if (root == nullptr)
-        return 0;
+            return 0;
         return 1 + std::max(height(root->left), height(root->right));
     }
 
@@ -275,14 +275,14 @@ template <typename T> class avl_tree {
 
     std::shared_ptr<node> minValue(std::shared_ptr<node> root) {
         if (root->left == nullptr)
-        return root;
+            return root;
         return minValue(root->left);
     }
 
     std::shared_ptr<node> _insert(std::shared_ptr<node> root, T item) {
         std::shared_ptr<node> nn = createNode(item);
         if (root == nullptr)
-        return nn;
+            return nn;
         if (item < root->info) {
             root->left = _insert(root->left, item);
         }
@@ -295,11 +295,11 @@ template <typename T> class avl_tree {
         int b = getBalance(root);
         if (b > 1) {
             if (getBalance(root->left) < 0)
-            root->left = leftRotate(root->left);
+                root->left = leftRotate(root->left);
             return rightRotate(root);
         } else if (b < -1) {
             if (getBalance(root->right) > 0)
-            root->right = rightRotate(root->right);
+                root->right = rightRotate(root->right);
             return leftRotate(root);
         }
         return root;
@@ -307,11 +307,11 @@ template <typename T> class avl_tree {
 
     std::shared_ptr<node> _remove(std::shared_ptr<node> root, T key) {
         if (root == nullptr)
-        return root;
+            return root;
         if (key < root->info)
-        root->left = _remove(root->left, key);
+            root->left = _remove(root->left, key);
         else if (key > root->info)
-        root->right = _remove(root->right, key);
+            root->right = _remove(root->right, key);
 
         else {
             if (!root->right) {
@@ -344,79 +344,79 @@ template <typename T> class avl_tree {
     }
 
     void _inorder(std::function<void(std::shared_ptr<node>)> callback,
-        std::shared_ptr<node> root) const {
-            if (root) {
-                _inorder(callback, root->left);
-                callback(root);
-                _inorder(callback, root->right);
+                  std::shared_ptr<node> root) const {
+        if (root) {
+            _inorder(callback, root->left);
+            callback(root);
+            _inorder(callback, root->right);
+        }
+    }
+
+    void _postorder(std::function<void(std::shared_ptr<node>)> callback,
+                    std::shared_ptr<node> root) const {
+        if (root) {
+            _inorder(callback, root->left);
+            _inorder(callback, root->right);
+            callback(root);
+        }
+    }
+
+    void _preorder(std::function<void(std::shared_ptr<node>)> callback,
+                   std::shared_ptr<node> root) const {
+        if (root) {
+            callback(root);
+            _inorder(callback, root->left);
+            _inorder(callback, root->right);
+        }
+    }
+
+    std::string generate_visualization() {
+        std::string _generate = _inorder_gen(root);
+        return _generate;
+    }
+
+    std::string _inorder_gen(std::shared_ptr<node> root) {
+        std::string _s;
+        if (std::is_same_v<T, char> || std::is_same_v<T, std::string>) {
+            if (root->left) {
+                _s += root->info;
+                _s += "->";
+                _s += root->left->info;
+                _s += "\n";
+                _s += _inorder_gen(root->left);
+            }
+            if (root->right) {
+                _s += root->info;
+                _s += "->";
+                _s += root->right->info;
+                _s += "\n";
+                _s += _inorder_gen(root->right);
+            }
+        } else {
+            if (root->left) {
+                _s += std::to_string(root->info) + "->" +
+                    std::to_string(root->left->info) + "\n" +
+                    _inorder_gen(root->left);
+            }
+            if (root->right) {
+                _s += std::to_string(root->info) + "->" +
+                    std::to_string(root->right->info) + "\n" +
+                    _inorder_gen(root->right);
             }
         }
-
-        void _postorder(std::function<void(std::shared_ptr<node>)> callback,
-            std::shared_ptr<node> root) const {
-                if (root) {
-                    _inorder(callback, root->left);
-                    _inorder(callback, root->right);
-                    callback(root);
-                }
-            }
-
-            void _preorder(std::function<void(std::shared_ptr<node>)> callback,
-                std::shared_ptr<node> root) const {
-                    if (root) {
-                        callback(root);
-                        _inorder(callback, root->left);
-                        _inorder(callback, root->right);
-                    }
-                }
-
-                std::string generate_visualization() {
-                    std::string _generate = _inorder_gen(root);
-                    return _generate;
-                }
-
-                std::string _inorder_gen(std::shared_ptr<node> root) {
-                    std::string _s;
-                    if (std::is_same_v<T, char> || std::is_same_v<T, std::string>) {
-                        if (root->left) {
-                            _s += root->info;
-                            _s += "->";
-                            _s += root->left->info;
-                            _s += "\n";
-                            _s += _inorder_gen(root->left);
-                        }
-                        if (root->right) {
-                            _s += root->info;
-                            _s += "->";
-                            _s += root->right->info;
-                            _s += "\n";
-                            _s += _inorder_gen(root->right);
-                        }
-                    } else {
-                        if (root->left) {
-                            _s += std::to_string(root->info) + "->" +
-                                std::to_string(root->left->info) + "\n" +
-                                _inorder_gen(root->left);
-                        }
-                        if (root->right) {
-                            _s += std::to_string(root->info) + "->" +
-                                std::to_string(root->right->info) + "\n" +
-                                _inorder_gen(root->right);
-                        }
-                    }
-                    return _s;
-                }
+        return _s;
+    }
 };
 
 /**
 * @brief Iterator class
 */
 template <typename T> class avl_tree<T>::Iterator {
-    private:
+private:
     std::vector<T> elements;
     int64_t index;
 
-    public:
+public:
     /**
     * @brief Construct a new Iterator object
     *

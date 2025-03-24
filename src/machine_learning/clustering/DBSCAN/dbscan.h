@@ -15,14 +15,14 @@
 * @brief DBSCAN clustering algorithm class
 */
 class DBSCAN{
-    private:
+private:
     std::vector<std::pair<double, double>> setOfPoints;
     double Eps;
     int64_t MinPts;
     int64_t cluster_id{0};
     std::map<std::pair<double, double>, int64_t> points;
 
-    public:
+public:
 
     /**
     * @brief constructor for the DBSCAN class

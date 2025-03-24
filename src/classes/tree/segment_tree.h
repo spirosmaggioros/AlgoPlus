@@ -12,7 +12,7 @@
 * Usefull for fast query sums and updates
 */
 class segment_tree {
-    public:
+public:
     /**
     * @brief default constructor for segment tree
     * @param v: input vector
@@ -53,7 +53,7 @@ class segment_tree {
         return _sum(0, data.size() - 1, query_start, query_end, 0);
     }
 
-    private:
+private:
     std::vector<int> root;
     std::vector<int> data;
 

@@ -18,7 +18,7 @@
 *@brief Class for red black tree.
 */
 template <typename T> class  red_black_tree {
-    private:
+private:
     /**
     *@brief Struct for the node type pointer.
     *@param info: the value of the node.
@@ -44,15 +44,15 @@ template <typename T> class  red_black_tree {
         std::shared_ptr<node> x = t_node->right;
         x->parent = t_node->parent;
         if(t_node->parent == nullptr)
-        this->root = x;
+            this->root = x;
         else if(t_node->parent->left == t_node)
-        t_node->parent->left = x;
+            t_node->parent->left = x;
         else
-        t_node->parent->right = x;
+            t_node->parent->right = x;
 
         t_node->right = x->left;
         if(t_node->right)
-        t_node->right->parent = t_node;
+            t_node->right->parent = t_node;
         x->left = t_node;
         t_node->parent = x;
     }
@@ -61,15 +61,15 @@ template <typename T> class  red_black_tree {
         std::shared_ptr<node> x = t_node->left;
         x->parent = t_node->parent;
         if(t_node->parent == nullptr)
-        this->root = x;
+            this->root = x;
         else if(t_node->parent->left == t_node)
-        t_node->parent->left = x;
+            t_node->parent->left = x;
         else
-        t_node->parent->right = x;
+            t_node->parent->right = x;
 
         t_node->left = x->right;
         if(t_node->left)
-        t_node->left->parent = t_node;
+            t_node->left->parent = t_node;
         x->right = t_node;
         t_node->parent = x;
     }
@@ -91,7 +91,7 @@ template <typename T> class  red_black_tree {
                     }
                     grand_parent = t_node->parent->parent;
                     if(grand_parent)
-                    grand_parent->is_red = 1;
+                        grand_parent->is_red = 1;
                     t_node->parent->is_red = 0;
                     _right_rotate(grand_parent);
                 }
@@ -109,7 +109,7 @@ template <typename T> class  red_black_tree {
                     }
                     grand_parent = t_node->parent->parent;
                     if(grand_parent)
-                    grand_parent->is_red = 1;
+                        grand_parent->is_red = 1;
                     t_node->parent->is_red = 0;
                     _left_rotate(grand_parent);
                 }
@@ -120,22 +120,22 @@ template <typename T> class  red_black_tree {
 
     void _remove_helper(std::shared_ptr<node> t_node) {
         if(t_node == this->root)
-        return;
+            return;
         std::shared_ptr<node> sibling;
         if(t_node->parent->left == t_node)
-        sibling = t_node->parent->right;
+            sibling = t_node->parent->right;
         else
-        sibling = t_node->parent->left;
+            sibling = t_node->parent->left;
         if(sibling == nullptr)
-        _remove_helper(t_node->parent);
+            _remove_helper(t_node->parent);
         else {
             if(sibling->is_red == 1) {
                 t_node->parent->is_red = 1;
                 sibling->is_red = 0;
                 if(t_node->parent->left == sibling)
-                _right_rotate(t_node->parent);
+                    _right_rotate(t_node->parent);
                 else
-                _left_rotate(t_node->parent);
+                    _left_rotate(t_node->parent);
                 _remove_helper(t_node);
             } else {
                 if(sibling->left && sibling->left->is_red == 1){
@@ -163,9 +163,9 @@ template <typename T> class  red_black_tree {
                 } else {
                     sibling->is_red = 1;
                     if(t_node->parent->is_red == 0)
-                    _remove_helper(t_node->parent);
+                        _remove_helper(t_node->parent);
                     else
-                    t_node->parent->is_red = 0;
+                        t_node->parent->is_red = 0;
                 }
             }
         }
@@ -173,36 +173,36 @@ template <typename T> class  red_black_tree {
 
     void _remove(std::shared_ptr<node> t_node) {
         if(t_node == nullptr)
-        return;
+            return;
         std::shared_ptr<node> replace = nullptr;
         if(t_node->left && t_node->right){
             std::shared_ptr<node> tmp = t_node->right;
             while(tmp->left)
-            tmp = tmp->left;
+                tmp = tmp->left;
             replace = tmp;
         }else if(t_node->left)
-        replace = t_node->left;
+            replace = t_node->left;
         else if(t_node->right)
-        replace = t_node->right;
+            replace = t_node->right;
         if(replace == nullptr){
             if(t_node == this->root)
-            this->root = nullptr;
+                this->root = nullptr;
             else{
                 if(t_node->is_red == 0)
-                _remove_helper(t_node);
+                    _remove_helper(t_node);
                 else{
                     std::shared_ptr<node> sibling = nullptr;
                     if(t_node->parent->left == t_node)
-                    sibling = t_node->parent->right;
+                        sibling = t_node->parent->right;
                     else
-                    sibling = t_node->parent->left;
+                        sibling = t_node->parent->left;
                     if(sibling)
-                    sibling->is_red = 1;
+                        sibling->is_red = 1;
                 }
                 if(t_node->parent->left == t_node)
-                t_node->parent->left = nullptr;
+                    t_node->parent->left = nullptr;
                 else
-                t_node->parent->right = nullptr;
+                    t_node->parent->right = nullptr;
             }
             return;
         }
@@ -214,14 +214,14 @@ template <typename T> class  red_black_tree {
                 t_node->is_red = 0;
             } else {
                 if(t_node->parent->left == t_node)
-                t_node->parent->left = replace;
+                    t_node->parent->left = replace;
                 else
-                t_node->parent->right = replace;
+                    t_node->parent->right = replace;
                 replace->parent = t_node->parent;
                 if(replace->is_red == 0 && t_node->is_red == 0)
-                _remove_helper(replace);
+                    _remove_helper(replace);
                 else
-                replace->is_red = 0;
+                    replace->is_red = 0;
             }
             return;
         }
@@ -233,11 +233,11 @@ template <typename T> class  red_black_tree {
         std::shared_ptr<node> t_node = this->root;
         while(t_node){
             if(key < t_node->info)
-            t_node = t_node->left;
+                t_node = t_node->left;
             else if(key == t_node->info)
-            return true;
+                return true;
             else
-            t_node = t_node->right;
+                t_node = t_node->right;
         }
         return false;
     }
@@ -271,27 +271,27 @@ template <typename T> class  red_black_tree {
         if (std::is_same_v<T, char> || std::is_same_v<T, std::string>) {
             _s += t_node->info + " [shape=circle fontcolor=black color=";
             if(t_node->is_red == 1)
-            _s += "red";
+                _s += "red";
             else
-            _s += "black";
+                _s += "black";
             _s += "]\n";
             _s += parent_info + "->" + t_node->info + '\n';
         } else {
             _s += std::to_string(t_node->info) + " [shape=circle fontcolor=black color=";
             if(t_node->is_red == 1)
-            _s += "red";
+                _s += "red";
             else
-            _s += "black";
+                _s += "black";
             _s += "]\n";
             _s += std::to_string(parent_info) + "->" + std::to_string(t_node->info) + '\n';
         }
         if (t_node->left)
-        _s += _vis_gen(t_node->left, t_node->info);
+            _s += _vis_gen(t_node->left, t_node->info);
         if (t_node->right)
-        _s += _vis_gen(t_node->right, t_node->info);
+            _s += _vis_gen(t_node->right, t_node->info);
         return _s;
     }
-    public:
+public:
     /**
     *@brief Contructor for red black tree class.
     *@param _elements: you can directly pass a vector<T> so you don't have to do
@@ -354,18 +354,18 @@ template <typename T> class  red_black_tree {
         while(x){
             p = x;
             if(key < x->info)
-            x = x->left;
+                x = x->left;
             else
-            x = x->right;
+                x = x->right;
         }
         std::shared_ptr<node> t_node = std::make_shared<node>(key, p);
         if(p == nullptr)
-        this->root = t_node;
+            this->root = t_node;
         else{
             if(key < p->info)
-            p->left = t_node;
+                p->left = t_node;
             else
-            p->right = t_node;
+                p->right = t_node;
         }
         _insert(t_node);
         _size += 1;
@@ -379,9 +379,9 @@ template <typename T> class  red_black_tree {
         std::shared_ptr<node> t_node = root;
         while(t_node && t_node->info != key){
             if(key < t_node->info)
-            t_node = t_node->left;
+                t_node = t_node->left;
             else
-            t_node = t_node->right;
+                t_node = t_node->right;
         }
         _remove(t_node);
         _size -= 1;
@@ -478,9 +478,9 @@ template <typename T> class  red_black_tree {
         std::vector<T> order = rb.inorder();
         for(int i=0;i<order.size();i++){
             if(i == order.size()-1)
-            out<<order[i]<<'\n';
+                out<<order[i]<<'\n';
             else
-            out<<order[i]<<", ";
+                out<<order[i]<<", ";
         }
         return out;
     }
@@ -509,27 +509,27 @@ template <typename T> class  red_black_tree {
     *@brief visualize function
     *@returns .dot file that can be previewed using graphviz in vscode.
     */
-    #ifdef TREE_VISUALIZATION_H
+#ifdef TREE_VISUALIZATION_H
     void visualize() {
         std::string _generated;
         if(this->root){
             if (std::is_same_v<T, char> || std::is_same_v<T, std::string>)
-            _generated += root->info;
+                _generated += root->info;
             else
-            _generated += std::to_string(root->info);
+                _generated += std::to_string(root->info);
             _generated += " [shape=circle fontcolor=black color=";
             if(root->is_red == 1)
-            _generated += "red]\n";
+                _generated += "red]\n";
             else
-            _generated += "black]\n";
+                _generated += "black]\n";
             if(this->root->left)
-            _generated += this->_vis_gen(this->root->left, root->info);
+                _generated += this->_vis_gen(this->root->left, root->info);
             if(this->root->right)
-            _generated += this->_vis_gen(this->root->right, root->info);
+                _generated += this->_vis_gen(this->root->right, root->info);
         }
         tree_visualization::visualize(_generated);
     }
-    #endif
+#endif
 };
 
 
@@ -537,11 +537,11 @@ template <typename T> class  red_black_tree {
 * @brief Iterator class
 */
 template <typename T> class red_black_tree<T>::Iterator {
-    private:
+private:
     std::vector<T> elements;
     int64_t index;
 
-    public:
+public:
     /**
     * @brief Construct a new Iterator object
     *

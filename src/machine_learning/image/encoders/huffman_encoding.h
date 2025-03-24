@@ -16,7 +16,7 @@
 * @brief class for huffman coding
 */
 class huffman{
-    private:
+private:
     struct node{
         double weight;
         std::string ID;
@@ -31,7 +31,7 @@ class huffman{
     std::priority_queue<std::pair<double, std::shared_ptr<node> >, std::vector<std::pair<double, std::shared_ptr<node> > >, std::greater<std::pair<double, std::shared_ptr<node> > > > _weights;
     std::unordered_map<char, double> map_weights;
 
-    public:
+public:
     /**
     * @brief constructor for huffman class
     * @param v: vector of strings(i.e. the text)
@@ -77,7 +77,7 @@ class huffman{
         return decoded;
     }
 
-    private:
+private:
 
     void compute_weights(){
         for(auto & x : appearances){

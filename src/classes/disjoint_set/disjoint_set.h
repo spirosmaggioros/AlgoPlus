@@ -11,14 +11,14 @@
 *
 */
 class dsu {
-    private:
+private:
     std::vector<int64_t> p;
     std::vector<int64_t> depth;
     std::vector<int64_t> ssize;
     std::vector<int64_t> max_el;
     std::vector<int64_t> min_el;
 
-    public:
+public:
     /**
     * @brief Construct a new dsu object
     *

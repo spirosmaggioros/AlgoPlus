@@ -29,7 +29,7 @@
 */
 template<typename T>
 class frequency_list {
-    public:
+public:
     /**
     * @brief Constructs a frequency_list object with an optional initializer list of elements.
     *
@@ -41,7 +41,7 @@ class frequency_list {
     * @param data An optional initializer list of elements.
     */
     explicit frequency_list(std::vector<T> data = {}) noexcept
-    : head(nullptr), tail(nullptr) {
+        : head(nullptr), tail(nullptr) {
         if(!data.empty()) {
             for (const auto &item: data) {
                 this->push_back(item);
@@ -187,7 +187,7 @@ class frequency_list {
         return os;
     }
 
-    private:
+private:
     struct node {
         T data;
         int64_t freq;
@@ -242,7 +242,7 @@ class frequency_list {
 template<typename T>
 void frequency_list<T>::swap_nodes(std::shared_ptr<node> a, std::shared_ptr<node> b) {
     if(a == nullptr || b == nullptr || a->next != b)
-    return;
+        return;
 
     // Attach b's next to a and a's prev to b
     a->next = b->next;
@@ -250,11 +250,11 @@ void frequency_list<T>::swap_nodes(std::shared_ptr<node> a, std::shared_ptr<node
 
     // If b's next exists, attach a to its prev
     if(b->next)
-    b->next->prev = a;
+        b->next->prev = a;
 
     // If a's prev exists(i.e., a is not the head), attach b to its next
     if(a->prev.lock())
-    a->prev.lock()->next = b;
+        a->prev.lock()->next = b;
 
     // Now, attach a to b's next and b to a's prev
     b->next = a;
@@ -262,7 +262,7 @@ void frequency_list<T>::swap_nodes(std::shared_ptr<node> a, std::shared_ptr<node
 
     // If the node a was the head node, update the head to b
     if (head == a)
-    head = b;
+        head = b;
 }
 
 template<typename T>
@@ -274,7 +274,7 @@ void frequency_list<T>::update_list_sequence() {
             swap_nodes(current_node, current_node->next);
 
             if(current_node->prev.lock())
-            current_node = current_node->prev.lock();
+                current_node = current_node->prev.lock();
 
         } else
         current_node = current_node->next;
@@ -327,7 +327,7 @@ void frequency_list<T>::erase(T key) {
     if (head != nullptr && head->data == key) {
         head = head->next;
         if(head)
-        head->prev.reset();
+            head->prev.reset();
         size--;
         return;
     }
@@ -397,7 +397,7 @@ void frequency_list<T>::push_back(T data) {
             return;
         }
         if (!iterator->next)
-        break;
+            break;
         iterator = iterator->next;
     }
 
@@ -495,9 +495,9 @@ template <typename T> void frequency_list<T>::visualize() {
 
 template<typename T>
 class frequency_list<T>::Iterator {
-    private:
+private:
     std::shared_ptr<node> current;
-    public:
+public:
     /**
     * @brief Iterator class for a linked list.
     *

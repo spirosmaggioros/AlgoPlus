@@ -11,7 +11,7 @@
 *@brief trie class
 */
 class trie {
-    private:
+private:
     struct node {
         std::shared_ptr<node> characters[26]{nullptr};
         bool end_word{false};
@@ -20,14 +20,14 @@ class trie {
     std::shared_ptr<node> root;
     size_t _size{};
 
-    public:
+public:
     /**
     * @brief Construct a new trie object
     *
     * @param v : vector of strings for initializer.
     */
     explicit trie(std::vector<std::string> v = {}) noexcept
-    : root(std::make_shared<node>()) {
+        : root(std::make_shared<node>()) {
         if (!v.empty()) {
             for (auto &x : v) {
                 this->insert(x);
@@ -86,7 +86,7 @@ class trie {
 
     friend std::ostream &operator<<(std::ostream &out, trie &t);
 
-    private:
+private:
     /**
     *@brief __children function.
     *checks if a node has children or not.
@@ -104,27 +104,27 @@ class trie {
     *helper function of remove().
     */
     std::shared_ptr<node> _remove(std::shared_ptr<node> current,
-        std::string word, int64_t index) {
-            if (word.size() == index) {
-                if (current->end_word) {
-                    current->end_word = false;
-                }
-                if (_children(current)) {
-                    return current;
-                }
-                return nullptr;
+                                  std::string word, int64_t index) {
+        if (word.size() == index) {
+            if (current->end_word) {
+                current->end_word = false;
             }
-
-            int64_t i = word[index] - 'a';
-            if (!current->characters[i]) {
-                return nullptr;
-            }
-            current->characters[i] = _remove(current->characters[i], word, index + 1);
-            if (current->characters[i] || _children(current)) {
+            if (_children(current)) {
                 return current;
             }
             return nullptr;
         }
+
+        int64_t i = word[index] - 'a';
+        if (!current->characters[i]) {
+            return nullptr;
+        }
+        current->characters[i] = _remove(current->characters[i], word, index + 1);
+        if (current->characters[i] || _children(current)) {
+            return current;
+        }
+        return nullptr;
+    }
 };
 
 void trie::insert(std::string key) {

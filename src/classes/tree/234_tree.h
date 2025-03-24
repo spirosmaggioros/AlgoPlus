@@ -15,7 +15,7 @@
 */
 template <typename T>
 class ttf_tree {
-    private:
+private:
     /**
     * @brief node structure of 234-class
     * @param keys the elements of the node
@@ -29,13 +29,13 @@ class ttf_tree {
         int numChildren;
         int index{};
         node(std::vector<T> keys, std::vector<std::shared_ptr<node> > children, int numChildren) :
-        keys(keys), children(children), numChildren(numChildren) {}
+            keys(keys), children(children), numChildren(numChildren) {}
     } node;
 
     std::shared_ptr<node> root;
     std::unordered_map<std::shared_ptr<node>, std::shared_ptr<node> > parent;
 
-    public:
+public:
     /**
     * @brief default constructor of 234-tree class
     * @param elements: by default empty, if you want to pass elements all in one to the tree

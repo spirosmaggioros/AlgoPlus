@@ -17,7 +17,7 @@
 * @brief splay tree class
 */
 template <typename T> class splay_tree {
-    private:
+private:
     /**
     * @brief stuct for the node
     * @param info: the value of the node
@@ -33,14 +33,14 @@ template <typename T> class splay_tree {
     std::shared_ptr<node> root;
     size_t _size{0};
 
-    public:
+public:
     /**
     * @brief Construct a new splay tree object
     *
     * @param v vector<T> initializer vector
     */
     explicit splay_tree(std::vector<T> v = {}) noexcept
-    : root(nullptr) {
+        : root(nullptr) {
         if (!v.empty()) {
             for (T &x : v) {
                 this->insert(x);
@@ -202,12 +202,12 @@ template <typename T> class splay_tree {
     *@brief visualize function
     *@returns .dot file that can be previewed using graphviz in vscode.
     */
-    #ifdef TREE_VISUALIZATION_H
+#ifdef TREE_VISUALIZATION_H
     void visualize() {
         std::string _generated = generate_visualization();
         tree_visualization::visualize(_generated);
     }
-    #endif
+#endif
 
     /**
     * @brief operator << for splay tree class
@@ -225,7 +225,7 @@ template <typename T> class splay_tree {
         return out;
     }
 
-    private:
+private:
     std::shared_ptr<node> rrotate(std::shared_ptr<node> _node) {
         std::shared_ptr<node> y = _node->left;
         _node->left = y->right;
@@ -246,23 +246,23 @@ template <typename T> class splay_tree {
         }
         if (_node->info > key) {
             if (_node->left == NULL)
-            return _node;
+                return _node;
             if (_node->left->info > key) {
                 _node->left->left = splay(_node->left->left, key);
                 _node = rrotate(_node);
             } else if (_node->left->info < key) {
                 _node->left->right = splay(_node->left->right, key);
                 if (_node->left->right != NULL)
-                _node->left = lrotate(_node->left);
+                    _node->left = lrotate(_node->left);
             }
             return (_node->left == NULL) ? _node : rrotate(_node);
         } else {
             if (_node->right == NULL)
-            return _node;
+                return _node;
             if (_node->right->info > key) {
                 _node->right->left = splay(_node->right->left, key);
                 if (_node->right->left != NULL)
-                _node->right = rrotate(_node->right);
+                    _node->right = rrotate(_node->right);
             } else if (_node->right->info < key) {
                 _node->right->right = splay(_node->right->right, key);
                 _node = lrotate(_node);
@@ -315,79 +315,79 @@ template <typename T> class splay_tree {
     }
 
     void _inorder(std::function<void(std::shared_ptr<node>)> callback,
-        std::shared_ptr<node> root) {
-            if (root) {
-                _inorder(callback, root->left);
-                callback(root);
-                _inorder(callback, root->right);
+                  std::shared_ptr<node> root) {
+        if (root) {
+            _inorder(callback, root->left);
+            callback(root);
+            _inorder(callback, root->right);
+        }
+    }
+
+    void _postorder(std::function<void(std::shared_ptr<node>)> callback,
+                    std::shared_ptr<node> root) {
+        if (root) {
+            _postorder(callback, root->left);
+            _postorder(callback, root->right);
+            callback(root);
+        }
+    }
+
+    void _preorder(std::function<void(std::shared_ptr<node>)> callback,
+                   std::shared_ptr<node> root) {
+        if (root) {
+            callback(root);
+            _preorder(callback, root->left);
+            _preorder(callback, root->right);
+        }
+    }
+
+    std::string generate_visualization() {
+        std::string _generate = _inorder_gen(root);
+        return _generate;
+    }
+
+    std::string _inorder_gen(std::shared_ptr<node> root) {
+        std::string _s;
+        if (std::is_same_v<T, char> || std::is_same_v<T, std::string>) {
+            if (root->left) {
+                _s += root->info;
+                _s += "->";
+                _s += root->left->info;
+                _s += "\n";
+                _s += _inorder_gen(root->left);
+            }
+            if (root->right) {
+                _s += root->info;
+                _s += "->";
+                _s += root->right->info;
+                _s += "\n";
+                _s += _inorder_gen(root->right);
+            }
+        } else {
+            if (root->left) {
+                _s += std::to_string(root->info) + "->" +
+                    std::to_string(root->left->info) + "\n" +
+                    _inorder_gen(root->left);
+            }
+            if (root->right) {
+                _s += std::to_string(root->info) + "->" +
+                    std::to_string(root->right->info) + "\n" +
+                    _inorder_gen(root->right);
             }
         }
-
-        void _postorder(std::function<void(std::shared_ptr<node>)> callback,
-            std::shared_ptr<node> root) {
-                if (root) {
-                    _postorder(callback, root->left);
-                    _postorder(callback, root->right);
-                    callback(root);
-                }
-            }
-
-            void _preorder(std::function<void(std::shared_ptr<node>)> callback,
-                std::shared_ptr<node> root) {
-                    if (root) {
-                        callback(root);
-                        _preorder(callback, root->left);
-                        _preorder(callback, root->right);
-                    }
-                }
-
-                std::string generate_visualization() {
-                    std::string _generate = _inorder_gen(root);
-                    return _generate;
-                }
-
-                std::string _inorder_gen(std::shared_ptr<node> root) {
-                    std::string _s;
-                    if (std::is_same_v<T, char> || std::is_same_v<T, std::string>) {
-                        if (root->left) {
-                            _s += root->info;
-                            _s += "->";
-                            _s += root->left->info;
-                            _s += "\n";
-                            _s += _inorder_gen(root->left);
-                        }
-                        if (root->right) {
-                            _s += root->info;
-                            _s += "->";
-                            _s += root->right->info;
-                            _s += "\n";
-                            _s += _inorder_gen(root->right);
-                        }
-                    } else {
-                        if (root->left) {
-                            _s += std::to_string(root->info) + "->" +
-                                std::to_string(root->left->info) + "\n" +
-                                _inorder_gen(root->left);
-                        }
-                        if (root->right) {
-                            _s += std::to_string(root->info) + "->" +
-                                std::to_string(root->right->info) + "\n" +
-                                _inorder_gen(root->right);
-                        }
-                    }
-                    return _s;
-                }
+        return _s;
+    }
 };
 
 /**
 * @brief Iterator class
 */
 template <typename T> class splay_tree<T>::Iterator {
-    private:
+private:
     std::vector<T> elements;
     int64_t index;
 
-    public:
+public:
     /**
     * @brief Construct a new Iterator object
     *

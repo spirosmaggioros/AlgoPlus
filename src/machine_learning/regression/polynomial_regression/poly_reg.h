@@ -8,11 +8,11 @@
 #endif
 
 class polynomial_regression{
-    private:
+private:
     std::vector<double> X;
     std::vector<double> Y;
     int64_t n;
-    public:
+public:
 
     explicit polynomial_regression(std::vector<double> X, std::vector<double> Y, int64_t n) noexcept : X(X), Y(Y), n(n) {}
 

@@ -19,7 +19,7 @@
 */
 
 template <typename T> class skip_list {
-    public:
+public:
     /**
     *@brief skip_list constructor.
     *@param __MAX_LEVEL: max height of the list.
@@ -181,12 +181,12 @@ template <typename T> class skip_list {
     * returns a .dot file that can be previewd with graphviz plugin in vscode
     */
 
-    #ifdef LINKED_LIST_VISUALIZATION_H
+#ifdef LINKED_LIST_VISUALIZATION_H
     void visualize(){
         std::string generated = this->generate();
         linked_list_visualization::visualize(generated);
     }
-    #endif
+#endif
 
     /**
     *@brief operator << for skip_list<T> class.
@@ -207,7 +207,7 @@ template <typename T> class skip_list {
         return out;
     }
 
-    private:
+private:
     int MAX_LEVEL{};
     float PROB{};
 
@@ -310,10 +310,10 @@ template <typename T> class skip_list {
 * @brief Iterator class
 */
 template <typename T> class skip_list<T>::Iterator {
-    private:
+private:
     std::shared_ptr<node> ptr;
 
-    public:
+public:
     /**
     * @brief Construct a new Iterator object
     * @param ptr: pointer to the node

@@ -11,7 +11,7 @@
 * @brief stack_list class
 */
 template <typename T> class stack_list {
-    private:
+private:
     /**
     * @brief struct for the node
     * @param val: the value of the node
@@ -28,14 +28,14 @@ template <typename T> class stack_list {
     std::shared_ptr<node> root;
     size_t _size{0};
 
-    public:
+public:
     /**
     * @brief Construct a new stack list object
     *
     * @param v initializer vector
     */
     explicit stack_list(std::vector<T> v = {}) noexcept
-    : root(nullptr) {
+        : root(nullptr) {
         if (!v.empty()) {
             for (T &x : v) {
                 this->push(x);
@@ -135,10 +135,10 @@ template <typename T> class stack_list {
 * @brief Iterator class
 */
 template <typename T> class stack_list<T>::Iterator {
-    private:
+private:
     std::shared_ptr<node> curr_root;
 
-    public:
+public:
     /**
     * @brief Construct a new Iterator object
     *

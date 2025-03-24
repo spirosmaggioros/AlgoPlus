@@ -17,7 +17,7 @@ using json = nlohmann::json;
 */
 class kmeans
 {
-    private:
+private:
     /**
     * @ brief distance function
     * @ param a the first input vector
@@ -34,7 +34,7 @@ class kmeans
     std::vector<std::vector<double>> cluster_centers;
     std::map<std::vector<double>, int64_t> assignments;
 
-    public:
+public:
     /**
     * @brief Constructor for the kmeans class
     * @param data: the input data(2D vector)
@@ -76,7 +76,7 @@ class kmeans
                 break;
             }
             else
-            {
+        {
                 this->cluster_centers = new_centroids;
             }
         }

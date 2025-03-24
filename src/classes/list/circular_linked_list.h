@@ -16,14 +16,14 @@
 * @brief circular linked list class
 */
 template <typename T> class circular_linked_list {
-    public:
+public:
     /**
     * @brief Construct a new circular linked list object
     *
     * @param __elements vector<T> so you dont have to do multiple insertions
     */
     explicit circular_linked_list(std::vector<T> _elements = {}) noexcept
-    : root(nullptr), tail(nullptr) {
+        : root(nullptr), tail(nullptr) {
         if (!_elements.empty()) {
             for (T &x : _elements) {
                 this->push_back(x);
@@ -131,34 +131,34 @@ template <typename T> class circular_linked_list {
     * @brief << operator for the circular list class
     */
     friend std::ostream &operator<<(std::ostream &out,
-        circular_linked_list<T> &l1) {
-            out << '{';
-            std::shared_ptr<node> head = l1.root;
-            do {
-                out << head->val << ' ';
-                head = head->next;
-            } while (head != l1.root);
-            out << '}' << '\n';
-            return out;
-        }
+                                    circular_linked_list<T> &l1) {
+        out << '{';
+        std::shared_ptr<node> head = l1.root;
+        do {
+            out << head->val << ' ';
+            head = head->next;
+        } while (head != l1.root);
+        out << '}' << '\n';
+        return out;
+    }
 
-        private:
-        /**
+private:
+    /**
         * @brief struct for the node
         * @param val the value of the node
         * @param next smart pointer to the next node
         */
-        struct node {
-            T val;
-            std::shared_ptr<node> next;
-            node(T key = 0) : val(key), next(nullptr) {}
-        };
+    struct node {
+        T val;
+        std::shared_ptr<node> next;
+        node(T key = 0) : val(key), next(nullptr) {}
+    };
 
-        std::shared_ptr<node> root;
-        std::shared_ptr<node> tail;
-        size_t _size{0};
+    std::shared_ptr<node> root;
+    std::shared_ptr<node> tail;
+    size_t _size{0};
 
-        std::string generate();
+    std::string generate();
 };
 
 template <typename T> void circular_linked_list<T>::push_back(T key) {
@@ -318,10 +318,10 @@ template <typename T> void circular_linked_list<T>::visualize() {
 * @brief Iterator class
 */
 template <typename T> class circular_linked_list<T>::Iterator {
-    private:
+private:
     std::shared_ptr<node> curr_root;
 
-    public:
+public:
     /**
     * @brief Construct a new Iterator object
     *

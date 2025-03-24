@@ -13,12 +13,12 @@
 
 
 class Image{
-    private:
+private:
     std::vector<std::vector<int32_t> > img;
     int height;
     int width;
 
-    public:
+public:
 
     /**
     * @brief image default constructor
@@ -135,7 +135,7 @@ class Image{
             assert(img2._height() == img.size());
             assert(img2._width() == img[0].size());
         }
-        
+
         Image resulted_img(height, width);
         for (int x = 0; x < height; x++) {
             for (int y = 0; y < width; y++) {
@@ -167,7 +167,7 @@ class Image{
             assert(img2._height() == img.size());
             assert(img2._width() == img[0].size());
         }
-        
+
         Image resulted_img(height, width);
         for (int x = 0; x < height; x++) {
             for (int y = 0; y < width; y++) {
@@ -199,7 +199,7 @@ class Image{
             assert(img2._height() == img.size());
             assert(img2._width() == img[0].size());
         }
-        
+
         Image resulted_img(height, width);
         for (int x = 0; x < height; x++) {
             for (int y = 0; y < width; y++) {
@@ -244,7 +244,7 @@ class Image{
                         }
                     }
                 }
-                
+
                 if constexpr (std::is_same_v<T, int32_t>) {
                     resulted_img.set_point(x, y, value);
                 }

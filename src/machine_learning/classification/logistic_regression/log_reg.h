@@ -22,7 +22,7 @@ private:
     std::vector<double> predictors_;
     std::vector<std::vector<double> > data_;
     std::vector<double> labels_;
-        
+
     /**
     * @brief returns h_theta(x), where x is the input
     * uses metric's sigmoid to compute that.
@@ -35,7 +35,7 @@ private:
 
         return metrics::sigmoid(z);
     }
-    
+
     /**
     * @brief performs all the computations to output useful metrics each epoch
     */
@@ -54,10 +54,10 @@ private:
         }
 
         std::cout << "Accuracy: " << metrics::accuracy_score(this->labels_, y_pred) 
-                  << " | f1_score: " << metrics::f1_score(this->labels_, y_pred) 
-                  << " | Recall: " << metrics::recall(this->labels_, y_pred)
-                  << " | Precision: " << metrics::precision(this->labels_, y_pred)
-                  << '\n';
+            << " | f1_score: " << metrics::f1_score(this->labels_, y_pred) 
+            << " | Recall: " << metrics::recall(this->labels_, y_pred)
+            << " | Precision: " << metrics::precision(this->labels_, y_pred)
+            << '\n';
     }
 
 public:
@@ -75,7 +75,7 @@ public:
         this->epochs_ = epochs;
         this->data_ = data;
         this->bias_ = bias;
-                for (auto &x : data) {
+        for (auto &x : data) {
             this->labels_.push_back(x.back());
         }
 
@@ -107,7 +107,7 @@ public:
             verbose_acc_step_();
         }
     }
-    
+
 };
 
 #endif

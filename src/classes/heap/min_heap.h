@@ -16,12 +16,12 @@
 *
 */
 template <typename T> class min_heap {
-    private:
+private:
     T *arr;
     size_t max_size{};
     size_t heap_size{0};
 
-    public:
+public:
     /**
     * @brief Construct a new min heap object
     *

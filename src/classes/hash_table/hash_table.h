@@ -30,7 +30,7 @@
 * @note Use only types that can be hashed as the KeyType.
 */
 template <typename KeyType, typename ValueType> class hash_table {
-    public:
+public:
     using BucketType = std::unordered_map<size_t, std::list<std::pair<KeyType, ValueType>>>;
 
     /**
@@ -153,7 +153,7 @@ template <typename KeyType, typename ValueType> class hash_table {
         return out;
     }
 
-    private:
+private:
     std::hash<KeyType> hash;
     BucketType bucketList;
 };
@@ -163,7 +163,7 @@ template <typename KeyType, typename ValueType> class hash_table {
 */
 template <typename KeyType, typename ValueType>
 class hash_table<KeyType, ValueType>::Iterator {
-    private:
+private:
     using BucketIterator = typename BucketType::iterator;
     using ListIterator = typename std::list<std::pair<KeyType, ValueType>>::iterator;
     BucketIterator bucketIter, bucketEnd;
@@ -174,7 +174,7 @@ class hash_table<KeyType, ValueType>::Iterator {
     std::vector<size_t> key_values;
     int64_t index{};
 
-    public:
+public:
     /**
     * @brief Construct a new Iterator object
     *
@@ -196,60 +196,60 @@ class hash_table<KeyType, ValueType>::Iterator {
     Iterator &operator=(
         const std::unordered_map<size_t, std::list<std::pair<KeyType, ValueType>>>
         &bucket) {
-            this->bucketList = bucket;
-            return *(this);
-        }
+        this->bucketList = bucket;
+        return *(this);
+    }
 
-        /**
+    /**
         * @brief operator ++ for type Iterator
         *
         * @return Iterator&
         */
-        Iterator& operator++() {
-            if (++listIter == bucketIter->second.end()) {
-                while (++bucketIter != bucketEnd && bucketIter->second.empty());
-                if (bucketIter != bucketEnd) {
-                    listIter = bucketIter->second.begin();
-                }
+    Iterator& operator++() {
+        if (++listIter == bucketIter->second.end()) {
+            while (++bucketIter != bucketEnd && bucketIter->second.empty());
+            if (bucketIter != bucketEnd) {
+                listIter = bucketIter->second.begin();
             }
-            return *this;
         }
+        return *this;
+    }
 
-        /**
+    /**
         * @brief operator ++ for type Iterator
         *
         * @return Iterator&
         */
-        Iterator operator++(int) {
-            Iterator it = *this;
-            ++*(this);
-            return it;
-        }
+    Iterator operator++(int) {
+        Iterator it = *this;
+        ++*(this);
+        return it;
+    }
 
-        /**
+    /**
         * @brief operator -- for type Iterator
         *
         * @return Iterator&
         */
-        Iterator &operator--() {
-            if (this->index > 0) {
-                this->index--;
-            }
-            return *(this);
+    Iterator &operator--() {
+        if (this->index > 0) {
+            this->index--;
         }
+        return *(this);
+    }
 
-        /**
+    /**
         * @brief operator -- for type Iterator
         *
         * @return Iterator
         */
-        Iterator operator--(int) {
-            Iterator it = *this;
-            --*(this);
-            return it;
-        }
+    Iterator operator--(int) {
+        Iterator it = *this;
+        --*(this);
+        return it;
+    }
 
-        /**
+    /**
         * @brief operator != for Type Iterator
         *
         * @param it the iterator we want to make the check
@@ -257,20 +257,20 @@ class hash_table<KeyType, ValueType>::Iterator {
         * the it.list that exist in the it.index
         * @return false otherwise
         */
-        bool operator!=(const Iterator& it) const {
-            return this->bucketIter != it.bucketIter
-            || (bucketIter != bucketEnd && this->listIter != it.listIter);
-        }
+    bool operator!=(const Iterator& it) const {
+        return this->bucketIter != it.bucketIter
+        || (bucketIter != bucketEnd && this->listIter != it.listIter);
+    }
 
-        /**
+    /**
         * @brief operator * for Type Iterator
         *
         * @return std::list<std::pair<KeyType, ValueType>> the list of the current
         * index
         */
-        std::pair<KeyType, ValueType>& operator*() {
-            return *listIter;
-        }
+    std::pair<KeyType, ValueType>& operator*() {
+        return *listIter;
+    }
 };
 
 #endif // HASH_TABLE_H

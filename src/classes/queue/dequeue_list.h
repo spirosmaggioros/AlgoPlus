@@ -11,7 +11,7 @@
 * @brief dequeue list class
 */
 template <typename T> class dequeue_list {
-    private:
+private:
     /**
     * @brief struct for the node
     * @param val: the value of the node
@@ -29,14 +29,14 @@ template <typename T> class dequeue_list {
     std::shared_ptr<node> tail;
     size_t _size{0};
 
-    public:
+public:
     /**
     * @brief Construct a new dequeue list object
     *
     * @param v initializer vector
     */
     explicit dequeue_list(std::vector<T> v = {}) noexcept
-    : root(nullptr), tail(nullptr) {
+        : root(nullptr), tail(nullptr) {
         if (!v.empty()) {
             for (T &x : v) {
                 this->push_back(x);
@@ -178,10 +178,10 @@ template <typename T> class dequeue_list {
 * @brief Iterator class
 */
 template <typename T> class dequeue_list<T>::Iterator {
-    private:
+private:
     std::shared_ptr<node> curr_root;
 
-    public:
+public:
     /**
     * @brief Construct a new Iterator object
     *

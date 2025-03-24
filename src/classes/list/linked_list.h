@@ -18,14 +18,14 @@
 */
 
 template <typename T> class linked_list {
-    public:
+public:
     /**
     *@brief linked_list class constructor
     *@param __elements: you can provide the constructor with a vector of elements
     *so you dont have to do multiple push backs yourself.
     */
     explicit linked_list(std::vector<T> _elements = {}) noexcept
-    : root(nullptr), tail(nullptr) {
+        : root(nullptr), tail(nullptr) {
         if (!_elements.empty()) {
             for (T &x : _elements) {
                 this->push_back(x);
@@ -139,7 +139,7 @@ template <typename T> class linked_list {
         return out;
     }
 
-    private:
+private:
     /**
     * @brief struct for the node
     * @param val: the value of the node
@@ -306,10 +306,10 @@ template <typename T> void linked_list<T>::visualize() {
 * @brief Iterator class
 */
 template <typename T> class linked_list<T>::Iterator {
-    private:
+private:
     std::shared_ptr<node> curr_root;
 
-    public:
+public:
     /**
     * @brief Construct a new Iterator object
     *
