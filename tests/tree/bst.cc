@@ -27,6 +27,17 @@ TEST_CASE("checking removals in bst") {
   std::vector<int> v = {-20, 2, 10, 23};
   std::vector<int> inorder = b1.inorder();
   REQUIRE(v == inorder);
+
+  bst<int> b2;
+  REQUIRE(b2.size() == 0);
+  b2.remove(10);
+  REQUIRE(b2.size() == 0);
+  b2.insert(5);
+  REQUIRE(b2.size() == 1);
+  b2.remove(10);
+  REQUIRE(b2.size() == 1);
+  b2.remove(5);
+  REQUIRE(b2.size() == 0);
 }
 
 TEST_CASE("checking search in bst") {

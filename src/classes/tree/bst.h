@@ -84,7 +84,6 @@ template <typename T> class bst {
     */
     void remove(T key) {
         root = _remove(root, key);
-        _size--;
     }
 
     class Iterator;
@@ -272,11 +271,14 @@ template <typename T> class bst {
         } else {
             if (!root->left && !root->right) {
                 root = nullptr;
+                _size--;
             } else if (!root->left) {
                 std::shared_ptr<node> temp = root->right;
+                _size--;
                 return temp;
             } else if (!root->right) {
                 std::shared_ptr<node> temp = root->left;
+                _size--;
                 return temp;
             } else {
                 std::shared_ptr<node> temp = root->right;
