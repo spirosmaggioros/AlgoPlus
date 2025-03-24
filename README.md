@@ -107,6 +107,7 @@ You can see more [examples](/examples) or follow the [Tutorials](/tutorial).
 - [X] [Clustering Algorithms](https://en.wikipedia.org/wiki/Cluster_analysis)
 - [X] [Encoders](https://en.wikipedia.org/wiki/Autoencoder)
 - [X] [Regression Algorithms](https://en.wikipedia.org/wiki/Regression_analysis)
+- [X] [Classification Algorithms](https://en.wikipedia.org/wiki/Classification)
 - [X] [Shortest Path Algorithms](https://en.wikipedia.org/wiki/Shortest_path_problem)
 - [X] [Image Processing Algorithms](https://en.wikipedia.org/wiki/Digital_image_processing)
 
