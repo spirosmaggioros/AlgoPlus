@@ -71,6 +71,7 @@
     "list": "cpp",
     "memory": "cpp",
     "span": "cpp",
-    "print": "cpp"
+    "print": "cpp",
+    "functional": "cpp"
   },
 }
