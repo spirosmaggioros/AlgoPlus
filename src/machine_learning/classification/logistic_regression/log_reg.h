@@ -8,6 +8,7 @@
 #include <cassert>
 #include <random>
 #include "../../metrics/metrics.h"
+#include "../../activation/activation_functions.h"
 #endif
 
 /**
@@ -33,7 +34,7 @@ private:
             z += this->data_[index][i] * this->predictors_[i];
         }
 
-        return metrics::sigmoid(z);
+        return activation::sigmoid(z);
     }
 
     /**

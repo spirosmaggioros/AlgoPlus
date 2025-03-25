@@ -10,6 +10,12 @@
 #include <numbers>
 #endif
 
+namespace _metrics_utils {
+    double sigmoid(const double x) {
+        return 1.0 / (1.0 + exp(-x));
+    }
+}
+
 /**
 * @brief losses namespace that contains a couple of useful losses in machine learning
 *
@@ -77,15 +83,6 @@ namespace metrics {
         return 2.0 * (prec * rec) / (prec + rec);
     }
 
-    /**
-    * @brief sigmoid activation function
-    * @param x: double, the input parameter
-    * @return double: the sigmoid output
-    */
-    double sigmoid(const double x) {
-        return 1.0 / (1.0 + exp(-x));
-    }
-
     namespace losses {
         /**
         * @brief mean squared error function
@@ -144,7 +141,7 @@ namespace metrics {
             size_t n = y.size();
             double bce = 0.0, eps = 1e-15;
             for(size_t i = 0; i<n; i++) {
-                double prob = sigmoid(y_hat[i]);
+                double prob = _metrics_utils::sigmoid(y_hat[i]);
                 double clipped_y_hat = std::clamp(prob, eps, 1 - eps);
                 bce += (y[i]*log(clipped_y_hat) + (1-y[i])*log(1 - clipped_y_hat));
             }
