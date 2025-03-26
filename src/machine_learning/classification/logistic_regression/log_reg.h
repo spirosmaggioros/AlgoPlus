@@ -62,6 +62,17 @@ private:
     }
 
 public:
+
+    /**
+     * @brief default constructor for logistic regression class
+     * @param data(vector<vector<double> >): The passed data, x.back() for each
+     *        x in data is the label of each data. So for example, let's assume
+     *        x[0] = {1.2, 3.4, 5.4, 0.0}, 0 is the label for this row.
+     * @param lr(double): learning rate
+     * @param bias(double): the input bias
+     * @param epochs(int): the number of epochs
+     *
+     */
     explicit logistic_regression(const std::vector<std::vector<double> > data,
                                  const double lr=0.001,
                                  const double bias=0.001,

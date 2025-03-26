@@ -136,6 +136,6 @@ int main() {
         {100, 5.7, 2.8, 4.1, 1.3, 1}
     };
 
-    logistic_regression model(logistic_regression_data, 0.0001);
+    logistic_regression model(logistic_regression_data, 0.0001, 0.0001, 500);
     model.fit();
 }
