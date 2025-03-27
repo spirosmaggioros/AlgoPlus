@@ -1,6 +1,6 @@
-## Algoplus{1.0.0}
+# Algoplus{1.0.0}
 
-AlgoPlus is a C++ library that includes ready-to-use complex **data structures** and **algorithms** for various topics, including Machine Learning and Image Processing.
+AlgoPlus is a C++ library that includes ready-to-use complex **data structures** and **algorithms** for various topics, including **Machine Learning** and **Image Processing**.
 
 <div align="center">
   <img src="https://github.com/CSRT-NTUA/AlgoPlus/blob/main/assets/logo.png" alt="Algoplus">
@@ -62,6 +62,10 @@ int main(){
 }
 ```
 You can see more [examples](/examples) or follow the [Tutorials](/tutorial).
+> [!Note]
+> This repository is a set of implementations and not a complete library meant > for production or research. So whenever you see a bug or something not
+> working as it should, please report it to us and we will try our best to fix > it.
+
 
 ### Classes
 
@@ -80,7 +84,6 @@ You can see more [examples](/examples) or follow the [Tutorials](/tutorial).
 - [X] [Interval Tree](https://en.wikipedia.org/wiki/Interval_tree)
 - [X] [234 Tree](https://en.wikipedia.org/wiki/2%E2%80%933%E2%80%934_tree)
 - [X] [Min/Max Heap](https://en.wikipedia.org/wiki/Min-max_heap)
-- [X] [Rope(Chord)](https://en.wikipedia.org/wiki/Rope_(data_structure))
 
 **Lists**
 - [X] [Single Linked List](https://en.wikipedia.org/wiki/Linked_list)
@@ -111,6 +114,9 @@ You can see more [examples](/examples) or follow the [Tutorials](/tutorial).
 - [X] [Shortest Path Algorithms](https://en.wikipedia.org/wiki/Shortest_path_problem)
 - [X] [Image Processing Algorithms](https://en.wikipedia.org/wiki/Digital_image_processing)
 
+> [!Tip]
+> We are currently looking for contributions on machine learning classes and
+> algorithms!
 
 ### **How to run test cases**
 We have unit tests for every function of our implemented algorithms & data structures. It is very important to make sure that your code works before making any pull requests!
@@ -131,6 +137,10 @@ cmake --build build
 cd build/tests
 ./runUnitTests
 ```
+
+> [!Note]
+> The splay tree's unit tests are failing in some OS's. We are working on a
+> solution
 
 ### **Our contributors**
 <a href="https://github.com/spirosmaggioros/AlgoPlus/graphs/contributors">
