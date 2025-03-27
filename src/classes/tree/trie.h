@@ -108,6 +108,7 @@ private:
         if (word.size() == index) {
             if (current->end_word) {
                 current->end_word = false;
+                _size--;
             }
             if (_children(current)) {
                 return current;
@@ -142,7 +143,6 @@ void trie::insert(std::string key) {
 
 void trie::remove(std::string key) {
     root = _remove(root, key, 0);
-    _size--;
 }
 
 bool trie::search(std::string key) {

@@ -125,7 +125,6 @@ public:
     */
     void remove(T key) {
         root = _remove(root, key);
-        _size--;
     }
 
     /**
@@ -317,10 +316,12 @@ private:
             if (!root->right) {
                 std::shared_ptr<node> temp = root->left;
                 root = nullptr;
+                _size--;
                 return temp;
             } else if (!root->left) {
                 std::shared_ptr<node> temp = root->right;
                 root = nullptr;
+                _size--;
                 return temp;
             }
             std::shared_ptr<node> temp = minValue(root->right);
