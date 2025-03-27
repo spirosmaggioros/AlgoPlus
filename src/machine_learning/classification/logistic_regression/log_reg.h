@@ -13,7 +13,7 @@
 
 /**
 * @brief logistic regression class
-* The implementation follow this: https://www.stat.cmu.edu/~ryantibs/advmethods/notes/logreg.pdf
+* The implementation follows this: https://www.stat.cmu.edu/~ryantibs/advmethods/notes/logreg.pdf
 */
 class logistic_regression {
 private:

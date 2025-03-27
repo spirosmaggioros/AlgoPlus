@@ -83,6 +83,57 @@ namespace metrics {
         return 2.0 * (prec * rec) / (prec + rec);
     }
 
+    /**
+     * @brief euclidean distance function
+     * @param x(vector<double>): the first passed vector
+     * @param y(vector<double>): the second passed vector
+     */
+    double euclidean_distance(const std::vector<double> &x, const std::vector<double> &y) {
+        assert(x.size() == y.size());
+
+        double _dist = 0.0;
+        for (size_t i = 0; i<x.size(); i++) {
+            _dist += std::powf(y[i] - x[i], 2);
+        }
+
+        return std::sqrt(_dist);
+    }
+
+    /**
+     * @brief manhattan distance function
+     * @param x(vector<double>): the first passed vector
+     * @param y(vector<double>): the secoond passed vector
+     */
+    double manhattan_distance(const std::vector<double> &x, const std::vector<double> &y) {
+        assert(x.size() == y.size());
+
+        double _dist = 0.0;
+        for (size_t i = 0; i<x.size(); i++) {
+            _dist += std::abs(y[i] - x[i]);
+        }
+
+        return _dist;
+    }
+
+    
+    /**
+     * @brief minkowski distance
+     * @param x(vector<double>): the first passed vector
+     * @param y(vector<double>): the second passed vector
+     * @param p(double): The order of the norm of the difference
+     */
+    double minkowski_distance(const std::vector<double> &x, const std::vector<double> &y, const double p) {
+        assert(x.size() == y.size());
+
+        double _dist = 0.0;
+        for (size_t i = 0; i<x.size(); i++) {
+            _dist += std::abs(y[i] - x[i]);
+        }
+
+        return std::powf(_dist, 1.0 / p);
+    }
+
+
     namespace losses {
         /**
         * @brief mean squared error function
@@ -109,6 +160,7 @@ namespace metrics {
         double root_mean_squared_error(std::vector<double> const& y, std::vector<double> const& y_hat) {
             return std::sqrt(mean_squared_error(y, y_hat));
         }
+
 
         /**
         * @brief mean absolute error function

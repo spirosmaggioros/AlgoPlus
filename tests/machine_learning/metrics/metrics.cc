@@ -55,3 +55,25 @@ TEST_CASE("Testing binary crossentropy loss") {
   REQUIRE(binary_crossentropy_loss(v1, v2) == Approx(0.8834657559).epsilon(1e-6));
 }
 
+TEST_CASE("Testing euclidean distance") {
+    std::vector<double> x = {1.2, 4.3, 2.2, 1.1};
+    std::vector<double> y = {0.2, 4.4, 1.1, 2.2};
+
+    REQUIRE(metrics::euclidean_distance(x, y) == Approx(1.8520259177452134));
+}
+
+TEST_CASE("Testing manhattan distance") {
+    std::vector<double> x = {1.2, 4.3, 2.2, 1.1};
+    std::vector<double> y = {0.2, 4.4, 1.1, 2.2};
+
+    REQUIRE(metrics::manhattan_distance(x, y) == 3.3000000000000007);
+}
+
+TEST_CASE("Testing minkowski distance") {
+    std::vector<double> x = {1, 0, 0};
+    std::vector<double> y = {0, 1, 0};
+    
+    REQUIRE(metrics::minkowski_distance(x, y, 1) == 2.0);
+    REQUIRE(metrics::minkowski_distance(x, y, 2) == Approx(1.4142135623730951));
+    REQUIRE(metrics::minkowski_distance(x, y, 3) == Approx(1.2599210498948732));
+}
