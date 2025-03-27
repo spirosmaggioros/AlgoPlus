@@ -63,9 +63,7 @@ int main(){
 ```
 You can see more [examples](/examples) or follow the [Tutorials](/tutorial).
 > [!Note]
-> This repository is a set of implementations and not a complete library meant > for production or research. So whenever you see a bug or something not
-> working as it should, please report it to us and we will try our best to fix > it.
-
+> This repository is a set of implementations and not a complete library meant for production or research. So whenever you see a bug or something not working as it should, please report it to us and we will try our best to fix it.
 
 ### Classes
 
@@ -115,8 +113,7 @@ You can see more [examples](/examples) or follow the [Tutorials](/tutorial).
 - [X] [Image Processing Algorithms](https://en.wikipedia.org/wiki/Digital_image_processing)
 
 > [!Tip]
-> We are currently looking for contributions on machine learning classes and
-> algorithms!
+> We are currently looking for contributions on machine learning classes and algorithms!
 
 ### **How to run test cases**
 We have unit tests for every function of our implemented algorithms & data structures. It is very important to make sure that your code works before making any pull requests!
@@ -139,8 +136,7 @@ cd build/tests
 ```
 
 > [!Note]
-> The splay tree's unit tests are failing in some OS's. We are working on a
-> solution
+> The splay tree's unit tests are failing in some OS's. We are working on a solution
 
 ### **Our contributors**
 <a href="https://github.com/spirosmaggioros/AlgoPlus/graphs/contributors">
