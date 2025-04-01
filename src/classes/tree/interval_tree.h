@@ -94,7 +94,6 @@ public:
     void remove(std::pair<T, T> p) {
         interval i = interval(p);
         root = _remove(root, i);
-        _size--;
     }
 
     /**
@@ -189,7 +188,7 @@ public:
         q.push(root);
         while (!q.empty()) {
             size_t size = q.size();
-            std::vector<std::pair<T, T>> level;
+            std::vector<std::pair<T, T>> level; 
             for (size_t i = 0; i < size; i++) {
                 std::shared_ptr<node> current = q.front();
                 q.pop();
@@ -316,12 +315,15 @@ private:
                 p = p->right;
             } else {
                 if (!p->right && !p->left) {
+                    _size--;
                     return nullptr;
                 } else if (p->right && !p->left) {
                     std::shared_ptr<node> temp = root->right;
+                    _size--;
                     return temp;
                 } else if (p->left && !p->right) {
                     std::shared_ptr<node> temp = p->left;
+                    _size--;
                     return temp;
                 } else {
                     std::shared_ptr<node> temp = root;
