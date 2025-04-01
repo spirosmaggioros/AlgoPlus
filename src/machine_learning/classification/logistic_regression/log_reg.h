@@ -41,7 +41,6 @@ private:
     * @brief performs all the computations to output useful metrics each epoch
     */
     void verbose_acc_step_() {
-        int tp = 0, tn = 0, fp = 0, fn = 0;
         std::vector<double> y_pred;
         for (int i = 0; i<this->data_.size(); i++) {
             double h = h_theta(i);
@@ -73,11 +72,12 @@ public:
      * @param epochs(int): the number of epochs
      *
      */
-    explicit logistic_regression(const std::vector<std::vector<double> > data,
-                                 const double lr=0.001,
-                                 const double bias=0.001,
-                                 int epochs=10
-                                 ) {
+    explicit logistic_regression(
+            const std::vector<std::vector<double> > data,
+            const double lr=0.001,
+            const double bias=0.001,
+            int epochs=10
+        ) {
         assert(!data.empty());
         for (auto & x: data) {
             assert(x.back() == 0 || x.back() == 1);
@@ -106,7 +106,7 @@ public:
      * performs gradient descent using the predictors and learning rate.
      */
     void fit() {
-        for (int i = 0; i<this->epochs_; i++) {
+        for (int epoch = 0; epoch<this->epochs_; epoch++) {
             for (size_t j = 0; j<this->data_.size(); j++) {
                 double h = h_theta(j);
                 for (size_t k = 0; k<(this->data_[0].size() - 1); k++) {
@@ -115,7 +115,7 @@ public:
                 }
             }
 
-            std::cout << "Epoch: " << (i + 1) << ": ";
+            std::cout << "Epoch: " << (epoch + 1) << ": ";
             verbose_acc_step_();
         }
     }

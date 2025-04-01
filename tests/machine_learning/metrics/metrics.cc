@@ -36,14 +36,14 @@ TEST_CASE("Testing mean squared error") {
 
   std::vector<double> v1 { 1.23, 4.25, 4.4, 1.231, 5.567 };
   std::vector<double> v2 { 4.56, 4.123, 1.234, 6.432, 5.555 };
-  
+
   REQUIRE(mean_squared_error(v1, v2) == Approx(9.6358263926).epsilon(1e-6));
 }
 
 TEST_CASE("Testing mean absolute error") {
   std::vector<double> v1 { 1.23, 4.25, 4.4, 1.231, 5.567 };
   std::vector<double> v2 { 4.56, 4.123, 1.234, 6.432, 5.555 };
-  
+
   REQUIRE(mean_absolute_error(v1, v2) == Approx(2.36720).epsilon(1e-6));
 }
 
@@ -72,8 +72,9 @@ TEST_CASE("Testing manhattan distance") {
 TEST_CASE("Testing minkowski distance") {
     std::vector<double> x = {1, 0, 0};
     std::vector<double> y = {0, 1, 0};
-    
+
     REQUIRE(metrics::minkowski_distance(x, y, 1) == 2.0);
     REQUIRE(metrics::minkowski_distance(x, y, 2) == Approx(1.4142135623730951));
     REQUIRE(metrics::minkowski_distance(x, y, 3) == Approx(1.2599210498948732));
 }
+

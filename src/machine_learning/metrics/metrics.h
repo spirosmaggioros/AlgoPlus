@@ -8,11 +8,26 @@
 #include <cmath>
 #include <cassert>
 #include <numbers>
+#include <numeric>
 #endif
 
 namespace _metrics_utils {
     double sigmoid(const double x) {
         return 1.0 / (1.0 + exp(-x));
+    }
+
+    std::vector<double> softmax(const std::vector<double> &logits) {
+        double sum_logits = 0;
+        for (const double &x: logits) {
+            sum_logits += exp(x);
+        }
+
+        std::vector<double> probs;
+        for (const double &x: logits) {
+            probs.push_back(exp(x) / sum_logits);
+        }
+
+        return probs;
     }
 }
 
@@ -21,12 +36,13 @@ namespace _metrics_utils {
 *
 */
 namespace metrics {
-    
+
     namespace multi_metrics_ {
         /**
         * @brief multi metrics function. Returns tp, tn, fp, fn
         * @param y: the ground truth(vector<double>)
         * @param y_pred: the predictions(vector<double>)
+        * @return tuple<int, int, int, int>
         */
         std::tuple<int, int, int, int> all_metrics_(const std::vector<double> &y, const std::vector<double> &y_pred) {
             assert(y.size() == y_pred.size());
@@ -47,35 +63,39 @@ namespace metrics {
             }
 
             return { tp, tn, fp, fn };
-        } 
+        }
     }
 
     /**
     * @brief recall function[tp / tp + fn]
+    * @return double
     */
     double recall(const std::vector<double> &y, const std::vector<double> &y_pred) {
         auto [tp, tn, fp, fn] = multi_metrics_::all_metrics_(y, y_pred);
         return 1.0 * (tp) / (tp + fn);
     }
-    
+
     /**
      * @brief accuracy score function[(tp + tn) / (tp + tn + fp + fn)]
+     * @return double
      */
     double accuracy_score(const std::vector<double> &y, const std::vector<double> &y_pred) {
         auto [tp, tn, fp, fn] = multi_metrics_::all_metrics_(y, y_pred);
         return 1.0 * (tp + tn) / (tp + tn + fp + fn);
     }
-    
+
     /**
      * @brief precision function[tp / tp + fp]
+     * @return double
      */
     double precision(const std::vector<double> &y, const std::vector<double> &y_pred) {
         auto [tp, tn, fp, fn] = multi_metrics_::all_metrics_(y, y_pred);
         return 1.0 * tp / (tp + fp);
     }
-    
+
     /**
      * @brief f1 score function: [2 * precision * recall / precision + recall]
+     * @return double
      */
     double f1_score(const std::vector<double> &y, const std::vector<double> &y_pred) {
         auto [tp, tn, fp, fn] = multi_metrics_::all_metrics_(y, y_pred);
@@ -87,6 +107,7 @@ namespace metrics {
      * @brief euclidean distance function
      * @param x(vector<double>): the first passed vector
      * @param y(vector<double>): the second passed vector
+     * @return double
      */
     double euclidean_distance(const std::vector<double> &x, const std::vector<double> &y) {
         assert(x.size() == y.size());
@@ -103,6 +124,7 @@ namespace metrics {
      * @brief manhattan distance function
      * @param x(vector<double>): the first passed vector
      * @param y(vector<double>): the secoond passed vector
+     * @return double
      */
     double manhattan_distance(const std::vector<double> &x, const std::vector<double> &y) {
         assert(x.size() == y.size());
@@ -115,12 +137,13 @@ namespace metrics {
         return _dist;
     }
 
-    
+
     /**
      * @brief minkowski distance
      * @param x(vector<double>): the first passed vector
      * @param y(vector<double>): the second passed vector
      * @param p(double): The order of the norm of the difference
+     * @return double
      */
     double minkowski_distance(const std::vector<double> &x, const std::vector<double> &y, const double p) {
         assert(x.size() == y.size());
@@ -139,7 +162,7 @@ namespace metrics {
         * @brief mean squared error function
         * @param y: vector, the original labels
         * @param y_hat: vector, the predicted labels
-        * @return double: the mean squared error
+        * @return double
         */
         double mean_squared_error(std::vector<double> const& y, std::vector<double> const& y_hat) {
             assert(y.size() == y_hat.size());
@@ -155,7 +178,7 @@ namespace metrics {
         * @brief root mean squared error function
         * @param y: vector, the original labels
         * @param y_hat: vector, the predicted labels
-        * @return double: the root mean squared error
+        * @return double
         */
         double root_mean_squared_error(std::vector<double> const& y, std::vector<double> const& y_hat) {
             return std::sqrt(mean_squared_error(y, y_hat));
@@ -166,7 +189,7 @@ namespace metrics {
         * @brief mean absolute error function
         * @param y: vector, the original labels
         * @param y_hat: vector, the predicted labels
-        * @return double: the mean absolute error
+        * @return double
         */
         double mean_absolute_error(std::vector<double> const& y, std::vector<double> const& y_hat) {
             assert(y.size() == y_hat.size());
@@ -178,11 +201,30 @@ namespace metrics {
             return mae / double(n);
         }
 
+        // /**
+        // * @brief log loss for multiclass classification
+        // * @param y(vector<double>): the original labels
+        // * @param y_hat(vector<double>): the predicted labels
+        // * @return double
+        // */
+        // double xlogy(std::vector<double> const& y, std::vector<double> const& y_hat) {
+        //     assert(y.size() == y_hat.size());
+        //     std::vector<double> softmax_ = _metrics_utils::softmax(y);
+        //     assert(softmax_.size() == y.size());
+
+        //     size_t n = y.size();
+        //     double ce = 0.0;
+        //     for (const double &x: softmax_) {
+        //         ce += log(x);
+        //     }
+        //     return -ce;
+        // }
+
         /**
-        * @brief binary crossentropy loss function
+        * @brief binary crossentropy loss for binary classification
         * @param y: vector, the original labels
         * @param y_hat: vector, the predicted labels
-        * @return double: the binary crossentropy loss
+        * @return double
         */
         double binary_crossentropy_loss(std::vector<double> const& y, std::vector<double> const& y_hat) {
             assert(y.size() == y_hat.size());
