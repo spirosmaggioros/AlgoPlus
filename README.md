@@ -111,6 +111,8 @@ You can see more [examples](/examples) or follow the [Tutorials](/tutorial).
 - [X] [Classification Algorithms](https://en.wikipedia.org/wiki/Classification)
 - [X] [Shortest Path Algorithms](https://en.wikipedia.org/wiki/Shortest_path_problem)
 - [X] [Image Processing Algorithms](https://en.wikipedia.org/wiki/Digital_image_processing)
+- [X] [Activation Functions](https://en.wikipedia.org/wiki/Activation_function)
+- [X] [Loss functions](https://en.wikipedia.org/wiki/Loss_function)
 
 > [!Tip]
 > We are currently looking for contributions on machine learning classes and algorithms!

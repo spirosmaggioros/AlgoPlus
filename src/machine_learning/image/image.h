@@ -1,7 +1,6 @@
 #ifndef img_H
 #define img_H
 
-#include <cinttypes>
 #ifdef __cplusplus
 #include <iostream>
 #include <vector>
@@ -9,6 +8,7 @@
 #include <cmath>
 #include <cstdint>
 #include <cassert>
+#include <cinttypes>
 #endif
 
 
