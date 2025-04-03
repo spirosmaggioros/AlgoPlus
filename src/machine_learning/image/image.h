@@ -51,19 +51,19 @@ public:
     * @brief _height function
     * @return int: the height of the image
     */
-    int _height() const { return this -> height; }
+    inline int _height() const { return this -> height; }
 
     /**
     * @brief width function
     * @return int: the width of the image
     */
-    int _width() const { return this -> width; }
+    inline int _width() const { return this -> width; }
 
     /**
     * @brief get_2d_array function
     * @return vector<vector<int32_t> >: the 2d array of the image
     */
-    std::vector<std::vector<int32_t> > get_2d_array() const { return this->img; }
+    inline std::vector<std::vector<int32_t> > get_2d_array() const { return this->img; }
 
     /**
     * @brief get_point function
@@ -71,14 +71,14 @@ public:
     * @param y: the second dimension
     * @return int: the value of Img(x, y)
     */
-    int get_point(const int x, const int y) const { return this->img[x][y]; }
+    inline int get_point(const int x, const int y) const { return this->img[x][y]; }
 
     /**
     * @brief set_point function
     * @param x: the first dimension
     * @param y: the second dimension
     */
-    void set_point(int x, int y, int val) { this->img[x][y] = val; }
+    inline void set_point(int x, int y, int val) { this->img[x][y] = val; }
 
     /**
     * @brief add_2_point function
@@ -87,7 +87,7 @@ public:
     * @param val: the value you want to add to the point img(x, y)
     */
     template <typename T>
-    void add_2_point(const int x, const int y, const T val){
+    inline void add_2_point(const int x, const int y, const T val){
         img[x][y] += val;
     }
 
@@ -97,7 +97,7 @@ public:
     * @param y: second coordinate
     * @return int32_t: the value of img(x, y)
     */
-    int32_t get_point(const int x, const int y){
+    inline int32_t get_point(const int x, const int y){
         return img[x][y];
     }
 
@@ -107,7 +107,7 @@ public:
     * @return true if the image is black and white
     * @return false otherwise
     */
-    bool binary() const {
+    inline bool binary() const {
         for (int i = 0; i<height; i++) {
             for (int j = 0; j<width; j++) {
                 if (img[i][j] != 0 && img[i][j] != 255) {
@@ -125,7 +125,7 @@ public:
     * @return vector<vector<T> > the resulted image
     */
     template <typename T>
-    Image add(const T img2) const {
+    inline Image add(const T img2) const {
         if constexpr (std::is_same_v<T, std::vector<std::vector<int32_t> > >) {
             assert(!img2.empty());
             assert(img2.size() == img.size());
@@ -157,7 +157,7 @@ public:
     * @return vector<vector<int32_t> > the resulted image
     */
     template <typename T>
-    Image sub(const T img2) const {
+    inline Image sub(const T img2) const {
         if constexpr (std::is_same_v<T, std::vector<std::vector<int32_t> > >) {
             assert(!img2.empty());
             assert(img2.size() == img.size());
@@ -189,7 +189,7 @@ public:
     * @return vector<vector<T> > the resulted image
     */
     template <typename T>
-    Image mul(const T img2) const {
+    inline Image mul(const T img2) const {
         if constexpr (std::is_same_v<T, std::vector<std::vector<int32_t> > >) {
             assert(!img2.empty());
             assert(img2.size() == img.size());
@@ -220,7 +220,7 @@ public:
     * @return vector<vector<T> > the resulted image
     */
     template <typename T>
-    Image apply_filter2d(std::vector<std::vector<T> > &filter) const{
+    inline Image apply_filter2d(std::vector<std::vector<T> > &filter) const{
         assert(this->height > 0 && this->width > 0);
         assert(filter.size() == 3 && filter[0].size() == 3);
 
@@ -259,7 +259,7 @@ public:
     /**
     * @brief overloaded operator << for Image class
     */
-    friend std::ostream & operator << (std::ostream &out, const Image &img) {
+    inline friend std::ostream & operator << (std::ostream &out, const Image &img) {
         int height = img._height(), width = img._width();
 
         auto write = [&](const int &start_at, const int &end_at) -> void {

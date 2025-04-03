@@ -90,7 +90,7 @@ public:
     std::vector<std::pair<double, double> > get_noise();
 };
 
-int64_t DBSCAN::nextId(int64_t cluster_id){
+inline int64_t DBSCAN::nextId(int64_t cluster_id){
     try{
         if(cluster_id < -1){
             throw std::logic_error("cluster_id can't be less than -1");
@@ -151,7 +151,7 @@ bool DBSCAN::ExpandCluster(std::vector<std::pair<double, double> > setOfPoints, 
     return false;
 }
 
-std::vector<std::pair<double, double> > DBSCAN::get_query(std::vector<std::pair<double, double> > setOfPoints, std::pair<double, double> point, double Eps){
+inline std::vector<std::pair<double, double> > DBSCAN::get_query(std::vector<std::pair<double, double> > setOfPoints, std::pair<double, double> point, double Eps){
     std::vector<std::pair<double, double> > ans;
     for(size_t i = 0; i<setOfPoints.size(); i++){
         std::pair<double, double> curr = setOfPoints[i];
@@ -162,11 +162,11 @@ std::vector<std::pair<double, double> > DBSCAN::get_query(std::vector<std::pair<
     return ans;
 }
 
-double DBSCAN::dist(std::pair<double, double> a, std::pair<double, double> b){
+inline double DBSCAN::dist(std::pair<double, double> a, std::pair<double, double> b){
     return sqrt( pow(b.second - a.second, 2) + pow(b.first - a.first, 2) );
 }
 
-std::map< std::pair<double, double>, int64_t> DBSCAN::get_clusters(){
+inline std::map< std::pair<double, double>, int64_t> DBSCAN::get_clusters(){
     std::map< std::pair<double, double>, int64_t> ans;
     for(size_t i = 0; i<setOfPoints.size(); i++){
         if(points[setOfPoints[i]] != -1){
@@ -176,7 +176,7 @@ std::map< std::pair<double, double>, int64_t> DBSCAN::get_clusters(){
     return ans;
 }
 
-std::vector< std::pair<double, double>> DBSCAN::get_noise(){
+inline std::vector< std::pair<double, double>> DBSCAN::get_noise(){
     std::vector< std::pair<double, double> > ans;
     for(size_t i = 0; i<setOfPoints.size(); i++){
         if(points[setOfPoints[i]] == -1){

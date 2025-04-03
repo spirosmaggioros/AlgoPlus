@@ -16,7 +16,7 @@ namespace laplacian_detection {
     * @param threshold  threshold(as threhold goes up, the model becomes more selective)
     * @return std::vector<std::vector<int32_t> >
     */
-    std::vector<std::vector<int32_t> > apply_point_detection(const std::vector<std::vector<int32_t> > img, const double threshold) {
+    inline std::vector<std::vector<int32_t> > apply_point_detection(const std::vector<std::vector<int32_t> > img, const double threshold) {
         int height = img.size();
         int width = img[0].size();
         std::vector<std::vector<int32_t> > kernel = {{-1, -1, -1}, {-1, 8, -1}, {-1, -1, -1}};

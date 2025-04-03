@@ -156,6 +156,8 @@ cd build/tests
 
 4. **Promote** the repository on your local workshop/seminar and **get a shout-out**.
 
+**Please have in mind that this work is open source and free to use under the Apache 2.0 licence. Please feel free
+to cite the repo or our contributors for this work**.
 See more [here](.github/CONTRIBUTE/CONTRIBUTE.md).
 
 For any information or questions, please contact Spiros at **spirosmag@ieee.org**

@@ -39,7 +39,7 @@ public:
         * @param u: the node ID
         * @param val: the heuristic value of node u
         */
-    void insert_node(T u, double val){
+    inline void insert_node(T u, double val){
         nodes[u] = val;
     }
 
@@ -51,7 +51,7 @@ public:
         * @return true if there exist an edge between u and v
         * @return false otherwise
         */
-    bool has_edge(T u, T v){
+    inline bool has_edge(T u, T v){
         if(adj.find(u) != adj.end()){
             for(std::pair<T, double> &x : adj[u]){
                 if(x.first == v){
@@ -67,7 +67,7 @@ public:
         * @param u: the first node
         * @param v: the second node
         */
-    void add_edge(T u, T v){
+    inline void add_edge(T u, T v){
         try{
             if(nodes.find(u) != nodes.end() && nodes.find(v) != nodes.end()){
                 adj[u].push_back(std::make_pair(v, nodes[v]));
@@ -88,7 +88,7 @@ public:
         * @return true if search found the end node.
         * @return false otherwise
         */
-    bool search(T start, T end){
+    inline bool search(T start, T end){
         if(adj.empty()){
             return false;
         }

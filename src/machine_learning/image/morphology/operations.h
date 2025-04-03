@@ -14,7 +14,7 @@ namespace morphology_operations{
     * @param image the input image
     * @return std::vector<std::vector<int32_t> > the resulted(dilated) image
     */
-    std::vector<std::vector<int32_t> > dilate(const std::vector<std::vector<int32_t> > &image){
+    inline std::vector<std::vector<int32_t> > dilate(const std::vector<std::vector<int32_t> > &image){
         Image img(image);
         assert(img.binary());
         int height = img._height();
@@ -38,7 +38,7 @@ namespace morphology_operations{
     * @param image the input image
     * @return std::vector<std::vector<int32_t> > the resulted(eroted) image
     */
-    std::vector<std::vector<int32_t> > erote(const std::vector<std::vector<int32_t> > &image){
+    inline std::vector<std::vector<int32_t> > erote(const std::vector<std::vector<int32_t> > &image){
         Image img(image);
         assert(img.binary());
         int height = img._height();
@@ -63,7 +63,7 @@ namespace morphology_operations{
     * @param image the input image
     * @return std::vector<std::vector<int32_t> > the resulted(opened) image
     */
-    std::vector<std::vector<int32_t> > open(const std::vector<std::vector<int32_t> > &image){
+    inline std::vector<std::vector<int32_t> > open(const std::vector<std::vector<int32_t> > &image){
         Image img(image);
         assert(img.binary());
         std::vector<std::vector<int32_t> > resulted_img = erote(image); // first erote the image
@@ -77,7 +77,7 @@ namespace morphology_operations{
     * @param image the input image
     * @return std::vector<std::vector<int32_t> > the resulted(closed) image
     */
-    std::vector<std::vector<int32_t> > close(const std::vector<std::vector<int32_t> > &image){
+    inline std::vector<std::vector<int32_t> > close(const std::vector<std::vector<int32_t> > &image){
         Image img(image);
         assert(img.binary());
         std::vector<std::vector<int32_t> > resulted_img = dilate(image);

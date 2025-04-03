@@ -96,7 +96,7 @@ public:
     * assigns the closest centroid to point x
     * @ param x: the input vector
     */
-    void assign_to_closest(std::vector<double> &x)
+    inline void assign_to_closest(std::vector<double> &x)
     {
         std::vector<double> id = this->cluster_centers[0];
         int index = 0;
@@ -119,7 +119,7 @@ public:
     * @ param cluster: the input cluster
     * @ return vector<int>: the centroid of the cluster
     */
-    std::vector<double> get_centroid(std::vector<std::vector<double>> cluster)
+    inline std::vector<double> get_centroid(std::vector<std::vector<double>> cluster)
     {
         double sum_x = 0, sum_y = 0, n = cluster.size();
         for (auto &x : cluster)
@@ -137,7 +137,7 @@ public:
     * @ return pair<vector<int64_t>, map<int64_t, int> >: the centroids and the assignments of the clustering algorithm
     *
     */
-    std::pair<std::vector<std::vector<double>>, std::map<std::vector<double>, int64_t>> fit()
+    inline std::pair<std::vector<std::vector<double>>, std::map<std::vector<double>, int64_t>> fit()
     {
         return std::make_pair(cluster_centers, assignments);
     }

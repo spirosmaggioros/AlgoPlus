@@ -50,7 +50,7 @@ public:
     * @brief create_tree function
     * creates the tree in recursive fashion, from the leafs up to the root
     */
-    void create_tree(){
+    inline void create_tree(){
         compute_weights();
         while(_weights.size() != 1){
             auto first_node = _weights.top();
@@ -69,7 +69,7 @@ public:
     * @brief decode function
     * @return unordered_map<string, string>: the resulted encoding
     */
-    std::unordered_map<std::string, std::string> decode(){
+    inline std::unordered_map<std::string, std::string> decode(){
         std::vector<int> v(MAX_DEPTH);
         int top = 0;
         std::unordered_map<std::string, std::string> decoded;

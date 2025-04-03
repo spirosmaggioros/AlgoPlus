@@ -49,7 +49,7 @@ public:
         * @param u: the node ID
         * @val: the heuristic value of node u
         */
-    void insert_node(T u, double val) {
+    inline void insert_node(T u, double val) {
         nodes[u] = val;
     }
 
@@ -60,7 +60,7 @@ public:
         * @return true if there exist an edge between u and v
         * @return false otherwise
         */
-    bool has_edge(T u, T v){
+    inline bool has_edge(T u, T v){
         if(adj.find(u) != adj.end()){
             for(std::pair<T, double> &x : adj[u]){
                 if(x.first == v){
@@ -77,7 +77,7 @@ public:
         * @param v: the second node
         * @param dist: the distance between u and v
         */
-    void add_edge(T u, T v, double dist){
+    inline void add_edge(T u, T v, double dist){
         try{
             if(nodes.find(u) != nodes.end() && nodes.find(v) != nodes.end()){
                 adj[u].push_back(std::make_pair(v, dist));
@@ -97,7 +97,7 @@ public:
         * @param end: end node
         * @return vector<T>: the shortest path from start to end
         */
-    std::vector<T> shortest_path(T start, T end){
+    inline std::vector<T> shortest_path(T start, T end){
         auto reconstruct_path = [&](std::unordered_map<T, T> cameFrom, T curr){
             std::vector<T> path = {curr};
             while(cameFrom.find(curr) != cameFrom.end()){

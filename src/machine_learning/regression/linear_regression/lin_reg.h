@@ -47,7 +47,7 @@ public:
     * @return pair<double,double> the values of a and b
     *
     */
-    std::pair<double, double> get_results(){
+    inline std::pair<double, double> get_results(){
         int64_t n = this->data.size();
         for(auto & x : data){
             x_mean += x[0];
@@ -69,7 +69,7 @@ public:
     * @param x: the value of x which we want to predict y
     * @return double: the predicted value of y
     */
-    double predict(double x) {
+    inline double predict(double x) {
         if(Sxx == 0.0 || Sxy == 0.0) {
             get_results();
         }
