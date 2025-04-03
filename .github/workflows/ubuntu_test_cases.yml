@@ -2,7 +2,7 @@ name: ubuntu-tests
 
 on:
   push:
-    branches: ["workflow-testing"]
+    branches: ["workflow-testing", "nn"]
   pull_request:
     branches: ["workflow-testing"]
 
