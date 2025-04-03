@@ -76,9 +76,12 @@ public:
             const std::vector<std::vector<double> > data,
             const double lr=0.001,
             const double bias=0.001,
-            int epochs=10
+            const int epochs=10
         ) {
         assert(!data.empty());
+        assert(epochs >= 0);
+        assert(lr > 0);
+
         for (auto & x: data) {
             assert(x.back() == 0 || x.back() == 1);
         }
