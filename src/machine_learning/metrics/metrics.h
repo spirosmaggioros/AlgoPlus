@@ -241,7 +241,6 @@ namespace metrics {
             }
             return -bce / double(n);
         }
-
     }
 }
 
