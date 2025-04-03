@@ -17,7 +17,7 @@ namespace median_filter{
     * @param values: 1d vector that holds the values of the mask
     * @param mat: the 2d (3x3)mask
     */
-    void set_values(std::vector<int32_t> &values, const std::vector<std::vector<int32_t> > &mat){
+    inline void set_values(std::vector<int32_t> &values, const std::vector<std::vector<int32_t> > &mat){
         int height = mat.size(), width = mat[0].size();
         int index = 0;
         for(int x = 0; x < height; x++){
@@ -33,7 +33,7 @@ namespace median_filter{
     * @return vector<vector<int32_t> >: the resulted image after applying the 3x3 filter
     *
     */
-    std::vector<std::vector<int32_t> > apply_median_filter(const std::vector<std::vector<int32_t> > &image){
+    inline std::vector<std::vector<int32_t> > apply_median_filter(const std::vector<std::vector<int32_t> > &image){
         Image img(image);
         int height = img._height();
         int width = img._width();

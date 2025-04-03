@@ -16,7 +16,7 @@ namespace sharpening_filter{
     * @param image(Class Image): the input image
     * @return vector<vector<int32_t> > : the resulted image after applying the laplacian filter
     */
-    std::vector<std::vector<int32_t> > apply_sharpening_filter(const std::vector<std::vector<int32_t> > &image){
+    inline std::vector<std::vector<int32_t> > apply_sharpening_filter(const std::vector<std::vector<int32_t> > &image){
         Image img(image);
         std::vector<std::vector<int32_t> > kernel = {{0, -1, 0}, {-1, 5, -1}, {0, -1, 0}};
         return img.apply_filter2d(kernel).get_2d_array();

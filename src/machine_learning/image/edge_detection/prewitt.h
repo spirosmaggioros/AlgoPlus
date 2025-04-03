@@ -19,7 +19,7 @@ namespace prewitt{
     * @param G the input 2d array
     * @return vector<vector<int32_t> > the squared root 2d array
     */
-    std::vector<std::vector<int32_t> > square(const std::vector<std::vector<int32_t> > &G){
+    inline std::vector<std::vector<int32_t> > square(const std::vector<std::vector<int32_t> > &G){
         int height = G.size();
         int width = G[0].size();
         std::vector<std::vector<int32_t> > res_img(height, std::vector<int32_t>(width));
@@ -37,7 +37,7 @@ namespace prewitt{
     * @param image the input image
     * @return std::vector<std::vector<int32_t> > the resulted image after applying the prewitt mask
     */
-    std::vector<std::vector<int32_t> > Prewitt(const std::vector<std::vector<int32_t> > &image){
+    inline std::vector<std::vector<int32_t> > Prewitt(const std::vector<std::vector<int32_t> > &image){
         Image img(image);
         std::vector<std::vector<int32_t> > k1 = {{-1, -1, -1}, {0, 0, 0}, {1, 1, 1}};
         std::vector<std::vector<int32_t> > k2 = {{-1, 0, 1}, {-1, 0, 1}, {-1, 0, 1}};

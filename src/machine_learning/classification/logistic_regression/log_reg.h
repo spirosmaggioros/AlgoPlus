@@ -105,7 +105,7 @@ public:
      * @brief fits the input to the classifier,
      * performs gradient descent using the predictors and learning rate.
      */
-    void fit() {
+    inline void fit() {
         for (int epoch = 0; epoch<this->epochs_; epoch++) {
             for (size_t j = 0; j<this->data_.size(); j++) {
                 double h = h_theta(j);
