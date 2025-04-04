@@ -23,7 +23,8 @@ private:
 public:
     /*
     * @brief default constructor for perceptron class
-    * @param data: the input data, as usual, the last item on each sub-vector is the label
+    * @param data: 2D vector, The input data. As usual, the last element of each sub-vector
+    *              represents the label of the row
     * @param epochs(int): The number of epochs
     * @param learning_rate(double): The learning rate
     */
