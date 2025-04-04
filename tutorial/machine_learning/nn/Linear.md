@@ -23,8 +23,8 @@ layer.forward(data);
 
 Updates the weights and the bias of the layer. nn::Linear::update_weights takes 3 parameters, the input data(tensor),
 the error of the current iteration and the learning rate. The weights are updated using gradient descent:
-$W^{(l)}_{ij} = W^{(l)}_{ij} - \alpha \frac{\partial}{\partial W^{(l)}_{ij}} J(W, b)$
-$b^{(l)}_i = b^{(l)}_i - \alpha \frac{\partial}{\partial b^{(l)}_i} J(W, b)$
+$W^{(l)}_{ij} = W^{(l)}_{ij} - \alpha \frac{\partial}{\partial W^{(l)}_{ij}} J(W, b)$ for the weights and
+$b^{(l)}_i = b^{(l)}_i - \alpha \frac{\partial}{\partial b^{(l)}_i} J(W, b)$ for bias.
 
 ```cpp
 // training process...
