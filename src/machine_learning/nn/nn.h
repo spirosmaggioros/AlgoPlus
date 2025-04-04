@@ -54,7 +54,7 @@ inline nn::Linear::Linear(int in_features, int out_features, bool bias)
     std::random_device rd;
     std::mt19937 gen(rd());
     std::uniform_real_distribution<double> dist(-1.0, 1.0);
-    this->weight = std::vector<std::vector<double> >(in_features, std::vector<double>(out_features, 0.0));
+    this->weight = std::vector<std::vector<double> >(out_features, std::vector<double>(in_features, 0.0));
     for (auto &w_vec: this->weight) {
         for (auto &w: w_vec) {
             w = dist(gen);
