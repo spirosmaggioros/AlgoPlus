@@ -67,6 +67,16 @@ You can see more [examples](/examples) or follow the [Tutorials](/tutorial).
 
 ### Classes
 
+**Machine Learning(NEW!)**
+- [X] [Clustering Algorithms](https://en.wikipedia.org/wiki/Cluster_analysis)
+- [X] [Encoders](https://en.wikipedia.org/wiki/Autoencoder)
+- [X] [Regression Algorithms](https://en.wikipedia.org/wiki/Regression_analysis)
+- [X] [Classification Algorithms](https://en.wikipedia.org/wiki/Classification)
+- [X] [Shortest Path Algorithms](https://en.wikipedia.org/wiki/Shortest_path_problem)
+- [X] [Image Processing Algorithms](https://en.wikipedia.org/wiki/Digital_image_processing)
+- [X] [Activation Functions](https://en.wikipedia.org/wiki/Activation_function)
+- [X] [Loss functions](https://en.wikipedia.org/wiki/Loss_function)
+
 **Graphs**
 - [X] [Di-Graph](https://en.wikipedia.org/wiki/Directed_graph)
 - [X] [Graph](https://en.wikipedia.org/wiki/Graph_(discrete_mathematics))
@@ -103,16 +113,6 @@ You can see more [examples](/examples) or follow the [Tutorials](/tutorial).
 - [X] [Queue](https://en.wikipedia.org/wiki/Queue_(abstract_data_type))
 - [X] [Hash Table](https://en.wikipedia.org/wiki/Hash_table)
 - [X] [Range Minimum Query](https://en.wikipedia.org/wiki/Range_minimum_query#:~:text=In%20computer%20science%2C%20a%20range,common%20prefix%20problem%20(LCP).)
-
-**Machine Learning(NEW!)**
-- [X] [Clustering Algorithms](https://en.wikipedia.org/wiki/Cluster_analysis)
-- [X] [Encoders](https://en.wikipedia.org/wiki/Autoencoder)
-- [X] [Regression Algorithms](https://en.wikipedia.org/wiki/Regression_analysis)
-- [X] [Classification Algorithms](https://en.wikipedia.org/wiki/Classification)
-- [X] [Shortest Path Algorithms](https://en.wikipedia.org/wiki/Shortest_path_problem)
-- [X] [Image Processing Algorithms](https://en.wikipedia.org/wiki/Digital_image_processing)
-- [X] [Activation Functions](https://en.wikipedia.org/wiki/Activation_function)
-- [X] [Loss functions](https://en.wikipedia.org/wiki/Loss_function)
 
 > [!Tip]
 > We are currently looking for contributions on machine learning classes and algorithms!
