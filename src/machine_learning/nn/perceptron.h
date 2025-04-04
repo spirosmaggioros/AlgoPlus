@@ -23,11 +23,16 @@ private:
 public:
     /*
     * @brief default constructor for perceptron class
-    * @param data: the input data, as usual, the last item on each sub-vector is the label
+    * @param data: 2D vector, The input data. As usual, the last element of each sub-vector
+    *              represents the label of the row
     * @param epochs(int): The number of epochs
     * @param learning_rate(double): The learning rate
     */
-    explicit perceptron(std::vector<std::vector<double> > const&, const int epochs=100, const double learning_rate=0.001);
+    explicit perceptron(
+        std::vector<std::vector<double> > const&,
+        const int epochs=100,
+        const double learning_rate=0.001
+    );
     
     /*
     * @brief fit a single perceptron on the input data
