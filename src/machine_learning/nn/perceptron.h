@@ -5,6 +5,7 @@
 #include <vector>
 #include <cassert>
 #include "nn.h"
+#include "../metrics/metrics.h"
 #include "../activation/activation_functions.h"
 #endif
 
@@ -66,17 +67,22 @@ inline perceptron::perceptron(
 
 inline void perceptron::fit() {
     for (int epoch=0; epoch<this->epochs_; epoch++) {
-        int wrong = 0;
+        std::vector<double> y_pred;
         for (size_t i = 0; i<this->data_.size(); i++) {
-            double y_pred = (this->weights_.forward(this->data_[i])[0] > 0) ? 1.0 : -1.0;
-            double err = y_pred - this->labels_[i];
+            double y_pred_ = (this->weights_.forward(this->data_[i])[0] > 0) ? 1.0 : -1.0;
+            y_pred.push_back(y_pred_);
+            double err = y_pred_ - this->labels_[i];
             if (err != 0) {
                 this->weights_.update_weights(this->data_[i], err, this->learning_rate_);
-                wrong += 1;
             }
         }
-
-        std::cout << "Epoch: " << epoch + 1 << " classified: " << wrong << " examples wrong" << '\n';
+        
+        std::cout << "Epoch: " << epoch + 1 << ": "
+          << "Accuracy: "      << metrics::accuracy_score(this->labels_, y_pred)
+          << " | f1_score: "   << metrics::f1_score(this->labels_, y_pred)
+          << " | Recall: "     << metrics::recall(this->labels_, y_pred)
+          << " | Precision: "  << metrics::precision(this->labels_, y_pred)
+          << '\n';
     }
 }
 

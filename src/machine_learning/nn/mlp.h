@@ -6,6 +6,7 @@
 #include <cassert>
 #include "nn.h"
 #include "../activation/activation_functions.h"
+#include "../metrics/metrics.h"
 #endif
 
 
@@ -78,28 +79,33 @@ inline MLP::MLP(
 
 inline void MLP::fit() {
     for (int epoch=0; epoch<this->epochs_; epoch++) {
-        int wrong = 0;
+        std::vector<double> y_pred;
         for (size_t i = 0; i<this->data_.size(); i++) {
             std::vector<double> out_ = this->data_[i];
             for (nn::Linear &layer: this->seq_) { out_ = layer.forward(out_); }
 
             // double y_pred;
-            double y_pred = (out_[0] > 0.0) ? 1.0 : -1.0;
+            double y_pred_ = (out_[0] > 0.0) ? 1.0 : -1.0;
+            y_pred.push_back(y_pred_);
             // TODO: Perform multiclass classification
             // else {
             //     std::vector<double> logits = activation::softmax(out_);
             //     y_pred = std::max_element(logits.begin(), logits.end()) - logits.begin();
             //     std::cout << y_pred << '\n';
             // }
-            double err = y_pred - this->labels_[i];
+            double err = y_pred_ - this->labels_[i];
 
             if (err != 0) {
                 for (nn::Linear &layer: this->seq_) { layer.update_weights(this->data_[i], err, this->learning_rate_); }
-                wrong++;
             }
         }
+        std::cout << "Epoch: " << epoch + 1 << ": "
+          << "Accuracy: "      << metrics::accuracy_score(this->labels_, y_pred)
+          << " | f1_score: "   << metrics::f1_score(this->labels_, y_pred)
+          << " | Recall: "     << metrics::recall(this->labels_, y_pred)
+          << " | Precision: "  << metrics::precision(this->labels_, y_pred)
+          << '\n';
 
-        std::cout << "Epoch: " << epoch + 1 << " classified: " << wrong << " examples wrong" << '\n';
     }
 }
 
