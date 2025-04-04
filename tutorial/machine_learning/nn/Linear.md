@@ -1,6 +1,6 @@
 ### Mini tutorial for nn::Linear class
 
-##**default constructor of nn::Linear**
+## **default constructor of nn::Linear**
 
 nn::Linear takes 3 total parameters: in_features: int, out_features: int and bias: bool.
 ```cpp
