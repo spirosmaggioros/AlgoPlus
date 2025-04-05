@@ -1,11 +1,9 @@
 name: "cpp linter"
-
 on:
   push:
     branches: [ "main", "nn" ]
   pull_request:
     branches: [ "main", "nn" ]
-
 
 jobs:
   linter-build:
@@ -13,6 +11,8 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
+
       - name: Super-Linter
         uses: super-linter/super-linter@v7.3.0
-
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
