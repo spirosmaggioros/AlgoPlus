@@ -1,0 +1,16 @@
+name: "cpp linter"
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+
+jobs:
+  linter-build:
+    runs-on: macos-latest
+    steps:
+      - name: Super-Linter
+        uses: super-linter/super-linter@v7.3.0
+
