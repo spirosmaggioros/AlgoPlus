@@ -1,7 +1,7 @@
 #ifndef RED_BLACK_TREE_H
 #define RED_BLACK_TREE_H
 
-#ifdef TREE_VISUALIZATION_H
+#ifdef ENABLE_TREE_VISUALIZATION
 #include "../../visualization/tree_visual/tree_visualization.h"
 #endif
 
@@ -297,7 +297,7 @@ template <typename T> class red_black_tree {
      *@param _elements: you can directly pass a vector<T> so you don't have to do
      *insert multiple times.
      */
-    explicit red_black_tree(std::vector<T> _elements = {}) noexcept : root(nullptr) {
+    inline explicit red_black_tree(std::vector<T> _elements = {}) noexcept : root(nullptr) {
         for (T& x : _elements) {
             this->insert(x);
         }
@@ -307,19 +307,19 @@ template <typename T> class red_black_tree {
      * @brief Copy constructor for red black tree class
      * @param rb the tree we want to copy
      */
-    explicit red_black_tree(const red_black_tree& rb) : root(rb.root), _size(rb._size) {}
+    inline explicit red_black_tree(const red_black_tree& rb) : root(rb.root), _size(rb._size) {}
 
     /**
      * @brief Destructor for red black tree class
      */
-    ~red_black_tree() noexcept { root = nullptr; }
+    inline ~red_black_tree() noexcept { root = nullptr; }
 
     /**
      * @brief operator = for red black tree class
      * @param rb the tree we want to copy
      * @return red_black_tree&
      */
-    red_black_tree<T>& operator=(const red_black_tree<T>& rb) {
+    inline red_black_tree<T>& operator=(const red_black_tree<T>& rb) {
         root = rb.root;
         _size = rb._size;
         return *this;
@@ -330,20 +330,20 @@ template <typename T> class red_black_tree {
      * @param rb the tree we want to compare
      * @return true if they are same, false otherwise
      */
-    bool operator==(const red_black_tree<T>& rb) const { return this->root == rb.root; }
+    inline bool operator==(const red_black_tree<T>& rb) const { return this->root == rb.root; }
 
     /**
      *@brief search function.
      *@param key: key to be searched.
      *@returns true if the key exists in the tree.
      */
-    bool search(T key) { return _search(key); }
+    inline bool search(T key) { return _search(key); }
 
     /**
      *@brief insert function.
      *@param key: key to be inserted.
      */
-    void insert(T key) {
+    inline void insert(T key) {
         std::shared_ptr<node> p = nullptr;
         std::shared_ptr<node> x = this->root;
         while (x) {
@@ -370,7 +370,7 @@ template <typename T> class red_black_tree {
      *@brief remove function.
      *@param key: key to be removed.
      */
-    void remove(T key) {
+    inline void remove(T key) {
         std::shared_ptr<node> t_node = root;
         while (t_node && t_node->info != key) {
             if (key < t_node->info)
@@ -387,12 +387,12 @@ template <typename T> class red_black_tree {
      *
      * @return size_t the size of the tree
      */
-    size_t size() const { return _size; }
+    inline size_t size() const { return _size; }
 
     /**
      * @brief clear function
      */
-    void clear() {
+    inline void clear() {
         root = nullptr;
         _size = 0;
     }
@@ -401,7 +401,7 @@ template <typename T> class red_black_tree {
      *@brief inorder function.
      *@returns vector<T>, the elements inorder.
      */
-    std::vector<T> inorder() const {
+    inline std::vector<T> inorder() const {
         std::vector<T> path;
         _inorder([&](T callbacked) { path.push_back(callbacked); }, root);
         return path;
@@ -411,7 +411,7 @@ template <typename T> class red_black_tree {
      *@brief postorder function.
      *@returns vector<T>, the elements postorder.
      */
-    std::vector<T> postorder() const {
+    inline std::vector<T> postorder() const {
         std::vector<T> path;
         _postorder([&](T callbacked) { path.push_back(callbacked); }, root);
         return path;
@@ -421,7 +421,7 @@ template <typename T> class red_black_tree {
      *@brief preorder function.
      *@returns vector<T>, the elements preorder.
      */
-    std::vector<T> preorder() const {
+    inline std::vector<T> preorder() const {
         std::vector<T> path;
         _preorder([&](T callbacked) { path.push_back(callbacked); }, root);
         return path;
@@ -431,7 +431,7 @@ template <typename T> class red_black_tree {
      * @brief level order function
      * @return vector<vector<T>>, the level order traversal of the tree
      */
-    std::vector<std::vector<T>> level_order() const {
+    inline std::vector<std::vector<T>> level_order() const {
         std::vector<std::vector<T>> path;
         std::queue<std::shared_ptr<node>> q;
         q.push(root);
@@ -457,7 +457,7 @@ template <typename T> class red_black_tree {
     /**
      * @brief operator << for red black tree class
      */
-    friend std::ostream& operator<<(std::ostream& out, red_black_tree<T>& rb) {
+    inline friend std::ostream& operator<<(std::ostream& out, red_black_tree<T>& rb) {
         std::vector<T> order = rb.inorder();
         for (int i = 0; i < order.size(); i++) {
             if (i == order.size() - 1)
@@ -474,7 +474,7 @@ template <typename T> class red_black_tree {
      * @brief pointer that points to begin
      * @return Iterator
      */
-    Iterator begin() {
+    inline Iterator begin() {
         std::vector<T> ino = this->inorder();
         return Iterator(0, ino);
     }
@@ -483,7 +483,7 @@ template <typename T> class red_black_tree {
      * @brief pointer that points to end
      * @return Iterator
      */
-    Iterator end() {
+    inline Iterator end() {
         std::vector<T> ino = this->inorder();
         return Iterator(ino.size(), ino);
     }
@@ -493,7 +493,7 @@ template <typename T> class red_black_tree {
      *@returns .dot file that can be previewed using graphviz in vscode.
      */
 #ifdef TREE_VISUALIZATION_H
-    void visualize() {
+    inline void visualize() {
         std::string _generated;
         if (this->root) {
             if (std::is_same_v<T, char> || std::is_same_v<T, std::string>)

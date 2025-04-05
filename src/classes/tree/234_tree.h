@@ -92,7 +92,7 @@ template <typename T> class ttf_tree {
     }
 };
 
-template <typename T> void ttf_tree<T>::insert(const T& key) {
+template <typename T> inline void ttf_tree<T>::insert(const T& key) {
     std::vector<std::shared_ptr<node>> null_children(4, nullptr);
     if (root == nullptr) {
         std::vector<int> keys = {key};
@@ -232,7 +232,7 @@ template <typename T> void ttf_tree<T>::insert(const T& key) {
     }
 }
 
-template <typename T> bool ttf_tree<T>::search(const T& key) const {
+template <typename T> inline bool ttf_tree<T>::search(const T& key) const {
     std::shared_ptr<node> head = root;
     while (head != nullptr) {
         if (head->numChildren == 2) { // case for 2-node
@@ -270,7 +270,7 @@ template <typename T> bool ttf_tree<T>::search(const T& key) const {
     return false;
 }
 
-template <typename T> std::vector<std::vector<std::vector<T>>> ttf_tree<T>::level_order() const {
+template <typename T> inline std::vector<std::vector<std::vector<T>>> ttf_tree<T>::level_order() const {
     std::vector<std::vector<std::vector<T>>> level_ordered;
     std::queue<std::shared_ptr<node>> q;
     q.push(root);

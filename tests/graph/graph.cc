@@ -1,7 +1,7 @@
+#define ENABLE_GRAPH_VISUALIZATION
 #include "../../src/classes/graph/graph.h"
 #include "../../third_party/catch.hpp"
 #include <string>
-#include "../../src/visualization/graph_visual/graph_visualization.h"
 
 TEST_CASE("testing clearing of a graph") {
     graph<int> g("directed", {{0, {1, 2}}, {1, {3, 4}}, {2, {4, 5}}});
@@ -336,8 +336,6 @@ TEST_CASE("Testing scc function for graph class") {
     REQUIRE(g3.scc() == 4);
 }
 
-#define GRAPH_VISUALIZATION_H
-#ifdef GRAPH_VISUALIZATION_H
 TEST_CASE("Testing visualize for graph class") {
     graph<int> g("directed");
     g.add_edge(0, 1);
@@ -347,4 +345,3 @@ TEST_CASE("Testing visualize for graph class") {
     CHECK_NOTHROW(g.visualize());
 }
 
-#endif

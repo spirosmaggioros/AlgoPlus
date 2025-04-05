@@ -1,7 +1,7 @@
+#define ENABLE_LIST_VISUALIZATION
 #include "../../src/classes/list/circular_linked_list.h"
 #include "../../third_party/catch.hpp"
 #include <string>
-#include "../../src/visualization/list_visual/linked_list_visualization.h"
 
 TEST_CASE("testing search in circular list") {
     // this is an example of a unit test to check if any algo or class works as it
@@ -96,12 +96,8 @@ TEST_CASE("testing operator = in circular list") {
     REQUIRE(v2 == v);
 }
 
-#define LINKED_LIST_VISUALIZATION_H
-#ifdef LINKED_LIST_VISUALIZATION_H
-
 TEST_CASE("Testing circular linked list visualization") {
     circular_linked_list<int> l({2, 4, 6, 7, 12, 9});
     CHECK_NOTHROW(l.visualize());
 }
 
-#endif

@@ -17,7 +17,7 @@ template <typename T> struct fenwick_tree {
      * @brief default constructor of fenwick tree class
      * @param v: the input vector
      */
-    explicit fenwick_tree(const std::vector<T>& v) noexcept : n(int(v.size())) {
+    inline explicit fenwick_tree(const std::vector<T>& v) noexcept : n(int(v.size())) {
         tree = std::vector<T>(n, 0);
         for (int i = 0; i < n; i++) {
             this->update(i, v[i]);
@@ -29,7 +29,7 @@ template <typename T> struct fenwick_tree {
      * @param k: the ending index of the query
      * @return T: the sum of range [0, k]
      */
-    T sum(int k) {
+    inline T sum(int k) {
         T sum = 0;
         for (; k >= 0; k = (k & (k + 1)) - 1) {
             sum += tree[k];
@@ -43,14 +43,14 @@ template <typename T> struct fenwick_tree {
      * @param b: ending index
      * @returns T: the sum of range [a, b]
      */
-    T sum(int a, int b) { return sum(b) - sum(a - 1); }
+    inline T sum(int a, int b) { return sum(b) - sum(a - 1); }
 
     /**
      * @brief update query function
      * @param k: the index
      * @param x: the value that will be added to data[k]
      */
-    void update(int k, int x) {
+    inline void update(int k, int x) {
         for (; k < n; k = k | (k + 1)) {
             tree[k] += x;
         }

@@ -9,6 +9,14 @@ set(package_version "1.0.0")
 
 message(STATUS "Project '${PROJECT_NAME}', package '${package_name}' version: '${package_version}'")
 
+add_definitions(-DENABLE_LINKED_LIST_VISUALIZATION)
+add_definitions(-DENABLE_TREE_VISUALIZATION)
+add_definitions(-DENABLE_GRAPH_VISUALIZATION)
+add_definitions(-DENABLE_FREQUENCY_LIST_VISUALIZATION)
+add_definitions(-DENABLE_DOUBLY_LINKED_LIST_VISUALIZATION)
+add_definitions(-DENABLE_CIRCULAR_LINKED_LIST_VISUALIZATION)
+add_definitions(-DENABLE_WEIGHTED_GRAPH_VISUALIZATION)
+
 if(ENABLE_COVERAGE)
     set(CMAKE_CXX_FLAGS "-O0 -coverage")
 

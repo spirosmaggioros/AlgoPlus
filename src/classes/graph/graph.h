@@ -2,7 +2,7 @@
 #define GRAPH_H
 
 #include <cfloat>
-#ifdef GRAPH_VISUALIZATION_H
+#ifdef ENABLE_GRAPH_VISUALIZATION
 #include "../../visualization/graph_visual/graph_visualization.h"
 #endif
 
@@ -564,7 +564,7 @@ template <typename T> int graph<T>::eulerian() {
     return (odd) ? 1 : 2;
 }
 
-#ifdef GRAPH_VISUALIZATION_H
+#ifdef ENABLE_GRAPH_VISUALIZATION
 template <typename T> void graph<T>::visualize() {
     std::string s;
     if (_type == "directed") {
@@ -1307,7 +1307,7 @@ template <typename T> std::unordered_map<T, double> weighted_graph<T>::bellman_f
     return dist;
 }
 
-#ifdef GRAPH_VISUALIZATION_H
+#ifdef ENABLE_GRAPH_VISUALIZATION
 template <typename T> void weighted_graph<T>::visualize() {
     std::string s;
     if (_type == "directed") {

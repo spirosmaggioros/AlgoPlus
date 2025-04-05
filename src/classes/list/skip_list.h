@@ -26,7 +26,7 @@ template <typename T> class skip_list {
      *@param __PROB: probability of increasing the height each time(by default it
      *should be 0.5).
      */
-    explicit skip_list(int MAX_LEVEL, float PROB) {
+    inline explicit skip_list(int MAX_LEVEL, float PROB) {
         try {
             if (MAX_LEVEL < 5) {
                 MAX_LEVEL = MAX_LEVEL;
@@ -52,7 +52,7 @@ template <typename T> class skip_list {
      *
      * @param s
      */
-    skip_list(const skip_list& s)
+    inline skip_list(const skip_list& s)
         : level(s.level), PROB(s.PROB), MAX_LEVEL(s.MAX_LEVEL), root(s.root) {}
 
     /**
@@ -60,7 +60,7 @@ template <typename T> class skip_list {
      * @param s the list we want to copy
      * @return skip_list&
      */
-    skip_list& operator=(const skip_list& s) {
+    inline skip_list& operator=(const skip_list& s) {
         level = s.level;
         PROB = s.PROB;
         MAX_LEVEL = s.MAX_LEVEL;
@@ -71,13 +71,13 @@ template <typename T> class skip_list {
     /**
      * @brief Destroy the skip list object
      */
-    ~skip_list() noexcept {}
+    inline ~skip_list() noexcept {}
 
     /**
      *@brief insert function.
      *@param key: key to be inserted.
      */
-    void insert(T key) {
+    inline void insert(T key) {
         std::shared_ptr<node> head = root;
         std::vector<std::shared_ptr<node>> update(MAX_LEVEL + 1, nullptr);
 
@@ -113,20 +113,20 @@ template <typename T> class skip_list {
      *
      * @return Iterator
      */
-    Iterator begin() { return Iterator(root->next[0]); }
+    inline Iterator begin() { return Iterator(root->next[0]); }
 
     /**
      * @brief pointer that points to the last element of the list
      *
      * @return Iterator
      */
-    Iterator end() { return Iterator(nullptr); }
+    inline Iterator end() { return Iterator(nullptr); }
 
     /**
      *@brief remove function.
      *@param key: key to be removed(if exist).
      */
-    void remove(T key) {
+    inline void remove(T key) {
         std::shared_ptr<node> x = root;
         std::vector<std::shared_ptr<node>> update(MAX_LEVEL + 1, nullptr);
 
@@ -156,7 +156,7 @@ template <typename T> class skip_list {
      *@param key: key to be searched.
      *@returns true if the key exists in the list.
      */
-    bool search(T key) {
+    inline bool search(T key) {
         std::shared_ptr<node> x = root;
         for (int64_t i = level; i >= 0; i--) {
             while (x->next[i] && x->next[i]->key < key) {
@@ -175,8 +175,8 @@ template <typename T> class skip_list {
      * returns a .dot file that can be previewd with graphviz plugin in vscode
      */
 
-#ifdef LINKED_LIST_VISUALIZATION_H
-    void visualize() {
+#ifdef ENABLE_LIST_VISUALIZATION
+    inline void visualize() {
         std::string generated = this->generate();
         linked_list_visualization::visualize(generated);
     }
@@ -185,7 +185,7 @@ template <typename T> class skip_list {
     /**
      *@brief operator << for skip_list<T> class.
      */
-    friend std::ostream& operator<<(std::ostream& out, skip_list<T>& l) {
+    inline friend std::ostream& operator<<(std::ostream& out, skip_list<T>& l) {
         std::shared_ptr<node> root = l.root;
         out << "{";
         for (int i = 0; i <= l.level; i++) {

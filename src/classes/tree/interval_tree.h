@@ -1,7 +1,7 @@
 #ifndef INTERVAL_TREE_H
 #define INTERVAL_TREE_H
 
-#ifdef TREE_VISUALIZATION_H
+#ifdef ENABLE_TREE_VISUALIZATION
 #include "../../visualization/tree_visual/tree_visualization.h"
 #endif
 
@@ -23,7 +23,7 @@ template <typename T> class interval_tree {
      *
      * @param v : vector<pair<T,T>> initializer
      */
-    interval_tree(std::vector<std::pair<T, T>> v = {}) {
+    inline interval_tree(std::vector<std::pair<T, T>> v = {}) {
         if (!v.empty()) {
             for (auto& x : v) {
                 this->insert({x.first, x.second});
@@ -36,25 +36,25 @@ template <typename T> class interval_tree {
      *
      * @param i the tree we want to copy
      */
-    explicit interval_tree(const interval_tree& i) : root(i.root), _size(i._size) {}
+    inline explicit interval_tree(const interval_tree& i) : root(i.root), _size(i._size) {}
 
     /**
      * @brief operator = for interval tree class
      * @param i the tree we want to copy
      * @return interval_tree&
      */
-    interval_tree& operator=(const interval_tree& i) {
+    inline interval_tree& operator=(const interval_tree& i) {
         root = i.root;
         _size = i._size;
         return *this;
     }
 
-    ~interval_tree() { root = nullptr; }
+    inline ~interval_tree() { root = nullptr; }
 
     /**
      * @brief clear function
      */
-    void clear() {
+    inline void clear() {
         root = nullptr;
         _size = 0;
     }
@@ -63,7 +63,7 @@ template <typename T> class interval_tree {
      *@brief insert function.
      *@param p: interval to be inserted.
      */
-    void insert(std::pair<T, T> p) {
+    inline void insert(std::pair<T, T> p) {
         interval i = interval(p);
         root = _insert(root, i);
         _size++;
@@ -73,7 +73,7 @@ template <typename T> class interval_tree {
      *@brief search function.
      *@returns true if an interval exist in the tree.
      */
-    bool search(std::pair<T, T> p) {
+    inline bool search(std::pair<T, T> p) {
         if (!root) {
             return false;
         }
@@ -88,7 +88,7 @@ template <typename T> class interval_tree {
      *@brief remove function.
      *@param p: interval to be removed.
      */
-    void remove(std::pair<T, T> p) {
+    inline void remove(std::pair<T, T> p) {
         interval i = interval(p);
         root = _remove(root, i);
     }
@@ -99,7 +99,7 @@ template <typename T> class interval_tree {
      *@param p2: second interval.
      *@returns true if p1 overlaps p2.
      */
-    bool overlap(std::pair<T, T> p1, std::pair<T, T> p2) {
+    inline bool overlap(std::pair<T, T> p1, std::pair<T, T> p2) {
         interval i1 = interval(p1), i2 = interval(p2);
         return i1.high >= i2.low && i1.low <= i2.high;
     }
@@ -111,7 +111,7 @@ template <typename T> class interval_tree {
      *
      * @return Iterator
      */
-    Iterator begin() {
+    inline Iterator begin() {
         std::vector<std::pair<T, T>> ino = this->inorder();
         return Iterator(0, ino);
     }
@@ -121,7 +121,7 @@ template <typename T> class interval_tree {
      *
      * @return Iterator
      */
-    Iterator end() {
+    inline Iterator end() {
         std::vector<std::pair<T, T>> ino = this->inorder();
         return Iterator(ino.size(), ino);
     }
@@ -131,13 +131,13 @@ template <typename T> class interval_tree {
      *
      * @return size_t the size of the tree
      */
-    size_t size() { return _size; }
+    inline size_t size() { return _size; }
 
     /**
      *@brief inorder function.
      *@returns vector<pair<T,T>>, the elements inorder.
      */
-    std::vector<std::pair<T, T>> inorder() {
+    inline std::vector<std::pair<T, T>> inorder() {
         std::vector<std::pair<T, T>> path;
         _inorder(
             [&](std::shared_ptr<node> callbacked) {
@@ -151,7 +151,7 @@ template <typename T> class interval_tree {
      *@brief preorder function.
      *@returns vector<pair<T,T>>, the elements preorder.
      */
-    std::vector<std::pair<T, T>> preorder() {
+    inline std::vector<std::pair<T, T>> preorder() {
         std::vector<std::pair<T, T>> path;
         _preorder(
             [&](std::shared_ptr<node> callbacked) {
@@ -165,7 +165,7 @@ template <typename T> class interval_tree {
      *@brief postorder function.
      *@returns vector<pair<T, T>>, the elements postorder.
      */
-    std::vector<std::pair<T, T>> postorder() {
+    inline std::vector<std::pair<T, T>> postorder() {
         std::vector<std::pair<T, T>> path;
         _postorder(
             [&](std::shared_ptr<node> callbacked) {
@@ -179,7 +179,7 @@ template <typename T> class interval_tree {
      *@brief level order function.
      *@returns vector<pair<T, T>>, the level order traversal of the tree
      */
-    std::vector<std::vector<std::pair<T, T>>> level_order() {
+    inline std::vector<std::vector<std::pair<T, T>>> level_order() {
         std::vector<std::vector<std::pair<T, T>>> path;
         std::queue<std::shared_ptr<node>> q;
         q.push(root);
@@ -203,7 +203,7 @@ template <typename T> class interval_tree {
     }
 
 #ifdef TREE_VISUALIZATION_H
-    void visualize() {
+    inline void visualize() {
         std::string _generated = generate_visualization();
         tree_visualization::visualize(_generated);
     }
@@ -212,7 +212,7 @@ template <typename T> class interval_tree {
     /**
      * @brief operator << for interval tree class
      */
-    friend std::ostream& operator<<(std::ostream& out, interval_tree<T>& t) {
+    inline friend std::ostream& operator<<(std::ostream& out, interval_tree<T>& t) {
         std::vector<std::vector<std::pair<T, T>>> order = t.level_order();
         for (std::vector<std::pair<T, T>>& x : order) {
             for (size_t i = 0; i < x.size(); i++) {

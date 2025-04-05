@@ -1,7 +1,7 @@
 #ifndef LINKED_LIST_H
 #define LINKED_LIST_H
 
-#ifdef LINKED_LIST_VISUALIZATION_H
+#ifdef ENABLE_LINKED_LIST_VISUALIZATION
 #include "../../visualization/list_visual/linked_list_visualization.h"
 #endif
 
@@ -24,7 +24,7 @@ template <typename T> class linked_list {
      *@param __elements: you can provide the constructor with a vector of elements
      *so you dont have to do multiple push backs yourself.
      */
-    explicit linked_list(std::vector<T> _elements = {}) noexcept : root(nullptr), tail(nullptr) {
+    inline explicit linked_list(std::vector<T> _elements = {}) noexcept : root(nullptr), tail(nullptr) {
         if (!_elements.empty()) {
             for (T& x : _elements) {
                 this->push_back(x);
@@ -36,14 +36,14 @@ template <typename T> class linked_list {
      * @brief copy constructor for the linked_list class
      * @param l the list we want to copy
      */
-    explicit linked_list(const linked_list& l) : root(l.root), tail(l.tail), _size(l._size) {}
+    inline explicit linked_list(const linked_list& l) : root(l.root), tail(l.tail), _size(l._size) {}
 
     /**
      * @brief operator = for linked list class
      * @param l the list we want to copy
      * @return linked_list&
      */
-    linked_list& operator=(const linked_list& l) {
+    inline linked_list& operator=(const linked_list& l) {
         root = l.root;
         tail = l.tail;
         _size = l._size;
@@ -54,13 +54,13 @@ template <typename T> class linked_list {
      *@brief empty function.
      *Returns true if the list is empty.
      */
-    bool empty() { return root == nullptr; }
+    inline bool empty() { return root == nullptr; }
 
     /**
      *@brief size function.
      *Returns the size of the list.
      */
-    size_t size() { return _size; }
+    inline size_t size() { return _size; }
 
     class Iterator;
 
@@ -69,14 +69,14 @@ template <typename T> class linked_list {
      *
      * @return Iterator
      */
-    Iterator begin() { return Iterator(root); }
+    inline Iterator begin() { return Iterator(root); }
 
     /**
      * @brief pointer that points to end
      *
      * @return Iterator
      */
-    Iterator end() { return Iterator(nullptr); }
+    inline Iterator end() { return Iterator(nullptr); }
 
     /**
      *@brief push_back function.
@@ -123,7 +123,7 @@ template <typename T> class linked_list {
     /**
      *@brief << operator for the linked_list class.
      */
-    friend std::ostream& operator<<(std::ostream& out, linked_list<T>& l1) {
+    inline friend std::ostream& operator<<(std::ostream& out, linked_list<T>& l1) {
         out << '{';
         std::shared_ptr<node> head = l1.root;
         while (head) {
@@ -152,7 +152,7 @@ template <typename T> class linked_list {
     std::string generate();
 };
 
-template <typename T> void linked_list<T>::push_back(T key) {
+template <typename T> inline void linked_list<T>::push_back(T key) {
     std::shared_ptr<node> p = std::make_shared<node>(key);
     if (root == nullptr) {
         root = p;
@@ -163,7 +163,7 @@ template <typename T> void linked_list<T>::push_back(T key) {
     _size++;
 }
 
-template <typename T> void linked_list<T>::push_front(T key) {
+template <typename T> inline void linked_list<T>::push_front(T key) {
     std::shared_ptr<node> p = std::make_shared<node>(key);
     p->next = root;
     if (tail == nullptr) {
@@ -173,7 +173,7 @@ template <typename T> void linked_list<T>::push_front(T key) {
     _size++;
 }
 
-template <typename T> void linked_list<T>::erase(T key) {
+template <typename T> inline void linked_list<T>::erase(T key) {
     if (empty()) {
         return;
     }
@@ -197,7 +197,7 @@ template <typename T> void linked_list<T>::erase(T key) {
     _size--;
 }
 
-template <typename T> bool linked_list<T>::search(T key) {
+template <typename T> inline bool linked_list<T>::search(T key) {
     try {
         if (empty()) {
             return false;
@@ -217,7 +217,7 @@ template <typename T> bool linked_list<T>::search(T key) {
     }
 }
 
-template <typename T> std::vector<T> linked_list<T>::elements() {
+template <typename T> inline std::vector<T> linked_list<T>::elements() {
     std::vector<T> _elements;
 
     if (this->empty()) {
@@ -231,7 +231,7 @@ template <typename T> std::vector<T> linked_list<T>::elements() {
     return _elements;
 }
 
-template <typename T> void linked_list<T>::reverse() {
+template <typename T> inline void linked_list<T>::reverse() {
     std::shared_ptr<node> current = root;
     std::shared_ptr<node> prev{nullptr}, next{nullptr};
 
@@ -244,7 +244,7 @@ template <typename T> void linked_list<T>::reverse() {
     root = prev;
 }
 
-template <typename T> std::string linked_list<T>::generate() {
+template <typename T> inline std::string linked_list<T>::generate() {
     std::string gen;
     gen += "rankdir=LR;";
     gen += '\n';
@@ -291,8 +291,8 @@ template <typename T> std::string linked_list<T>::generate() {
     return gen;
 }
 
-#ifdef LINKED_LIST_VISUALIZATION_H
-template <typename T> void linked_list<T>::visualize() {
+#ifdef ENABLE_LINKED_LIST_VISUALIZATION
+template <typename T> inline void linked_list<T>::visualize() {
     std::string generated = this->generate();
     linked_list_visualization::visualize(generated);
 }

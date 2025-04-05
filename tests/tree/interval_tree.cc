@@ -1,7 +1,7 @@
+#define ENABLE_TREE_VISUALIZATION
 #include "../../src/classes/tree/interval_tree.h"
 #include "../../third_party/catch.hpp"
 #include <string>
-#include "../../src/visualization/tree_visual/tree_visualization.h"
 
 TEST_CASE("testing insertion in interval tree") {
     interval_tree<int> i;

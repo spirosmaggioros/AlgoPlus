@@ -1,7 +1,7 @@
 #ifndef BST_H
 #define BST_H
 
-#ifdef TREE_VISUALIZATION_H
+#ifdef ENABLE_TREE_VISUALIZATION
 #include "../../visualization/tree_visual/tree_visualization.h"
 #endif
 
@@ -24,7 +24,7 @@ template <typename T> class bst {
      *@param __elements: you can directly pass a vector<T> so you don't have to do
      *insert multiple times.
      */
-    explicit bst(std::vector<T> _elements = {}) noexcept : root(nullptr) {
+    inline explicit bst(std::vector<T> _elements = {}) noexcept : root(nullptr) {
         if (!_elements.empty()) {
             for (T& x : _elements) {
                 this->insert(x);
@@ -36,25 +36,25 @@ template <typename T> class bst {
      * @brief Copy constructor for bst class
      * @param b the tree we want to copy
      */
-    explicit bst(const bst& b) : root(b.root), _size(b._size) {}
+    inline explicit bst(const bst& b) : root(b.root), _size(b._size) {}
 
     /**
      * @brief operator = for bst class
      * @param b the tree we want to copy
      * @return bst&
      */
-    bst& operator=(const bst& b) {
+    inline bst& operator=(const bst& b) {
         root = b.root;
         _size = b._size;
         return *this;
     }
 
-    ~bst() noexcept { root = nullptr; }
+    inline ~bst() noexcept { root = nullptr; }
 
     /**
      * @brief clear function
      */
-    void clear() {
+    inline void clear() {
         root = nullptr;
         _size = 0;
     }
@@ -63,7 +63,7 @@ template <typename T> class bst {
      *@brief insert function.
      *@param key: key to be inserted.
      */
-    void insert(T key) {
+    inline void insert(T key) {
         root = _insert(root, key);
         _size++;
     }
@@ -73,13 +73,13 @@ template <typename T> class bst {
      *@param key: key to be searched.
      *@returns true if the key exists in the tree.
      */
-    bool search(T key) { return _search(root, key); }
+    inline bool search(T key) { return _search(root, key); }
 
     /**
      *@brief remove function.
      *@param key: key to be removed.
      */
-    void remove(T key) { root = _remove(root, key); }
+    inline void remove(T key) { root = _remove(root, key); }
 
     class Iterator;
 
@@ -88,7 +88,7 @@ template <typename T> class bst {
      *
      * @return Iterator
      */
-    Iterator begin() {
+    inline Iterator begin() {
         std::vector<T> ino = this->inorder();
         return Iterator(0, ino);
     }
@@ -98,7 +98,7 @@ template <typename T> class bst {
      *
      * @return Iterator
      */
-    Iterator end() {
+    inline Iterator end() {
         std::vector<T> ino = this->inorder();
         return Iterator(ino.size(), ino);
     }
@@ -108,13 +108,13 @@ template <typename T> class bst {
      *
      * @return size_t the size of the tree
      */
-    size_t size() { return _size; }
+    inline size_t size() { return _size; }
 
     /**
      *@brief inorder function.
      *@returns vector<T>, the elements inorder.
      */
-    std::vector<T> inorder() {
+    inline std::vector<T> inorder() {
         std::vector<T> path;
         _inorder([&](std::shared_ptr<node> callbacked) { path.push_back(callbacked->info); }, root);
         return path;
@@ -124,7 +124,7 @@ template <typename T> class bst {
      *@brief preorder function.
      *@returns vector<T>, the elements preorder.
      */
-    std::vector<T> preorder() {
+    inline std::vector<T> preorder() {
         std::vector<T> path;
         _preorder([&](std::shared_ptr<node> callbacked) { path.push_back(callbacked->info); },
                   root);
@@ -135,7 +135,7 @@ template <typename T> class bst {
      *@brief postorder function.
      *@returns vector<T>, the elements postorder.
      */
-    std::vector<T> postorder() {
+    inline std::vector<T> postorder() {
         std::vector<T> path;
         _postorder([&](std::shared_ptr<node> callbacked) { path.push_back(callbacked->info); },
                    root);
@@ -146,7 +146,7 @@ template <typename T> class bst {
      * @brief level order function
      * @return vector<vector<T>>, the level order traversal of the tree
      */
-    std::vector<std::vector<T>> level_order() {
+    inline std::vector<std::vector<T>> level_order() {
         std::vector<std::vector<T>> path;
         std::queue<std::shared_ptr<node>> q;
         q.push(root);
@@ -174,7 +174,7 @@ template <typename T> class bst {
      *@returns .dot file that can be previewed using graphviz in vscode.
      */
 #ifdef TREE_VISUALIZATION_H
-    void visualize() {
+    inline void visualize() {
         std::string _generated = generate_visualization();
         tree_visualization::visualize(_generated);
     }
@@ -183,7 +183,7 @@ template <typename T> class bst {
     /**
      * @brief operator << for bst class
      */
-    friend std::ostream& operator<<(std::ostream& out, bst<T>& t) {
+    inline friend std::ostream& operator<<(std::ostream& out, bst<T>& t) {
         std::vector<T> order = t.inorder();
         for (int i = 0; i < order.size(); i++) {
             if (i != order.size() - 1) {

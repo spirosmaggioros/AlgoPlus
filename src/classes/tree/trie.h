@@ -26,7 +26,7 @@ class trie {
      *
      * @param v : vector of strings for initializer.
      */
-    explicit trie(std::vector<std::string> v = {}) noexcept : root(std::make_shared<node>()) {
+    inline explicit trie(std::vector<std::string> v = {}) noexcept : root(std::make_shared<node>()) {
         if (!v.empty()) {
             for (auto& x : v) {
                 this->insert(x);
@@ -38,14 +38,14 @@ class trie {
      * @brief Copy constructor for trie class
      * @param t the tree we want to copy
      */
-    explicit trie(const trie& t) : root(t.root), _size(t._size) {}
+    inline explicit trie(const trie& t) : root(t.root), _size(t._size) {}
 
     /**
      * @brief operator = for trie class
      * @param t the tree we want to copy
      * @return trie&
      */
-    trie& operator=(const trie& t) {
+    inline trie& operator=(const trie& t) {
         root = t.root;
         _size = t._size;
         return *this;
@@ -55,32 +55,32 @@ class trie {
      *@brief empty function.
      *@returns true if the trie is empty.
      */
-    bool empty() { return root == nullptr; }
+    inline bool empty() { return root == nullptr; }
     /**
      *@brief insert function.
      *@param key: the key to be inserted.
      */
-    void insert(std::string key);
+    inline void insert(std::string key);
 
     /**
      * @brief size function
      *
      * @return size_t the size of the tree
      */
-    size_t size() { return _size; }
+    inline size_t size() { return _size; }
     /**
      *@brief remove function.
      *@param key: the key to be removed.
      */
-    void remove(std::string key);
+    inline void remove(std::string key);
     /**
      *@brief search function.
      *@param key: the key to be searched.
      *@returns true if the word exist in the tree.
      */
-    bool search(std::string key);
+    inline bool search(std::string key);
 
-    friend std::ostream& operator<<(std::ostream& out, trie& t);
+    inline friend std::ostream& operator<<(std::ostream& out, trie& t);
 
   private:
     /**

@@ -1,7 +1,10 @@
 #include "../../third_party/catch.hpp"
 #include <string>
+#include <iostream>
+
+#define ENABLE_TREE_VISUALIZATION
 #include "../../src/classes/tree/avl_tree.h"
-#include "../../src/visualization/tree_visual/tree_visualization.h"
+
 
 TEST_CASE("checking insertions and traversals in avl") {
     avl_tree<int> a1;
@@ -166,14 +169,11 @@ TEST_CASE("Testing get_root function in avl tree") {
 
 TEST_CASE("Testing operator << for avl tree") {
     avl_tree<int> t({1, 10, 2, 8, 6, 5});
-    REQUIRE_NOTHROW(cout << t);
+    REQUIRE_NOTHROW(std::cout << t);
 
     avl_tree<char> tt({'a', 'g', 'd', 'z', 'w', 'f'});
-    REQUIRE_NOTHROW(cout << tt);
+    REQUIRE_NOTHROW(std::cout << tt);
 }
-
-#define TREE_VISUALIZATION_H
-#ifdef TREE_VISUALIZATION_H
 
 TEST_CASE("Testing avl tree visualization") {
     avl_tree<int> t;
@@ -190,4 +190,3 @@ TEST_CASE("Testing avl tree visualization") {
     CHECK_NOTHROW(a.visualize());
 }
 
-#endif

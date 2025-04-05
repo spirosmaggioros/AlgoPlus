@@ -19,7 +19,7 @@ template <typename T> struct seg_tree {
      * @brief default constructor
      * @param v: the input vector
      */
-    explicit seg_tree(const std::vector<T>& v) noexcept : data(v), n(int(v.size())) {
+    inline explicit seg_tree(const std::vector<T>& v) noexcept : data(v), n(int(v.size())) {
         tree = std::vector<T>(2 * v.size(), 0);
         int idx = n - 1;
         for (int i = 2 * n - 1; i >= n; i--) {
@@ -40,7 +40,7 @@ template <typename T> struct seg_tree {
      * @details: indexes are allowed to be from [0, n)
      * @return: the sum of the range[a, b]
      */
-    T sum(int a, int b) {
+    inline T sum(int a, int b) {
         assert(a >= 0 && a <= b && b < n);
         a += n;
         b += n;
@@ -64,7 +64,7 @@ template <typename T> struct seg_tree {
      * @param idx: the passed index
      * @param x: the new value of the index
      */
-    void update(int idx, T x) {
+    inline void update(int idx, T x) {
         assert(idx >= 0 && idx < n);
         idx += n;
         tree[idx] = x;

@@ -1,7 +1,7 @@
+#define ENABLE_TREE_VISUALIZATION
 #include "../../src/classes/tree/bst.h"
 #include "../../third_party/catch.hpp"
 #include <string>
-#include "../../src/visualization/tree_visual/tree_visualization.h"
 
 TEST_CASE("checking insertions and traversals") {
     bst<int> b1;

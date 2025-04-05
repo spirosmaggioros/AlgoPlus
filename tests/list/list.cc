@@ -1,7 +1,7 @@
+#define ENABLE_LIST_VISUALIZATION
 #include "../../third_party/catch.hpp"
 #include <string>
 #include "../../src/classes/list/linked_list.h"
-#include "../../src/visualization/list_visual/linked_list_visualization.h"
 
 TEST_CASE("testing search in single list") {
     // this is an example of a unit test to check if any algo or class works as it
@@ -109,9 +109,6 @@ TEST_CASE("Bug with tail when pushing front and then pushing back") {
     REQUIRE(v == check);
 }
 
-#define LINKED_LIST_VISUALIZATION_H
-#ifdef LINKED_LIST_VISUALIZATION_H
-
 TEST_CASE("Testing linked list visualization") {
     linked_list<char> l;
     l.push_front('d');
@@ -123,5 +120,3 @@ TEST_CASE("Testing linked list visualization") {
 
     CHECK_NOTHROW(l.visualize());
 }
-
-#endif

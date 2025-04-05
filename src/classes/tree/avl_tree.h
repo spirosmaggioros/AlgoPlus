@@ -1,7 +1,7 @@
 #ifndef AVL_TREE_H
 #define AVL_TREE_H
 
-#ifdef TREE_VISUALIZATION_H
+#ifdef ENABLE_TREE_VISUALIZATION
 #include "../../visualization/tree_visual/tree_visualization.h"
 #endif
 
@@ -13,6 +13,7 @@
 #include <vector>
 #endif
 
+
 /**
  *@brief Class for AVL tree.
  */
@@ -23,7 +24,7 @@ template <typename T> class avl_tree {
      *@param __elements: you can directly pass a vector<T> so you don't have to do
      *insert multiple times.
      */
-    explicit avl_tree(std::vector<T> _elements = {}) noexcept : root(nullptr) {
+    inline explicit avl_tree(std::vector<T> _elements = {}) noexcept : root(nullptr) {
         if (!_elements.empty()) {
             for (T& x : _elements) {
                 this->insert(x);
@@ -35,14 +36,14 @@ template <typename T> class avl_tree {
      * @brief Copy constructor for avl tree class
      * @param a the tree we want to copy
      */
-    explicit avl_tree(const avl_tree& a) : root(a.root), _size(a._size) {}
+    inline explicit avl_tree(const avl_tree& a) : root(a.root), _size(a._size) {}
 
     /**
      * @brief operator = for avl tree class
      * @param a the tree we want to copy
      * @return avl_tree&
      */
-    avl_tree& operator=(const avl_tree& a) {
+    inline avl_tree& operator=(const avl_tree& a) {
         root = a.root;
         _size = a._size;
         return *this;
@@ -52,13 +53,13 @@ template <typename T> class avl_tree {
      * @brief Destroy the avl tree object
      *
      */
-    ~avl_tree() noexcept {}
+    inline ~avl_tree() noexcept {}
 
     /**
      *@brief insert function.
      *@param key: key to be inserted.
      */
-    void insert(T key) {
+    inline void insert(T key) {
         root = _insert(root, key);
         _size++;
     }
@@ -67,7 +68,7 @@ template <typename T> class avl_tree {
      *@brief clear function
      *Erase all the nodes from the tree.
      */
-    void clear() {
+    inline void clear() {
         root = nullptr;
         _size = 0;
         return;
@@ -78,14 +79,14 @@ template <typename T> class avl_tree {
      * @return T: the root value
      * Created for bubble.h container
      */
-    T get_root() { return this->root->info; }
+    inline T get_root() { return this->root->info; }
 
     /**
      *@brief search function.
      *@param key: key to be searched.
      *@returns true if the key exists in the tree.
      */
-    bool search(T key) { return _search(root, key); }
+    inline bool search(T key) { return _search(root, key); }
 
     class Iterator;
 
@@ -94,7 +95,7 @@ template <typename T> class avl_tree {
      *
      * @return Iterator
      */
-    Iterator begin() {
+    inline Iterator begin() {
         std::vector<T> ino = this->inorder();
         return Iterator(0, ino);
     }
@@ -104,7 +105,7 @@ template <typename T> class avl_tree {
      *
      * @return Iterator
      */
-    Iterator end() {
+    inline Iterator end() {
         std::vector<T> ino = this->inorder();
         return Iterator(ino.size(), ino);
     }
@@ -114,19 +115,19 @@ template <typename T> class avl_tree {
      *
      * @return size_t the size of the tree
      */
-    size_t size() const { return _size; }
+    inline size_t size() const { return _size; }
 
     /**
      *@brief remove function.
      *@param key: key to be removed.
      */
-    void remove(T key) { root = _remove(root, key); }
+    inline void remove(T key) { root = _remove(root, key); }
 
     /**
      *@brief inorder function.
      *@returns vector<T>, the elements inorder.
      */
-    std::vector<T> inorder() const {
+    inline std::vector<T> inorder() const {
         std::vector<T> path;
         _inorder([&](std::shared_ptr<node> callbacked) { path.push_back(callbacked->info); }, root);
         return path;
@@ -135,7 +136,7 @@ template <typename T> class avl_tree {
     @brief preorder function.
     *@returns vector<T>, the elements preorder.
     */
-    std::vector<T> preorder() const {
+    inline std::vector<T> preorder() const {
         std::vector<T> path;
         _preorder([&](std::shared_ptr<node> callbacked) { path.push_back(callbacked->info); },
                   root);
@@ -145,7 +146,7 @@ template <typename T> class avl_tree {
      *@brief postorder function.
      *@returns vector<T>, the elements postorder.
      */
-    std::vector<T> postorder() const {
+    inline std::vector<T> postorder() const {
         std::vector<T> path;
         _postorder([&](std::shared_ptr<node> callbacked) { path.push_back(callbacked->info); },
                    root);
@@ -156,7 +157,7 @@ template <typename T> class avl_tree {
      *@brief level order function.
      *@returns vector<T>, the level order traversal of the tree
      */
-    std::vector<std::vector<T>> level_order() {
+    inline std::vector<std::vector<T>> level_order() {
         std::vector<std::vector<T>> path;
         std::queue<std::shared_ptr<node>> q;
         q.push(root);
@@ -185,7 +186,7 @@ template <typename T> class avl_tree {
      */
 
 #ifdef TREE_VISUALIZATION_H
-    void visualize() {
+    inline void visualize() {
         std::string _generated = generate_visualization();
         tree_visualization::visualize(_generated);
     }
@@ -194,7 +195,7 @@ template <typename T> class avl_tree {
     /**
      * @brief operator << for avl_tree class
      */
-    friend std::ostream& operator<<(std::ostream& out, avl_tree<T>& t) {
+    inline friend std::ostream& operator<<(std::ostream& out, avl_tree<T>& t) {
         std::vector<T> order = t.inorder();
         for (int i = 0; i < order.size(); i++) {
             if (i != order.size() - 1) {

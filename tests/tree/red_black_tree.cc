@@ -1,8 +1,8 @@
+#define ENABLE_TREE_VISUALIZATION
 #include "../../src/classes/tree/red_black_tree.h"
 #include "../../third_party/catch.hpp"
 #include <algorithm>
 #include <string>
-#include "../../src/visualization/tree_visual/tree_visualization.h"
 
 TEST_CASE("Testing red black tree insertion and traversal") {
     red_black_tree<int> rb;

@@ -1,7 +1,7 @@
 #ifndef TREE_H
 #define TREE_H
 
-#ifdef TREE_VISUALIZATION_H
+#ifdef ENABLE_TREE_VISUALIZATION
 #include "../../visualization/tree_visual/tree_visualization.h"
 #endif
 
@@ -34,7 +34,7 @@ template <typename T> class tree {
      * @param v: the input vector of pairs(string and T) to avoid doing multiple
      * insertions
      */
-    explicit tree(std::vector<std::pair<std::string, T>> v = {}) noexcept : root(nullptr) {
+    inline explicit tree(std::vector<std::pair<std::string, T>> v = {}) noexcept : root(nullptr) {
         if (!v.empty()) {
             for (std::pair<std::string, T>& x : v) {
                 this->insert(x.first, x.second);
@@ -47,7 +47,7 @@ template <typename T> class tree {
      * @param direction: string, directions for the insertion of value info
      * @param info: the value of the new node
      */
-    void insert(std::string direction, T info) {
+    inline void insert(std::string direction, T info) {
         std::shared_ptr<node> nn = std::make_shared<node>(info);
         if (!root) {
             _size++;
@@ -78,7 +78,7 @@ template <typename T> class tree {
      * @return true: if the key exist in the tree
      * @return false: otherwise
      */
-    bool search(T key) {
+    inline bool search(T key) {
         std::queue<std::shared_ptr<node>> q;
         q.push(root);
         while (!q.empty()) {
@@ -102,12 +102,12 @@ template <typename T> class tree {
 
     class Iterator;
 
-    Iterator begin() {
+    inline Iterator begin() {
         std::vector<T> ino = this->inorder();
         return Iterator(0, ino);
     }
 
-    Iterator end() {
+    inline Iterator end() {
         std::vector<T> ino = this->inorder();
         return Iterator(ino.size(), ino);
     }
@@ -116,7 +116,7 @@ template <typename T> class tree {
      * @brief inorder traversal
      * @return vector<T>: the inorder traversal of the tree
      */
-    std::vector<T> inorder() {
+    inline std::vector<T> inorder() {
         std::vector<T> ino;
         _inorder([&](std::shared_ptr<node> callbacked) { ino.push_back(callbacked->info); }, root);
         return ino;
@@ -126,7 +126,7 @@ template <typename T> class tree {
      * @brief postorder function
      * @return vector<T>: the postorder traversal of the tree
      */
-    std::vector<T> postorder() {
+    inline std::vector<T> postorder() {
         std::vector<T> path;
         _postorder([&](std::shared_ptr<node> callbacked) { path.push_back(callbacked->info); },
                    root);
@@ -137,7 +137,7 @@ template <typename T> class tree {
      * @brief preorder function
      * @return vector<T>: the preorder traversal of the tree
      */
-    std::vector<T> preorder() {
+    inline std::vector<T> preorder() {
         std::vector<T> path;
         _preorder([&](std::shared_ptr<node> callbacked) { path.push_back(callbacked->info); },
                   root);
@@ -148,7 +148,7 @@ template <typename T> class tree {
      * @brief level order function
      * @return vector<vector<T>>: the level order traversal of the tree
      */
-    std::vector<std::vector<T>> level_order() {
+    inline std::vector<std::vector<T>> level_order() {
         std::vector<std::vector<T>> path;
         std::queue<std::shared_ptr<node>> q;
         q.push(root);
@@ -174,7 +174,7 @@ template <typename T> class tree {
     /**
      * @brief operator << for bst class
      */
-    friend std::ostream& operator<<(std::ostream& out, tree<T>& t) {
+    inline friend std::ostream& operator<<(std::ostream& out, tree<T>& t) {
         std::vector<T> order = t.inorder();
         for (int i = 0; i < order.size(); i++) {
             if (i != order.size() - 1) {
@@ -191,7 +191,7 @@ template <typename T> class tree {
      *@returns .dot file that can be previewed using graphviz in vscode.
      */
 #ifdef TREE_VISUALIZATION_H
-    void visualize() {
+    inline void visualize() {
         std::string _generated = generate_visualization();
         tree_visualization::visualize(_generated);
     }

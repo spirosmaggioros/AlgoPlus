@@ -17,7 +17,7 @@ class segment_tree {
      * @brief default constructor for segment tree
      * @param v: input vector
      */
-    explicit segment_tree(const std::vector<int>& v) noexcept : data(v) {
+    inline explicit segment_tree(const std::vector<int>& v) noexcept : data(v) {
         int x = (int)(ceil(log2(v.size())));
         int max_size = 2 * (int)(pow(2, x) - 1);
         this->root = std::vector<int>(max_size);
@@ -29,7 +29,7 @@ class segment_tree {
      * @param idx: the index we want to update
      * @param key: the new key(i.e. v[idx] = key)
      */
-    void update(int idx, int key) {
+    inline void update(int idx, int key) {
         if (idx < 0 || idx > data.size()) {
             return;
         }
@@ -45,7 +45,7 @@ class segment_tree {
      * @param query_end: the ending index
      * @return int: the sum of the window [query_start, query_end]
      */
-    int sum(int query_start, int query_end) {
+    inline int sum(int query_start, int query_end) {
         if (query_start < 0 || query_end >= data.size() || query_start > query_end) {
             return -1;
         }

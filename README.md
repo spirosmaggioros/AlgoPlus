@@ -46,8 +46,8 @@ int main(){
 }
 
 
+#define ENABLE_GRAPH_VISUALIZATION
 #include "graph/graph.h"
-#include "visualization/graph_visualization.h"
 // And of course, every data structure that you need!
 int main(){
   weighted_graph<int> g("undirected");

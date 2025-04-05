@@ -1,7 +1,7 @@
 #ifndef DOUBLY_LINKED_LIST_H
 #define DOUBLY_LINKED_LIST_H
 
-#ifdef LINKED_LIST_VISUALIZATION_H
+#ifdef ENABLE_LINKED_LIST_VISUALIZATION
 #include "../../visualization/list_visual/linked_list_visualization.h"
 #endif
 
@@ -23,7 +23,7 @@ template <typename T> class doubly_linked_list {
      *@param __elements: you can provide the constructor with a vector of elements
      *so you dont have to do multiple push backs yourself.
      */
-    explicit doubly_linked_list(std::vector<T> _elements = {}) noexcept
+    inline explicit doubly_linked_list(std::vector<T> _elements = {}) noexcept
         : root(nullptr), tail(nullptr) {
         if (!_elements.empty()) {
             for (T& x : _elements) {
@@ -36,7 +36,7 @@ template <typename T> class doubly_linked_list {
      * @brief copy constructor for the doubly_linked_list class
      * @param l the list we want to copy
      */
-    explicit doubly_linked_list(const doubly_linked_list& l)
+    inline explicit doubly_linked_list(const doubly_linked_list& l)
         : root(l.root), tail(l.tail), _size(l._size) {}
 
     /**
@@ -44,7 +44,7 @@ template <typename T> class doubly_linked_list {
      * @param l the list we want to copy
      * @return doubly_linked_list&
      */
-    doubly_linked_list& operator=(const doubly_linked_list& l) {
+    inline doubly_linked_list& operator=(const doubly_linked_list& l) {
         root = l.root;
         tail = l.tail;
         _size = l._size;
@@ -55,13 +55,13 @@ template <typename T> class doubly_linked_list {
      *@brief empty function.
      *@returns true if the list is empty.
      */
-    bool empty() { return root == nullptr; }
+    inline bool empty() { return root == nullptr; }
 
     /**
      *@brief size function.
      *Returns the size of the list.
      */
-    size_t size() { return _size; }
+    inline size_t size() { return _size; }
 
     class Iterator;
 
@@ -70,62 +70,62 @@ template <typename T> class doubly_linked_list {
      *
      * @return Iterator
      */
-    Iterator begin() { return Iterator(root); }
+    inline Iterator begin() { return Iterator(root); }
 
     /**
      * @brief pointer that points to end
      *
      * @return Iterator
      */
-    Iterator end() { return Iterator(nullptr); }
+    inline Iterator end() { return Iterator(nullptr); }
 
     /**
      *@brief search function.
      *@param key: the key to be searched.
      *@returns true if key exists in the list.
      */
-    bool search(T key);
+    inline bool search(T key);
 
     /**
      *@brief push_back function.
      *@param key: the key to be pushed back.
      */
-    void push_back(T key);
+    inline void push_back(T key);
 
     /**
      *@brief push_front function.
      *@param key: the key to be pushed in front.
      */
-    void push_front(T key);
+    inline void push_front(T key);
 
     /**
      *@brief erase function.
      *@param key: the key to be erased from the list.
      */
-    void erase(T key);
+    inline void erase(T key);
 
     /**
      *@brief elements function.
      *@returns vector<T>: the elements of the list.
      */
-    std::vector<T> elements();
+    inline std::vector<T> elements();
 
     /**
      * @brief reverse function.
      * reverses the linked list.
      */
-    void reverse();
+    inline void reverse();
 
     /**
      * @brief visualize function
      * returns a .dot file that can be previewd with graphviz plugin in vscode
      */
-    void visualize();
+    inline void visualize();
 
     /**
      *@brief << operator for the doubly_linked_list class.
      */
-    friend std::ostream& operator<<(std::ostream& out, doubly_linked_list<T>& l) {
+    inline friend std::ostream& operator<<(std::ostream& out, doubly_linked_list<T>& l) {
         out << '{';
         std::shared_ptr<node> head = l.root;
         while (head) {

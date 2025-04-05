@@ -1,7 +1,7 @@
 #ifndef FREQUENCY_LIST_H
 #define FREQUENCY_LIST_H
 
-#ifdef LINKED_LIST_VISUALIZATION_H
+#ifdef ENABLE_LINKED_LIST_VISUALIZATION
 #include "../../visualization/list_visual/linked_list_visualization.h"
 #endif
 
@@ -42,7 +42,7 @@ template <typename T> class frequency_list {
      * @tparam T The type of elements stored in the frequency_list.
      * @param data An optional initializer list of elements.
      */
-    explicit frequency_list(std::vector<T> data = {}) noexcept : head(nullptr), tail(nullptr) {
+    inline explicit frequency_list(std::vector<T> data = {}) noexcept : head(nullptr), tail(nullptr) {
         if (!data.empty()) {
             for (const auto& item : data) {
                 this->push_back(item);
@@ -59,7 +59,7 @@ template <typename T> class frequency_list {
      *
      * @param list The frequency_list object to copy from.
      */
-    frequency_list(const frequency_list<T>& list) : head(nullptr), tail(nullptr), size(0) {
+    inline frequency_list(const frequency_list<T>& list) : head(nullptr), tail(nullptr), size(0) {
         for (auto iter = list.head; iter != nullptr; iter = iter->next) {
             this->push_back(iter->data);
         }
@@ -247,7 +247,7 @@ template <typename T> class frequency_list {
 };
 
 template <typename T>
-void frequency_list<T>::swap_nodes(std::shared_ptr<node> a, std::shared_ptr<node> b) {
+inline void frequency_list<T>::swap_nodes(std::shared_ptr<node> a, std::shared_ptr<node> b) {
     if (a == nullptr || b == nullptr || a->next != b)
         return;
 
@@ -272,7 +272,7 @@ void frequency_list<T>::swap_nodes(std::shared_ptr<node> a, std::shared_ptr<node
         head = b;
 }
 
-template <typename T> void frequency_list<T>::update_list_sequence() {
+template <typename T> inline void frequency_list<T>::update_list_sequence() {
     auto current_node = head;
 
     while (current_node != nullptr && current_node->next != nullptr) {
@@ -287,7 +287,7 @@ template <typename T> void frequency_list<T>::update_list_sequence() {
     }
 }
 
-template <typename T> void frequency_list<T>::reset_frequency() {
+template <typename T> inline void frequency_list<T>::reset_frequency() {
     auto iterator = head;
 
     while (iterator != nullptr) {
@@ -296,7 +296,7 @@ template <typename T> void frequency_list<T>::reset_frequency() {
     }
 }
 
-template <typename T> void frequency_list<T>::push_front(T data) {
+template <typename T> inline void frequency_list<T>::push_front(T data) {
     auto Iterator = head;
 
     // Iterating over the list to find if the same data is already present
@@ -322,7 +322,7 @@ template <typename T> void frequency_list<T>::push_front(T data) {
     size++;
 }
 
-template <typename T> void frequency_list<T>::erase(T key) {
+template <typename T> inline void frequency_list<T>::erase(T key) {
     auto iterator = head;
 
     // special case: deleting the head node
@@ -352,7 +352,7 @@ template <typename T> void frequency_list<T>::erase(T key) {
     }
 }
 
-template <typename T> int64_t frequency_list<T>::get_frequency(T key) {
+template <typename T> inline int64_t frequency_list<T>::get_frequency(T key) {
     auto iterator = head;
 
     while (iterator != nullptr) {
@@ -366,7 +366,7 @@ template <typename T> int64_t frequency_list<T>::get_frequency(T key) {
     return -1;
 }
 
-template <typename T> bool frequency_list<T>::search(T key) {
+template <typename T> inline bool frequency_list<T>::search(T key) {
     auto iterator = head;
 
     while (iterator != nullptr) {
@@ -382,7 +382,7 @@ template <typename T> bool frequency_list<T>::search(T key) {
     return false;
 }
 
-template <typename T> void frequency_list<T>::push_back(T data) {
+template <typename T> inline void frequency_list<T>::push_back(T data) {
     if (this->empty()) {
         head = std::make_shared<node>(data, 1, std::weak_ptr<node>(), nullptr);
         return;
@@ -406,7 +406,7 @@ template <typename T> void frequency_list<T>::push_back(T data) {
     size++;
 }
 
-template <typename T> std::vector<std::pair<T, int64_t>> frequency_list<T>::elements() {
+template <typename T> inline std::vector<std::pair<T, int64_t>> frequency_list<T>::elements() {
     std::vector<std::pair<T, int64_t>> ans;
     std::shared_ptr<node> root = head;
     while (root) {
@@ -416,7 +416,7 @@ template <typename T> std::vector<std::pair<T, int64_t>> frequency_list<T>::elem
     return ans;
 }
 
-template <typename T> std::string frequency_list<T>::generate() {
+template <typename T> inline std::string frequency_list<T>::generate() {
     std::string gen = "";
     gen += "rankdir=LR;";
     gen += '\n';
@@ -482,8 +482,8 @@ template <typename T> std::string frequency_list<T>::generate() {
     return gen;
 }
 
-#ifdef LINKED_LIST_VISUALIZATION_H
-template <typename T> void frequency_list<T>::visualize() {
+#ifdef ENABLE_LINKED_LIST_VISUALIZATION
+template <typename T> inline void frequency_list<T>::visualize() {
     std::string generated = this->generate();
     linked_list_visualization::visualize(generated);
 }

@@ -1,7 +1,7 @@
+#define ENABLE_LIST_VISUALIZATION
 #include "../../third_party/catch.hpp"
 #include <string>
 #include "../../src/classes/list/doubly_linked_list.h"
-#include "../../src/visualization/list_visual/linked_list_visualization.h"
 
 // TEST DOES NOT PASS
 TEST_CASE("testing push back in doubly list") {
@@ -187,11 +187,7 @@ TEST_CASE("Testing searching for issue #88") {
     REQUIRE(l5.search(3) == false);
 }
 
-#define LINKED_LIST_VISUALIZATION_H
-#ifdef LINKED_LIST_VISUALIZATION_H
-
 TEST_CASE("Testing visualization of doubly linked list") {
     doubly_linked_list<int> l({1, 5, 12, 7, 8, 4});
     CHECK_NOTHROW(l.visualize());
 }
-#endif

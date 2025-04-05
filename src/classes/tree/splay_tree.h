@@ -1,7 +1,7 @@
 #ifndef SPLAY_TREE_H
 #define SPLAY_TREE_H
 
-#ifdef TREE_VISUALIZATION_H
+#ifdef ENABLE_TREE_VISUALIZATION
 #include "../../visualization/tree_visual/tree_visualization.h"
 #endif
 
@@ -39,7 +39,7 @@ template <typename T> class splay_tree {
      *
      * @param v vector<T> initializer vector
      */
-    explicit splay_tree(std::vector<T> v = {}) noexcept : root(nullptr) {
+    inline explicit splay_tree(std::vector<T> v = {}) noexcept : root(nullptr) {
         if (!v.empty()) {
             for (T& x : v) {
                 this->insert(x);
@@ -51,25 +51,25 @@ template <typename T> class splay_tree {
      * @brief Copy constructor for splay tree class
      * @param s the tree we want to copy
      */
-    explicit splay_tree(const splay_tree& s) : root(s.root), _size(s._size) {}
+    inline explicit splay_tree(const splay_tree& s) : root(s.root), _size(s._size) {}
 
     /**
      * @brief operator = for splay tree class
      * @param s the tree we want to copy
      * @return splay_tree&
      */
-    splay_tree& operator=(const splay_tree& s) {
+    inline splay_tree& operator=(const splay_tree& s) {
         root = s.root;
         _size = s._size;
         return *this;
     }
 
-    ~splay_tree() { root = nullptr; }
+    inline ~splay_tree() { root = nullptr; }
 
     /**
      * @brief clear function
      */
-    void clear() {
+    inline void clear() {
         root = nullptr;
         _size = 0;
     }
@@ -79,7 +79,7 @@ template <typename T> class splay_tree {
      *
      * @param key the key to be inserted
      */
-    void insert(T key) {
+    inline void insert(T key) {
         root = _insert(root, key);
         _size++;
     }
@@ -89,7 +89,7 @@ template <typename T> class splay_tree {
      *
      * @param key the key to be removed
      */
-    void remove(T key) {
+    inline void remove(T key) {
         root = _remove(root, key);
         _size--;
     }
@@ -101,7 +101,7 @@ template <typename T> class splay_tree {
      * @return true if key exists in the tree
      * @return false otherwise
      */
-    bool search(T key) {
+    inline bool search(T key) {
         std::shared_ptr<node> ans = splay(root, key);
         return (ans && ans->info == key);
     }
@@ -111,16 +111,16 @@ template <typename T> class splay_tree {
      *
      * @return size_t the size of the tree
      */
-    size_t size() { return _size; }
+    inline size_t size() { return _size; }
 
     class Iterator;
 
-    Iterator begin() {
+    inline Iterator begin() {
         std::vector<T> ino = this->inorder();
         return Iterator(0, ino);
     }
 
-    Iterator end() {
+    inline Iterator end() {
         std::vector<T> ino = this->inorder();
         return Iterator(ino.size(), ino);
     }
@@ -129,7 +129,7 @@ template <typename T> class splay_tree {
      *@brief inorder function.
      *@returns vector<T>, the elements inorder.
      */
-    std::vector<T> inorder() {
+    inline std::vector<T> inorder() {
         std::vector<T> path;
         _inorder([&](std::shared_ptr<node> callbacked) { path.push_back(callbacked->info); }, root);
         return path;
@@ -139,7 +139,7 @@ template <typename T> class splay_tree {
      *@brief preorder function.
      *@returns vector<T>, the elements preorder.
      */
-    std::vector<T> preorder() {
+    inline std::vector<T> preorder() {
         std::vector<T> path;
         _preorder([&](std::shared_ptr<node> callbacked) { path.push_back(callbacked->info); },
                   root);
@@ -150,7 +150,7 @@ template <typename T> class splay_tree {
      *@brief postorder function.
      *@returns vector<T>, the elements postorder.
      */
-    std::vector<T> postorder() {
+    inline std::vector<T> postorder() {
         std::vector<T> path;
         _postorder([&](std::shared_ptr<node> callbacked) { path.push_back(callbacked->info); },
                    root);
@@ -161,7 +161,7 @@ template <typename T> class splay_tree {
      * @brief level order function
      * @return vector<vector<T>>, the level order traversal of the tree
      */
-    std::vector<std::vector<T>> level_order() {
+    inline std::vector<std::vector<T>> level_order() {
         std::vector<std::vector<T>> path;
         std::queue<std::shared_ptr<node>> q;
         q.push(root);
@@ -189,7 +189,7 @@ template <typename T> class splay_tree {
      *@returns .dot file that can be previewed using graphviz in vscode.
      */
 #ifdef TREE_VISUALIZATION_H
-    void visualize() {
+    inline void visualize() {
         std::string _generated = generate_visualization();
         tree_visualization::visualize(_generated);
     }
@@ -198,7 +198,7 @@ template <typename T> class splay_tree {
     /**
      * @brief operator << for splay tree class
      */
-    friend std::ostream& operator<<(std::ostream& out, splay_tree<T>& t) {
+    inline friend std::ostream& operator<<(std::ostream& out, splay_tree<T>& t) {
         std::vector<T> order = t.inorder();
         for (int i = 0; i < order.size(); i++) {
             if (i != order.size() - 1) {
