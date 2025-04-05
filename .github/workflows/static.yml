@@ -33,7 +33,7 @@ jobs:
         uses: actions/checkout@v4
       - name: Doxyfiles
         run:
-          cd docs/ && doxygen
+          brew install doxygen && cd docs/ && doxygen
       - name: Setup Pages
         uses: actions/configure-pages@v4
       - name: Upload artifact
