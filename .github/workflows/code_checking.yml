@@ -9,7 +9,7 @@ on:
 
 jobs:
   linter-build:
-    runs-on: macos-latest
+    runs-on: ubuntu-latest
     steps:
       - name: Super-Linter
         uses: super-linter/super-linter@v7.3.0
