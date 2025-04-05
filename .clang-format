@@ -1,0 +1,34 @@
+# Based on LLVM but more aligned with your layout
+BasedOnStyle: LLVM
+IndentWidth: 4
+TabWidth: 4
+UseTab: Never        # Use spaces only, not tabs
+
+AllowShortIfStatementsOnASingleLine: false
+AllowShortFunctionsOnASingleLine: Inline
+BreakBeforeBraces: Attach
+ColumnLimit: 100
+DerivePointerAlignment: false
+PointerAlignment: Left
+
+# Keeps includes and preprocessor statements organized
+SortIncludes: true
+IncludeBlocks: Preserve
+IncludeCategories:
+  - Regex:           '^<.*\.h>'
+    Priority:        1
+    SortPriority:    0
+    CaseSensitive:   false
+  - Regex:           '^".*\.h"'
+    Priority:        2
+    SortPriority:    0
+    CaseSensitive:   false
+
+AlignConsecutiveAssignments: false 
+AlignOperands: true
+AlignTrailingComments: true
+SpaceBeforeParens: ControlStatements
+Cpp11BracedListStyle: true
+FixNamespaceComments: true
+ReflowComments: true
+IndentCaseLabels: true

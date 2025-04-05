@@ -1,7 +1,6 @@
 #include "../../src/classes/tree/fenwick_tree.h"
 #include "../../third_party/catch.hpp"
 
-
 TEST_CASE("Testing fenwick tree default constructor") {
     std::vector<int> v = {1, 4, 5, 6, 7};
     CHECK_NOTHROW(fenwick_tree<int>(v));

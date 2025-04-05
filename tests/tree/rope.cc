@@ -1,6 +1,6 @@
-#include "../../src/visualization/tree_visual/tree_visualization.h"
 #include "../../src/classes/tree/rope.h"
 #include "../../third_party/catch.hpp"
+#include "../../src/visualization/tree_visual/tree_visualization.h"
 
 TEST_CASE("Testing rope constructor [1]") {
     rope r("hello world");

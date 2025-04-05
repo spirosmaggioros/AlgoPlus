@@ -14,16 +14,16 @@
 #endif
 
 /**
-* @brief splay tree class
-*/
+ * @brief splay tree class
+ */
 template <typename T> class splay_tree {
-private:
+  private:
     /**
-    * @brief stuct for the node
-    * @param info: the value of the node
-    * @param right: pointer to the right
-    * @param left: pointer to the left
-    */
+     * @brief stuct for the node
+     * @param info: the value of the node
+     * @param right: pointer to the right
+     * @param left: pointer to the left
+     */
     struct node {
         T info;
         std::shared_ptr<node> right;
@@ -33,36 +33,32 @@ private:
     std::shared_ptr<node> root;
     size_t _size{0};
 
-public:
+  public:
     /**
-    * @brief Construct a new splay tree object
-    *
-    * @param v vector<T> initializer vector
-    */
-    explicit splay_tree(std::vector<T> v = {}) noexcept
-        : root(nullptr) {
+     * @brief Construct a new splay tree object
+     *
+     * @param v vector<T> initializer vector
+     */
+    explicit splay_tree(std::vector<T> v = {}) noexcept : root(nullptr) {
         if (!v.empty()) {
-            for (T &x : v) {
+            for (T& x : v) {
                 this->insert(x);
             }
         }
     }
 
     /**
-    * @brief Copy constructor for splay tree class
-    * @param s the tree we want to copy
-    */
-    explicit splay_tree(const splay_tree &s) : root(s.root), _size(s._size) {
-
-
-    }
+     * @brief Copy constructor for splay tree class
+     * @param s the tree we want to copy
+     */
+    explicit splay_tree(const splay_tree& s) : root(s.root), _size(s._size) {}
 
     /**
-    * @brief operator = for splay tree class
-    * @param s the tree we want to copy
-    * @return splay_tree&
-    */
-    splay_tree &operator=(const splay_tree &s) {
+     * @brief operator = for splay tree class
+     * @param s the tree we want to copy
+     * @return splay_tree&
+     */
+    splay_tree& operator=(const splay_tree& s) {
         root = s.root;
         _size = s._size;
         return *this;
@@ -71,50 +67,50 @@ public:
     ~splay_tree() { root = nullptr; }
 
     /**
-    * @brief clear function
-    */
+     * @brief clear function
+     */
     void clear() {
         root = nullptr;
         _size = 0;
     }
 
     /**
-    * @brief insert function
-    *
-    * @param key the key to be inserted
-    */
+     * @brief insert function
+     *
+     * @param key the key to be inserted
+     */
     void insert(T key) {
         root = _insert(root, key);
         _size++;
     }
 
     /**
-    * @brief remove function
-    *
-    * @param key the key to be removed
-    */
+     * @brief remove function
+     *
+     * @param key the key to be removed
+     */
     void remove(T key) {
         root = _remove(root, key);
         _size--;
     }
 
     /**
-    * @brief search function
-    *
-    * @param key
-    * @return true if key exists in the tree
-    * @return false otherwise
-    */
+     * @brief search function
+     *
+     * @param key
+     * @return true if key exists in the tree
+     * @return false otherwise
+     */
     bool search(T key) {
         std::shared_ptr<node> ans = splay(root, key);
         return (ans && ans->info == key);
     }
 
     /**
-    * @brief size function
-    *
-    * @return size_t the size of the tree
-    */
+     * @brief size function
+     *
+     * @return size_t the size of the tree
+     */
     size_t size() { return _size; }
 
     class Iterator;
@@ -130,51 +126,41 @@ public:
     }
 
     /**
-    *@brief inorder function.
-    *@returns vector<T>, the elements inorder.
-    */
+     *@brief inorder function.
+     *@returns vector<T>, the elements inorder.
+     */
     std::vector<T> inorder() {
         std::vector<T> path;
-        _inorder(
-            [&](std::shared_ptr<node> callbacked) {
-                path.push_back(callbacked->info);
-            },
-            root);
+        _inorder([&](std::shared_ptr<node> callbacked) { path.push_back(callbacked->info); }, root);
         return path;
     }
 
     /**
-    *@brief preorder function.
-    *@returns vector<T>, the elements preorder.
-    */
+     *@brief preorder function.
+     *@returns vector<T>, the elements preorder.
+     */
     std::vector<T> preorder() {
         std::vector<T> path;
-        _preorder(
-            [&](std::shared_ptr<node> callbacked) {
-                path.push_back(callbacked->info);
-            },
-            root);
+        _preorder([&](std::shared_ptr<node> callbacked) { path.push_back(callbacked->info); },
+                  root);
         return path;
     }
 
     /**
-    *@brief postorder function.
-    *@returns vector<T>, the elements postorder.
-    */
+     *@brief postorder function.
+     *@returns vector<T>, the elements postorder.
+     */
     std::vector<T> postorder() {
         std::vector<T> path;
-        _postorder(
-            [&](std::shared_ptr<node> callbacked) {
-                path.push_back(callbacked->info);
-            },
-            root);
+        _postorder([&](std::shared_ptr<node> callbacked) { path.push_back(callbacked->info); },
+                   root);
         return path;
     }
 
     /**
-    * @brief level order function
-    * @return vector<vector<T>>, the level order traversal of the tree
-    */
+     * @brief level order function
+     * @return vector<vector<T>>, the level order traversal of the tree
+     */
     std::vector<std::vector<T>> level_order() {
         std::vector<std::vector<T>> path;
         std::queue<std::shared_ptr<node>> q;
@@ -199,9 +185,9 @@ public:
     }
 
     /**
-    *@brief visualize function
-    *@returns .dot file that can be previewed using graphviz in vscode.
-    */
+     *@brief visualize function
+     *@returns .dot file that can be previewed using graphviz in vscode.
+     */
 #ifdef TREE_VISUALIZATION_H
     void visualize() {
         std::string _generated = generate_visualization();
@@ -210,22 +196,21 @@ public:
 #endif
 
     /**
-    * @brief operator << for splay tree class
-    */
-    friend std::ostream & operator << (std::ostream &out, splay_tree<T> &t){
+     * @brief operator << for splay tree class
+     */
+    friend std::ostream& operator<<(std::ostream& out, splay_tree<T>& t) {
         std::vector<T> order = t.inorder();
-        for(int i = 0; i<order.size(); i++){
-            if(i != order.size() - 1){
+        for (int i = 0; i < order.size(); i++) {
+            if (i != order.size() - 1) {
                 out << order[i] << ", ";
-            }
-            else{
+            } else {
                 out << order[i] << '\n';
             }
         }
         return out;
     }
 
-private:
+  private:
     std::shared_ptr<node> rrotate(std::shared_ptr<node> _node) {
         std::shared_ptr<node> y = _node->left;
         _node->left = y->right;
@@ -314,8 +299,7 @@ private:
         return root;
     }
 
-    void _inorder(std::function<void(std::shared_ptr<node>)> callback,
-                  std::shared_ptr<node> root) {
+    void _inorder(std::function<void(std::shared_ptr<node>)> callback, std::shared_ptr<node> root) {
         if (root) {
             _inorder(callback, root->left);
             callback(root);
@@ -365,14 +349,12 @@ private:
             }
         } else {
             if (root->left) {
-                _s += std::to_string(root->info) + "->" +
-                    std::to_string(root->left->info) + "\n" +
-                    _inorder_gen(root->left);
+                _s += std::to_string(root->info) + "->" + std::to_string(root->left->info) + "\n" +
+                      _inorder_gen(root->left);
             }
             if (root->right) {
-                _s += std::to_string(root->info) + "->" +
-                    std::to_string(root->right->info) + "\n" +
-                    _inorder_gen(root->right);
+                _s += std::to_string(root->info) + "->" + std::to_string(root->right->info) + "\n" +
+                      _inorder_gen(root->right);
             }
         }
         return _s;
@@ -380,39 +362,39 @@ private:
 };
 
 /**
-* @brief Iterator class
-*/
+ * @brief Iterator class
+ */
 template <typename T> class splay_tree<T>::Iterator {
-private:
+  private:
     std::vector<T> elements;
     int64_t index;
 
-public:
+  public:
     /**
-    * @brief Construct a new Iterator object
-    *
-    * @param els vector<T> - the elements in inorder fashion
-    */
-    explicit Iterator(const int64_t &index, std::vector<T> &els) noexcept
-    : index(index), elements(els) {}
+     * @brief Construct a new Iterator object
+     *
+     * @param els vector<T> - the elements in inorder fashion
+     */
+    explicit Iterator(const int64_t& index, std::vector<T>& els) noexcept
+        : index(index), elements(els) {}
 
     /**
-    * @brief = operator for Iterator type
-    *
-    * @param index the current index
-    * @return Iterator&
-    */
-    Iterator &operator=(int64_t index) {
+     * @brief = operator for Iterator type
+     *
+     * @param index the current index
+     * @return Iterator&
+     */
+    Iterator& operator=(int64_t index) {
         this->index = index;
         return *(this);
     }
 
     /**
-    * @brief operator ++ for type Iterator
-    *
-    * @return Iterator&
-    */
-    Iterator &operator++() {
+     * @brief operator ++ for type Iterator
+     *
+     * @return Iterator&
+     */
+    Iterator& operator++() {
         if (this->index < elements.size()) {
             this->index++;
         }
@@ -420,10 +402,10 @@ public:
     }
 
     /**
-    * @brief operator ++ for type Iterator
-    *
-    * @return Iterator
-    */
+     * @brief operator ++ for type Iterator
+     *
+     * @return Iterator
+     */
     Iterator operator++(int) {
         Iterator it = *this;
         ++*(this);
@@ -431,11 +413,11 @@ public:
     }
 
     /**
-    * @brief operator -- for type Iterator
-    *
-    * @return Iterator&
-    */
-    Iterator &operator--() {
+     * @brief operator -- for type Iterator
+     *
+     * @return Iterator&
+     */
+    Iterator& operator--() {
         if (this->index > 0) {
             this->index--;
         }
@@ -443,10 +425,10 @@ public:
     }
 
     /**
-    * @brief operator -- for type Iterator
-    *
-    * @return Iterator
-    */
+     * @brief operator -- for type Iterator
+     *
+     * @return Iterator
+     */
     Iterator operator--(int) {
         Iterator it = *this;
         --*(this);
@@ -454,19 +436,19 @@ public:
     }
 
     /**
-    * @brief operator != for type Iterator
-    *
-    * @param it const Iterator
-    * @return true if index == it.index
-    * @return false otherwise
-    */
-    bool operator!=(const Iterator &it) { return index != it.index; }
+     * @brief operator != for type Iterator
+     *
+     * @param it const Iterator
+     * @return true if index == it.index
+     * @return false otherwise
+     */
+    bool operator!=(const Iterator& it) { return index != it.index; }
 
     /**
-    * @brief operator * for type Iterator
-    *
-    * @return T the value of the node
-    */
+     * @brief operator * for type Iterator
+     *
+     * @return T the value of the node
+     */
     T operator*() { return elements[index]; }
 };
 

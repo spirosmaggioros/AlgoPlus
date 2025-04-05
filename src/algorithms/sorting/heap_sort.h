@@ -8,12 +8,11 @@
 #endif
 
 /**
-* @brief heapify method
-* @param arr input array
-* @param parent parent of the index
-*/
-template <typename T>
-static void heapify_method(std::vector<T> &arr, int64_t n, int64_t parent) {
+ * @brief heapify method
+ * @param arr input array
+ * @param parent parent of the index
+ */
+template <typename T> static void heapify_method(std::vector<T>& arr, int64_t n, int64_t parent) {
 
     // largest node
     int64_t largest = parent;
@@ -39,10 +38,10 @@ static void heapify_method(std::vector<T> &arr, int64_t n, int64_t parent) {
 }
 
 /**
-* @brief heap sort function
-* @param arr input array
-*/
-template <typename T> void heap_sort(std::vector<T> &arr) {
+ * @brief heap sort function
+ * @param arr input array
+ */
+template <typename T> void heap_sort(std::vector<T>& arr) {
     int64_t n = arr.size();
     // heapify the array at first
     for (int64_t i = n / 2 - 1; i >= 0; i--) {

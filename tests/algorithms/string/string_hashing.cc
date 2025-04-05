@@ -17,9 +17,9 @@ TEST_CASE("Testing string hasher") {
 TEST_CASE("Testing string hasher size function") {
     string_hasher hash;
     std::string str = "abc";
-    for(int i = 0; i<str.size(); i++){
+    for (int i = 0; i < str.size(); i++) {
         std::string tmp = "";
-        for(int j = i; j<str.size(); j++){
+        for (int j = i; j < str.size(); j++) {
             tmp += str[j];
             hash.insert(tmp);
         }

@@ -4,5 +4,5 @@
 
 // TODO: fill test cases for kmeans clustering
 TEST_CASE("Testing clustering [1] kmeans") {
-  REQUIRE(true == true);
+    REQUIRE(true == true);
 }

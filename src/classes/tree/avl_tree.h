@@ -14,62 +14,59 @@
 #endif
 
 /**
-*@brief Class for AVL tree.
-*/
+ *@brief Class for AVL tree.
+ */
 template <typename T> class avl_tree {
-public:
+  public:
     /**
-    *@brief Contructor for AVL tree class.
-    *@param __elements: you can directly pass a vector<T> so you don't have to do
-    *insert multiple times.
-    */
+     *@brief Contructor for AVL tree class.
+     *@param __elements: you can directly pass a vector<T> so you don't have to do
+     *insert multiple times.
+     */
     explicit avl_tree(std::vector<T> _elements = {}) noexcept : root(nullptr) {
         if (!_elements.empty()) {
-            for (T &x : _elements) {
+            for (T& x : _elements) {
                 this->insert(x);
             }
         }
     }
 
     /**
-    * @brief Copy constructor for avl tree class
-    * @param a the tree we want to copy
-    */
-    explicit avl_tree(const avl_tree &a) : root(a.root), _size(a._size) {
-
-
-    }
+     * @brief Copy constructor for avl tree class
+     * @param a the tree we want to copy
+     */
+    explicit avl_tree(const avl_tree& a) : root(a.root), _size(a._size) {}
 
     /**
-    * @brief operator = for avl tree class
-    * @param a the tree we want to copy
-    * @return avl_tree&
-    */
-    avl_tree &operator=(const avl_tree &a) {
+     * @brief operator = for avl tree class
+     * @param a the tree we want to copy
+     * @return avl_tree&
+     */
+    avl_tree& operator=(const avl_tree& a) {
         root = a.root;
         _size = a._size;
         return *this;
     }
 
     /**
-    * @brief Destroy the avl tree object
-    *
-    */
+     * @brief Destroy the avl tree object
+     *
+     */
     ~avl_tree() noexcept {}
 
     /**
-    *@brief insert function.
-    *@param key: key to be inserted.
-    */
+     *@brief insert function.
+     *@param key: key to be inserted.
+     */
     void insert(T key) {
         root = _insert(root, key);
         _size++;
     }
 
     /**
-    *@brief clear function
-    *Erase all the nodes from the tree.
-    */
+     *@brief clear function
+     *Erase all the nodes from the tree.
+     */
     void clear() {
         root = nullptr;
         _size = 0;
@@ -77,67 +74,61 @@ public:
     }
 
     /**
-    * @brief get_root function
-    * @return T: the root value
-    * Created for bubble.h container
-    */
+     * @brief get_root function
+     * @return T: the root value
+     * Created for bubble.h container
+     */
     T get_root() { return this->root->info; }
 
     /**
-    *@brief search function.
-    *@param key: key to be searched.
-    *@returns true if the key exists in the tree.
-    */
+     *@brief search function.
+     *@param key: key to be searched.
+     *@returns true if the key exists in the tree.
+     */
     bool search(T key) { return _search(root, key); }
 
     class Iterator;
 
     /**
-    * @brief pointer that points to begin
-    *
-    * @return Iterator
-    */
+     * @brief pointer that points to begin
+     *
+     * @return Iterator
+     */
     Iterator begin() {
         std::vector<T> ino = this->inorder();
         return Iterator(0, ino);
     }
 
     /**
-    * @brief pointer that points to end
-    *
-    * @return Iterator
-    */
+     * @brief pointer that points to end
+     *
+     * @return Iterator
+     */
     Iterator end() {
         std::vector<T> ino = this->inorder();
         return Iterator(ino.size(), ino);
     }
 
     /**
-    * @brief size function
-    *
-    * @return size_t the size of the tree
-    */
+     * @brief size function
+     *
+     * @return size_t the size of the tree
+     */
     size_t size() const { return _size; }
 
     /**
-    *@brief remove function.
-    *@param key: key to be removed.
-    */
-    void remove(T key) {
-        root = _remove(root, key);
-    }
+     *@brief remove function.
+     *@param key: key to be removed.
+     */
+    void remove(T key) { root = _remove(root, key); }
 
     /**
-    *@brief inorder function.
-    *@returns vector<T>, the elements inorder.
-    */
+     *@brief inorder function.
+     *@returns vector<T>, the elements inorder.
+     */
     std::vector<T> inorder() const {
         std::vector<T> path;
-        _inorder(
-            [&](std::shared_ptr<node> callbacked) {
-                path.push_back(callbacked->info);
-            },
-            root);
+        _inorder([&](std::shared_ptr<node> callbacked) { path.push_back(callbacked->info); }, root);
         return path;
     }
     /**
@@ -146,31 +137,25 @@ public:
     */
     std::vector<T> preorder() const {
         std::vector<T> path;
-        _preorder(
-            [&](std::shared_ptr<node> callbacked) {
-                path.push_back(callbacked->info);
-            },
-            root);
+        _preorder([&](std::shared_ptr<node> callbacked) { path.push_back(callbacked->info); },
+                  root);
         return path;
     }
     /**
-    *@brief postorder function.
-    *@returns vector<T>, the elements postorder.
-    */
+     *@brief postorder function.
+     *@returns vector<T>, the elements postorder.
+     */
     std::vector<T> postorder() const {
         std::vector<T> path;
-        _postorder(
-            [&](std::shared_ptr<node> callbacked) {
-                path.push_back(callbacked->info);
-            },
-            root);
+        _postorder([&](std::shared_ptr<node> callbacked) { path.push_back(callbacked->info); },
+                   root);
         return path;
     }
 
     /**
-    *@brief level order function.
-    *@returns vector<T>, the level order traversal of the tree
-    */
+     *@brief level order function.
+     *@returns vector<T>, the level order traversal of the tree
+     */
     std::vector<std::vector<T>> level_order() {
         std::vector<std::vector<T>> path;
         std::queue<std::shared_ptr<node>> q;
@@ -195,9 +180,9 @@ public:
     }
 
     /**
-    *@brief visualize function
-    *@returns .dot file that can be previewed using graphviz in vscode.
-    */
+     *@brief visualize function
+     *@returns .dot file that can be previewed using graphviz in vscode.
+     */
 
 #ifdef TREE_VISUALIZATION_H
     void visualize() {
@@ -207,29 +192,28 @@ public:
 #endif
 
     /**
-    * @brief operator << for avl_tree class
-    */
-    friend std::ostream & operator << (std::ostream &out, avl_tree<T> &t){
+     * @brief operator << for avl_tree class
+     */
+    friend std::ostream& operator<<(std::ostream& out, avl_tree<T>& t) {
         std::vector<T> order = t.inorder();
-        for(int i = 0; i<order.size(); i++){
-            if(i != order.size() - 1){
+        for (int i = 0; i < order.size(); i++) {
+            if (i != order.size() - 1) {
                 out << order[i] << ", ";
-            }
-            else{
+            } else {
                 out << order[i] << '\n';
             }
         }
         return out;
     }
 
-private:
+  private:
     /**
-    *@brief Struct for the node type pointer.
-    *@param info: the value of the node.
-    *@param height: height of each node.
-    *@param left: pointer to the left.
-    *@param right: pointer to the right.
-    */
+     *@brief Struct for the node type pointer.
+     *@param info: the value of the node.
+     *@param height: height of each node.
+     *@param left: pointer to the left.
+     *@param right: pointer to the right.
+     */
     typedef struct node {
         T info;
         int64_t height{0};
@@ -284,11 +268,9 @@ private:
             return nn;
         if (item < root->info) {
             root->left = _insert(root->left, item);
-        }
-        else if (item > root->info) {
+        } else if (item > root->info) {
             root->right = _insert(root->right, item);
-        }
-        else {
+        } else {
             return root;
         }
         int b = getBalance(root);
@@ -395,14 +377,12 @@ private:
             }
         } else {
             if (root->left) {
-                _s += std::to_string(root->info) + "->" +
-                    std::to_string(root->left->info) + "\n" +
-                    _inorder_gen(root->left);
+                _s += std::to_string(root->info) + "->" + std::to_string(root->left->info) + "\n" +
+                      _inorder_gen(root->left);
             }
             if (root->right) {
-                _s += std::to_string(root->info) + "->" +
-                    std::to_string(root->right->info) + "\n" +
-                    _inorder_gen(root->right);
+                _s += std::to_string(root->info) + "->" + std::to_string(root->right->info) + "\n" +
+                      _inorder_gen(root->right);
             }
         }
         return _s;
@@ -410,39 +390,39 @@ private:
 };
 
 /**
-* @brief Iterator class
-*/
+ * @brief Iterator class
+ */
 template <typename T> class avl_tree<T>::Iterator {
-private:
+  private:
     std::vector<T> elements;
     int64_t index;
 
-public:
+  public:
     /**
-    * @brief Construct a new Iterator object
-    *
-    * @param els vector<T> - the elements in inorder fashion
-    */
-    explicit Iterator(const int64_t &index, std::vector<T> &els) noexcept
-    : index(index), elements(els) {}
+     * @brief Construct a new Iterator object
+     *
+     * @param els vector<T> - the elements in inorder fashion
+     */
+    explicit Iterator(const int64_t& index, std::vector<T>& els) noexcept
+        : index(index), elements(els) {}
 
     /**
-    * @brief = operator for Iterator type
-    *
-    * @param index the current index
-    * @return Iterator&
-    */
-    Iterator &operator=(int64_t index) {
+     * @brief = operator for Iterator type
+     *
+     * @param index the current index
+     * @return Iterator&
+     */
+    Iterator& operator=(int64_t index) {
         this->index = index;
         return *(this);
     }
 
     /**
-    * @brief operator ++ for type Iterator
-    *
-    * @return Iterator&
-    */
-    Iterator &operator++() {
+     * @brief operator ++ for type Iterator
+     *
+     * @return Iterator&
+     */
+    Iterator& operator++() {
         if (this->index < elements.size()) {
             this->index++;
         }
@@ -450,10 +430,10 @@ public:
     }
 
     /**
-    * @brief operator ++ for type Iterator
-    *
-    * @return Iterator
-    */
+     * @brief operator ++ for type Iterator
+     *
+     * @return Iterator
+     */
     Iterator operator++(int) {
         Iterator it = *this;
         ++*(this);
@@ -461,11 +441,11 @@ public:
     }
 
     /**
-    * @brief operator -- for type Iterator
-    *
-    * @return Iterator&
-    */
-    Iterator &operator--() {
+     * @brief operator -- for type Iterator
+     *
+     * @return Iterator&
+     */
+    Iterator& operator--() {
         if (this->index > 0) {
             this->index--;
         }
@@ -473,10 +453,10 @@ public:
     }
 
     /**
-    * @brief operator -- for type Iterator
-    *
-    * @return Iterator
-    */
+     * @brief operator -- for type Iterator
+     *
+     * @return Iterator
+     */
     Iterator operator--(int) {
         Iterator it = *this;
         --*(this);
@@ -484,22 +464,22 @@ public:
     }
 
     /**
-    * @brief operator != for type Iterator
-    *
-    * @param it const Iterator
-    * @return true if the current element that exist in the index is not equal to
-    * the it.element that exist in the it.index
-    * @return false otherwise
-    */
-    bool operator!=(const Iterator &it) {
+     * @brief operator != for type Iterator
+     *
+     * @param it const Iterator
+     * @return true if the current element that exist in the index is not equal to
+     * the it.element that exist in the it.index
+     * @return false otherwise
+     */
+    bool operator!=(const Iterator& it) {
         return index != it.index && elements[index] != it.elements[it.index];
     }
 
     /**
-    * @brief operator * for type Iterator
-    *
-    * @return T the value of the node
-    */
+     * @brief operator * for type Iterator
+     *
+     * @return T the value of the node
+     */
     T operator*() { return elements[index]; }
 };
 

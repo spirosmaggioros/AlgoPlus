@@ -2,35 +2,36 @@
 #define LOG_REG_H
 
 #ifdef __cplusplus
-#include <iostream>
-#include <vector>
-#include <cmath>
 #include <cassert>
+#include <cmath>
+#include <iostream>
 #include <random>
-#include "../../metrics/metrics.h"
+#include <vector>
 #include "../../activation/activation_functions.h"
+#include "../../metrics/metrics.h"
 #endif
 
 /**
-* @brief logistic regression class
-* The implementation follows this: https://www.stat.cmu.edu/~ryantibs/advmethods/notes/logreg.pdf
-*/
+ * @brief logistic regression class
+ * The implementation follows this:
+ * https://www.stat.cmu.edu/~ryantibs/advmethods/notes/logreg.pdf
+ */
 class logistic_regression {
-private:
+  private:
     double learning_rate_;
     double bias_;
     int epochs_;
     std::vector<double> predictors_;
-    std::vector<std::vector<double> > data_;
+    std::vector<std::vector<double>> data_;
     std::vector<double> labels_;
 
     /**
-    * @brief returns h_theta(x), where x is the input
-    * uses metric's sigmoid to compute that.
-    */
+     * @brief returns h_theta(x), where x is the input
+     * uses metric's sigmoid to compute that.
+     */
     double h_theta(const int index) {
         double z = this->bias_;
-        for (int i = 0; i<this->predictors_.size(); i++) {
+        for (int i = 0; i < this->predictors_.size(); i++) {
             z += this->data_[index][i] * this->predictors_[i];
         }
 
@@ -38,30 +39,27 @@ private:
     }
 
     /**
-    * @brief performs all the computations to output useful metrics each epoch
-    */
+     * @brief performs all the computations to output useful metrics each epoch
+     */
     void verbose_acc_step_() {
         std::vector<double> y_pred;
-        for (int i = 0; i<this->data_.size(); i++) {
+        for (int i = 0; i < this->data_.size(); i++) {
             double h = h_theta(i);
 
             if (h < 0.5) {
                 y_pred.push_back(0.0);
-            }
-            else {
+            } else {
                 y_pred.push_back(1.0);
             }
         }
 
-        std::cout << "Accuracy: " << metrics::accuracy_score(this->labels_, y_pred) 
-            << " | f1_score: " << metrics::f1_score(this->labels_, y_pred) 
-            << " | Recall: " << metrics::recall(this->labels_, y_pred)
-            << " | Precision: " << metrics::precision(this->labels_, y_pred)
-            << '\n';
+        std::cout << "Accuracy: " << metrics::accuracy_score(this->labels_, y_pred)
+                  << " | f1_score: " << metrics::f1_score(this->labels_, y_pred)
+                  << " | Recall: " << metrics::recall(this->labels_, y_pred)
+                  << " | Precision: " << metrics::precision(this->labels_, y_pred) << '\n';
     }
 
-public:
-
+  public:
     /**
      * @brief default constructor for logistic regression class
      * @param data(vector<vector<double> >): The passed data, x.back() for each
@@ -72,17 +70,14 @@ public:
      * @param epochs(int): the number of epochs
      *
      */
-    explicit logistic_regression(
-            const std::vector<std::vector<double> > data,
-            const double lr=0.001,
-            const double bias=0.001,
-            const int epochs=10
-        ) {
+    explicit logistic_regression(const std::vector<std::vector<double>> data,
+                                 const double lr = 0.001, const double bias = 0.001,
+                                 const int epochs = 10) {
         assert(!data.empty());
         assert(epochs >= 0);
         assert(lr > 0);
 
-        for (auto & x: data) {
+        for (auto& x : data) {
             assert(x.back() == 0 || x.back() == 1);
         }
 
@@ -90,7 +85,7 @@ public:
         this->epochs_ = epochs;
         this->data_ = data;
         this->bias_ = bias;
-        for (auto &x : data) {
+        for (auto& x : data) {
             this->labels_.push_back(x.back());
         }
 
@@ -99,7 +94,7 @@ public:
         std::uniform_real_distribution<double> dist(-1.0, 1.0);
 
         this->predictors_ = std::vector<double>(data[0].size() - 1);
-        for (int i = 0; i<this->predictors_.size(); i++) {
+        for (int i = 0; i < this->predictors_.size(); i++) {
             this->predictors_[i] = dist(gen);
         }
     }
@@ -109,10 +104,10 @@ public:
      * performs gradient descent using the predictors and learning rate.
      */
     inline void fit() {
-        for (int epoch = 0; epoch<this->epochs_; epoch++) {
-            for (size_t j = 0; j<this->data_.size(); j++) {
+        for (int epoch = 0; epoch < this->epochs_; epoch++) {
+            for (size_t j = 0; j < this->data_.size(); j++) {
                 double h = h_theta(j);
-                for (size_t k = 0; k<(this->data_[0].size() - 1); k++) {
+                for (size_t k = 0; k < (this->data_[0].size() - 1); k++) {
                     double gradient = (h - this->labels_[j]) * this->data_[j][k];
                     this->predictors_[k] = this->predictors_[k] - (this->learning_rate_ * gradient);
                 }
@@ -122,7 +117,6 @@ public:
             verbose_acc_step_();
         }
     }
-
 };
 
 #endif

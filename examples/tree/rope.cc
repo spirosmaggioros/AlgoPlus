@@ -1,6 +1,6 @@
-#include "../../src/visualization/tree_visual/tree_visualization.h"
 #include "../../src/classes/tree/rope.h"
 #include <iostream>
+#include "../../src/visualization/tree_visual/tree_visualization.h"
 
 using namespace std;
 

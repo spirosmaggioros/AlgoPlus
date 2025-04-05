@@ -8,10 +8,10 @@
 #endif
 
 /**
-* @brief selection sort function
-* @param arr input array
-*/
-template <typename T> void selection_sort(std::vector<T> &arr) {
+ * @brief selection sort function
+ * @param arr input array
+ */
+template <typename T> void selection_sort(std::vector<T>& arr) {
     int64_t min_idx = 0;
     for (int64_t i = 0; i < arr.size() - 1; i++) {
         min_idx = i;

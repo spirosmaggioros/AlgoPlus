@@ -7,12 +7,12 @@
 #endif
 
 /**
-* @brief binary gcd function
-*
-* @param a first number
-* @param b second number
-* @return int64_t the greatest common divisor of a and b
-*/
+ * @brief binary gcd function
+ *
+ * @param a first number
+ * @param b second number
+ * @return int64_t the greatest common divisor of a and b
+ */
 int64_t binary_gcd(const int64_t a, const int64_t b) {
     if (a == b) {
         return a;
@@ -42,12 +42,12 @@ int64_t binary_gcd(const int64_t a, const int64_t b) {
 }
 
 /**
-* @brief euclidian gcd function
-*
-* @param a first number
-* @param b second number
-* @return int64_t the greatest common divisor of a and b
-*/
+ * @brief euclidian gcd function
+ *
+ * @param a first number
+ * @param b second number
+ * @return int64_t the greatest common divisor of a and b
+ */
 int64_t euclidean_gcd(int64_t a, int64_t b) {
     while (a > 0 && b > 0) {
         if (a > b) {

@@ -2,7 +2,7 @@
 #include "../../../third_party/catch.hpp"
 
 TEST_CASE("Testing scheduling [1]") {
-    std::vector<std::pair<int, int> > v = {{0, 1}, {0, 2}, {1, 2}, {2, 4}};
+    std::vector<std::pair<int, int>> v = {{0, 1}, {0, 2}, {1, 2}, {2, 4}};
 
     REQUIRE(scheduling(v) == 3);
 

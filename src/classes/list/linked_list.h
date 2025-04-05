@@ -14,41 +14,36 @@
 #endif
 
 /**
-*@brief single linked list class
-*/
+ *@brief single linked list class
+ */
 
 template <typename T> class linked_list {
-public:
+  public:
     /**
-    *@brief linked_list class constructor
-    *@param __elements: you can provide the constructor with a vector of elements
-    *so you dont have to do multiple push backs yourself.
-    */
-    explicit linked_list(std::vector<T> _elements = {}) noexcept
-        : root(nullptr), tail(nullptr) {
+     *@brief linked_list class constructor
+     *@param __elements: you can provide the constructor with a vector of elements
+     *so you dont have to do multiple push backs yourself.
+     */
+    explicit linked_list(std::vector<T> _elements = {}) noexcept : root(nullptr), tail(nullptr) {
         if (!_elements.empty()) {
-            for (T &x : _elements) {
+            for (T& x : _elements) {
                 this->push_back(x);
             }
         }
     }
 
     /**
-    * @brief copy constructor for the linked_list class
-    * @param l the list we want to copy
-    */
-    explicit linked_list(const linked_list &l) : root(l.root), tail(l.tail), _size(l._size) {
-
-
-
-    }
+     * @brief copy constructor for the linked_list class
+     * @param l the list we want to copy
+     */
+    explicit linked_list(const linked_list& l) : root(l.root), tail(l.tail), _size(l._size) {}
 
     /**
-    * @brief operator = for linked list class
-    * @param l the list we want to copy
-    * @return linked_list&
-    */
-    linked_list &operator=(const linked_list &l) {
+     * @brief operator = for linked list class
+     * @param l the list we want to copy
+     * @return linked_list&
+     */
+    linked_list& operator=(const linked_list& l) {
         root = l.root;
         tail = l.tail;
         _size = l._size;
@@ -56,79 +51,79 @@ public:
     }
 
     /**
-    *@brief empty function.
-    *Returns true if the list is empty.
-    */
+     *@brief empty function.
+     *Returns true if the list is empty.
+     */
     bool empty() { return root == nullptr; }
 
     /**
-    *@brief size function.
-    *Returns the size of the list.
-    */
+     *@brief size function.
+     *Returns the size of the list.
+     */
     size_t size() { return _size; }
 
     class Iterator;
 
     /**
-    * @brief pointer that points to begin
-    *
-    * @return Iterator
-    */
+     * @brief pointer that points to begin
+     *
+     * @return Iterator
+     */
     Iterator begin() { return Iterator(root); }
 
     /**
-    * @brief pointer that points to end
-    *
-    * @return Iterator
-    */
+     * @brief pointer that points to end
+     *
+     * @return Iterator
+     */
     Iterator end() { return Iterator(nullptr); }
 
     /**
-    *@brief push_back function.
-    *@param key: the key to be pushed back.
-    */
+     *@brief push_back function.
+     *@param key: the key to be pushed back.
+     */
     void push_back(T key);
 
     /**
-    *@brief push_front function.
-    *@param key: the key to be pushed in front.
-    */
+     *@brief push_front function.
+     *@param key: the key to be pushed in front.
+     */
     void push_front(T key);
 
     /**
-    *@brief erase function.
-    *@param key: the key to be erased.
-    */
+     *@brief erase function.
+     *@param key: the key to be erased.
+     */
     void erase(T key);
 
     /**
-    *@brief search function.
-    *@param key: the key to be searched.
-    *@returns true if key exists in the list.
-    */
+     *@brief search function.
+     *@param key: the key to be searched.
+     *@returns true if key exists in the list.
+     */
     bool search(T key);
 
     /**
-    *@brief elements function.
-    *@returns vector<T>: the elements of the list.
-    */
+     *@brief elements function.
+     *@returns vector<T>: the elements of the list.
+     */
     std::vector<T> elements();
 
     /**
-    *@brief reverse function.
-    */
+     *@brief reverse function.
+     */
     void reverse();
 
     /**
-    * @brief visualize function
-    * returns a .dot file that can be previewd with graphviz plugin in vscode
-    */
+     * @brief visualize function
+     * returns a .dot file that can be previewd with graphviz plugin in vscode
+     */
     void visualize();
 
     /**
-    *@brief << operator for the linked_list class.
-    */
-    friend std::ostream &operator<<(std::ostream &out, linked_list<T> &l1) {
+     *@brief << operator for the linked_list class.
+     */
+    friend std::ostream& operator<<(std::ostream& out, linked_list<T>& l1) {
         out << '{';
         std::shared_ptr<node> head = l1.root;
         while (head) {
@@ -139,12 +134,12 @@ public:
         return out;
     }
 
-private:
+  private:
     /**
-    * @brief struct for the node
-    * @param val: the value of the node
-    * @param next: pointer to the next.
-    */
+     * @brief struct for the node
+     * @param val: the value of the node
+     * @param next: pointer to the next.
+     */
     struct node {
         T val;
         std::shared_ptr<node> next;
@@ -171,7 +166,9 @@ template <typename T> void linked_list<T>::push_back(T key) {
 template <typename T> void linked_list<T>::push_front(T key) {
     std::shared_ptr<node> p = std::make_shared<node>(key);
     p->next = root;
-    if(tail == nullptr) { tail = root; }
+    if (tail == nullptr) {
+        tail = root;
+    }
     root = p;
     _size++;
 }
@@ -214,7 +211,7 @@ template <typename T> bool linked_list<T>::search(T key) {
             }
             return true;
         }
-    } catch (std::invalid_argument &e) {
+    } catch (std::invalid_argument& e) {
         std::cerr << e.what() << '\n';
         return false;
     }
@@ -255,7 +252,7 @@ template <typename T> std::string linked_list<T>::generate() {
     gen += '\n';
     std::vector<T> els = this->elements();
     if (std::is_same_v<T, std::string> || std::is_same_v<T, char>) {
-        for (auto &x : els) {
+        for (auto& x : els) {
             gen += x;
             gen += " [label=<{ ";
             gen += x;
@@ -273,7 +270,7 @@ template <typename T> std::string linked_list<T>::generate() {
             curr = curr->next;
         }
     } else {
-        for (auto &x : els) {
+        for (auto& x : els) {
             gen += std::to_string(x);
             gen += " [label=<{ ";
             gen += std::to_string(x);
@@ -301,39 +298,38 @@ template <typename T> void linked_list<T>::visualize() {
 }
 #endif
 
-
 /**
-* @brief Iterator class
-*/
+ * @brief Iterator class
+ */
 template <typename T> class linked_list<T>::Iterator {
-private:
+  private:
     std::shared_ptr<node> curr_root;
 
-public:
+  public:
     /**
-    * @brief Construct a new Iterator object
-    *
-    * @param l linked list type
-    */
-    explicit Iterator(const std::shared_ptr<node> &l) noexcept : curr_root(l) {}
+     * @brief Construct a new Iterator object
+     *
+     * @param l linked list type
+     */
+    explicit Iterator(const std::shared_ptr<node>& l) noexcept : curr_root(l) {}
 
     /**
-    * @brief = operator for Iterator type
-    *
-    * @param current smart pointer of type node
-    * @return Iterator&
-    */
-    Iterator &operator=(std::shared_ptr<node> current) {
+     * @brief = operator for Iterator type
+     *
+     * @param current smart pointer of type node
+     * @return Iterator&
+     */
+    Iterator& operator=(std::shared_ptr<node> current) {
         this->curr_root = current;
         return *(this);
     }
 
     /**
-    * @brief operator ++ for type Iterator
-    *
-    * @return Iterator&
-    */
-    Iterator &operator++() {
+     * @brief operator ++ for type Iterator
+     *
+     * @return Iterator&
+     */
+    Iterator& operator++() {
         if (curr_root) {
             curr_root = curr_root->next;
         }
@@ -341,10 +337,10 @@ public:
     }
 
     /**
-    * @brief operator ++ for type Iterator
-    *
-    * @return Iterator
-    */
+     * @brief operator ++ for type Iterator
+     *
+     * @return Iterator
+     */
     Iterator operator++(int) {
         Iterator it = *this;
         ++*(this);
@@ -352,19 +348,19 @@ public:
     }
 
     /**
-    * @brief operator != for type Iterator
-    *
-    * @param it const Iterator
-    * @return true if curr_root == it.curr_root
-    * @return false otherwise
-    */
-    bool operator!=(const Iterator &it) { return curr_root != it.curr_root; }
+     * @brief operator != for type Iterator
+     *
+     * @param it const Iterator
+     * @return true if curr_root == it.curr_root
+     * @return false otherwise
+     */
+    bool operator!=(const Iterator& it) { return curr_root != it.curr_root; }
 
     /**
-    * @brief operator * for type Iterator
-    *
-    * @return T the value of the node
-    */
+     * @brief operator * for type Iterator
+     *
+     * @return T the value of the node
+     */
     T operator*() { return curr_root->val; }
 };
 

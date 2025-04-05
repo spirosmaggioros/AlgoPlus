@@ -1,10 +1,10 @@
 #ifndef ALGOPLUS_H
 #define ALGOPLUS_H
 
-#include "../algorithms/dynamic_programming/knapsack_2d.h"
-#include "../algorithms/dynamic_programming/knapsack_1d.h"
 #include "../algorithms/dynamic_programming/fib.h"
 #include "../algorithms/dynamic_programming/kadane.h"
+#include "../algorithms/dynamic_programming/knapsack_1d.h"
+#include "../algorithms/dynamic_programming/knapsack_2d.h"
 #include "../algorithms/dynamic_programming/lcs.h"
 #include "../algorithms/dynamic_programming/lis.h"
 
@@ -70,21 +70,21 @@
 #include "../machine_learning/image/filters/average_filter.h"
 #include "../machine_learning/image/filters/median_filter.h"
 #include "../machine_learning/image/filters/sharpening_filter.h"
+#include "../machine_learning/image/image.h"
 #include "../machine_learning/image/morphology/operations.h"
 #include "../machine_learning/image/point_detection/laplacian_point_detect.h"
-#include "../machine_learning/image/image.h"
 
 #include "../machine_learning/loss_functions/losses.h"
 
 #include "../machine_learning/regression/linear_regression/lin_reg.h"
 #include "../machine_learning/regression/polynomial_regression/poly_reg.h"
 
+#include "../machine_learning/regression/linear_regression/lin_reg.h"
 #include "../machine_learning/search_algorithms/best_first/best_first.h"
 #include "../machine_learning/search_algorithms/hill_climbing/hill_climbing.h"
-#include "../machine_learning/regression/linear_regression/lin_reg.h"
 
-#include "../visualization/tree_visual/tree_visualization.h"
 #include "../visualization/graph_visual/graph_visualization.h"
 #include "../visualization/list_visual/linked_list_visualization.h"
+#include "../visualization/tree_visual/tree_visualization.h"
 
 #endif
