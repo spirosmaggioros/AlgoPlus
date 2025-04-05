@@ -1,8 +1,8 @@
-#include "../../../third_party/catch.hpp"
 #include "../../../src/algorithms/dynamic_programming/subset_sum.h"
+#include "../../../third_party/catch.hpp"
 
 TEST_CASE("Testing subset sum [1]") {
-    std::vector<int> v {4, 2, 1, 5, 7};
+    std::vector<int> v{4, 2, 1, 5, 7};
     int B = 7;
 
     REQUIRE(subset_sum(v, B) == 3);
@@ -12,7 +12,7 @@ TEST_CASE("Testing subset sum [1]") {
 }
 
 TEST_CASE("Testing subset sum [2]") {
-    std::vector<int> v {1, 4, 6, 9};
+    std::vector<int> v{1, 4, 6, 9};
     int B = 5;
 
     REQUIRE(subset_sum(v, B) == 1);

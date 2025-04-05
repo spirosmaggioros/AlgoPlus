@@ -8,10 +8,10 @@
 #endif
 
 /**
-*@brief trie class
-*/
+ *@brief trie class
+ */
 class trie {
-private:
+  private:
     struct node {
         std::shared_ptr<node> characters[26]{nullptr};
         bool end_word{false};
@@ -20,77 +20,73 @@ private:
     std::shared_ptr<node> root;
     size_t _size{};
 
-public:
+  public:
     /**
-    * @brief Construct a new trie object
-    *
-    * @param v : vector of strings for initializer.
-    */
-    explicit trie(std::vector<std::string> v = {}) noexcept
-        : root(std::make_shared<node>()) {
+     * @brief Construct a new trie object
+     *
+     * @param v : vector of strings for initializer.
+     */
+    inline explicit trie(std::vector<std::string> v = {}) noexcept : root(std::make_shared<node>()) {
         if (!v.empty()) {
-            for (auto &x : v) {
+            for (auto& x : v) {
                 this->insert(x);
             }
         }
     }
 
     /**
-    * @brief Copy constructor for trie class
-    * @param t the tree we want to copy
-    */
-    explicit trie(const trie &t) : root(t.root), _size(t._size) {
-
-
-    }
+     * @brief Copy constructor for trie class
+     * @param t the tree we want to copy
+     */
+    inline explicit trie(const trie& t) : root(t.root), _size(t._size) {}
 
     /**
-    * @brief operator = for trie class
-    * @param t the tree we want to copy
-    * @return trie&
-    */
-    trie &operator=(const trie &t) {
+     * @brief operator = for trie class
+     * @param t the tree we want to copy
+     * @return trie&
+     */
+    inline trie& operator=(const trie& t) {
         root = t.root;
         _size = t._size;
         return *this;
     }
 
     /**
-    *@brief empty function.
-    *@returns true if the trie is empty.
-    */
-    bool empty() { return root == nullptr; }
+     *@brief empty function.
+     *@returns true if the trie is empty.
+     */
+    inline bool empty() { return root == nullptr; }
     /**
-    *@brief insert function.
-    *@param key: the key to be inserted.
-    */
-    void insert(std::string key);
+     *@brief insert function.
+     *@param key: the key to be inserted.
+     */
+    inline void insert(std::string key);
 
     /**
-    * @brief size function
-    *
-    * @return size_t the size of the tree
-    */
-    size_t size() { return _size; }
+     * @brief size function
+     *
+     * @return size_t the size of the tree
+     */
+    inline size_t size() { return _size; }
     /**
-    *@brief remove function.
-    *@param key: the key to be removed.
-    */
-    void remove(std::string key);
+     *@brief remove function.
+     *@param key: the key to be removed.
+     */
+    inline void remove(std::string key);
     /**
-    *@brief search function.
-    *@param key: the key to be searched.
-    *@returns true if the word exist in the tree.
-    */
-    bool search(std::string key);
+     *@brief search function.
+     *@param key: the key to be searched.
+     *@returns true if the word exist in the tree.
+     */
+    inline bool search(std::string key);
 
-    friend std::ostream &operator<<(std::ostream &out, trie &t);
+    inline friend std::ostream& operator<<(std::ostream& out, trie& t);
 
-private:
+  private:
     /**
-    *@brief __children function.
-    *checks if a node has children or not.
-    */
+     *@brief __children function.
+     *checks if a node has children or not.
+     */
     bool _children(std::shared_ptr<node> root) {
         for (int64_t i = 0; i < 26; i++) {
             if (root->characters[i]) {
@@ -100,11 +96,10 @@ private:
         return false;
     }
     /**
-    *@brief __remove function.
-    *helper function of remove().
-    */
-    std::shared_ptr<node> _remove(std::shared_ptr<node> current,
-                                  std::string word, int64_t index) {
+     *@brief __remove function.
+     *helper function of remove().
+     */
+    std::shared_ptr<node> _remove(std::shared_ptr<node> current, std::string word, int64_t index) {
         if (word.size() == index) {
             if (current->end_word) {
                 current->end_word = false;
@@ -130,7 +125,7 @@ private:
 
 void trie::insert(std::string key) {
     std::shared_ptr<node> current = root;
-    for (auto &c : key) {
+    for (auto& c : key) {
         int64_t index = c - 'a';
         if (!current->characters[index]) {
             current->characters[index] = std::make_shared<node>();
@@ -147,7 +142,7 @@ void trie::remove(std::string key) {
 
 bool trie::search(std::string key) {
     std::shared_ptr<node> current = root;
-    for (auto &c : key) {
+    for (auto& c : key) {
         int64_t index = c - 'a';
         if (!current->characters[index]) {
             return false;

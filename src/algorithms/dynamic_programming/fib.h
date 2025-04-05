@@ -9,11 +9,11 @@
 #endif
 
 /**
-* @brief fibonacci function
-*
-* @param n upper boumd
-* @return int64_t returns the total fibonacci numbers till n
-*/
+ * @brief fibonacci function
+ *
+ * @param n upper boumd
+ * @return int64_t returns the total fibonacci numbers till n
+ */
 int64_t fibonacci(int64_t n) {
     if (n <= 1) {
         return n;
@@ -22,11 +22,11 @@ int64_t fibonacci(int64_t n) {
 }
 
 /**
-* @brief fibonacci with dp function
-*
-* @param n upper boumd
-* @return int64_t returns the total fibonacci numbers till n
-*/
+ * @brief fibonacci with dp function
+ *
+ * @param n upper boumd
+ * @return int64_t returns the total fibonacci numbers till n
+ */
 int64_t fibonacci_dp(int64_t n) {
     std::vector<int64_t> dp(n + 2);
     dp[0] = 0;
@@ -38,11 +38,11 @@ int64_t fibonacci_dp(int64_t n) {
 }
 
 /**
-* @brief fibonacci with bottom up dp function
-*
-* @param n upper boumd
-* @return int64_t returns the total fibonacci numbers till n
-*/
+ * @brief fibonacci with bottom up dp function
+ *
+ * @param n upper boumd
+ * @return int64_t returns the total fibonacci numbers till n
+ */
 int64_t fibonacci_bottom_up(int64_t n) {
     int64_t a = 0, b = 1, c = 0;
     if (n == 0) {
@@ -57,11 +57,11 @@ int64_t fibonacci_bottom_up(int64_t n) {
 }
 
 /**
-* @brief fibonacci using binet's formula(golden ratio) function
-*
-* @param n upper boumd
-* @return int64_t returns the total fibonacci numbers till n
-*/
+ * @brief fibonacci using binet's formula(golden ratio) function
+ *
+ * @param n upper boumd
+ * @return int64_t returns the total fibonacci numbers till n
+ */
 int64_t fibonacci_binet(int64_t n) {
     double phi = (std::sqrt(5) + 1) / 2;
     return (int64_t)std::round(std::pow(phi, n) / sqrt(5));

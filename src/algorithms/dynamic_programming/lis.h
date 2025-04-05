@@ -8,11 +8,11 @@
 #endif
 
 /**
-* @brief Longest increasing subsequence function
-* @details computes the longest increasing subsequence of the passed array
-* @param arr input array
-* @return int64_t the size of the longest increasing subsequence
-*/
+ * @brief Longest increasing subsequence function
+ * @details computes the longest increasing subsequence of the passed array
+ * @param arr input array
+ * @return int64_t the size of the longest increasing subsequence
+ */
 template <typename T> int64_t lis(std::vector<T> arr) {
     std::vector<T> ans;
     int64_t n = arr.size();

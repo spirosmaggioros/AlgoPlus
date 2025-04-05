@@ -2,42 +2,41 @@
 #define GRAPH_H
 
 #include <cfloat>
-#ifdef GRAPH_VISUALIZATION_H
+#ifdef ENABLE_GRAPH_VISUALIZATION
 #include "../../visualization/graph_visual/graph_visualization.h"
 #endif
 
 #ifdef __cplusplus
 #include <algorithm>
+#include <cassert>
 #include <climits>
 #include <iostream>
 #include <limits>
+#include <map>
 #include <queue>
+#include <set>
 #include <stack>
 #include <string>
 #include <type_traits>
 #include <unordered_map>
-#include <map>
-#include <set>
 #include <unordered_set>
 #include <utility>
-#include <cassert>
 #endif
 
 /**
-*
-* @brief Class for Unweighted Graph
-*
-*/
+ *
+ * @brief Class for Unweighted Graph
+ *
+ */
 template <typename T> class graph {
-public:
+  public:
     /**
-    * @brief Constructor for the unweighted graph.
-    * @param __type: type of the graph, either "directed" or "undirected"
-    * @param __adj: vector<pair<T,vector<T>>, you can pass a vector of pairs to
-    * construct the graph without doing multiple add_edge.
-    */
-    graph(std::string _type,
-          std::vector<std::pair<T, std::vector<T>>> _adj = {}) {
+     * @brief Constructor for the unweighted graph.
+     * @param __type: type of the graph, either "directed" or "undirected"
+     * @param __adj: vector<pair<T,vector<T>>, you can pass a vector of pairs to
+     * construct the graph without doing multiple add_edge.
+     */
+    graph(std::string _type, std::vector<std::pair<T, std::vector<T>>> _adj = {}) {
         try {
             if (_type == "directed" || _type == "undirected") {
                 this->_type = _type;
@@ -46,32 +45,31 @@ public:
             }
             if (!_adj.empty()) {
                 for (size_t i = 0; i < _adj.size(); i++) {
-                    for (T &neigh : _adj[i].second) {
+                    for (T& neigh : _adj[i].second) {
                         this->add_edge(_adj[i].first, neigh);
                     }
                 }
             }
-        } catch (std::invalid_argument &e) {
+        } catch (std::invalid_argument& e) {
             std::cerr << e.what() << '\n';
             return;
         }
     }
 
     /**
-        * @brief Construct a new graph object
-        *
-        * @param g the graph we want to copy
-        */
-    graph(const graph &g) : adj(g.adj), _elements(g._elements), _type(g._type) {
-    }
+     * @brief Construct a new graph object
+     *
+     * @param g the graph we want to copy
+     */
+    graph(const graph& g) : adj(g.adj), _elements(g._elements), _type(g._type) {}
 
     /**
-        * @brief operator = for the graph class
-        *
-        * @param g the graph we want to copy
-        * @return graph&
-        */
-    graph &operator=(const graph &g) {
+     * @brief operator = for the graph class
+     *
+     * @param g the graph we want to copy
+     * @return graph&
+     */
+    graph& operator=(const graph& g) {
         adj = g.adj;
         _elements = g._elements;
         _type = g._type;
@@ -79,15 +77,15 @@ public:
     }
 
     /**
-        * @brief Destroy the graph object
-        */
+     * @brief Destroy the graph object
+     */
     ~graph() { adj.clear(); }
 
     /**
-        * @brief add_edge function
-        * @param u: first node
-        * @param v: second node
-        */
+     * @brief add_edge function
+     * @param u: first node
+     * @param v: second node
+     */
     void add_edge(T u, T v) {
         if (_type == "undirected") {
             adj[u].push_back(v);
@@ -110,7 +108,7 @@ public:
         if (_elements.find(start) == _elements.end()) {
             return false;
         }
-        for (T &x : adj[start]) {
+        for (T& x : adj[start]) {
             if (x == end) {
                 return true;
             }
@@ -119,134 +117,133 @@ public:
     }
 
     /**
-        * @brief clear function
-        * Clearing the entire graph.
-        */
+     * @brief clear function
+     * Clearing the entire graph.
+     */
     void clear() {
         _elements.clear();
         adj.clear();
     }
 
     /**
-        * @brief empty function
-        * Checks if a graph is empty.
-        */
+     * @brief empty function
+     * Checks if a graph is empty.
+     */
     bool empty() { return _elements.empty(); }
 
     /**
-        * @brief size function
-        * @returns size_t the size of the graph.
-        */
+     * @brief size function
+     * @returns size_t the size of the graph.
+     */
     size_t size();
 
     /**
-        * @brief dfs function
-        * @param start: starting node of the dfs.
-        * @returns vector<T>, the path of the dfs.
-        */
+     * @brief dfs function
+     * @param start: starting node of the dfs.
+     * @returns vector<T>, the path of the dfs.
+     */
     std::vector<T> dfs(T start);
 
     /**
-        * @brief bfs function
-        * @param start: starting node of the bfs.
-        * @returns vector<T>, the path of the bfs.
-        */
+     * @brief bfs function
+     * @param start: starting node of the bfs.
+     * @returns vector<T>, the path of the bfs.
+     */
     std::vector<T> bfs(T start);
 
     /**
-        * @brief connected_components function.
-        * @returns the connected components(islands) of the graph.
-        */
+     * @brief connected_components function.
+     * @returns the connected components(islands) of the graph.
+     */
     int64_t connected_components();
 
     /**
-        * @brief cycle function.
-        * @returns true if a cycle exist in the graph.
-        * */
+     * @brief cycle function.
+     * @returns true if a cycle exist in the graph.
+     * */
     bool cycle();
 
     /**
-        * @brief topological_sort function.
-        * @returns vector<T> the topological order of the elements of the graph.
-        */
+     * @brief topological_sort function.
+     * @returns vector<T> the topological order of the elements of the graph.
+     */
     std::vector<T> topological_sort();
 
     /**
-        * @brief bipartite function.
-        * @returns true if the graph is bipartite.
-        */
+     * @brief bipartite function.
+     * @returns true if the graph is bipartite.
+     */
     bool bipartite();
 
     /**
-        *@brief bridge function.
-        *@param start: starting point of search for the bridges.
-        *@returns vector<vector<T>> the bridges of the graph.
-        */
+     *@brief bridge function.
+     *@param start: starting point of search for the bridges.
+     *@returns vector<vector<T>> the bridges of the graph.
+     */
 
     std::vector<std::vector<T>> bridge(T start);
 
     /**
-        *@brief scc(strongly connected components) function.
-        *@returns int64_t the number of scc's in the graph using kosaraju's algorithm.
-        */
+     *@brief scc(strongly connected components) function.
+     *@returns int64_t the number of scc's in the graph using kosaraju's
+     *algorithm.
+     */
     int64_t scc();
 
     /**
-        *@brief connected function.
-        *@returns true if a graph is connected.
-        */
+     *@brief connected function.
+     *@returns true if a graph is connected.
+     */
     bool connected();
 
     /**
-        *@brief eulerian function.
-        *@returns 0 if a graph is not eulerian.
-        *         1 if a graph is semi-eulerian.
-        *         2 if a graph is eulerian.
-        */
+     *@brief eulerian function.
+     *@returns 0 if a graph is not eulerian.
+     *         1 if a graph is semi-eulerian.
+     *         2 if a graph is eulerian.
+     */
     int eulerian();
 
     /**
-        * @brief visualize function.
-        * @returns .dot file that can be previewed in vscode with graphviz.
-        */
+     * @brief visualize function.
+     * @returns .dot file that can be previewed in vscode with graphviz.
+     */
     void visualize();
 
     /**
-        * @brief operator << for the graph class.
-        * @returns ostream &out for std::cout.
-        */
-    friend std::ostream &operator<<(std::ostream &out, graph<T> &g) {
+     * @brief operator << for the graph class.
+     * @returns ostream &out for std::cout.
+     */
+    friend std::ostream& operator<<(std::ostream& out, graph<T>& g) {
         out << '{';
 
         std::vector<T> elements = g.topological_sort();
-        for (T &x : elements) {
+        for (T& x : elements) {
             out << x << ' ';
         }
         out << '}' << '\n';
         return out;
     }
 
-private:
+  private:
     /**
-        * @param adj: adjacency list for the graph.
-        * @param __elements: set of the total elements of the graph.
-        * @param __type: the type of the graph, either "directed" or "undirected".
-        */
+     * @param adj: adjacency list for the graph.
+     * @param __elements: set of the total elements of the graph.
+     * @param __type: the type of the graph, either "directed" or "undirected".
+     */
     std::unordered_map<T, std::vector<T>> adj;
     std::unordered_set<T> _elements;
     std::string _type;
 
     /**
-        *@brief helper function for bridge detection algorithm.
-        */
-    void dfs_bridge(T start, T parent, int64_t &time,
-                    std::unordered_map<T, bool> &visited,
-                    std::unordered_map<T, int64_t> &in,
-                    std::unordered_map<T, int64_t> &out,
-                    std::vector<std::vector<T>> &bridges) {
+     *@brief helper function for bridge detection algorithm.
+     */
+    void dfs_bridge(T start, T parent, int64_t& time, std::unordered_map<T, bool>& visited,
+                    std::unordered_map<T, int64_t>& in, std::unordered_map<T, int64_t>& out,
+                    std::vector<std::vector<T>>& bridges) {
         visited[start] = true;
         in[start] = out[start] = time++;
-        for (T &x : adj[start]) {
+        for (T& x : adj[start]) {
             if (x != parent) {
                 if (visited.find(x) == visited.end()) {
                     dfs_bridge(x, start, time, visited, in, out, bridges);
@@ -260,12 +257,12 @@ private:
     }
 
     /**
-            * @brief helper dfs function for kosaraju's scc
-            */
-    void dfs_scc(T start, std::unordered_map<T, bool> &visited, std::stack<T> &s) {
+     * @brief helper dfs function for kosaraju's scc
+     */
+    void dfs_scc(T start, std::unordered_map<T, bool>& visited, std::stack<T>& s) {
         visited[start] = true;
-        for(auto & x : adj[start]) {
-            if(visited.find(x) == visited.end()) {
+        for (auto& x : adj[start]) {
+            if (visited.find(x) == visited.end()) {
                 dfs_scc(x, visited, s);
             }
         }
@@ -274,7 +271,9 @@ private:
     }
 };
 
-template <typename T> size_t graph<T>::size() { return _elements.size(); }
+template <typename T> size_t graph<T>::size() {
+    return _elements.size();
+}
 
 template <typename T> std::vector<T> graph<T>::dfs(T start) {
     std::vector<T> path;
@@ -289,7 +288,7 @@ template <typename T> std::vector<T> graph<T>::dfs(T start) {
         T current = s.top();
         path.push_back(current);
         s.pop();
-        for (T &x : adj[current]) {
+        for (T& x : adj[current]) {
             if (visited.find(x) == visited.end()) {
                 s.push(x);
                 visited[x] = true;
@@ -314,7 +313,7 @@ template <typename T> std::vector<T> graph<T>::bfs(T start) {
             T current = q.front();
             path.push_back(current);
             q.pop();
-            for (T &x : adj[current]) {
+            for (T& x : adj[current]) {
                 if (visited.find(x) == visited.end()) {
                     q.push(x);
                     visited[x] = true;
@@ -326,14 +325,14 @@ template <typename T> std::vector<T> graph<T>::bfs(T start) {
 }
 
 template <typename T> int64_t graph<T>::connected_components() {
-    auto explore = [&](std::unordered_map<T, bool> &visited, T element) -> void {
+    auto explore = [&](std::unordered_map<T, bool>& visited, T element) -> void {
         std::queue<T> q;
         q.push(element);
         visited[element] = true;
         while (!q.empty()) {
             T current = q.front();
             q.pop();
-            for (T &x : adj[current]) {
+            for (T& x : adj[current]) {
                 if (visited.find(x) == visited.end()) {
                     q.push(x);
                     visited[x] = true;
@@ -359,7 +358,7 @@ template <typename T> bool graph<T>::cycle() {
     size_t visited = 0;
 
     for (T x : _elements) {
-        for (T &y : adj[x]) {
+        for (T& y : adj[x]) {
             indeg[y]++;
         }
     }
@@ -374,7 +373,7 @@ template <typename T> bool graph<T>::cycle() {
         T current = q.front();
         q.pop();
         visited++;
-        for (T &x : adj[current]) {
+        for (T& x : adj[current]) {
             if (--indeg[x] == 0) {
                 q.push(x);
             }
@@ -388,7 +387,7 @@ template <typename T> std::vector<T> graph<T>::topological_sort() {
     std::unordered_map<T, bool> visited;
     std::unordered_map<T, int64_t> indeg;
     for (T x : _elements) {
-        for (T &y : adj[x]) {
+        for (T& y : adj[x]) {
             indeg[y]++;
         }
     }
@@ -405,7 +404,7 @@ template <typename T> std::vector<T> graph<T>::topological_sort() {
         T current = q.front();
         q.pop();
         top_sort.push_back(current);
-        for (T &x : adj[current]) {
+        for (T& x : adj[current]) {
             if (visited.find(x) == visited.end()) {
                 if (--indeg[x] == 0) {
                     q.push(x);
@@ -431,7 +430,7 @@ template <typename T> bool graph<T>::bipartite() {
                 q.pop();
                 T v = current.first;
                 int col = current.second;
-                for (T &x : adj[v]) {
+                for (T& x : adj[v]) {
                     if (color.find(x) != color.end() && color[x] == col) {
                         return false;
                     }
@@ -463,7 +462,7 @@ template <typename T> bool graph<T>::connected() {
     std::unordered_map<T, bool> visited;
     bool check = 0;
     T start;
-    for (auto &ele : adj) {
+    for (auto& ele : adj) {
         if (adj[ele.first].size() != 0) {
             start = ele.first;
             check = 1;
@@ -479,7 +478,7 @@ template <typename T> bool graph<T>::connected() {
     while (!s.empty()) {
         T current = s.top();
         s.pop();
-        for (T &x : adj[current]) {
+        for (T& x : adj[current]) {
             if (visited.find(x) == visited.end()) {
                 visited[x] = true;
                 s.push(x);
@@ -496,22 +495,22 @@ template <typename T> bool graph<T>::connected() {
 }
 
 template <typename T> int64_t graph<T>::scc() {
-    if (this -> size() == 0) {
+    if (this->size() == 0) {
         return 0;
     }
 
     std::unordered_map<T, bool> visited;
     std::stack<T> s;
 
-    for(const T& x: _elements) {
-        if(visited.find(x) == visited.end()) {
+    for (const T& x : _elements) {
+        if (visited.find(x) == visited.end()) {
             dfs_scc(x, visited, s);
         }
     }
 
-    std::unordered_map<T, std::vector<T> > new_adj;
-    for(const T& x: _elements) {
-        for(const auto& neigh: adj[x]) {
+    std::unordered_map<T, std::vector<T>> new_adj;
+    for (const T& x : _elements) {
+        for (const auto& neigh : adj[x]) {
             new_adj[neigh].push_back(x);
         }
     }
@@ -523,10 +522,10 @@ template <typename T> int64_t graph<T>::scc() {
         std::stack<T> _s;
         _s.push(start);
         visited[start] = true;
-        while(!_s.empty()) {
+        while (!_s.empty()) {
             T current = _s.top();
             _s.pop();
-            for(auto & x: new_adj[current]) {
+            for (auto& x : new_adj[current]) {
                 if (visited.find(x) == visited.end()) {
                     _s.push(x);
                     visited[x] = true;
@@ -535,7 +534,7 @@ template <typename T> int64_t graph<T>::scc() {
         }
     };
 
-    while(!s.empty()) {
+    while (!s.empty()) {
         T current = s.top();
         s.pop();
         if (visited.find(current) == visited.end()) {
@@ -553,7 +552,7 @@ template <typename T> int graph<T>::eulerian() {
     }
 
     int64_t odd = 0;
-    for (auto &el : adj) {
+    for (auto& el : adj) {
         if (adj[el.first].size() & 1) {
             odd++;
         }
@@ -565,13 +564,13 @@ template <typename T> int graph<T>::eulerian() {
     return (odd) ? 1 : 2;
 }
 
-#ifdef GRAPH_VISUALIZATION_H
+#ifdef ENABLE_GRAPH_VISUALIZATION
 template <typename T> void graph<T>::visualize() {
     std::string s;
     if (_type == "directed") {
         if (std::is_same_v<T, char> || std::is_same_v<T, std::string>) {
-            for (auto &[element, neighbors] : adj) {
-                for (T &x : neighbors) {
+            for (auto& [element, neighbors] : adj) {
+                for (T& x : neighbors) {
                     s += element;
                     s += "->";
                     s += x;
@@ -579,8 +578,8 @@ template <typename T> void graph<T>::visualize() {
                 }
             }
         } else {
-            for (auto &[element, neighbors] : adj) {
-                for (T &x : neighbors) {
+            for (auto& [element, neighbors] : adj) {
+                for (T& x : neighbors) {
                     s += std::to_string(element);
                     s += "->";
                     s += std::to_string(x);
@@ -590,8 +589,8 @@ template <typename T> void graph<T>::visualize() {
         }
     } else {
         if (std::is_same_v<T, char> || std::is_same_v<T, std::string>) {
-            for (auto &[element, neighbors] : adj) {
-                for (T &x : neighbors) {
+            for (auto& [element, neighbors] : adj) {
+                for (T& x : neighbors) {
                     s += element;
                     s += "--";
                     s += x;
@@ -599,8 +598,8 @@ template <typename T> void graph<T>::visualize() {
                 }
             }
         } else {
-            for (auto &[element, neighbors] : adj) {
-                for (T &x : neighbors) {
+            for (auto& [element, neighbors] : adj) {
+                for (T& x : neighbors) {
                     s += std::to_string(element);
                     s += "--";
                     s += std::to_string(x);
@@ -619,18 +618,17 @@ template <typename T> void graph<T>::visualize() {
 #endif
 
 /**
-* @brief class for weighted graph
-*/
+ * @brief class for weighted graph
+ */
 template <typename T> class weighted_graph {
-public:
+  public:
     /**
-    * @brief Constructor for weighted graph.
-    * @param __type: type of the graph, either "directed" or "undirected".
-    * @param __adj: vector<pair<pair<T,T>, int64_t>>, you can pass a vector of
-    * pairs to construct the graph without doing multiple add_edge.
-    */
-    weighted_graph(std::string _type,
-                   std::vector<std::pair<std::pair<T, T>, int64_t>> _adj = {}) {
+     * @brief Constructor for weighted graph.
+     * @param __type: type of the graph, either "directed" or "undirected".
+     * @param __adj: vector<pair<pair<T,T>, int64_t>>, you can pass a vector of
+     * pairs to construct the graph without doing multiple add_edge.
+     */
+    weighted_graph(std::string _type, std::vector<std::pair<std::pair<T, T>, int64_t>> _adj = {}) {
         try {
             if (_type == "directed" || _type == "undirected") {
                 this->_type = _type;
@@ -639,32 +637,28 @@ public:
             }
             if (!_adj.empty()) {
                 for (size_t i = 0; i < _adj.size(); i++) {
-                    this->add_edge(_adj[i].first.first, _adj[i].first.second,
-                                   _adj[i].second);
+                    this->add_edge(_adj[i].first.first, _adj[i].first.second, _adj[i].second);
                 }
             }
-        } catch (std::invalid_argument &e) {
+        } catch (std::invalid_argument& e) {
             std::cerr << e.what() << '\n';
             return;
         }
     }
 
     /**
-        * @brief Copy constructor for weighted graph class
-        * @param g the graph we want to copy
-        */
-    explicit weighted_graph(const weighted_graph &g) : adj(g.adj), _elements(g._elements), _type(g._type) {
-
-
-
-    }
+     * @brief Copy constructor for weighted graph class
+     * @param g the graph we want to copy
+     */
+    explicit weighted_graph(const weighted_graph& g)
+        : adj(g.adj), _elements(g._elements), _type(g._type) {}
 
     /**
-        * @brief operator = for weighted graph class
-        * @param g the graph we want to copy
-        * @return weighted_graph&
-        */
-    weighted_graph &operator=(const weighted_graph &g) {
+     * @brief operator = for weighted graph class
+     * @param g the graph we want to copy
+     * @return weighted_graph&
+     */
+    weighted_graph& operator=(const weighted_graph& g) {
         adj = g.adj;
         _elements = g._elements;
         _type = g._type;
@@ -672,17 +666,17 @@ public:
     }
 
     /**
-        * @brief Destroy the weighted graph object
-        *
-        */
+     * @brief Destroy the weighted graph object
+     *
+     */
     ~weighted_graph() { adj.clear(); }
 
     /**
-        * @brief add_edge function.
-        * @param u: first node.
-        * @param v: second node.
-        * @param w: weight between u and v.
-        */
+     * @brief add_edge function.
+     * @param u: first node.
+     * @param v: second node.
+     * @param w: weight between u and v.
+     */
     void add_edge(T u, T v, int64_t w) {
         if (_type == "undirected") {
             adj[u].push_back(std::make_pair(v, w));
@@ -695,16 +689,16 @@ public:
     }
 
     /**
-        *@brief has_edge function.
-        *@param start: starting node.
-        *@param end: ending node.
-        *@returns true if a direct edge from start to end exists.
-        */
+     *@brief has_edge function.
+     *@param start: starting node.
+     *@param end: ending node.
+     *@returns true if a direct edge from start to end exists.
+     */
     bool has_edge(T start, T end) {
         if (_elements.find(start) == _elements.end()) {
             return false;
         }
-        for (std::pair<T, double> &x : adj[start]) {
+        for (std::pair<T, double>& x : adj[start]) {
             if (x.first == end) {
                 return true;
             }
@@ -713,161 +707,158 @@ public:
     }
 
     /**
-        * @brief clear function.
-        * Clearing the entire graph.
-        */
+     * @brief clear function.
+     * Clearing the entire graph.
+     */
     void clear() {
         _elements.clear();
         adj.clear();
     }
     /**
-        * @brief empty function.
-        * *@returns true if the graph is empty.
-        */
+     * @brief empty function.
+     * *@returns true if the graph is empty.
+     */
     bool empty() { return _elements.empty(); }
 
     /**
-        * @brief size function.
-        * @returns the size of the graph.
-        */
+     * @brief size function.
+     * @returns the size of the graph.
+     */
     size_t size();
 
     /**
-        * @brief dfs function.
-        * @param start: starting node of the bfs.
-        * @returns vector<T>, the path of the dfs.
-        */
+     * @brief dfs function.
+     * @param start: starting node of the bfs.
+     * @returns vector<T>, the path of the dfs.
+     */
     std::vector<T> dfs(T start);
 
     /**
-        * @brief bfs function.
-        * @param start: starting node of the bfs.
-        * @returns vector<T>, the path of the bfs.
-        */
+     * @brief bfs function.
+     * @param start: starting node of the bfs.
+     * @returns vector<T>, the path of the bfs.
+     */
     std::vector<T> bfs(T start);
 
     /**
-        * @brief shortest_path function.
-        * @param start: starting node.
-        * @param end: ending node.
-        * @returns int64_t, the total cost of the path.
-        */
+     * @brief shortest_path function.
+     * @param start: starting node.
+     * @param end: ending node.
+     * @returns int64_t, the total cost of the path.
+     */
     double shortest_path(T start, T end);
 
     /**
-        * @brief connected_components function.
-        * @returns the connected componenets(islands) of the graph.
-        */
+     * @brief connected_components function.
+     * @returns the connected componenets(islands) of the graph.
+     */
     int64_t connected_components();
 
     /**
-        * @brief cycle function.
-        * @returns true if a cycle exists in the graph.
-        */
+     * @brief cycle function.
+     * @returns true if a cycle exists in the graph.
+     */
     bool cycle();
 
     /**
-        * @brief topological sort function.
-        * @returns vector<T>, the topological order of the elements of the graph.
-        */
+     * @brief topological sort function.
+     * @returns vector<T>, the topological order of the elements of the graph.
+     */
     std::vector<T> topological_sort();
 
     /**
-        * @brief prim function.
-        * @param start: starting node.
-        * @returns int64_t, the total cost of the minimum spanning tree of the graph.
-        */
+     * @brief prim function.
+     * @param start: starting node.
+     * @returns int64_t, the total cost of the minimum spanning tree of the graph.
+     */
     int64_t prim(T start);
 
     /**
-        * @brief bipartite function.
-        * @returns true if the graph is bipartite.
-        */
+     * @brief bipartite function.
+     * @returns true if the graph is bipartite.
+     */
     bool bipartite();
 
     /**
-        *@brief bridge function.
-        *@param start: starting point of search for the bridges.
-        *@returns vector<vector<T>> the bridges of the graph.
-        */
+     *@brief bridge function.
+     *@param start: starting point of search for the bridges.
+     *@returns vector<vector<T>> the bridges of the graph.
+     */
     std::vector<std::vector<T>> bridge(T start);
 
     /**
-        *@brief scc(strongly connected components) function.
-        *@returns int64_t the total scc's of the graph.
-        */
+     *@brief scc(strongly connected components) function.
+     *@returns int64_t the total scc's of the graph.
+     */
     int64_t scc();
 
     /**
-        *@brief connected function.
-        *@returns true if a graph is connected.
-        */
+     *@brief connected function.
+     *@returns true if a graph is connected.
+     */
     bool connected();
 
     /**
-        *@brief eulerian function.
-        *@returns 0 if a graph is not eulerian.
-        *         1 if a graph is semi-eulerian.
-        *         2 if a graph is eulerian.
-        */
+     *@brief eulerian function.
+     *@returns 0 if a graph is not eulerian.
+     *         1 if a graph is semi-eulerian.
+     *         2 if a graph is eulerian.
+     */
     int eulerian();
 
     /**
-        *@brief find SSSP and identify negative cycles.
-        *@returns unordered_map of SSSP.
-        */
+     *@brief find SSSP and identify negative cycles.
+     *@returns unordered_map of SSSP.
+     */
     std::unordered_map<T, double> bellman_ford(T start);
 
-
     /**
-        *@brief maximum flow function
-        *@details Returns the maximum flow from a starting node 's' to an ending node(sink) 't'
-        *@returns int: the maximum flow from 's' to 't'
-        */
+     *@brief maximum flow function
+     *@details Returns the maximum flow from a starting node 's' to an ending
+     *node(sink) 't'
+     *@returns int: the maximum flow from 's' to 't'
+     */
     int max_flow(T start, T end);
 
-
     /**
-        *@brief visualize function.
-        *@returns .dot file that can be previewed in vscode with graphviz.
-        */
+     *@brief visualize function.
+     *@returns .dot file that can be previewed in vscode with graphviz.
+     */
     void visualize();
 
     /**
-        * @brief << operator for the weighted graph class.
-        * @returns ostream &out for std::cout.
-        */
-    friend std::ostream &operator<<(std::ostream &out, weighted_graph<T> &g) {
+     * @brief << operator for the weighted graph class.
+     * @returns ostream &out for std::cout.
+     */
+    friend std::ostream& operator<<(std::ostream& out, weighted_graph<T>& g) {
         out << '{';
         std::vector<T> elements = g.topological_sort();
-        for (T &x : elements) {
+        for (T& x : elements) {
             out << x << ' ';
         }
         out << '}' << '\n';
         return out;
     }
 
-private:
+  private:
     /**
-        * @param adj: adjacency list for the graph.
-        * @param __type: type of the graph, either "directed" or "undirected".
-        * @param __elements: set of total elements of the graph.
-        */
+     * @param adj: adjacency list for the graph.
+     * @param __type: type of the graph, either "directed" or "undirected".
+     * @param __elements: set of total elements of the graph.
+     */
     std::unordered_map<T, std::vector<std::pair<T, double>>> adj;
     std::string _type;
     std::unordered_set<T> _elements;
 
     /**
-        *@brief helper function for bridge detection algorithm.
-        */
-    void dfs_bridge(T start, T parent, int64_t &time,
-                    std::unordered_map<T, bool> &visited,
-                    std::unordered_map<T, int64_t> &in,
-                    std::unordered_map<T, int64_t> &out,
-                    std::vector<std::vector<T>> &bridges) {
+     *@brief helper function for bridge detection algorithm.
+     */
+    void dfs_bridge(T start, T parent, int64_t& time, std::unordered_map<T, bool>& visited,
+                    std::unordered_map<T, int64_t>& in, std::unordered_map<T, int64_t>& out,
+                    std::vector<std::vector<T>>& bridges) {
         visited[start] = true;
         in[start] = out[start] = time++;
-        for (std::pair<T, double> &x : adj[start]) {
+        for (std::pair<T, double>& x : adj[start]) {
             if (x.first != parent) {
                 if (visited.find(x.first) == visited.end()) {
                     dfs_bridge(x.first, start, time, visited, in, out, bridges);
@@ -881,12 +872,12 @@ private:
     }
 
     /**
-            * @brief helper dfs function for kosaraju's scc
-            */
-    void dfs_scc(T start, std::unordered_map<T, bool> &visited, std::stack<T> &s) {
+     * @brief helper dfs function for kosaraju's scc
+     */
+    void dfs_scc(T start, std::unordered_map<T, bool>& visited, std::stack<T>& s) {
         visited[start] = true;
-        for(auto & x : adj[start]) {
-            if(visited.find(x.first) == visited.end()) {
+        for (auto& x : adj[start]) {
+            if (visited.find(x.first) == visited.end()) {
                 dfs_scc(x.first, visited, s);
             }
         }
@@ -914,7 +905,7 @@ template <typename T> double weighted_graph<T>::shortest_path(T start, T end) {
         std::reverse(top_sort.begin(), top_sort.end());
         std::stack<T> s;
         std::unordered_map<T, double> dist;
-        for (auto &x : _elements) {
+        for (auto& x : _elements) {
             dist[x] = std::numeric_limits<int64_t>::max();
         }
         dist[start] = 0;
@@ -922,7 +913,7 @@ template <typename T> double weighted_graph<T>::shortest_path(T start, T end) {
             auto current = top_sort.back();
             top_sort.pop_back();
             if (dist[current] != std::numeric_limits<int64_t>::max()) {
-                for (std::pair<T, double> &x : adj[current]) {
+                for (std::pair<T, double>& x : adj[current]) {
                     if (dist[x.first] > dist[current] + x.second) {
                         dist[x.first] = dist[current] + x.second;
                         top_sort.push_back(x.first);
@@ -933,20 +924,19 @@ template <typename T> double weighted_graph<T>::shortest_path(T start, T end) {
         return (dist[end] != std::numeric_limits<int64_t>::max()) ? dist[end] : -1;
     } else {
         std::unordered_map<T, double> dist;
-        for (auto &x : _elements) {
+        for (auto& x : _elements) {
             dist[x] = std::numeric_limits<int64_t>::max();
         }
-        std::priority_queue<std::pair<double, T>,
-        std::vector<std::pair<double, T>>,
-        std::greater<std::pair<double, T>>>
-        pq;
+        std::priority_queue<std::pair<double, T>, std::vector<std::pair<double, T>>,
+                            std::greater<std::pair<double, T>>>
+            pq;
         pq.push(std::make_pair(0, start));
         dist[start] = 0;
         while (!pq.empty()) {
             T currentNode = pq.top().second;
             double currentDist = pq.top().first;
             pq.pop();
-            for (std::pair<T, double> &edge : adj[currentNode]) {
+            for (std::pair<T, double>& edge : adj[currentNode]) {
                 if (currentDist + edge.second < dist[edge.first]) {
                     dist[edge.first] = currentDist + edge.second;
                     pq.push(std::make_pair(dist[edge.first], edge.first));
@@ -974,7 +964,7 @@ template <typename T> std::vector<T> weighted_graph<T>::dfs(T start) {
             T current = s.top();
             path.push_back(current);
             s.pop();
-            for (std::pair<T, double> &x : adj[current]) {
+            for (std::pair<T, double>& x : adj[current]) {
                 if (visited.find(x.first) == visited.end()) {
                     s.push(x.first);
                     visited[x.first] = true;
@@ -1000,7 +990,7 @@ template <typename T> std::vector<T> weighted_graph<T>::bfs(T start) {
             T current = q.front();
             path.push_back(current);
             q.pop();
-            for (std::pair<T, double> &x : adj[current]) {
+            for (std::pair<T, double>& x : adj[current]) {
                 if (visited.find(x.first) == visited.end()) {
                     q.push(x.first);
                     visited[x.first] = true;
@@ -1012,14 +1002,14 @@ template <typename T> std::vector<T> weighted_graph<T>::bfs(T start) {
 }
 
 template <typename T> int64_t weighted_graph<T>::connected_components() {
-    auto explore = [&](std::unordered_map<T, bool> &visited, T element) -> void {
+    auto explore = [&](std::unordered_map<T, bool>& visited, T element) -> void {
         std::stack<T> s;
         s.push(element);
         visited[element] = true;
         while (!s.empty()) {
             T current = s.top();
             s.pop();
-            for (std::pair<T, double> &x : adj[current]) {
+            for (std::pair<T, double>& x : adj[current]) {
                 if (visited.find(x.first) == visited.end()) {
                     s.push(x.first);
                     visited[x.first] = true;
@@ -1045,7 +1035,7 @@ template <typename T> bool weighted_graph<T>::cycle() {
     size_t visited = 0;
 
     for (T x : _elements) {
-        for (std::pair<T, double> &y : adj[x]) {
+        for (std::pair<T, double>& y : adj[x]) {
             indeg[y.first]++;
         }
     }
@@ -1060,7 +1050,7 @@ template <typename T> bool weighted_graph<T>::cycle() {
         T current = q.front();
         q.pop();
         visited++;
-        for (std::pair<T, double> &x : adj[current]) {
+        for (std::pair<T, double>& x : adj[current]) {
             if (--indeg[x.first] == 0) {
                 q.push(x.first);
             }
@@ -1074,7 +1064,7 @@ template <typename T> std::vector<T> weighted_graph<T>::topological_sort() {
     std::unordered_map<T, bool> visited;
     std::unordered_map<T, int64_t> indeg;
     for (T x : _elements) {
-        for (std::pair<T, double> &y : adj[x]) {
+        for (std::pair<T, double>& y : adj[x]) {
             indeg[y.first]++;
         }
     }
@@ -1091,7 +1081,7 @@ template <typename T> std::vector<T> weighted_graph<T>::topological_sort() {
         T current = q.front();
         q.pop();
         top_sort.push_back(current);
-        for (std::pair<T, double> &x : adj[current]) {
+        for (std::pair<T, double>& x : adj[current]) {
             if (visited.find(x.first) == visited.end()) {
                 if (--indeg[x.first] == 0) {
                     q.push(x.first);
@@ -1106,8 +1096,8 @@ template <typename T> std::vector<T> weighted_graph<T>::topological_sort() {
 
 template <typename T> int64_t weighted_graph<T>::prim(T _temp) {
     std::priority_queue<std::pair<T, int64_t>, std::vector<std::pair<T, int64_t>>,
-    std::greater<std::pair<T, int64_t>>>
-    q;
+                        std::greater<std::pair<T, int64_t>>>
+        q;
     std::unordered_map<T, bool> visited;
     int64_t cost = 0;
     q.push(std::make_pair(0, _temp));
@@ -1120,7 +1110,7 @@ template <typename T> int64_t weighted_graph<T>::prim(T _temp) {
         }
         cost += current.second;
         visited[_temp] = true;
-        for (std::pair<T, double> &x : adj[current.first]) {
+        for (std::pair<T, double>& x : adj[current.first]) {
             if (visited.find(x.first) == visited.end()) {
                 q.push(x);
             }
@@ -1142,7 +1132,7 @@ template <typename T> bool weighted_graph<T>::bipartite() {
                 q.pop();
                 T v = current.first;
                 int col = current.second;
-                for (std::pair<T, double> &x : adj[v]) {
+                for (std::pair<T, double>& x : adj[v]) {
                     if (color.find(x.first) != color.end() && color[x.first] == col) {
                         return false;
                     }
@@ -1157,8 +1147,7 @@ template <typename T> bool weighted_graph<T>::bipartite() {
     return true;
 }
 
-template <typename T>
-std::vector<std::vector<T>> weighted_graph<T>::bridge(T start) {
+template <typename T> std::vector<std::vector<T>> weighted_graph<T>::bridge(T start) {
     int64_t timer = 0;
     std::vector<std::vector<T>> bridges;
     std::unordered_map<T, bool> visited;
@@ -1171,24 +1160,23 @@ std::vector<std::vector<T>> weighted_graph<T>::bridge(T start) {
     return bridges;
 }
 
-template <typename T>
-int64_t weighted_graph<T>::scc() {
-    if (this -> size() == 0) {
+template <typename T> int64_t weighted_graph<T>::scc() {
+    if (this->size() == 0) {
         return 0;
     }
 
     std::unordered_map<T, bool> visited;
     std::stack<T> s;
 
-    for(const T& x : _elements) {
-        if(visited.find(x) == visited.end()) {
+    for (const T& x : _elements) {
+        if (visited.find(x) == visited.end()) {
             dfs_scc(x, visited, s);
         }
     }
 
-    std::unordered_map<T, std::vector<T> > new_adj;
-    for(const T& x: _elements) {
-        for(const auto& neigh: adj[x]) {
+    std::unordered_map<T, std::vector<T>> new_adj;
+    for (const T& x : _elements) {
+        for (const auto& neigh : adj[x]) {
             new_adj[neigh.first].push_back(x);
         }
     }
@@ -1200,10 +1188,10 @@ int64_t weighted_graph<T>::scc() {
         std::stack<T> _s;
         _s.push(start);
         visited[start] = true;
-        while(!_s.empty()) {
+        while (!_s.empty()) {
             T current = _s.top();
             _s.pop();
-            for(auto & x: new_adj[current]) {
+            for (auto& x : new_adj[current]) {
                 if (visited.find(x) == visited.end()) {
                     _s.push(x);
                     visited[x] = true;
@@ -1212,7 +1200,7 @@ int64_t weighted_graph<T>::scc() {
         }
     };
 
-    while(!s.empty()) {
+    while (!s.empty()) {
         T current = s.top();
         s.pop();
         if (visited.find(current) == visited.end()) {
@@ -1228,7 +1216,7 @@ template <typename T> bool weighted_graph<T>::connected() {
     std::unordered_map<T, bool> visited;
     bool check = 0;
     T start;
-    for (auto &ele : adj) {
+    for (auto& ele : adj) {
         if (adj[ele.first].size() != 0) {
             start = ele.first;
             check = 1;
@@ -1244,7 +1232,7 @@ template <typename T> bool weighted_graph<T>::connected() {
     while (!s.empty()) {
         T current = s.top();
         s.pop();
-        for (std::pair<T, double> &x : adj[current]) {
+        for (std::pair<T, double>& x : adj[current]) {
             if (visited.find(x.first) == visited.end()) {
                 visited[x.first] = true;
                 s.push(x.first);
@@ -1266,7 +1254,7 @@ template <typename T> int weighted_graph<T>::eulerian() {
     }
 
     int odd = 0;
-    for (auto &el : adj) {
+    for (auto& el : adj) {
         if (adj[el.first].size() & 1) {
             odd++;
         }
@@ -1279,8 +1267,7 @@ template <typename T> int weighted_graph<T>::eulerian() {
     return (odd) ? 1 : 2;
 }
 
-template <typename T>
-std::unordered_map<T, double> weighted_graph<T>::bellman_ford(T start) {
+template <typename T> std::unordered_map<T, double> weighted_graph<T>::bellman_ford(T start) {
     std::unordered_map<T, double> dist;
     // Initialize the distance to all nodes to be infinity
     // except for the starting node which is zero.
@@ -1306,7 +1293,7 @@ std::unordered_map<T, double> weighted_graph<T>::bellman_ford(T start) {
     // Run algorithm a second time to detect which nodes are part
     // of a negative cycle. A negative cycle has occurred if we
     // can find a better path beyond the optimal solution.
-    for(int i = 0; i < v - 1; i++) {
+    for (int i = 0; i < v - 1; i++) {
         for (const auto j : adj) {
             for (const auto edge : adj[j.first]) {
                 if (dist[j.first] + edge.second < dist[edge.first]) {
@@ -1320,13 +1307,13 @@ std::unordered_map<T, double> weighted_graph<T>::bellman_ford(T start) {
     return dist;
 }
 
-#ifdef GRAPH_VISUALIZATION_H
+#ifdef ENABLE_GRAPH_VISUALIZATION
 template <typename T> void weighted_graph<T>::visualize() {
     std::string s;
     if (_type == "directed") {
         if (std::is_same_v<T, char> || std::is_same_v<T, std::string>) {
-            for (auto &[element, neighbors] : adj) {
-                for (std::pair<T, double> &x : neighbors) {
+            for (auto& [element, neighbors] : adj) {
+                for (std::pair<T, double>& x : neighbors) {
                     if (x.first == element) {
                         continue;
                     }
@@ -1340,8 +1327,8 @@ template <typename T> void weighted_graph<T>::visualize() {
                 }
             }
         } else {
-            for (auto &[element, neighbors] : adj) {
-                for (std::pair<T, double> &x : neighbors) {
+            for (auto& [element, neighbors] : adj) {
+                for (std::pair<T, double>& x : neighbors) {
                     if (x.first == element) {
                         continue;
                     }
@@ -1357,8 +1344,8 @@ template <typename T> void weighted_graph<T>::visualize() {
         }
     } else {
         if (std::is_same_v<T, char> || std::is_same_v<T, std::string>) {
-            for (auto &[element, neighbors] : adj) {
-                for (std::pair<T, double> &x : neighbors) {
+            for (auto& [element, neighbors] : adj) {
+                for (std::pair<T, double>& x : neighbors) {
                     if (x.first == element) {
                         continue;
                     }
@@ -1372,8 +1359,8 @@ template <typename T> void weighted_graph<T>::visualize() {
                 }
             }
         } else {
-            for (auto &[element, neighbors] : adj) {
-                for (std::pair<T, double> &x : neighbors) {
+            for (auto& [element, neighbors] : adj) {
+                for (std::pair<T, double>& x : neighbors) {
                     if (x.first == element) {
                         continue;
                     }

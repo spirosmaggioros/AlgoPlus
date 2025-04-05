@@ -1,23 +1,23 @@
 #ifndef TREE_H
 #define TREE_H
 
-#ifdef TREE_VISUALIZATION_H
+#ifdef ENABLE_TREE_VISUALIZATION
 #include "../../visualization/tree_visual/tree_visualization.h"
 #endif
 
 #ifdef __cplusplus
 #include <functional>
 #include <iostream>
-#include <queue>
 #include <memory>
+#include <queue>
 #endif
 
 /**
-* @brief tree class
-*
-*/
+ * @brief tree class
+ *
+ */
 template <typename T> class tree {
-private:
+  private:
     struct node {
         T info;
         std::shared_ptr<node> right;
@@ -28,27 +28,26 @@ private:
     int64_t _size{};
     std::shared_ptr<node> root;
 
-public:
+  public:
     /**
-    * @brief constructor for tree class
-    * @param v: the input vector of pairs(string and T) to avoid doing multiple
-    * insertions
-    */
-    explicit tree(std::vector<std::pair<std::string, T>> v = {}) noexcept
-        : root(nullptr) {
+     * @brief constructor for tree class
+     * @param v: the input vector of pairs(string and T) to avoid doing multiple
+     * insertions
+     */
+    inline explicit tree(std::vector<std::pair<std::string, T>> v = {}) noexcept : root(nullptr) {
         if (!v.empty()) {
-            for (std::pair<std::string, T> &x : v) {
+            for (std::pair<std::string, T>& x : v) {
                 this->insert(x.first, x.second);
             }
         }
     }
 
     /**
-    * @brief insert function
-    * @param direction: string, directions for the insertion of value info
-    * @param info: the value of the new node
-    */
-    void insert(std::string direction, T info) {
+     * @brief insert function
+     * @param direction: string, directions for the insertion of value info
+     * @param info: the value of the new node
+     */
+    inline void insert(std::string direction, T info) {
         std::shared_ptr<node> nn = std::make_shared<node>(info);
         if (!root) {
             _size++;
@@ -74,12 +73,12 @@ public:
     }
 
     /**
-    * @brief search function
-    * @param key: the key to be searched
-    * @return true: if the key exist in the tree
-    * @return false: otherwise
-    */
-    bool search(T key) {
+     * @brief search function
+     * @param key: the key to be searched
+     * @return true: if the key exist in the tree
+     * @return false: otherwise
+     */
+    inline bool search(T key) {
         std::queue<std::shared_ptr<node>> q;
         q.push(root);
         while (!q.empty()) {
@@ -103,63 +102,53 @@ public:
 
     class Iterator;
 
-    Iterator begin() {
+    inline Iterator begin() {
         std::vector<T> ino = this->inorder();
         return Iterator(0, ino);
     }
 
-    Iterator end() {
+    inline Iterator end() {
         std::vector<T> ino = this->inorder();
         return Iterator(ino.size(), ino);
     }
 
     /**
-    * @brief inorder traversal
-    * @return vector<T>: the inorder traversal of the tree
-    */
-    std::vector<T> inorder() {
+     * @brief inorder traversal
+     * @return vector<T>: the inorder traversal of the tree
+     */
+    inline std::vector<T> inorder() {
         std::vector<T> ino;
-        _inorder(
-            [&](std::shared_ptr<node> callbacked) {
-                ino.push_back(callbacked->info);
-            },
-            root);
+        _inorder([&](std::shared_ptr<node> callbacked) { ino.push_back(callbacked->info); }, root);
         return ino;
     }
 
     /**
-    * @brief postorder function
-    * @return vector<T>: the postorder traversal of the tree
-    */
-    std::vector<T> postorder() {
+     * @brief postorder function
+     * @return vector<T>: the postorder traversal of the tree
+     */
+    inline std::vector<T> postorder() {
         std::vector<T> path;
-        _postorder(
-            [&](std::shared_ptr<node> callbacked) {
-                path.push_back(callbacked->info);
-            },
-            root);
+        _postorder([&](std::shared_ptr<node> callbacked) { path.push_back(callbacked->info); },
+                   root);
         return path;
     }
 
     /**
-    * @brief preorder function
-    * @return vector<T>: the preorder traversal of the tree
-    */
-    std::vector<T> preorder() {
+     * @brief preorder function
+     * @return vector<T>: the preorder traversal of the tree
+     */
+    inline std::vector<T> preorder() {
         std::vector<T> path;
-        _preorder(
-            [&](std::shared_ptr<node> callbacked) {
-                path.push_back(callbacked->info);
-            },
-            root);
+        _preorder([&](std::shared_ptr<node> callbacked) { path.push_back(callbacked->info); },
+                  root);
         return path;
     }
 
     /**
-    * @brief level order function
-    * @return vector<vector<T>>: the level order traversal of the tree
-    */
-    std::vector<std::vector<T>> level_order() {
+     * @brief level order function
+     * @return vector<vector<T>>: the level order traversal of the tree
+     */
+    inline std::vector<std::vector<T>> level_order() {
         std::vector<std::vector<T>> path;
         std::queue<std::shared_ptr<node>> q;
         q.push(root);
@@ -183,15 +172,14 @@ public:
     }
 
     /**
-    * @brief operator << for bst class
-    */
-    friend std::ostream & operator << (std::ostream &out, tree<T> &t){
+     * @brief operator << for bst class
+     */
+    inline friend std::ostream& operator<<(std::ostream& out, tree<T>& t) {
         std::vector<T> order = t.inorder();
-        for(int i = 0; i<order.size(); i++){
-            if(i != order.size() - 1){
+        for (int i = 0; i < order.size(); i++) {
+            if (i != order.size() - 1) {
                 out << order[i] << ", ";
-            }
-            else{
+            } else {
                 out << order[i] << '\n';
             }
         }
@@ -199,19 +187,18 @@ public:
     }
 
     /**
-    *@brief visualize function
-    *@returns .dot file that can be previewed using graphviz in vscode.
-    */
+     *@brief visualize function
+     *@returns .dot file that can be previewed using graphviz in vscode.
+     */
 #ifdef TREE_VISUALIZATION_H
-    void visualize() {
+    inline void visualize() {
         std::string _generated = generate_visualization();
         tree_visualization::visualize(_generated);
     }
 #endif
 
-private:
-    void _inorder(std::function<void(std::shared_ptr<node>)> callback,
-                  std::shared_ptr<node> root) {
+  private:
+    void _inorder(std::function<void(std::shared_ptr<node>)> callback, std::shared_ptr<node> root) {
         if (root) {
             _inorder(callback, root->left);
             callback(root);
@@ -261,14 +248,12 @@ private:
             }
         } else {
             if (root->left) {
-                _s += std::to_string(root->info) + "->" +
-                    std::to_string(root->left->info) + "\n" +
-                    _inorder_gen(root->left);
+                _s += std::to_string(root->info) + "->" + std::to_string(root->left->info) + "\n" +
+                      _inorder_gen(root->left);
             }
             if (root->right) {
-                _s += std::to_string(root->info) + "->" +
-                    std::to_string(root->right->info) + "\n" +
-                    _inorder_gen(root->right);
+                _s += std::to_string(root->info) + "->" + std::to_string(root->right->info) + "\n" +
+                      _inorder_gen(root->right);
             }
         }
         return _s;
@@ -276,36 +261,36 @@ private:
 };
 
 template <typename T> class tree<T>::Iterator {
-private:
+  private:
     std::vector<T> elements;
     int64_t index;
 
-public:
+  public:
     /**
-    * @brief Construct a new Iterator object
-    *
-    * @param els vector<T> - the elements in inorder fashion
-    */
-    explicit Iterator(const int64_t &index, std::vector<T> &els) noexcept
-    : index(index), elements(els) {}
+     * @brief Construct a new Iterator object
+     *
+     * @param els vector<T> - the elements in inorder fashion
+     */
+    explicit Iterator(const int64_t& index, std::vector<T>& els) noexcept
+        : index(index), elements(els) {}
 
     /**
-    * @brief = operator for Iterator type
-    *
-    * @param index the current index
-    * @return Iterator&
-    */
-    Iterator &operator=(int64_t index) {
+     * @brief = operator for Iterator type
+     *
+     * @param index the current index
+     * @return Iterator&
+     */
+    Iterator& operator=(int64_t index) {
         this->index = index;
         return *(this);
     }
 
     /**
-    * @brief operator ++ for type Iterator
-    *
-    * @return Iterator&
-    */
-    Iterator &operator++() {
+     * @brief operator ++ for type Iterator
+     *
+     * @return Iterator&
+     */
+    Iterator& operator++() {
         if (this->index < elements.size()) {
             this->index++;
         }
@@ -313,10 +298,10 @@ public:
     }
 
     /**
-    * @brief operator ++ for type Iterator
-    *
-    * @return Iterator
-    */
+     * @brief operator ++ for type Iterator
+     *
+     * @return Iterator
+     */
     Iterator operator++(int) {
         Iterator it = *this;
         ++*(this);
@@ -324,11 +309,11 @@ public:
     }
 
     /**
-    * @brief operator -- for type Iterator
-    *
-    * @return Iterator&
-    */
-    Iterator &operator--() {
+     * @brief operator -- for type Iterator
+     *
+     * @return Iterator&
+     */
+    Iterator& operator--() {
         if (this->index > 0) {
             this->index--;
         }
@@ -336,10 +321,10 @@ public:
     }
 
     /**
-    * @brief operator -- for type Iterator
-    *
-    * @return Iterator
-    */
+     * @brief operator -- for type Iterator
+     *
+     * @return Iterator
+     */
     Iterator operator--(int) {
         Iterator it = *this;
         --*(this);
@@ -347,19 +332,19 @@ public:
     }
 
     /**
-    * @brief operator != for type Iterator
-    *
-    * @param it const Iterator
-    * @return true if index == it.index
-    * @return false otherwise
-    */
-    bool operator!=(const Iterator &it) { return index != it.index; }
+     * @brief operator != for type Iterator
+     *
+     * @param it const Iterator
+     * @return true if index == it.index
+     * @return false otherwise
+     */
+    bool operator!=(const Iterator& it) { return index != it.index; }
 
     /**
-    * @brief operator * for type Iterator
-    *
-    * @return T the value of the node
-    */
+     * @brief operator * for type Iterator
+     *
+     * @return T the value of the node
+     */
     T operator*() { return elements[index]; }
 };
 

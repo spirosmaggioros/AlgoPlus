@@ -12,17 +12,13 @@ TEST_CASE("Testing get args for debug namespace") {
 
     // in order to pass member function, you need to make them lambda first,
     // if they're static function, this step could be ignored
-    auto shortest_path = [&](int a, int b) -> double {
-        return g.shortest_path(a, b);
-    };
+    auto shortest_path = [&](int a, int b) -> double { return g.shortest_path(a, b); };
 
     CHECK_NOTHROW(DEBUG::get_args(shortest_path, 0, 2));
 }
 
 TEST_CASE("Testing get args for debug namespace with vectors") {
-    auto it = [&](int a, int b) -> std::vector<int> {
-        return {a, b};
-    };
+    auto it = [&](int a, int b) -> std::vector<int> { return {a, b}; };
     std::vector<int> passed = {2, 4};
     CHECK_NOTHROW(DEBUG::get_args(it, passed));
 }

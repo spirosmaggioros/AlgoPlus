@@ -63,10 +63,7 @@ TEST_CASE("checking hash_table<int, std::string> table") {
     }
     std::sort(tablePairs.begin(), tablePairs.end());
 
-    std::vector<std::pair<int, std::string>> check_table = {
-            {1, "abc"},
-            {2, "bcd"},
-            {3, "cba"}};
+    std::vector<std::pair<int, std::string>> check_table = {{1, "abc"}, {2, "bcd"}, {3, "cba"}};
     std::sort(check_table.begin(), check_table.end());
 
     REQUIRE(tablePairs == check_table);
@@ -85,11 +82,7 @@ TEST_CASE("checking hash_table<int, std::string> t2") {
     }
     std::sort(t2Pairs.begin(), t2Pairs.end());
 
-    std::vector<std::pair<int, std::string>> check_t2 = {
-            {1, "a"},
-            {2, "b"},
-            {3, "c"},
-            {4, "d"}};
+    std::vector<std::pair<int, std::string>> check_t2 = {{1, "a"}, {2, "b"}, {3, "c"}, {4, "d"}};
     std::sort(check_t2.begin(), check_t2.end());
 
     REQUIRE(t2Pairs == check_t2);
@@ -102,11 +95,7 @@ TEST_CASE("checking hash_table<int, std::string> t3") {
     t3.insert(3, "c");
     t3.insert(4, "d");
 
-    std::vector<std::pair<int, std::string>> check_vec = {
-            {1, "a"},
-            {2, "b"},
-            {3, "c"},
-            {4, "d"}};
+    std::vector<std::pair<int, std::string>> check_vec = {{1, "a"}, {2, "b"}, {3, "c"}, {4, "d"}};
     std::sort(check_vec.begin(), check_vec.end());
 
     std::vector<std::pair<int, std::string>> vec;
@@ -125,14 +114,10 @@ TEST_CASE("Testing operator = for hash table class") {
     t3.insert(3, "c");
     t3.insert(4, "d");
 
-    std::vector<std::pair<int, std::string>> check_vec = {
-            {1, "a"},
-            {2, "b"},
-            {3, "c"},
-            {4, "d"}};
+    std::vector<std::pair<int, std::string>> check_vec = {{1, "a"}, {2, "b"}, {3, "c"}, {4, "d"}};
     hash_table<int, std::string> t = t3;
-    std::vector<std::pair<int, std::string> > vec;
-    for(auto it = t3.begin(); it != t3.end(); it++){
+    std::vector<std::pair<int, std::string>> vec;
+    for (auto it = t3.begin(); it != t3.end(); it++) {
         vec.push_back(*it);
     }
     std::sort(vec.begin(), vec.end());

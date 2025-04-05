@@ -9,16 +9,16 @@
 #endif
 
 /**
-* @brief longest common subsequence function
-* @details computes the longest common subsequence of 2 strings
-* @param a first input string
-* @param b second input string
-* @return int64_t the longest common subsequence of a to b
-*/
+ * @brief longest common subsequence function
+ * @details computes the longest common subsequence of 2 strings
+ * @param a first input string
+ * @param b second input string
+ * @return int64_t the longest common subsequence of a to b
+ */
 int64_t lcs(const std::string a, const std::string b) {
     int64_t m = a.length(), n = b.length();
-    std::vector<std::vector<int64_t> > res(m + 1, std::vector<int64_t>(n + 1));
-    std::vector<std::vector<int64_t> > trace(20, std::vector<int64_t>(20));
+    std::vector<std::vector<int64_t>> res(m + 1, std::vector<int64_t>(n + 1));
+    std::vector<std::vector<int64_t>> trace(20, std::vector<int64_t>(20));
 
     for (int64_t i = 0; i < m + 1; i++) {
         for (int64_t j = 0; j < n + 1; j++) {

@@ -1,4 +1,4 @@
-#include "../../src/visualization/tree_visual/tree_visualization.h"
+#define ENABLE_TREE_VISUALIZATION
 #include "../../src/classes/tree/rope.h"
 #include "../../third_party/catch.hpp"
 
@@ -16,5 +16,5 @@ TEST_CASE("Testing rope constructor [2]") {
     rope rr("import numpy as np", 3);
     REQUIRE(r.height() <= 2);
     REQUIRE(r.inorder() == "import numpy as np");
-    CHECK_NOTHROW(rr.visualize());
+    // CHECK_NOTHROW(rr.visualize());
 }

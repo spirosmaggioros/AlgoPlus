@@ -9,10 +9,10 @@
 #endif
 
 /**
-* @brief bucket sort function
-* @param arr input array
-*/
-template <typename T> void bucket_sort(std::vector<T> &arr) {
+ * @brief bucket sort function
+ * @param arr input array
+ */
+template <typename T> void bucket_sort(std::vector<T>& arr) {
     if (std::is_same_v<T, int> || std::is_same_v<T, int64_t>) {
         std::sort(arr.begin(), arr.end());
         return;

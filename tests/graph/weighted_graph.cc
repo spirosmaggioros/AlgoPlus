@@ -1,7 +1,7 @@
-#include "../../src/visualization/graph_visual/graph_visualization.h"
-#include "../../src/classes/graph/graph.h"
 #include "../../third_party/catch.hpp"
 #include <string>
+#include "../../src/classes/graph/graph.h"
+#include "../../src/visualization/graph_visual/graph_visualization.h"
 
 TEST_CASE("testing clearing of a weighted graph") {
     weighted_graph<int> g("directed");
@@ -359,7 +359,8 @@ TEST_CASE("Testing scc function for weighted graph class") {
 //     g.add_edge('C', 't', 5);
 //     g.add_edge('C', 'B', 3);
 //
-//     std::unordered_map<char, std::vector<std::tuple<char, double, double> > > f = g.max_flow('s', 't');
+//     std::unordered_map<char, std::vector<std::tuple<char, double, double> > >
+//     f = g.max_flow('s', 't');
 //
 //     for(const auto x: f) {
 //         std::cout << x.first << ": ";

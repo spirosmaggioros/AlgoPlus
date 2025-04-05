@@ -2,21 +2,22 @@
 #define POLY_REG_H
 
 #ifdef __cplusplus
+#include <cmath>
 #include <iostream>
 #include <vector>
-#include <cmath>
 #endif
 
-class polynomial_regression{
-private:
+class polynomial_regression {
+  private:
     std::vector<double> X;
     std::vector<double> Y;
     int64_t n;
-public:
 
-    explicit polynomial_regression(std::vector<double> X, std::vector<double> Y, int64_t n) noexcept : X(X), Y(Y), n(n) {}
+  public:
+    explicit polynomial_regression(std::vector<double> X, std::vector<double> Y, int64_t n) noexcept
+        : X(X), Y(Y), n(n) {}
 
-    inline std::vector<double> get_coeffs(){
+    inline std::vector<double> get_coeffs() {
         std::vector<std::vector<double>> k = calculate_matrix(this->X, this->n);
         std::vector<double> l = calculate_vector(this->X, this->Y, this->n);
         std::vector<double> b_coeffs = solve_linear_system(k, l);
@@ -27,7 +28,8 @@ public:
         return std::vector<std::vector<double>>(rows, std::vector<double>(cols, 0.0));
     }
 
-    inline std::vector<std::vector<double>> calculate_matrix(const std::vector<double>& x, int64_t n) {
+    inline std::vector<std::vector<double>> calculate_matrix(const std::vector<double>& x,
+                                                             int64_t n) {
         int64_t m = x.size();
         auto matrix = create_matrix(n + 1, n + 1);
         for (int64_t i = 0; i <= n; ++i) {
@@ -40,7 +42,8 @@ public:
         return matrix;
     }
 
-    inline std::vector<double> calculate_vector(const std::vector<double>& x, const std::vector<double>& y, int64_t n) {
+    inline std::vector<double> calculate_vector(const std::vector<double>& x,
+                                                const std::vector<double>& y, int64_t n) {
         int64_t m = x.size();
         std::vector<double> vector(n + 1, 0.0);
         for (int64_t i = 0; i <= n; ++i) {
@@ -52,7 +55,8 @@ public:
     }
 
     // Gaussian elimination
-    inline std::vector<double> solve_linear_system(std::vector<std::vector<double>> A, std::vector<double> b) {
+    inline std::vector<double> solve_linear_system(std::vector<std::vector<double>> A,
+                                                   std::vector<double> b) {
         int64_t n = A.size();
         for (int64_t i = 0; i < n; ++i) {
 
@@ -90,22 +94,20 @@ public:
     }
 
     /**
-    * @brief predict function
-    * @param x: the value of x which we want to predict y
-    * @return double: the predicted  value of y
-    */
+     * @brief predict function
+     * @param x: the value of x which we want to predict y
+     * @return double: the predicted  value of y
+     */
     inline double predict(double x) {
         std::vector<double> coeffs = get_coeffs();
         double y_pred = 0.0;
 
-        for(int64_t i = 0; i<int(coeffs.size()); i++) {
+        for (int64_t i = 0; i < int(coeffs.size()); i++) {
             y_pred += coeffs[i] * std::pow(x, i);
         }
 
         return y_pred;
     }
-
 };
-
 
 #endif

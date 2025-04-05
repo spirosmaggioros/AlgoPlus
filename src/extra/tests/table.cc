@@ -1,5 +1,5 @@
-#include "../../../third_party/catch.hpp"
 #include "../containers/table.h"
+#include "../../../third_party/catch.hpp"
 #include <string>
 
 TEST_CASE("Testing push_back function for table class") {
@@ -80,7 +80,7 @@ TEST_CASE("Testing iterators for table class") {
     table<int> t;
     t.push_back(10, 20, 30, 40, 50);
     std::vector<int> check = t.vectorize(), v;
-    for(auto it = t.begin(); it != t.end(); it++){
+    for (auto it = t.begin(); it != t.end(); it++) {
         v.push_back(*it);
     }
     REQUIRE(check == v);
@@ -95,7 +95,7 @@ TEST_CASE("Testing operator << for table class") {
     CHECK_NOTHROW(std::cout << tt << '\n');
 }
 
-TEST_CASE("Testing operator = for table class"){
+TEST_CASE("Testing operator = for table class") {
     table<int> t;
     t.push_back(10, 20, 30, 40, 50);
     table<int> tt = t;
@@ -116,8 +116,8 @@ TEST_CASE("Testing copy constructor for table class") {
 TEST_CASE("Testing [] operator for table class") {
     table<int> t;
     t.push_back(10, 20, 30, 40, 50);
-    std::vector<int> v { t.vectorize() };
-    for(int i = 0; i<t.size(); i++){
+    std::vector<int> v{t.vectorize()};
+    for (int i = 0; i < t.size(); i++) {
         REQUIRE(t[i] == v[i]);
     }
 
@@ -126,13 +126,12 @@ TEST_CASE("Testing [] operator for table class") {
     REQUIRE(t[0] == 10);
 }
 
-
 TEST_CASE("Testing empty function for table class") {
     table<int> t;
     t.push_back(10, 20, 30, 40, 50);
     REQUIRE(t.empty() == false);
     int size = t.size();
-    for(int i = 0; i<size; i++){
+    for (int i = 0; i < size; i++) {
         t.pop_back();
     }
     REQUIRE(t.empty() == true);

@@ -8,11 +8,11 @@
 #endif
 
 /**
-* @brief eratosthenes sieve function(sieve of eratosthenes)
-*
-* @param n upper bound
-* @return std::vector<bool> if arr[i] = 1 then i is prime
-*/
+ * @brief eratosthenes sieve function(sieve of eratosthenes)
+ *
+ * @param n upper bound
+ * @return std::vector<bool> if arr[i] = 1 then i is prime
+ */
 std::vector<bool> soe(int64_t n) {
     assert(n != 0);
     std::vector<bool> prime(n + 1, true);

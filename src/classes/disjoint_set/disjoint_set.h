@@ -2,28 +2,28 @@
 #define DISJOINT_SET_H
 
 #ifdef __cplusplus
-#include <vector>
 #include <cstdint>
+#include <vector>
 #endif
 
 /**
-* @brief disjoint set class
-*
-*/
+ * @brief disjoint set class
+ *
+ */
 class dsu {
-private:
+  private:
     std::vector<int64_t> p;
     std::vector<int64_t> depth;
     std::vector<int64_t> ssize;
     std::vector<int64_t> max_el;
     std::vector<int64_t> min_el;
 
-public:
+  public:
     /**
-    * @brief Construct a new dsu object
-    *
-    * @param n number of elements
-    */
+     * @brief Construct a new dsu object
+     *
+     * @param n number of elements
+     */
     explicit dsu(int64_t n) {
         p.assign(n, 0);
         for (int64_t i = 0; i < n; i++) {
@@ -44,11 +44,11 @@ public:
     }
 
     /**
-    * @brief find function
-    *
-    * @param i the element we want to search
-    * @return int64_t the set it exists in
-    */
+     * @brief find function
+     *
+     * @param i the element we want to search
+     * @return int64_t the set it exists in
+     */
     int64_t find(int64_t i) {
         if (p[i] == i) {
             return i;
@@ -57,12 +57,12 @@ public:
     }
 
     /**
-    * @brief join function
-    *
-    * @param i first element
-    * @param j second element
-    * union of i and j
-    */
+     * @brief join function
+     *
+     * @param i first element
+     * @param j second element
+     * union of i and j
+     */
     void join(int64_t i, int64_t j) {
         if (same(i, j)) {
             return;
@@ -85,13 +85,13 @@ public:
     }
 
     /**
-    * @brief same function
-    *
-    * @param i first element
-    * @param j second element
-    * @return true if i and j exists in the same set
-    * @return false if i and j does not exist in the same set
-    */
+     * @brief same function
+     *
+     * @param i first element
+     * @param j second element
+     * @return true if i and j exists in the same set
+     * @return false if i and j does not exist in the same set
+     */
     bool same(int64_t i, int64_t j) {
         if (find(i) == find(j)) {
             return true;
@@ -108,27 +108,27 @@ public:
     }
 
     /**
-    * @brief size function
-    *
-    * @param i element we are looking for
-    * @return int64_t the size of the set that i exists in
-    */
+     * @brief size function
+     *
+     * @param i element we are looking for
+     * @return int64_t the size of the set that i exists in
+     */
     int64_t size(int64_t i) { return ssize[find(i)]; }
 
     /**
-    * @brief get the maximum element of the set that i exists in
-    *
-    * @param i the object that we want to search for
-    * @return int64_t the maximum element
-    */
+     * @brief get the maximum element of the set that i exists in
+     *
+     * @param i the object that we want to search for
+     * @return int64_t the maximum element
+     */
     int64_t get_max(int64_t i) { return max_el[find(i)]; }
 
     /**
-    * @brief get the minimum element of the set that i exists in
-    *
-    * @param i the object that we want to search for
-    * @return int64_t the minimum element
-    */
+     * @brief get the minimum element of the set that i exists in
+     *
+     * @param i the object that we want to search for
+     * @return int64_t the minimum element
+     */
     int64_t get_min(int64_t i) { return min_el[find(i)]; }
 };
 
