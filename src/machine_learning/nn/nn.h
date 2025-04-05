@@ -11,7 +11,7 @@
 
 namespace nn {
 
-/*
+/**
  * @brief Linear module. This implementation mostly follows PyTorch's
  * implementation
  */
@@ -23,7 +23,7 @@ class Linear {
     int out_features_;
 
   public:
-    /*
+    /**
      * @brief Default constructor for nn::Linear class
      * @param in_features(int): The input features
      * @param out_features(int): The output features
@@ -32,14 +32,14 @@ class Linear {
      */
     explicit Linear(int, int, bool bias = false);
 
-    /*
+    /**
      * @brief forward function: Forwards an input 1D tensor to the network
      * @param input_tensor: 1D vector, the input tensor
      * @return 1D vector(wT * x + bias)
      */
     std::vector<double> forward(std::vector<double> const&);
 
-    /*
+    /**
      * @brief updates the weight vector by value
      * @param value: double, the value that will be added to weight vector
      */

@@ -9,7 +9,7 @@
 #include "nn.h"
 #endif
 
-/*
+/**
  * @brief Multilayer Perceptron class. Performs binary and categorical
  * classification Uses nn::Linear as a sequential model, follows PyTorch's
  * implementation.
@@ -24,7 +24,7 @@ class MLP {
     double learning_rate_;
 
   public:
-    /*
+    /**
      * @brief default constructor for MLP class
      * @param data: 2D vector, The input data. As usual, the last element of each
      * sub-vector represents the label of the row
@@ -36,12 +36,12 @@ class MLP {
     explicit MLP(std::vector<std::vector<double>> const&, std::vector<std::pair<int, int>> const,
                  const int epochs = 100, const double learning_rate = 0.001);
 
-    /*
+    /**
      * @brief fit an MLP on the input data
      */
     void fit();
 
-    /*
+    /**
      * @brief performs inference
      * @param input: 1D vector, the passed validation data
      * @return double: The classified label

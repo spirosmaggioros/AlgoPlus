@@ -9,7 +9,7 @@
 #include "nn.h"
 #endif
 
-/*
+/**
  * @brief single layer perceptron implementation using nn::Linear
  * TODO(follow up): MLP implementation
  */
@@ -22,7 +22,7 @@ class perceptron {
     nn::Linear weights_;
 
   public:
-    /*
+    /**
      * @brief default constructor for perceptron class
      * @param data: 2D vector, The input data. As usual, the last element of each
      * sub-vector represents the label of the row
@@ -32,12 +32,12 @@ class perceptron {
     explicit perceptron(std::vector<std::vector<double>> const&, const int epochs = 100,
                         const double learning_rate = 0.001);
 
-    /*
+    /**
      * @brief fit a single perceptron on the input data
      */
     void fit();
 
-    /*
+    /**
      * @brief performs inference, classifying to 1 or -1
      * @param input: 1D vector, the passed validation data
      * @return double: 1.0 or -1.0(binary)
