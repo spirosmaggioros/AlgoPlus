@@ -11,6 +11,8 @@ jobs:
   linter-build:
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
       - name: Super-Linter
         uses: super-linter/super-linter@v7.3.0
 
