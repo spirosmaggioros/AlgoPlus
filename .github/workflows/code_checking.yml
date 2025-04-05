@@ -1,9 +1,9 @@
 name: "cpp linter"
 on:
   push:
-    branches: [ "main", "nn" ]
+    branches: [ "nn" ]
   pull_request:
-    branches: [ "main", "nn" ]
+    branches: [ "nn" ]
 
 jobs:
   linter-build:
