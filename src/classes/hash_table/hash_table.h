@@ -38,7 +38,7 @@ template <typename KeyType, typename ValueType> class hash_table {
      *
      * @param v the initializer vector
      */
-    hash_table(std::vector<std::pair<KeyType, ValueType>> v = {}) {
+    inline explicit hash_table(std::vector<std::pair<KeyType, ValueType>> v = {}) {
         if (!v.empty()) {
             for (auto& x : v) {
                 this->insert(x.first, x.second);
@@ -51,14 +51,14 @@ template <typename KeyType, typename ValueType> class hash_table {
      *
      * @param h the hash table we want to copy
      */
-    hash_table(const hash_table& h) : bucketList(h.bucketList), hash(h.hash) {}
+    inline hash_table(const hash_table& h) : bucketList(h.bucketList), hash(h.hash) {}
 
     /**
      * @brief operator = for the hash_table class
      * @param h the hash table we want to copy
      * @return hash_table&
      */
-    hash_table& operator=(const hash_table& h) {
+    inline hash_table& operator=(const hash_table& h) {
         if (&this == h) {
             return *this;
         }
@@ -70,7 +70,7 @@ template <typename KeyType, typename ValueType> class hash_table {
     /**
      * @brief Destroy the hash table object
      */
-    ~hash_table() { bucketList.clear(); }
+    inline ~hash_table() { bucketList.clear(); }
 
     /**
      * @brief Inserts a key-value pair into the hash table.
@@ -80,7 +80,7 @@ template <typename KeyType, typename ValueType> class hash_table {
      * @param key The key to insert.
      * @param value The value to insert.
      */
-    void insert(const KeyType& key, const ValueType& value) {
+    inline void insert(const KeyType& key, const ValueType& value) {
         auto& list = bucketList[hash(key)];
         for (auto& pair : list) {
             if (pair.first == key) {
@@ -97,7 +97,7 @@ template <typename KeyType, typename ValueType> class hash_table {
      * @return The value associated with the given key, if it exists. Otherwise,
      * returns std::nullopt.
      */
-    std::optional<ValueType> retrieve(const KeyType& key) {
+    inline std::optional<ValueType> retrieve(const KeyType& key) {
         auto& list = bucketList[hash(key)];
         for (auto& pair : list) {
             if (pair.first == key) {
@@ -115,14 +115,14 @@ template <typename KeyType, typename ValueType> class hash_table {
      * the hash table.
      * @param key The key to remove.
      */
-    void remove(const KeyType& key) {
+    inline void remove(const KeyType& key) {
         auto& list = bucketList[hash(key)];
         list.remove_if([key](const auto& pair) { return pair.first == key; });
     }
 
     class Iterator;
 
-    Iterator begin() {
+    inline Iterator begin() {
         auto startIterator = bucketList.begin();
         while (startIterator != bucketList.end() && startIterator->second.empty()) {
             startIterator++;
@@ -130,13 +130,13 @@ template <typename KeyType, typename ValueType> class hash_table {
         return Iterator(startIterator, bucketList.end());
     }
 
-    Iterator end() { return Iterator(bucketList.end(), bucketList.end()); }
+    inline Iterator end() { return Iterator(bucketList.end(), bucketList.end()); }
 
     /**
      * @brief << operator for hash_table class
      * @return std::ostream&
      */
-    friend std::ostream& operator<<(std::ostream& out, hash_table<KeyType, ValueType>& h) {
+    inline friend std::ostream& operator<<(std::ostream& out, hash_table<KeyType, ValueType>& h) {
         out << '[';
         for (auto& [key, list] : h.bucketList) {
             for (auto& pair : h.bucketList[key]) {

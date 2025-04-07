@@ -35,7 +35,7 @@ template <typename T> class dequeue_list {
      *
      * @param v initializer vector
      */
-    explicit dequeue_list(std::vector<T> v = {}) noexcept : root(nullptr), tail(nullptr) {
+    inline explicit dequeue_list(std::vector<T> v = {}) noexcept : root(nullptr), tail(nullptr) {
         if (!v.empty()) {
             for (T& x : v) {
                 this->push_back(x);
@@ -48,14 +48,14 @@ template <typename T> class dequeue_list {
      *
      * @param q the dequeue we want to copy
      */
-    explicit dequeue_list(const dequeue_list& q) : root(q.root), tail(q.tail), _size(q._size) {}
+    inline explicit dequeue_list(const dequeue_list& q) : root(q.root), tail(q.tail), _size(q._size) {}
 
     /**
      * @brief operator = for dequeue list class
      * @param q the dequeue we want to copy
      * @return dequeue_list&
      */
-    dequeue_list& operator=(const dequeue_list& q) {
+    inline dequeue_list& operator=(const dequeue_list& q) {
         root = q.root;
         tail = q.tail;
         _size = q._size;
@@ -65,7 +65,7 @@ template <typename T> class dequeue_list {
     /**
      * @brief clear function
      */
-    void clear() {
+    inline void clear() {
         root = nullptr;
         tail = nullptr;
         _size = 0;
@@ -76,14 +76,14 @@ template <typename T> class dequeue_list {
      *
      * @return size_t the size of the stack
      */
-    size_t size() { return _size; }
+    inline size_t size() { return _size; }
 
     /**
      * @brief push_back function
      *
      * @param key the key to be pushed back
      */
-    void push_back(T key) {
+    inline void push_back(T key) {
         std::shared_ptr<node> nn = std::make_shared<node>(key);
         if (!root) {
             root = nn;
@@ -103,7 +103,7 @@ template <typename T> class dequeue_list {
      *
      * @param key the key to be pushed front
      */
-    void push_front(T key) {
+    inline void push_front(T key) {
         std::shared_ptr<node> nn = std::make_shared<node>(key);
         if (!root) {
             root = nn;
@@ -123,20 +123,20 @@ template <typename T> class dequeue_list {
      *
      * @return T the top of the dequeue
      */
-    T front() { return root->val; }
+    inline T front() { return root->val; }
 
     /**
      * @brief back function
      *
      * @return T the back of the dequeue
      */
-    T back() { return tail->val; }
+    inline T back() { return tail->val; }
 
     /**
      * @brief pop_front function
      * removes the front from the dequeue
      */
-    void pop_front() {
+    inline void pop_front() {
         root = root->next;
         root->prev = nullptr;
         _size--;
@@ -146,7 +146,7 @@ template <typename T> class dequeue_list {
      * @brief pop_back function
      *removes the back from the queue
      */
-    void pop_back() {
+    inline void pop_back() {
         tail = tail->prev;
         tail->next = nullptr;
         _size--;
@@ -159,14 +159,14 @@ template <typename T> class dequeue_list {
      *
      * @return Iterator
      */
-    Iterator begin() { return Iterator(root); }
+    inline Iterator begin() { return Iterator(root); }
 
     /**
      * @brief pointer to the end of the dequeue
      *
      * @return Iterator
      */
-    Iterator end() { return Iterator(nullptr); }
+    inline Iterator end() { return Iterator(nullptr); }
 };
 
 /**

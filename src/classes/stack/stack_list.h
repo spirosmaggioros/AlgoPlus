@@ -34,7 +34,7 @@ template <typename T> class stack_list {
      *
      * @param v initializer vector
      */
-    explicit stack_list(std::vector<T> v = {}) noexcept : root(nullptr) {
+    inline explicit stack_list(std::vector<T> v = {}) noexcept : root(nullptr) {
         if (!v.empty()) {
             for (T& x : v) {
                 this->push(x);
@@ -46,14 +46,14 @@ template <typename T> class stack_list {
      * @brief Copy constructor for stack list class
      * @param s the stack we want to copy
      */
-    explicit stack_list(const stack_list& s) : root(s.root), _size(s._size) {}
+    inline explicit stack_list(const stack_list& s) : root(s.root), _size(s._size) {}
 
     /**
      * @brief operator = for stack list class
      * @param s the stack we want to copy
      * @return stack_list&
      */
-    stack_list& operator=(const stack_list& s) {
+    inline stack_list& operator=(const stack_list& s) {
         root = s.root;
         _size = s._size;
         return *this;
@@ -62,7 +62,7 @@ template <typename T> class stack_list {
     /**
      * @brief clear function
      */
-    void clear() {
+    inline void clear() {
         root = nullptr;
         _size = 0;
     }
@@ -72,14 +72,14 @@ template <typename T> class stack_list {
      *
      * @return size_t the size of the stack
      */
-    size_t size() { return _size; }
+    inline size_t size() { return _size; }
 
     /**
      * @brief push function
      *
      * @param key the key to be pushed
      */
-    void push(T key) {
+    inline void push(T key) {
         std::shared_ptr<node> nn = std::make_shared<node>(key);
         if (!root) {
             root = nn;
@@ -98,13 +98,13 @@ template <typename T> class stack_list {
      *
      * @return T the top of the stack
      */
-    T top() { return root->val; }
+    inline T top() { return root->val; }
 
     /**
      * @brief pop function
      * removes the top of the stack
      */
-    void pop() {
+    inline void pop() {
         root = root->prev;
         root->next = nullptr;
         _size--;
@@ -117,14 +117,14 @@ template <typename T> class stack_list {
      *
      * @return Iterator
      */
-    Iterator begin() { return Iterator(root); }
+    inline Iterator begin() { return Iterator(root); }
 
     /**
      * @brief pointer to the end of the stack
      *
      * @return Iterator
      */
-    Iterator end() { return Iterator(nullptr); }
+    inline Iterator end() { return Iterator(nullptr); }
 };
 
 /**
