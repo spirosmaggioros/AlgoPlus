@@ -13,7 +13,6 @@
 #include <vector>
 #endif
 
-
 /**
  *@brief Class for AVL tree.
  */

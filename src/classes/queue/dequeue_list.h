@@ -48,7 +48,8 @@ template <typename T> class dequeue_list {
      *
      * @param q the dequeue we want to copy
      */
-    inline explicit dequeue_list(const dequeue_list& q) : root(q.root), tail(q.tail), _size(q._size) {}
+    inline explicit dequeue_list(const dequeue_list& q)
+        : root(q.root), tail(q.tail), _size(q._size) {}
 
     /**
      * @brief operator = for dequeue list class

@@ -270,7 +270,8 @@ template <typename T> inline bool ttf_tree<T>::search(const T& key) const {
     return false;
 }
 
-template <typename T> inline std::vector<std::vector<std::vector<T>>> ttf_tree<T>::level_order() const {
+template <typename T>
+inline std::vector<std::vector<std::vector<T>>> ttf_tree<T>::level_order() const {
     std::vector<std::vector<std::vector<T>>> level_ordered;
     std::queue<std::shared_ptr<node>> q;
     q.push(root);

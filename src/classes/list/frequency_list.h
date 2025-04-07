@@ -42,7 +42,8 @@ template <typename T> class frequency_list {
      * @tparam T The type of elements stored in the frequency_list.
      * @param data An optional initializer list of elements.
      */
-    inline explicit frequency_list(std::vector<T> data = {}) noexcept : head(nullptr), tail(nullptr) {
+    inline explicit frequency_list(std::vector<T> data = {}) noexcept
+        : head(nullptr), tail(nullptr) {
         if (!data.empty()) {
             for (const auto& item : data) {
                 this->push_back(item);

@@ -26,7 +26,8 @@ class trie {
      *
      * @param v : vector of strings for initializer.
      */
-    inline explicit trie(std::vector<std::string> v = {}) noexcept : root(std::make_shared<node>()) {
+    inline explicit trie(std::vector<std::string> v = {}) noexcept
+        : root(std::make_shared<node>()) {
         if (!v.empty()) {
             for (auto& x : v) {
                 this->insert(x);

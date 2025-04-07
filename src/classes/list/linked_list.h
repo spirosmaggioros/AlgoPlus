@@ -24,7 +24,8 @@ template <typename T> class linked_list {
      *@param __elements: you can provide the constructor with a vector of elements
      *so you dont have to do multiple push backs yourself.
      */
-    inline explicit linked_list(std::vector<T> _elements = {}) noexcept : root(nullptr), tail(nullptr) {
+    inline explicit linked_list(std::vector<T> _elements = {}) noexcept
+        : root(nullptr), tail(nullptr) {
         if (!_elements.empty()) {
             for (T& x : _elements) {
                 this->push_back(x);
@@ -36,7 +37,8 @@ template <typename T> class linked_list {
      * @brief copy constructor for the linked_list class
      * @param l the list we want to copy
      */
-    inline explicit linked_list(const linked_list& l) : root(l.root), tail(l.tail), _size(l._size) {}
+    inline explicit linked_list(const linked_list& l)
+        : root(l.root), tail(l.tail), _size(l._size) {}
 
     /**
      * @brief operator = for linked list class
