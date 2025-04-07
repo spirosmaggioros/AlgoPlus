@@ -24,7 +24,7 @@ class dsu {
      *
      * @param n number of elements
      */
-    explicit dsu(int64_t n) {
+    inline explicit dsu(int64_t n) {
         p.assign(n, 0);
         for (int64_t i = 0; i < n; i++) {
             p[i] = i;
@@ -49,7 +49,7 @@ class dsu {
      * @param i the element we want to search
      * @return int64_t the set it exists in
      */
-    int64_t find(int64_t i) {
+    inline int64_t find(int64_t i) {
         if (p[i] == i) {
             return i;
         }
@@ -63,7 +63,7 @@ class dsu {
      * @param j second element
      * union of i and j
      */
-    void join(int64_t i, int64_t j) {
+    inline void join(int64_t i, int64_t j) {
         if (same(i, j)) {
             return;
         }
@@ -92,14 +92,14 @@ class dsu {
      * @return true if i and j exists in the same set
      * @return false if i and j does not exist in the same set
      */
-    bool same(int64_t i, int64_t j) {
+    inline bool same(int64_t i, int64_t j) {
         if (find(i) == find(j)) {
             return true;
         }
         return false;
     }
 
-    std::vector<int64_t> get(int64_t i) {
+    inline std::vector<int64_t> get(int64_t i) {
         std::vector<int64_t> ans;
         ans.push_back(get_min(i));
         ans.push_back(get_max(i));
@@ -113,7 +113,7 @@ class dsu {
      * @param i element we are looking for
      * @return int64_t the size of the set that i exists in
      */
-    int64_t size(int64_t i) { return ssize[find(i)]; }
+    inline int64_t size(int64_t i) { return ssize[find(i)]; }
 
     /**
      * @brief get the maximum element of the set that i exists in
@@ -121,7 +121,7 @@ class dsu {
      * @param i the object that we want to search for
      * @return int64_t the maximum element
      */
-    int64_t get_max(int64_t i) { return max_el[find(i)]; }
+    inline int64_t get_max(int64_t i) { return max_el[find(i)]; }
 
     /**
      * @brief get the minimum element of the set that i exists in
@@ -129,7 +129,7 @@ class dsu {
      * @param i the object that we want to search for
      * @return int64_t the minimum element
      */
-    int64_t get_min(int64_t i) { return min_el[find(i)]; }
+    inline int64_t get_min(int64_t i) { return min_el[find(i)]; }
 };
 
 #endif

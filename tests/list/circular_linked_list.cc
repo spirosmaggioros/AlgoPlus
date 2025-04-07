@@ -100,4 +100,3 @@ TEST_CASE("Testing circular linked list visualization") {
     circular_linked_list<int> l({2, 4, 6, 7, 12, 9});
     CHECK_NOTHROW(l.visualize());
 }
-

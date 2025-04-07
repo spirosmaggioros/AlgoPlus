@@ -344,4 +344,3 @@ TEST_CASE("Testing visualize for graph class") {
     g.add_edge(3, 4);
     CHECK_NOTHROW(g.visualize());
 }
-

@@ -82,4 +82,3 @@ TEST_CASE("Testing frequency list visualization") {
     frequency_list<char> flist({'a', 'b', 'c', 'd', 'e', 'f'});
     CHECK_NOTHROW(flist.visualize());
 }
-

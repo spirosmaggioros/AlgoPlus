@@ -27,39 +27,39 @@ template <typename T> class min_heap {
      *
      * @param max_size : maximum size of the heap
      */
-    explicit min_heap(size_t max_size) noexcept : arr(new T[max_size]) {
+    inline explicit min_heap(size_t max_size) noexcept : arr(new T[max_size]) {
 
         this->max_size = max_size;
     }
 
-    ~min_heap() noexcept { delete[] arr; }
+    inline ~min_heap() noexcept { delete[] arr; }
 
     /**
      * @brief parent function
      *
      * @param i the element we want to find the parent
      */
-    T parent(T i) { return (i - 1) / 2; }
+    inline T parent(T i) { return (i - 1) / 2; }
 
     /**
      * @brief __left function
      *
      * @param i: the element we want to find the left
      */
-    T _left(T i) { return (2 * i + 1); }
+    inline T _left(T i) { return (2 * i + 1); }
 
     /**
      * @brief __right function
      *
      * @param i: the element we want to find the right
      */
-    T _right(T i) { return (2 * i + 2); }
+    inline T _right(T i) { return (2 * i + 2); }
 
     /**
      * @brief __min function
      * Returns the minimum with heapify
      */
-    T _min() {
+    inline T _min() {
         if (heap_size <= 0) {
             return INT_MAX;
         }
@@ -78,9 +78,9 @@ template <typename T> class min_heap {
      * @brief min function.
      * Returns the minimum of the heap(the first element)
      */
-    T min() { return arr[0]; }
+    inline T min() { return arr[0]; }
 
-    void decrease_key(T i, T key) {
+    inline void decrease_key(T i, T key) {
         arr[i] = key;
         while (i != 0 && arr[parent(i)] > arr[i]) {
             std::swap(arr[i], arr[parent(i)]);
@@ -93,7 +93,7 @@ template <typename T> class min_heap {
      *
      * @param key the key to be inserted
      */
-    void insert(T key) {
+    inline void insert(T key) {
         try {
             if (heap_size == max_size) {
                 throw std::invalid_argument("Heap reached maximum size");
@@ -117,7 +117,7 @@ template <typename T> class min_heap {
      *
      * @param key the key to be removed
      */
-    void remove(T key) {
+    inline void remove(T key) {
         decrease_key(key, INT_MIN);
         _min();
     }
@@ -127,7 +127,7 @@ template <typename T> class min_heap {
      *
      * @param i the element we want to heapify from
      */
-    void heapify(T i) {
+    inline void heapify(T i) {
         T left = _left(i);
         T right = _right(i);
         T minim = i;

@@ -1,10 +1,9 @@
 #include "../../third_party/catch.hpp"
-#include <string>
 #include <iostream>
+#include <string>
 
 #define ENABLE_TREE_VISUALIZATION
 #include "../../src/classes/tree/avl_tree.h"
-
 
 TEST_CASE("checking insertions and traversals in avl") {
     avl_tree<int> a1;
@@ -189,4 +188,3 @@ TEST_CASE("Testing avl tree visualization") {
     avl_tree<char> a({'g', 'w', 'h', 'p', 'u'});
     CHECK_NOTHROW(a.visualize());
 }
-
