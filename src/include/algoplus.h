@@ -74,7 +74,30 @@
 #include "../machine_learning/image/morphology/operations.h"
 #include "../machine_learning/image/point_detection/laplacian_point_detect.h"
 
-#include "../machine_learning/loss_functions/losses.h"
+// machine learning
+#include "../machine_learning/activation/activation_functions.h"
+
+#include "../machine_learning/classification/logistic_regression/log_reg.h"
+
+#include "../machine_learning/clustering/DBSCAN/dbscan.h"
+#include "../machine_learning/clustering/kmeans/kmeans.h"
+
+#include "../machine_learning/image/edge_detection/prewitt.h"
+#include "../machine_learning/image/edge_detection/sobel_operator.h"
+#include "../machine_learning/image/encoders/huffman_encoding.h"
+#include "../machine_learning/image/filters/average_filter.h"
+#include "../machine_learning/image/filters/gaussian_filter.h"
+#include "../machine_learning/image/filters/median_filter.h"
+#include "../machine_learning/image/filters/sharpening_filter.h"
+#include "../machine_learning/image/image.h"
+#include "../machine_learning/image/morphology/operations.h"
+#include "../machine_learning/image/point_detection/laplacian_point_detect.h"
+
+#include "../machine_learning/metrics/metrics.h"
+
+#include "../machine_learning/nn/mlp.h"
+#include "../machine_learning/nn/nn.h"
+#include "../machine_learning/nn/perceptron.h"
 
 #include "../machine_learning/regression/linear_regression/lin_reg.h"
 #include "../machine_learning/regression/polynomial_regression/poly_reg.h"
