@@ -68,7 +68,6 @@ class logistic_regression {
      * @param lr(double): learning rate
      * @param bias(double): the input bias
      * @param epochs(int): the number of epochs
-     *
      */
     explicit logistic_regression(const std::vector<std::vector<double>> data,
                                  const double lr = 0.001, const double bias = 0.001,

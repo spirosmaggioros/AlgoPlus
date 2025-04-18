@@ -11,7 +11,6 @@
 
 /**
  * @brief single layer perceptron implementation using nn::Linear
- * TODO(follow up): MLP implementation
  */
 class perceptron {
   private:
