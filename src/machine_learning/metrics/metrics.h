@@ -162,7 +162,7 @@ namespace losses {
  * @param y_hat: vector, the predicted labels
  * @return double
  */
-inline double mean_squared_error(std::vector<double> const& y, std::vector<double> const& y_hat) {
+inline double mean_squared_error(const std::vector<double>& y, const std::vector<double>& y_hat) {
     assert(y.size() == y_hat.size());
     size_t n = y.size();
     double mse = 0.0;
@@ -198,26 +198,6 @@ inline double mean_absolute_error(std::vector<double> const& y, std::vector<doub
     }
     return mae / double(n);
 }
-
-// /**
-// * @brief log loss for multiclass classification
-// * @param y(vector<double>): the original labels
-// * @param y_hat(vector<double>): the predicted labels
-// * @return double
-// */
-// double xlogy(std::vector<double> const& y, std::vector<double> const& y_hat)
-// {
-//     assert(y.size() == y_hat.size());
-//     std::vector<double> softmax_ = _metrics_utils::softmax(y);
-//     assert(softmax_.size() == y.size());
-
-//     size_t n = y.size();
-//     double ce = 0.0;
-//     for (const double &x: softmax_) {
-//         ce += log(x);
-//     }
-//     return -ce;
-// }
 
 /**
  * @brief binary crossentropy loss for binary classification
