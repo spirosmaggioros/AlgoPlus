@@ -113,7 +113,7 @@ inline double euclidean_distance(const std::vector<double>& x, const std::vector
 
     double _dist = 0.0;
     for (size_t i = 0; i < x.size(); i++) {
-        _dist += std::powf(y[i] - x[i], 2);
+        _dist += std::pow(y[i] - x[i], 2);
     }
 
     return std::sqrt(_dist);
@@ -152,7 +152,7 @@ inline double minkowski_distance(const std::vector<double>& x, const std::vector
         _dist += std::abs(y[i] - x[i]);
     }
 
-    return std::powf(_dist, 1.0 / p);
+    return std::pow(_dist, 1.0 / p);
 }
 
 namespace losses {
@@ -167,7 +167,7 @@ inline double mean_squared_error(const std::vector<double>& y, const std::vector
     size_t n = y.size();
     double mse = 0.0;
     for (size_t i = 0; i < n; i++) {
-        mse += powf(y[i] - y_hat[i], 2);
+        mse += std::pow(y[i] - y_hat[i], 2);
     }
     return mse / double(n);
 }
