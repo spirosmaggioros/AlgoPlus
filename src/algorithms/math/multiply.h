@@ -27,3 +27,14 @@ std::vector<std::vector<T>> multiply(std::vector<std::vector<T>> const& x,
 
     return out;
 }
+
+template <typename T>
+double multiply(std::vector<T> const& x, std::vector<T> const& y) {
+    assert(x.size() == y.size());
+    double out = 0.0;
+    for (size_t i = 0; i < x.size(); i++) {
+        out += x[i] * y[i];
+    }
+
+    return out;
+}

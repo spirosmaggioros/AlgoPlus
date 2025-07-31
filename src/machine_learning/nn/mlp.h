@@ -81,7 +81,6 @@ inline void MLP::fit() {
                 out_ = layer.forward(out_);
             }
 
-            // double y_pred;
             double y_pred_ = (out_[0] > 0.0) ? 1.0 : -1.0;
             y_pred.push_back(y_pred_);
             // TODO: Perform multiclass classification

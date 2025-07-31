@@ -1,5 +1,5 @@
 #ifdef __cplusplus
-#include "../../src/machine_learning/nn/nn.h"
+#include "../../../src/machine_learning/nn/nn.h"
 #endif
 
 int main() {

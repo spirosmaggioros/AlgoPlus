@@ -85,15 +85,16 @@ inline std::vector<double> nn::Linear::forward(std::vector<double> const& input_
     return output;
 }
 
-inline void nn::Linear::update_weights(std::vector<double> const& input, double error,
+inline void nn::Linear::update_weights(std::vector<double> const& avg_gradients,
+                                       double avg_error,
                                        double learning_rate) {
     for (int i = 0; i < this->out_features_; i++) {
         for (int j = 0; j < this->in_features_; j++) {
-            weight[i][j] -= learning_rate * error * input[j];
+            weight[i][j] -= learning_rate * avg_gradients[j];
         }
 
         if (bias.has_value()) {
-            bias = bias.value() - learning_rate * error;
+            bias = bias.value() - learning_rate * avg_error;
         }
     }
 }
