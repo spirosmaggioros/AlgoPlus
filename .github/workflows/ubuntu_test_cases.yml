@@ -18,7 +18,7 @@ jobs:
         cxx: [g++-12, g++-13, g++-14, clang++-18]
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
       - name: Install dependencies
         run: |
