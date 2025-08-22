@@ -24,7 +24,7 @@ jobs:
         cxx: [g++-12, g++-13, g++-14, clang++-18]
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v5
       - name: Download requirements
         run: sudo pip3 install xcrun --break-system-packages && sudo pip3 install gcovr --break-system-packages && brew install lcov libxrandr libxcursor libuv openal-soft flac libvorbis mesa freeglut
       - name: Install dependencies
